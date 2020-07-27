@@ -1,0 +1,337 @@
+[data-page-type='index']{
+
+  .content_block.top_container{
+    width: 100%;
+    height: 496px;
+    background: radial-gradient(circle at 0 100%,#fff9f0 59%,#782f40 calc(59% + 1px));
+
+    .top_wrapper{
+      position: relative;
+      width: 1224px;
+      margin: 0 auto;
+      padding: 40px 0 0 0;
+    }
+
+    h1{
+      width: 592px;
+      font-weight: 300;
+      font-size: 72px;
+      line-height: 76px;
+      color: $baseColor;
+    }
+
+    .top_list{
+      display: flex;
+      flex-flow: row nowrap;
+      padding: 32px 0 40px 60px;
+    }
+
+    .top_list_item{
+      position: relative;
+      padding: 0 84px 0 0;
+
+      & p{
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+        color: $headerBlack;
+      }
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -60px;
+        width: 48px;
+        height: 48px;
+        border: 1px solid $baseColor;
+        border-radius: 24px;
+        box-sizing: border-box;
+      }
+    }
+
+    .popup_button{
+      padding: 16px 33px 16px 33px;
+    }
+
+    .top_img{
+      position: absolute;
+      top: 19px;
+      right: 130px;
+      width: 500px;
+      height: 477px;
+      background: url(/img/woman_first_screen_top.png);
+    }
+  }
+
+  .content_block.servises_container{
+    height: 512px;
+    padding: 120px 0 120px 0;
+
+    h2{
+      text-align: center;
+      color: $headerBlack;
+    }
+  }
+
+  .servises_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 32px 0 0 0;
+  }
+
+  .services_item{
+    display: flex;
+    align-items: center;
+    width: 272px;
+
+    &:nth-of-type(-n + 4){
+      padding: 0 0 40px 0;
+    }
+  }
+
+  .services_item a._menu_link{
+    margin: 0 0 0 8px;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #782F40;
+
+    &:hover{
+      color: #C73F36;
+    }
+  }
+
+  .services_item_img{
+    width: 80px;
+    height: 80px;
+  }
+
+  .content_block.deals_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    height: 460px;
+    padding: 0 0 0 40px;
+
+    h2{
+      padding: 0 0 32px 0;
+      font-weight: 300;
+      font-size: 40px;
+      line-height: 44px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+      text-align: center;
+    }
+
+  }
+  
+  .deals_title{
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    
+    ._button._button_light{
+      position: absolute;
+      top: 2px;
+      right: -448px;
+    }
+  }
+
+  ._button._button_light{
+    border: 1px solid #F7C67E;
+    background: transparent;
+    padding: 9px 20px 9px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  ._button._button_light:hover{
+    border: 1px solid #F7DA7E;
+    background: #FFF9F0;
+  }
+
+  ._button._button_light:active{
+    border: 1px solid #E8A33B;
+    background: #FFF9F0;
+  }
+
+  .deals_wrapper{
+    position: relative;
+    height: 280px;
+  }
+
+  .deal_item_wrapper{
+    width: 600px;
+    height: 240px;
+  }
+
+  .deal_item_wrapper:nth-of-type(even){
+
+    .deal_text{
+      background: linear-gradient(110deg, #FBEDD8 57%, transparent calc(57% + 1px));
+      color: $headerBlack;
+    }
+  }
+  
+  .deal_item{
+    height: 240px;
+    border-radius: 8px;
+  }
+  
+  .deal_text{
+    height: 240px;
+    padding: 40px 49% 0 24px;
+    border-radius: 8px;
+    background: linear-gradient(110deg, $baseColor 57%, transparent calc(57% + 1px));
+    color: #FFFFFF;
+    
+    h4{
+      padding: 0 0 8px 0;
+    }
+
+    p{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+  }
+  
+
+  .swiper-button-next.revolver_navigation,
+  .swiper-button-prev.revolver_navigation{
+    width: 40px;
+    height: 13px;
+    top: 284px;
+    background: url(/img/arrow_revolver.svg);
+    background-size: contain;
+    
+    &:hover{
+      background: url(/img/arrow_revolver_hover.svg);
+      background-size: contain;
+    }
+  }
+  
+  .swiper-button-prev.revolver_navigation{
+    transform: rotate(180deg);
+  }
+  
+  .content_block.advantages_container{
+    width: 100%;
+
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+    }
+
+    &:before{
+      left: -90px;
+      width: 340px;
+      height: 494px;
+      background: url(/img/left_bg_instruments.png);
+    }
+
+    &:after{
+      right: 0;
+      width: 312px;
+      height: 358px;
+      background: url(/img/right_bg_instruments.png);
+    }
+  }
+
+  .advantages_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 1224px;
+    height: 568px;
+    margin: 0 auto;
+    padding: 80px 0 120px 0;
+  }
+
+  .advantages_title{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    h2{
+      color: $headerBlack;
+    }
+
+    p{
+      width: 800px;
+      padding: 8px 0 48px 0;
+      line-height: 26px;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .advantages_content{
+    display: flex;
+    flex-flow: row wrap;
+    width: 800px;
+  }
+
+  .advantages_item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 400px;
+    min-height: 48px;
+    margin: 0 0 32px 0;
+    padding: 0 84px 0 0;
+    color: $headerBlack;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60px;
+      width: 48px;
+      height: 48px;
+      border: 1px solid $baseColor;
+      border-radius: 24px;
+      box-sizing: border-box;
+    }
+
+    span{
+      font-size: 14px;
+      color: $textColor;
+    }
+  }
+
+  .advantages_img_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    a._menu_link{
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+
+    a._menu_link:hover{
+      color: #C73F36;
+    }
+  }
+
+  .advantages_img{
+    width: 182px;
+    height: 167px;
+    margin: 0 auto;
+    background: url(/img/certificates.png);
+    background-size: contain;
+  }
+
+  .advantages_text{
+    padding: 8px 0 0 0;
+  }
+
+}

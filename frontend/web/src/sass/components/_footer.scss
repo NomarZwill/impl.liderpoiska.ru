@@ -1,0 +1,470 @@
+.footer_wrapper{
+  width: 100%;
+  padding: 56px 0 0 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .footer_top,
+  .footer_middle_wrapper,
+  .footer_bottom_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    width: 1224px;
+    box-sizing: border-box;
+  }
+
+  .footer_middle_wrapper{
+    padding: 32px 0 0 0;
+  }
+
+  .footer_top_wrapper{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    background: linear-gradient(180deg, #782F40 0%, #801E35 100%);
+  }
+  
+  .footer_top{
+    position: relative;
+    align-items: center;
+    height: 136px;
+    padding: 0 0 0 176px;
+    color: #FFFFFF;
+
+    .contacts_wrapper{
+      padding: 0 32px 0 0;
+
+    }
+
+    .phones{
+      display: flex;
+      flex-flow: row nowrap;
+      
+      & p{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0.01em;
+      }
+  
+      & p:first-of-type{
+        padding: 0 16px 8px 0;
+      }
+    }
+
+    .work_hours{
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+      color: #BE929C;
+    }
+  }
+
+  .footer_middle_wrapper{
+    height: 368px;
+  }
+
+  .footer_bottom_wrapper{
+    height: 80px;
+  }
+
+  .feedback_img{
+    position: absolute;
+    top: -53px;
+    left: 0;
+    width: 143px;
+    height: 190px;
+    background: url(/img/woman-feedback.png);
+    background-size: contain;
+  }
+
+  .footer_top_text{
+    width: 368px;
+    padding: 0 50px 0 0;
+  }
+
+  .footer_top_text h4{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.02em;
+  }
+
+  .footer_top_text p{
+    padding: 4px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .popup_button{
+    padding: 16px 28px 16px 28px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: #333638;
+  }
+
+  .to_patients,
+  .servises_wrapper{
+    font-size: 14px;
+    letter-spacing: 0.02em;
+
+    & .title{
+      width: 100%;
+      padding: 0 0 8px 0;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    & .to_patients_item,
+    & .servises_item{
+      padding: 0 0 16px 0;
+    }
+  }
+
+  .to_patients{
+    padding: 0 56px 0 0;
+  }
+
+  .servises{
+    display: flex;
+    flex-flow: column wrap;
+    width: 440px;
+    height: 280px;
+  }
+
+  .servises_item{
+    width: 240px;
+    padding: 0 0 16px 0;
+    line-height: 20px;
+  }
+
+  .logo_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .logo_img{
+    width: 40px;
+    height: 40px;
+    background: url(/img/impl-logo-footer.svg);
+    background-size: contain;
+  }
+
+  .logo_name{
+    padding: 0 0 0 8px;
+  }
+
+  .logo_name p{
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .footer_middle_wrapper{
+
+    .contacts_wrapper{
+      margin-left: auto;
+    }
+
+    .phones{
+      padding: 16px 0 0 0;
+      
+      & p{
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0.01em;
+      }
+  
+      & p:first-of-type{
+        padding: 0 0 4px 0;
+      }
+    }
+
+    .work_hours{
+      padding: 8px 0 16px 0;
+    }
+    
+    .work_hours p{
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.02em;
+    }
+
+  }
+  
+  .instagram{
+    position: relative;
+    margin: 0 0 0 30px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    
+    & a:before{
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -30px;
+      width: 24px;
+      height: 24px;
+      background: url(/img/instagram-icon.svg);
+      background-size: contain;
+    }
+  }
+  
+  .footer_bottom_wrapper{
+    font-size: 12px;
+    letter-spacing: 0.02em;
+
+    a._menu_link{
+      margin: 0 24px 0 0;
+      line-height: 20px;
+    }
+
+    p{
+      width: 688px;
+      line-height: 20px;
+    }
+  }
+
+  .lp_label{
+    position: relative;
+    margin-left: auto;
+    padding: 0 0 0 39px;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 29px;
+      height: 29px;
+      background: url(/img/lp-logo.svg);
+      background-size: contain;
+    }
+  }
+
+  a.lp_label {
+    line-height: 20px;
+
+    &:hover{
+      color: $textColor;
+    }
+  }
+
+  @include for-notdesc{
+
+    .popup_button{
+      padding: 10px 22px 10px 22px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .footer_middle_wrapper{
+
+      .phones{
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 0 0 0 0;
+      }
+    }
+  }
+
+  @include for-pad{
+
+    .footer_top,
+    .footer_middle_wrapper,
+    .footer_bottom_wrapper{
+      width: 768px;
+    }
+
+    .footer_top{
+      align-items: flex-start;
+      flex-flow: column nowrap;
+      padding: 16px 0 0 207px;
+
+      .contacts_wrapper{
+        display: none;
+      }
+    }
+
+    .feedback_img{
+      left: 16px;
+    }
+
+    .footer_top_text{
+      width: auto;
+      padding: 0 0 12px 0;
+    }
+
+    .footer_top_text p{
+      padding: 0 0 0 0;
+    }
+
+    .footer_middle_wrapper{
+      flex-flow: row wrap;
+      height: 404px;
+      padding: 24px 0 0 16px;
+
+      .contacts_wrapper{
+        display: flex;
+        flex-flow: column wrap;
+        order: -1;
+        width: 100%;
+        height: 72px;
+        margin-left: 0;
+        padding: 0 0 16px 0;
+      }
+
+      .logo_wrapper{
+        padding: 0 0 32px 0;
+      }
+
+      .phones{
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 0 0 0 0;
+      }
+
+      .phones p:first-of-type{
+        padding: 0 16px 0 0;
+      }
+
+      .work_hours{
+        padding: 0 0 8px 0;
+      }
+
+      .work_hours_text_pad{
+        display: none;
+      }
+    }
+
+    .to_patients,
+    .servises_wrapper{
+
+      & .title{
+        padding: 0 0 4px 0;
+      }
+
+      & .to_patients_item,
+      & .servises_item{
+        padding: 0 0 12px 0;
+      }
+    }
+
+    .servises{
+      height: 264px;
+    }
+
+    .servises_item{
+      width: 232px;
+    }
+
+    .footer_bottom_wrapper{
+      flex-flow: column wrap;
+      padding: 0 16px 0 16px;
+      height: 96px;
+
+      p{
+        width: 480px;
+        padding: 4px 0 0 0;
+      }
+    }
+  }
+
+  @include for-mobile{
+
+    .footer_top,
+    .footer_middle_wrapper,
+    .footer_bottom_wrapper{
+      width: 100%;
+    }
+
+    .footer_top{
+      align-items: flex-start;
+      flex-flow: column nowrap;
+      height: 192px;
+      padding: 16px 0 0 16px;
+
+      .contacts_wrapper{
+        display: none;
+      }
+    }
+
+    .feedback_img{
+      top: -18px;
+      left: auto;
+      right: 0;
+      width: 129px;
+      height: 210px;
+      background: url(/img/woman-feedback-mobile.png);
+      background-size: contain;
+    }
+
+    .footer_top_text{
+      width: 216px;
+      padding: 0 0 8px 0;
+
+      h4{
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    .popup_button{
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer_middle_wrapper{
+      height: 192px;
+      padding: 24px 0 0 16px;
+
+      .contacts_wrapper{
+        margin-left: 0;
+
+        .logo_wrapper{
+          padding: 0 0 16px 0;
+        }
+
+        .phones p:first-of-type{
+          padding: 0 8px 0 0;
+        }
+
+        .work_hours{
+          padding: 8px 0 12px 0;
+        }
+      }
+    }
+
+    .to_patients,
+    .servises_wrapper{
+      display: none;
+    }
+
+
+    .footer_bottom_wrapper{
+      flex-flow: column wrap;
+      padding: 0 16px 0 16px;
+      height: 192px;
+
+      p{
+        width: 288px;
+        padding: 4px 0 16px 0;
+      }
+
+    }
+    
+    .lp_label{
+      margin-left: 0;
+    }
+  }
+}

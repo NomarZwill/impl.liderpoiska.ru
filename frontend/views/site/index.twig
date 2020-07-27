@@ -1,0 +1,200 @@
+<div data-page-type="index">
+
+  <div class="content_block top_container">
+
+    <div class="top_wrapper">
+
+      <h1>Центр Эстетической Стоматологии</h1>
+
+      <div class="top_list">
+
+        <div class="top_list_item"><p>Премиальный<br> сегмент&nbsp;услуг</p></div>
+        <div class="top_list_item"><p>Специалисты<br> экстра-класса</p></div>
+        <div class="top_list_item"><p>Инновационные<br> материалы<span> и оборудование</p></span></div>
+
+      </div>
+
+      <button class="_button popup_button">Записаться на приём</button>
+
+      <div class="top_img"></div>
+
+    </div>
+
+  </div>
+
+  <div class="content_block servises_container">
+
+    <h2>Лечение зубов по современным технологиям</h2>
+
+    <div class="servises_wrapper">
+
+      {% for service in servises %}
+
+        <div class="services_item">
+
+          <img class="services_item_img" src="img/{{service.image}}" alt="">
+
+          <a class="_menu_link" href="/dent/{{service.alias}}">{{service.menu_title}}</a>
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  <div class="content_block deals_container">
+
+    <div class="deals_title">
+
+      <h2>Спецпредложения</h2>
+
+      <form action="/specialnoe/">
+        <button class="_button _button_light">Все спецпредложения →</button>
+      </form>
+
+    </div>
+
+    <div class="swiper-container deals_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for deal in deals %}
+    
+          <div class="swiper-slide deal_item_wrapper">       
+  
+            <a class="_menu_link_no_borders" href="/specialnoe/{{deal.alias}}">
+
+              <div class="deal_item" data-bg-image="/img/{{deal.deals_index_image}}">
+
+                <div class="deal_text">
+                  <h4>{{deal.deals_title}}</h4>
+                  <p>{{deal.deals_index_description}}</p>
+                </div>
+
+              </div>
+
+            </a>
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="swiper-button-prev revolver_navigation"></div>
+      {# <div class="swiper-pagination revolver_pagination"></div> #}
+      <div class="swiper-button-next revolver_navigation"></div>
+
+    </div>
+
+  </div>
+
+  <div class="doctors_advantages_bg">
+
+    <div class="content_block doctors_container">
+  
+      <div class="doctors_title">
+  
+        <h2>Наши специалисты</h2>
+  
+        <p>
+          Было бы неплохо поставить здесь какой-то обычный тект про то, 
+          что средний стаж наших специалистов порядка 15 лет. Что мы 
+          отбираем только лучших стоматологов Москвы, которые регулярно 
+          подтверждают свою квалификацию.
+        </p>
+
+        <form action="/specialists/">
+          <button class="_button _button_light">Все врачи →</button>
+        </form>
+  
+      </div>
+
+      <div class="swiper-container doctors_wrapper">
+
+        <div class="swiper-wrapper">
+  
+          {% for doctor in doctors %}
+      
+            <div class="swiper-slide doctor_item_wrapper">       
+    
+              {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+    
+            </div>
+    
+          {% endfor %}
+  
+        </div>
+  
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+  
+      </div>
+  
+  
+    </div>
+  
+    <div class="content_block advantages_container">
+  
+      <div class="advantages_wrapper">
+  
+        <div class="advantages_title">
+    
+          <h2>Не просто стоматология</h2>
+    
+          <p>
+            Мы стремимся к тому, чтобы услуги были высочайшего класса.
+            Сюда тоже следует поставить короткий и ёмкий текст про то, 
+            какие мы молодцы и у нас всё на высшем уровне.
+          </p>
+    
+        </div>
+    
+        <div class="advantages_content">
+    
+          <div class="advantages_item">
+            <p>Междисциплинарный подход в лечении</p>
+          </div>
+          
+          <div class="advantages_item">
+            <p>Сотрудничество со всеми страховыми компаниями Москвы</p>
+          </div>
+    
+          <div class="advantages_item">
+            <p>Пожизненная гарантия на имплантаты</p>
+          </div>
+    
+          <div class="advantages_item">
+            <p>Программа лояльности пациентов</p>
+          </div>
+    
+          <div class="advantages_item">
+            <p>Лечение во сне</p>
+          </div>
+    
+          <div class="advantages_item">
+            <p>Удобные локации<br> <span>в шаговой доступности от метро</span></p>
+          </div>
+          
+        </div>
+    
+        <div class="advantages_img_wrapper">
+          <a class="_menu_link" href="/lizcenz/">
+    
+            <div class="advantages_img"></div>
+            <p class="advantages_text">Сертификаты и лицензии</p>
+            
+          </a>
+        </div>
+  
+      </div>
+  
+    </div>
+
+  </div>
+
+
+</div>
