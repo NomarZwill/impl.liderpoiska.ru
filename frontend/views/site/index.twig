@@ -24,7 +24,7 @@
 
   <div class="content_block servises_container">
 
-    <h2>Лечение зубов по современным технологиям</h2>
+    <h2 class="_index_subtitle">Лечение зубов по современным технологиям</h2>
 
     <div class="servises_wrapper">
 
@@ -48,7 +48,7 @@
 
     <div class="deals_title">
 
-      <h2>Спецпредложения</h2>
+      <h2 class="_index_subtitle">Спецпредложения</h2>
 
       <form action="/specialnoe/">
         <button class="_button _button_light">Все спецпредложения →</button>
@@ -91,110 +91,215 @@
 
   </div>
 
-  <div class="doctors_advantages_bg">
+  <div class="content_block clinic_description_container">
 
-    <div class="content_block doctors_container">
-  
-      <div class="doctors_title">
-  
-        <h2>Наши специалисты</h2>
-  
-        <p>
-          Было бы неплохо поставить здесь какой-то обычный тект про то, 
-          что средний стаж наших специалистов порядка 15 лет. Что мы 
-          отбираем только лучших стоматологов Москвы, которые регулярно 
-          подтверждают свою квалификацию.
-        </p>
+    <div class="clinic_description_content">
 
-        <form action="/specialists/">
-          <button class="_button _button_light">Все врачи →</button>
-        </form>
-  
-      </div>
+      <h2 class="_index_subtitle">О клинике</h2>
 
-      <div class="swiper-container doctors_wrapper">
+      <p>
+        Оперативное вмешательство в стоматологии используется в случаях, 
+        когда неэффективно проведение консервативного лечения. 
+        Стоматологическая хирургия подразумевает операции, которые 
+        проводятся в ротовой полости и на челюсти. Центр Эстетической 
+        Стоматологии оказывает широкий перечень услуг, в т. ч. осуществляет 
+        хирургию различной сложности.
+      </p>
+      <br>
+      <p>
+        Иногда зуб невозможно спасти, тогда мы проводим быстрое и 
+        безопасное удаление. Уточнить перечень процедур и их цены можно 
+        на приеме или в прайсе клиники. Хирурги ЦЭС выполняют 
+        зубосохраняющие операции, предлагают оперативные методы лечения 
+        заболеваний твердых и мягких тканей ротовой полости. С возможностями 
+        и ценами стоматологической хирургии можно познакомиться на сайте.
+      </p>
 
-        <div class="swiper-wrapper">
-  
-          {% for doctor in doctors %}
-      
-            <div class="swiper-slide doctor_item_wrapper">       
-    
-              {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
-    
-            </div>
-    
-          {% endfor %}
-  
-        </div>
-  
-        <div class="swiper-button-prev revolver_navigation"></div>
-        {# <div class="swiper-pagination revolver_pagination"></div> #}
-        <div class="swiper-button-next revolver_navigation"></div>
-  
-      </div>
-  
-  
     </div>
-  
-    <div class="content_block advantages_container">
-  
-      <div class="advantages_wrapper">
-  
-        <div class="advantages_title">
-    
-          <h2>Не просто стоматология</h2>
-    
-          <p>
-            Мы стремимся к тому, чтобы услуги были высочайшего класса.
-            Сюда тоже следует поставить короткий и ёмкий текст про то, 
-            какие мы молодцы и у нас всё на высшем уровне.
-          </p>
-    
+
+    <div class="swiper_container clinic_description_gallery">
+
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <img src="/img/about_photo_test.png" alt="">
         </div>
-    
-        <div class="advantages_content">
-    
-          <div class="advantages_item">
-            <p>Междисциплинарный подход в лечении</p>
-          </div>
-          
-          <div class="advantages_item">
-            <p>Сотрудничество со всеми страховыми компаниями Москвы</p>
-          </div>
-    
-          <div class="advantages_item">
-            <p>Пожизненная гарантия на имплантаты</p>
-          </div>
-    
-          <div class="advantages_item">
-            <p>Программа лояльности пациентов</p>
-          </div>
-    
-          <div class="advantages_item">
-            <p>Лечение во сне</p>
-          </div>
-    
-          <div class="advantages_item">
-            <p>Удобные локации<br> <span>в шаговой доступности от метро</span></p>
-          </div>
-          
+
+        <div class="swiper-slide">
+          <img src="/img/about_photo_test.png" alt="">
         </div>
-    
-        <div class="advantages_img_wrapper">
-          <a class="_menu_link" href="/lizcenz/">
-    
-            <div class="advantages_img"></div>
-            <p class="advantages_text">Сертификаты и лицензии</p>
-            
-          </a>
+
+        <div class="swiper-slide">
+          <img src="/img/about_photo_test.png" alt="">
         </div>
-  
+
+        
       </div>
-  
+
+      <div class="diagonal_navigation">
+        <div class="swiper-button-prev _diagonal_navigation"></div>
+        <span class="current_slide">01</span>
+        <br>
+        <span class="total_slides">03</span>
+        <div class="swiper-button-next _diagonal_navigation"></div>
+
+      </div>
+
     </div>
 
   </div>
 
+  <div class="doctors_advantages_bg">
+    <div class="doctors_advantages_bg_inner">
+
+      <div class="content_block doctors_container">
+    
+        <div class="doctors_title">
+    
+          <h2 class="_index_subtitle">Наши специалисты</h2>
+    
+          <p>
+            Было бы неплохо поставить здесь какой-то обычный тект про то, 
+            что средний стаж наших специалистов порядка 15 лет. Что мы 
+            отбираем только лучших стоматологов Москвы, которые регулярно 
+            подтверждают свою квалификацию.
+          </p>
+
+          <form action="/specialists/">
+            <button class="_button _button_light">Все врачи →</button>
+          </form>
+    
+        </div>
+
+        <div class="swiper-container doctors_wrapper">
+
+          <div class="swiper-wrapper">
+    
+            {% for doctor in doctors %}
+        
+              <div class="swiper-slide doctor_item_wrapper">       
+      
+                {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+      
+              </div>
+      
+            {% endfor %}
+    
+          </div>
+    
+          <div class="swiper-button-prev revolver_navigation"></div>
+          {# <div class="swiper-pagination revolver_pagination"></div> #}
+          <div class="swiper-button-next revolver_navigation"></div>
+    
+        </div>
+    
+    
+      </div>
+    
+      <div class="content_block advantages_container">
+    
+        <div class="advantages_wrapper">
+    
+          <div class="advantages_title">
+      
+            <h2 class="_index_subtitle">Не просто стоматология</h2>
+      
+            <p>
+              Мы стремимся к тому, чтобы услуги были высочайшего класса.
+              Сюда тоже следует поставить короткий и ёмкий текст про то, 
+              какие мы молодцы и у нас всё на высшем уровне.
+            </p>
+      
+          </div>
+      
+          <div class="advantages_content">
+      
+            <div class="advantages_item">
+              <p>Междисциплинарный подход в лечении</p>
+            </div>
+            
+            <div class="advantages_item">
+              <p>Сотрудничество со всеми страховыми компаниями Москвы</p>
+            </div>
+      
+            <div class="advantages_item">
+              <p>Пожизненная гарантия на имплантаты</p>
+            </div>
+      
+            <div class="advantages_item">
+              <p>Программа лояльности пациентов</p>
+            </div>
+      
+            <div class="advantages_item">
+              <p>Лечение во сне</p>
+            </div>
+      
+            <div class="advantages_item">
+              <p>Удобные локации<br> <span>в шаговой доступности от метро</span></p>
+            </div>
+            
+          </div>
+      
+          <div class="advantages_img_wrapper">
+            <a class="_menu_link" href="/lizcenz/">
+      
+              <div class="advantages_img"></div>
+              <p class="advantages_text">Сертификаты и лицензии</p>
+              
+            </a>
+          </div>
+    
+        </div>
+    
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="content_block reviews_cotnainer">
+
+    <div class="reviews_title">
+    
+      <h2 class="_index_subtitle">Что о нас говорят</h2>
+
+      <form action="/reviews/">
+        <button class="_button _button_light">Все отзывы →</button>
+      </form>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for review in reviews %}
+    
+          <div class="swiper-slide review_item_wrapper">       
+  
+            <div class="big_quotes"></div>
+            <hr>
+            <p>{{review.review_text}}</p>
+            <p><span>{{review.author}}</span> | <span>{{review.date | raw}}</span></p>
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="diagonal_navigation">
+
+        <div class="swiper-button-prev _diagonal_navigation"></div>
+        <span class="current_slide">01</span>
+        <br>
+        <span class="total_slides">03</span>
+        <div class="swiper-button-next _diagonal_navigation"></div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>

@@ -70,7 +70,6 @@
 
     h2{
       text-align: center;
-      color: $headerBlack;
     }
   }
 
@@ -118,12 +117,12 @@
 
     h2{
       padding: 0 0 32px 0;
-      font-weight: 300;
-      font-size: 40px;
-      line-height: 44px;
-      letter-spacing: 0.01em;
-      color: $headerBlack;
       text-align: center;
+    }
+
+    .swiper-button-next.revolver_navigation,
+    .swiper-button-prev.revolver_navigation{
+      top: 284px;
     }
 
   }
@@ -202,9 +201,8 @@
 
   .swiper-button-next.revolver_navigation,
   .swiper-button-prev.revolver_navigation{
-    width: 40px;
-    height: 13px;
-    top: 284px;
+    width: 44px;
+    height: 14px;
     background: url(/img/arrow_revolver.svg);
     background-size: contain;
     
@@ -216,6 +214,155 @@
   
   .swiper-button-prev.revolver_navigation{
     transform: rotate(180deg);
+  }
+
+  .content_block.clinic_description_container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    width: 100%;
+    height: 736px;
+    padding: 112px 0 88px 344px;
+    background: radial-gradient(circle at 100% 50%, #FFF9F0 32%, #FBEDD8 calc(32% + 1px));
+
+    .clinic_description_gallery{
+      position: relative;
+      width: 976px;
+      overflow: hidden;
+    }
+
+    .diagonal_navigation{
+      position: absolute;
+      bottom: 0;
+      left: 26px;
+      width: 112px;
+      height: 48px;
+      padding: 16px 0 0 20px;
+      color: #FFFFFF;
+      z-index: 5;
+
+      .swiper-button-next._diagonal_navigation{
+        top: 50px;
+        right: -16px;
+      }
+
+      .swiper-button-prev._diagonal_navigation{
+        top: 24px;
+      }
+
+      p{
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+      }
+
+      .current_slide{
+        position: absolute;
+        top: 0;
+        left: 46px;
+      }
+
+      .total_slides{
+        position: absolute;
+        top: 25px;
+        left: 72px;
+      }
+
+      &:before{
+        content: '';
+        width: 48px;
+        border-top: 1px solid #FFFFFF;
+        position: absolute;
+        top: 20px;
+        left: 48px;
+        transform: rotate(-45deg);
+      }
+
+    }
+  }
+
+  .swiper-button-next._diagonal_navigation,
+  .swiper-button-prev._diagonal_navigation{
+    width: 27px;
+    height: 14px;
+    background: url(/img/arrow_diagonal_nav.svg);
+  }
+
+  .swiper-button-prev._diagonal_navigation{
+    transform: rotate(180deg);
+  }
+
+
+  .clinic_description_content{
+    width:  456px;
+    margin: 0 104px 0 0;
+
+    h2{
+      padding: 0 0 32px 0;
+    }
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .doctors_advantages_bg{
+    background: radial-gradient(circle at 0 50%,#FFFFFF 45%, #F8F8F8 calc(45% + 1px));
+  }
+
+  .doctors_advantages_bg_inner{
+    background: linear-gradient(180deg, rgba(248, 248, 248, 0.1) 7%, rgba(252, 252, 252, 0.5) 76%, rgba(254, 254, 254, 0.9) 100%);
+
+  }
+
+  .content_block.doctors_container{
+    width: 100%;
+    padding: 120px 0 0 40px;
+
+    .swiper-slide{
+      flex-shrink: 1;
+    }
+
+    .swiper-button-next.revolver_navigation,
+    .swiper-button-prev.revolver_navigation{
+      top: 496px;
+    }
+
+    ._button._button_light{
+      padding: 9px 16px 9px 16px;
+    }
+  }
+
+  .doctors_wrapper .swiper-wrapper{
+    padding: 0 0 80px 0;
+  }
+
+  .doctors_title{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 0 0 24px 0;
+
+    h2{
+      padding: 0 0 8px 0;
+      text-align: center;
+    }
+
+    p{
+      width: 800px;
+      line-height: 26px;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    form{
+      position: absolute;
+      top: 88px;
+      right: 584px;
+    }
   }
   
   .content_block.advantages_container{
@@ -250,17 +397,13 @@
     width: 1224px;
     height: 568px;
     margin: 0 auto;
-    padding: 80px 0 120px 0;
+    padding: 0 0 120px 0;
   }
 
   .advantages_title{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-
-    h2{
-      color: $headerBlack;
-    }
 
     p{
       width: 800px;
@@ -332,6 +475,37 @@
 
   .advantages_text{
     padding: 8px 0 0 0;
+  }
+
+  ._index_subtitle{
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+  }
+
+  .reviews_wrapper{
+    width: 600px;
+    height: 480px;
+  }
+
+  .review_item_wrapper{
+    position: relative;
+
+    hr{
+      width: 100%;
+      height: 1px;
+      background-color: #dadee1;
+    }
+  }
+
+  .big_quotes{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 37px;
+    height: 24px;
   }
 
 }
