@@ -103,5 +103,51 @@ export default class Main{
     //     $(e.target).siblings('.current_slide').html('0' + (+currentSlideNumber + 1));
     //   }
     // });
+
+    $($('.moscow_clinics .clinic_card_wrapper')[0]).addClass('_active');
+    $('.clinic_info .clinic_name').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('title'));
+    $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
+
+
+    $('.clinics_cotnainer .cities').on('click', function (e) {
+      var $target = $(e.target);
+
+      if ($target.hasClass('city')) {
+        $('.city').removeClass('_active');
+        $target.addClass('_active');
+      }
+
+      if ($target.hasClass('moscow')) {
+        $('.moscow_clinics').removeClass('_hidden');
+        $('.geneva_clinics').addClass('_hidden');
+
+        $('.clinic_card_wrapper').removeClass('_active');
+        $($('.moscow_clinics .clinic_card_wrapper')[0]).addClass('_active');
+        $('.clinic_info .clinic_name').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('title'));
+        $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
+
+      } else if ($target.hasClass('geneva')){
+        $('.geneva_clinics').removeClass('_hidden');
+        $('.moscow_clinics').addClass('_hidden');
+
+        $('.clinic_card_wrapper').removeClass('_active');
+        $($('.geneva_clinics .clinic_card_wrapper')[0]).addClass('_active');
+        $('.clinic_info .clinic_name').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('title'));
+        $('.clinic_info .clinic_on_map').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('map'));
+      }
+    });
+
+    $('.clinics_cotnainer .clinics_wrapper').on('click', function (e) {
+      var $target = $(e.target).closest('.clinic_card_wrapper');
+      // console.log($target.hasClass('clinic_card_wrapper'));
+
+      $('.clinic_card_wrapper').removeClass('_active');
+      $target.addClass('_active');
+
+      $('.clinic_info .clinic_name').html($target.data('title'));
+      $('.clinic_info .clinic_on_map').html($target.data('map'));
+
+    });
   }
+
 }

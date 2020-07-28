@@ -133,10 +133,6 @@ A:link._link_dashed{
   background: #DADEE1;
 }
 
-._hidden{
-  display: none;
-}
-
 h1,h1,h3,h4,h5{
   font-family: Rubik;
   font-style: normal;
@@ -172,4 +168,8 @@ h5{
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0.01em;
+}
+
+._hidden{
+  display: none !important;
 }

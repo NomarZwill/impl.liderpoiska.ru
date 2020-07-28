@@ -8,9 +8,9 @@
 
       <div class="top_list">
 
-        <div class="top_list_item"><p>Премиальный<br> сегмент&nbsp;услуг</p></div>
-        <div class="top_list_item"><p>Специалисты<br> экстра-класса</p></div>
-        <div class="top_list_item"><p>Инновационные<br> материалы<span> и оборудование</p></span></div>
+        <div class="top_list_item"><p>Премиальный<br class="top_text_br"> сегмент&nbsp;услуг</p></div>
+        <div class="top_list_item"><p>Специалисты<br class="top_text_br"> экстра-класса</p></div>
+        <div class="top_list_item"><p>Инновационные<br class="top_text_br"> материалы<span> и оборудование</p></span></div>
 
       </div>
 
@@ -259,6 +259,8 @@
 
   <div class="content_block reviews_cotnainer">
 
+    <div class="reviews_cotnainer_bg"></div>
+
     <div class="reviews_title">
     
       <h2 class="_index_subtitle">Что о нас говорят</h2>
@@ -279,8 +281,8 @@
   
             <div class="big_quotes"></div>
             <hr>
-            <p>{{review.review_text}}</p>
-            <p><span>{{review.author}}</span> | <span>{{review.date | raw}}</span></p>
+            <div class="review_text">{{review.review_text | raw}}</div>
+            <p><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
   
           </div>
   
@@ -288,8 +290,11 @@
 
       </div>
 
+      <hr>
+
       <div class="diagonal_navigation">
 
+        <div class="diagonal_navigation_bg"></div>
         <div class="swiper-button-prev _diagonal_navigation"></div>
         <span class="current_slide">01</span>
         <br>
@@ -300,6 +305,73 @@
 
     </div>
 
+  </div>
+
+  <div class="content_block clinics_cotnainer">
+
+    <div class="clinics_cotnainer_bg"></div>
+
+    <div class="clinics_title">
+
+      <h2 class="_index_subtitle">Адреса наших клиник</h2>
+
+    </div>
+
+    <div class="cities">
+
+      <div class="city moscow _active">Москва</div>
+      <div class="city geneva">Женева</div>
+
+    </div>
+
+    <div class="moscow_clinics clinics_wrapper">
+
+      {% for clinic in clinics %}
+      
+        {% if clinic.clinic_id != 5 %}
+
+          <div class="clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
+
+            <p class="clinic_title">{{clinic.clinic_title}}</p>
+            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+    <div class="geneva_clinics clinics_wrapper _hidden">
+
+      {% for clinic in clinics %}
+      
+        {% if clinic.clinic_id == 5 %}
+
+          <div class="clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
+
+            <p class="clinic_title">{{clinic.clinic_title}}</p>
+            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+    <div class="clinic_info">
+
+      <h3 class="clinic_name"></h3>
+
+      <div class="clinic_ratings"></div>
+
+      <div class="clinic_on_map"></div>
+
+    </div>
+  
   </div>
 
 </div>

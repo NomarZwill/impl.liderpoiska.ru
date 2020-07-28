@@ -17,6 +17,7 @@ use backend\models\Servises;
 use backend\models\Deals;
 use backend\models\Doctors;
 use backend\models\Reviews;
+use backend\models\Clinics;
 
 /**
  * Site controller
@@ -80,17 +81,20 @@ class SiteController extends Controller
         $servisesGroups = Servises::find()->where(['not', ['index_id' => 0]])->orderBy(['index_id' => SORT_ASC])->asArray()->all();
         $deals = Deals::find()->asArray()->all();
         $doctors = Doctors::find()->asArray()->all();   
-        $reviews = Reviews::find()->asArray()->all();   
+        $reviews = Reviews::find()->asArray()->all();  
+        $clinics = Clinics::find()->asArray()->all();  
+        
         
         // print_r(count($reviews));
-        // print_r($doctors[0]['doctor_image']);
+        // print_r($reviews[1]['review_text']);
         // exit;
 
         return $this->render('index.twig', array(
             'servises' => $servisesGroups,
             'deals' => $deals,
             'doctors' => $doctors,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'clinics' => $clinics
         ));
     }
 
