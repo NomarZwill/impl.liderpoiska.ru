@@ -119,12 +119,6 @@
       padding: 0 0 32px 0;
       text-align: center;
     }
-
-    .swiper-button-next.revolver_navigation,
-    .swiper-button-prev.revolver_navigation{
-      top: 284px;
-    }
-
   }
   
   .deals_title{
@@ -198,12 +192,23 @@
       letter-spacing: 0.01em;
     }
   }
-  
 
+  .revolver_navigation_wrapper{
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 280px;
+    height: 16px;
+    margin: 0 auto;
+  }
+  
   .swiper-button-next.revolver_navigation,
   .swiper-button-prev.revolver_navigation{
+    position: static;
     width: 44px;
     height: 14px;
+    margin: 0 0 0 0;
     background: url(/img/arrow_revolver.svg);
     background-size: contain;
     
@@ -218,24 +223,27 @@
   }
 
   .content_block.clinic_description_container{
+    width: 100%;
+    height: 736px;
+    background: radial-gradient(circle at 100% 50%, #FFF9F0 32%, #FBEDD8 calc(32% + 1px));
+  }
+  
+  .clinic_description_wrapper{
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    width: 100%;
-    height: 736px;
     padding: 112px 0 88px 344px;
-    background: radial-gradient(circle at 100% 50%, #FFF9F0 32%, #FBEDD8 calc(32% + 1px));
-
-    .clinic_description_gallery{
-      position: relative;
-      width: 976px;
-      overflow: hidden;
-    }
-
+    
     .diagonal_navigation{
-      bottom: 0;
+      bottom: 40px;
       left: 26px;
     }
+  }
+
+  .clinic_description_gallery{
+    position: relative;
+    width: 976px;
+    overflow: hidden;
   }
 
   .diagonal_navigation{
@@ -329,10 +337,7 @@
       flex-shrink: 1;
     }
 
-    .swiper-button-next.revolver_navigation,
-    .swiper-button-prev.revolver_navigation{
-      top: 496px;
-    }
+ 
 
     ._button._button_light{
       padding: 9px 16px 9px 16px;
@@ -441,7 +446,7 @@
       left: -60px;
       width: 48px;
       height: 48px;
-      border: 1px solid $baseColor;
+      border: 1px solid #E4A74A;
       border-radius: 24px;
       box-sizing: border-box;
     }
@@ -513,22 +518,16 @@
 
   .reviews_title{
     position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
     width: 600px;
     padding: 120px 0 0 0;
-
-    h2{
-    }
-
-    form{
-      position: absolute;
-      top: 123px;
-      right: 0;
-    }
   }
 
   .reviews_wrapper{
     width: 600px;
-    // height: 480px;
     padding: 48px 0 0 0;
     margin: 0;
 
@@ -656,15 +655,24 @@
   }
 
   .clinics_title{
+    position: relative;
     padding: 120px 0 0 0;
   }
 
   .clinics_wrapper{
     position: relative;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
     padding: 48px 0 0 0;
+
+    .swiper-wrapper{
+      padding: 12px 0 20px 16px;
+    }
+
+    .revolver_navigation_wrapper{
+      display: none;
+    }
   }
 
   .clinic_card_wrapper{
@@ -708,6 +716,7 @@
   }
 
   .clinic_name{
+    position: relative;
     text-align: center;
   }
   
@@ -715,6 +724,36 @@
     height: 544px;
     padding: 64px 0 0 0;
   }
+
+  .content_block.instagram_cotnainer{
+    padding: 120px 0 120px;
+  }
+
+  .instagram_title{
+    padding: 0 0 24px 0;
+
+    h2{
+      text-align: center;
+    }
+  }
+
+  .instagram_item{
+    border: 1px solid #DADEE1;
+    border-radius: 8px;
+
+    img{
+      display: block;
+    }
+  }
+
+  .instagram_link{
+    width: 288px;
+    height: 288px;
+    background: url(/img/instagram/instagram_link.svg);
+    background-size: contain;
+
+  }
+
 
 
   @include for-pad{
@@ -762,17 +801,255 @@
       }
 
       .top_img{
-        top: -1px;
+        top: 16px;
         right: 0;
         width: 412px;
         height: 393px;
         background-size: contain;
+
+        &:before{
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 412px;
+          height: 18px;
+          background: #FFFFFF;
+        }
       }
+
+      .popup_button{
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+      }
+    }
+
+    .content_block.servises_container{
+      width: 768px;
+      height: auto;
+      padding: 40px 0 40px 0;
+    }
+
+    .servises_wrapper{
+      justify-content: flex-start;
+    }
+
+    .services_item{
+      width: 232px;
+      
+      &:nth-of-type(n){
+        margin: 0 32px 0 0;
+        padding: 0 0 8px 0;
+      }
+  
+      &:nth-of-type(3n){
+        margin: 0 0 0 0;
+      }
+      &:nth-of-type(n + 7){
+        padding: 0 0 0 0;
+      }
+    }
+  
+    .services_item a._menu_link{
+      margin: 0 0 0 8px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .content_block.deals_container{
+
+      h2{
+        padding: 0 0 76px 0;
+      }
+    }
+
+    .deals_title ._button._button_light{
+      top: 50px;
+      right: 56px;
+    }
+
+    .content_block.clinic_description_container{
+      height: 850px;
+      background: #FBEDD8;
+    }
+    
+    .clinic_description_wrapper{
+      width: 768px;
+      margin: 0 auto;
+      padding: 96px 16px 40px 16px;
+      flex-flow: column-reverse nowrap;
+      align-items: center;
+      
+      .diagonal_navigation{
+        bottom: 40px;
+      }
+    }
+
+    .clinic_description_gallery{
+      width: 736px;
+      height: 432px;
+      padding: 0 0 24px 0;
+
+      img{
+        display: block;
+        width: 736px;
+        height: 408px;
+      }
+    }
+
+    .clinic_description_content{
+      position: relative;
+      width: 100%;
+      margin: 0 0 0 0;
+
+      h2{
+        position: absolute;
+        top: -488px;
+        left: 294px;
+        padding: 0 0 0 0;
+      }
+
     }
 
     .advantages_wrapper{
       width: 768px;
     }
+
+    ._index_subtitle{
+      font-weight: 300;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+
+    .doctors_advantages_bg{
+      background: radial-gradient(circle at 0 40%,#fff 51%,#f8f8f8 calc(51% + 1px));
+    }
+    
+    .content_block.doctors_container{
+      padding: 40px 0 0 0;
+    }
+
+    .doctors_title{
+
+      form{
+        position: static;
+        padding: 8px 0 0 0;
+      }
+    }
+
+    .content_block.advantages_container{
+
+      &:before,
+      &:after{
+        content: none;
+      }
+    }
+
+    .advantages_wrapper{
+      height: auto;
+      padding: 0 16px 40px 16px;
+    }
+
+    .advantages_title{
+
+      p{
+        width: 100%;
+      }
+    }
+
+    .advantages_content{
+      justify-content: space-between;
+      padding: 0 0 0 60px;
+    }
+
+    .advantages_item{
+      width: 300px;
+      margin: 0 0 24px 0;
+      padding: 0 0 0 0;
+    }
+
+    .advantages_img_wrapper{
+
+      a._menu_link{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        border-bottom: none;
+      }
+    }
+
+    .advantages_img{
+      width: 124px;
+      height: 114px;
+    }
+
+    .advantages_text{
+      border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .content_block.reviews_cotnainer{
+      height: 608px;
+      padding: 0 16px 0 16px;
+      background: #FFF9F0;    
+    }
+
+    .reviews_cotnainer_bg{
+      display: none;
+    }
+
+    .reviews_wrapper{
+      width: 736px;
+      height: 100%;
+
+      .diagonal_navigation{
+        bottom: 59px;
+        left: 278px;
+
+        &:before{
+          width: 736px;
+          left: -278px;
+        }
+      }
+    }
+
+    .reviews_title{
+      width: 736px;
+      padding: 48px 0 0 0;
+      justify-content: flex-start;
+
+      h2{
+        margin: 0 24px 0 0;
+      }
+
+      form{
+        padding: 4px 0 0 0;
+      }
+    }
+
+    .content_block.clinics_cotnainer{
+    }
+
+    .clinics_wrapper{
+      width: 736px;
+      padding: 26px 16px 0 16px;
+      overflow: visible;
+  
+      .swiper-wrapper{
+        padding: 12px 0 20px 0;
+      }
+  
+      .revolver_navigation_wrapper{
+        display: block;
+      }
+
+    }
+
   }
 
 

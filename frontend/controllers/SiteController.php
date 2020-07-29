@@ -13,7 +13,6 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use backend\models\Servises;
 use backend\models\Deals;
 use backend\models\Doctors;
 use backend\models\Reviews;
@@ -78,7 +77,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $servisesGroups = Servises::find()->where(['not', ['index_id' => 0]])->orderBy(['index_id' => SORT_ASC])->asArray()->all();
         $deals = Deals::find()->asArray()->all();
         $doctors = Doctors::find()->asArray()->all();   
         $reviews = Reviews::find()->asArray()->all();  
@@ -90,7 +88,6 @@ class SiteController extends Controller
         // exit;
 
         return $this->render('index.twig', array(
-            'servises' => $servisesGroups,
             'deals' => $deals,
             'doctors' => $doctors,
             'reviews' => $reviews,

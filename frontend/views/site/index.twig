@@ -28,17 +28,45 @@
 
     <div class="servises_wrapper">
 
-      {% for service in servises %}
-
         <div class="services_item">
-
-          <img class="services_item_img" src="img/{{service.image}}" alt="">
-
-          <a class="_menu_link" href="/dent/{{service.alias}}">{{service.menu_title}}</a>
-
+          <img class="services_item_img" src="img/teeth-category/therapy_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/terapiya">Терапия</a>
         </div>
 
-      {% endfor %}
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/protez_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/ortoped">Ортопедия</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/surg_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/hirurg">Хирургия</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/implant_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/impl">Имплантология</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/paradont_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/paradot">Парадонтология</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/ortho_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/ortodont">Ортодонтия</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/anesth_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/anestez">Анестезиология</a>
+        </div>
+
+        <div class="services_item">
+          <img class="services_item_img" src="img/teeth-category/whitening_icon.svg" alt="">
+          <a class="_menu_link" href="/dent/withe">Отбеливание</a>
+        </div>
 
     </div>
 
@@ -83,9 +111,13 @@
 
       </div>
 
-      <div class="swiper-button-prev revolver_navigation"></div>
-      {# <div class="swiper-pagination revolver_pagination"></div> #}
-      <div class="swiper-button-next revolver_navigation"></div>
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
 
     </div>
 
@@ -93,55 +125,59 @@
 
   <div class="content_block clinic_description_container">
 
-    <div class="clinic_description_content">
+    <div class="clinic_description_wrapper">
 
-      <h2 class="_index_subtitle">О клинике</h2>
+      <div class="clinic_description_content">
 
-      <p>
-        Оперативное вмешательство в стоматологии используется в случаях, 
-        когда неэффективно проведение консервативного лечения. 
-        Стоматологическая хирургия подразумевает операции, которые 
-        проводятся в ротовой полости и на челюсти. Центр Эстетической 
-        Стоматологии оказывает широкий перечень услуг, в т. ч. осуществляет 
-        хирургию различной сложности.
-      </p>
-      <br>
-      <p>
-        Иногда зуб невозможно спасти, тогда мы проводим быстрое и 
-        безопасное удаление. Уточнить перечень процедур и их цены можно 
-        на приеме или в прайсе клиники. Хирурги ЦЭС выполняют 
-        зубосохраняющие операции, предлагают оперативные методы лечения 
-        заболеваний твердых и мягких тканей ротовой полости. С возможностями 
-        и ценами стоматологической хирургии можно познакомиться на сайте.
-      </p>
+        <h2 class="_index_subtitle">О клинике</h2>
 
-    </div>
+        <p>
+          Оперативное вмешательство в стоматологии используется в случаях, 
+          когда неэффективно проведение консервативного лечения. 
+          Стоматологическая хирургия подразумевает операции, которые 
+          проводятся в ротовой полости и на челюсти. Центр Эстетической 
+          Стоматологии оказывает широкий перечень услуг, в т. ч. осуществляет 
+          хирургию различной сложности.
+        </p>
+        <br>
+        <p>
+          Иногда зуб невозможно спасти, тогда мы проводим быстрое и 
+          безопасное удаление. Уточнить перечень процедур и их цены можно 
+          на приеме или в прайсе клиники. Хирурги ЦЭС выполняют 
+          зубосохраняющие операции, предлагают оперативные методы лечения 
+          заболеваний твердых и мягких тканей ротовой полости. С возможностями 
+          и ценами стоматологической хирургии можно познакомиться на сайте.
+        </p>
 
-    <div class="swiper_container clinic_description_gallery">
-
-      <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-          <img src="/img/about_photo_test.png" alt="">
-        </div>
-
-        <div class="swiper-slide">
-          <img src="/img/about_photo_test.png" alt="">
-        </div>
-
-        <div class="swiper-slide">
-          <img src="/img/about_photo_test.png" alt="">
-        </div>
-
-        
       </div>
 
-      <div class="diagonal_navigation">
-        <div class="swiper-button-prev _diagonal_navigation"></div>
-        <span class="current_slide">01</span>
-        <br>
-        <span class="total_slides">03</span>
-        <div class="swiper-button-next _diagonal_navigation"></div>
+      <div class="swiper_container clinic_description_gallery">
+
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <img src="/img/about_photo_test.png" alt="">
+          </div>
+
+          <div class="swiper-slide">
+            <img src="/img/about_photo_test.png" alt="">
+          </div>
+
+          <div class="swiper-slide">
+            <img src="/img/about_photo_test.png" alt="">
+          </div>
+
+          
+        </div>
+
+        <div class="diagonal_navigation">
+          <div class="swiper-button-prev _diagonal_navigation"></div>
+          <span class="current_slide">01</span>
+          <br>
+          <span class="total_slides">03</span>
+          <div class="swiper-button-next _diagonal_navigation"></div>
+
+        </div>
 
       </div>
 
@@ -187,9 +223,13 @@
     
           </div>
     
-          <div class="swiper-button-prev revolver_navigation"></div>
-          {# <div class="swiper-pagination revolver_pagination"></div> #}
-          <div class="swiper-button-next revolver_navigation"></div>
+          <div class="revolver_navigation_wrapper">
+
+            <div class="swiper-button-prev revolver_navigation"></div>
+            {# <div class="swiper-pagination revolver_pagination"></div> #}
+            <div class="swiper-button-next revolver_navigation"></div>
+
+          </div>
     
         </div>
     
@@ -215,7 +255,7 @@
           <div class="advantages_content">
       
             <div class="advantages_item">
-              <p>Междисциплинарный подход в лечении</p>
+              <p>Междисциплинарный подход в&nbsp;лечении</p>
             </div>
             
             <div class="advantages_item">
@@ -223,7 +263,7 @@
             </div>
       
             <div class="advantages_item">
-              <p>Пожизненная гарантия на имплантаты</p>
+              <p>Пожизненная гарантия на&nbsp;имплантаты</p>
             </div>
       
             <div class="advantages_item">
@@ -309,8 +349,6 @@
 
   <div class="content_block clinics_cotnainer">
 
-    <div class="clinics_cotnainer_bg"></div>
-
     <div class="clinics_title">
 
       <h2 class="_index_subtitle">Адреса наших клиник</h2>
@@ -324,22 +362,34 @@
 
     </div>
 
-    <div class="moscow_clinics clinics_wrapper">
+    <div class="swiper-container moscow_clinics clinics_wrapper">
 
-      {% for clinic in clinics %}
-      
-        {% if clinic.clinic_id != 5 %}
+      <div class="swiper-wrapper">
 
-          <div class="clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
+        {% for clinic in clinics %}
+        
+          {% if clinic.clinic_id != 5 %}
 
-            <p class="clinic_title">{{clinic.clinic_title}}</p>
-            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+            <div class="swiper-slide clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
 
-          </div>
+              <p class="clinic_title">{{clinic.clinic_title}}</p>
+              <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
 
-        {% endif %}
+            </div>
 
-      {% endfor %}
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
 
     </div>
 
@@ -372,6 +422,55 @@
 
     </div>
   
+  </div>
+
+  <div class="content_block instagram_cotnainer">
+
+    <div class="instagram_title">
+      <h2 class="_index_subtitle">Мы в Instagram</h2>
+    </div>
+
+    <div class="swiper-container instagram_gallery">
+
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo1.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo2.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo3.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo4.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo5.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo6.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <img src="/img/instagram/photo7.png" alt="">
+        </div>
+        <div class="swiper-slide instagram_item">
+          <a href="https://www.instagram.com/impl.ru/"><div class="instagram_link"></div></a>
+        </div>
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+      
+    </div>
+
   </div>
 
 </div>

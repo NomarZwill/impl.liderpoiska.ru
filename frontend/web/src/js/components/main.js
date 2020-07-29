@@ -59,7 +59,40 @@ export default class Main{
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 1,
-      // spaceBetween: 24,
+      spaceBetween: 4,
+      watchOverflow: true,
+      slidesPerGroup: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      // }
+
+    });
+
+    var clinicsWrapper  = new Swiper('.moscow_clinics', {
+      slidesPerView: "auto",
+      spaceBetween: 24,
+      watchOverflow: true,
+      slidesPerGroup: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      // }
+
+    });
+
+    var instagramWrapper  = new Swiper('.instagram_gallery', {
+      slidesPerView: 4,
+      slidesPerColumn: 2,
+      spaceBetween: 24,
       watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
