@@ -73,7 +73,7 @@
 
   .feedback_img{
     position: absolute;
-    top: -53px;
+    top: -54px;
     left: 0;
     width: 143px;
     height: 190px;
@@ -380,6 +380,7 @@
   }
 
   @include for-mobile{
+    padding: 17px 0 0 0;
 
     .footer_top,
     .footer_middle_wrapper,

@@ -151,8 +151,8 @@
     }
 
     &:hover:before{
-      border-top: 2px solid #C73F36;
-      border-bottom: 6px double #C73F36;
+      border-top: 2px solid $baseColor;
+      border-bottom: 6px double $baseColor;
     }
   }
 

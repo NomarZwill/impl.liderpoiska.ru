@@ -34,12 +34,8 @@ body{
   margin: auto;
   position: relative;
 
-  @include for-pad{
-      width: calc(100% - 16px);
-  }
-
-  @include for-mobile{
-      width: calc(100% - 16px);
+  @include for-notdesc{
+      width: 100%;
   }
 }
 
@@ -70,7 +66,7 @@ A:visited{
 }
 
 A:hover{
-  color: #C73F36;
+  color: $baseColor;
 }
 
 A:link._menu_link{
@@ -82,7 +78,8 @@ A:visited._menu_link{
 }
 
 A:hover._menu_link{
-  color: #C73F36;
+  color: $baseColor;
+  border-bottom: 1px solid rgba(120, 47, 64, 1);
 }
 
 A:link._menu_link_dashed{
@@ -94,7 +91,7 @@ A:visited._menu_link_dashed{
 }
 
 A:hover._menu_link_dashed{
-  color: #C73F36;
+  color: $baseColor;
 }
 
 A:visited._menu_link_no_borders{
@@ -102,7 +99,7 @@ A:visited._menu_link_no_borders{
 }
 
 A:hover._menu_link_no_borders{
-  color: #C73F36;
+  color: $baseColor;
 }
 
 A:link._link{
@@ -111,6 +108,21 @@ A:link._link{
 
 A:link._link_dashed{
   border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+}
+
+A:link._link_black{
+  color: $headerBlack;
+  border-bottom: 1px solid rgba(51, 54, 56, 0.4);
+}
+
+A:visited._link_black{
+  color: $headerBlack;
+  border-bottom: 1px solid rgba(51, 54, 56, 0.4);
+}
+
+A:hover._link_black{
+  color: $baseColor;
+  border-bottom: 1px solid $baseColor;
 }
 
 ._button{
@@ -148,12 +160,22 @@ h2{
   font-size: 40px;
   line-height: 44px;
   letter-spacing: 0.01em;
+
+  @include for-pad{
+    font-size: 36px;
+    line-height: 40px;
+  }
 }
 
 h3{
   font-size: 32px;
   line-height: 40px;
   letter-spacing: 0.01em;
+
+  @include for-pad{
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 h4{

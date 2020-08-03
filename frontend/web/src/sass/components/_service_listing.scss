@@ -1,0 +1,142 @@
+[data-page-type='service_listing']{
+
+  .title_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 24px 0 40px 0;
+  }
+
+  .breadcrumbs{
+
+  }
+
+  h1{
+    color: $headerBlack;
+  }
+
+  .listing_block{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    margin: 0 0 24px 0;
+    padding: 40px 0 40px 32px;
+    background: #F8F8F8;
+    border-radius: 8px;
+  }
+
+  .service_menu_item{
+    width: 360px;
+    padding: 0 48px 0 72px;
+
+    ._menu_link{
+      color: $headerBlack;
+    }
+
+    ._menu_link:hover{
+      color: $baseColor;
+    }
+  }
+
+  .item_wrapper{
+    // display: flex;
+    // flex-flow: r;
+  }
+  
+  .listing_first_level{
+    display: flex;
+    flex-flow: row wrap;
+    width: 832px;
+    padding: 0 0 0 0;
+    
+  }
+
+  .item_wrapper{
+    width: 240px;
+
+  }
+  
+  .listing_first_level_item{
+    margin: 0 18px 0 0;
+    padding: 0 0 12px 0;
+  }
+
+  .listing_second_level{
+    display: none;
+    padding: 12px 0 0 0;
+    
+  }
+
+  .listing_second_level_item{
+    position: relative;
+    padding: 0 0 12px 24px;
+
+    &:before{
+      content: '—';
+      position: absolute;
+      top: 1px;
+      left: 0;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .listing_third_level{
+    display: none;
+    padding: 12px 0 0 0;
+  }
+
+  .listing_third_level_item{
+    padding: 0 0 8px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .listing_second_level,
+  .listing_third_level{
+    width: 240px;
+    flex-flow: column nowrap;
+
+    &._active{
+      display: flex;
+    }
+  }
+  
+  a._link_black{
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .with_children > p{
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    right: -8px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid transparent;
+
+    &:after{
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      width: 5px;
+      height: 5px;
+      border-bottom: 2px solid #727581;
+      border-right: 2px solid #727581;
+      transform: rotate(45deg);
+    }
+
+    &._active:after{
+      border-bottom: 2px solid #333638;
+      border-right: 2px solid #333638;
+      transform: rotate(-135deg);
+
+    }
+  }
+
+
+}
