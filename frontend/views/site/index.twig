@@ -4,6 +4,8 @@
 
     <div class="top_wrapper">
 
+      <div class="top_img"></div>
+
       <h1>Центр Эстетической Стоматологии</h1>
 
       <div class="top_list">
@@ -14,9 +16,7 @@
 
       </div>
 
-      <button class="_button popup_button">Записаться на приём</button>
-
-      <div class="top_img"></div>
+      <button class="_button popup_button">Записаться&nbsp;на&nbsp;приём</button>
 
     </div>
 
@@ -79,7 +79,7 @@
       <h2 class="_index_subtitle">Спецпредложения</h2>
 
       <form action="/specialnoe/">
-        <button class="_button _button_light">Все спецпредложения →</button>
+        <button class="_button _button_light _button_to_all"><span>Все спецпредложения</span> →</button>
       </form>
 
     </div>
@@ -127,9 +127,14 @@
 
     <div class="clinic_description_wrapper">
 
-      <div class="clinic_description_content">
+
+      <div class="clinic_description_title">
 
         <h2 class="_index_subtitle">О клинике</h2>
+
+      </div>
+
+      <div class="clinic_description_content">
 
         <p>
           Оперативное вмешательство в стоматологии используется в случаях, 
@@ -138,9 +143,7 @@
           проводятся в ротовой полости и на челюсти. Центр Эстетической 
           Стоматологии оказывает широкий перечень услуг, в т. ч. осуществляет 
           хирургию различной сложности.
-        </p>
-        <br>
-        <p>
+          <br>
           Иногда зуб невозможно спасти, тогда мы проводим быстрое и 
           безопасное удаление. Уточнить перечень процедур и их цены можно 
           на приеме или в прайсе клиники. Хирурги ЦЭС выполняют 
@@ -148,6 +151,8 @@
           заболеваний твердых и мягких тканей ротовой полости. С возможностями 
           и ценами стоматологической хирургии можно познакомиться на сайте.
         </p>
+
+        <button class="read_more">Читать полностью</button>
 
       </div>
 
@@ -202,7 +207,7 @@
           </p>
 
           <form action="/specialists/">
-            <button class="_button _button_light">Все врачи →</button>
+            <button class="_button _button_light _button_to_all"><span>Все врачи</span> →</button>
           </form>
     
         </div>
@@ -306,7 +311,7 @@
       <h2 class="_index_subtitle">Что о нас говорят</h2>
 
       <form action="/reviews/">
-        <button class="_button _button_light">Все отзывы →</button>
+        <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
       </form>
 
     </div>
@@ -322,6 +327,7 @@
             <div class="big_quotes"></div>
             <hr>
             <div class="review_text">{{review.review_text | raw}}</div>
+            <!-- <button class="read_more">Читать полностью</button> -->
             <p><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
   
           </div>
@@ -329,8 +335,6 @@
         {% endfor %}
 
       </div>
-
-      <hr>
 
       <div class="diagonal_navigation">
 
@@ -370,7 +374,14 @@
         
           {% if clinic.clinic_id != 5 %}
 
-            <div class="swiper-slide clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
+            <div
+              class="clinic_card_wrapper"
+              data-title="{{clinic.clinic_title | raw}}"
+              data-map="{{clinic.clinic_map}}"
+              data-address="{{clinic.clinic_address | raw}}"
+              data-phone="{{clinic.clinic_phone | raw}}"
+              data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
+            >
 
               <p class="clinic_title">{{clinic.clinic_title}}</p>
               <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
@@ -399,7 +410,14 @@
       
         {% if clinic.clinic_id == 5 %}
 
-          <div class="clinic_card_wrapper" data-title="{{clinic.clinic_title}}" data-map="{{clinic.clinic_map}}">
+          <div
+            class="clinic_card_wrapper"
+            data-title="{{clinic.clinic_title | raw}}"
+            data-map="{{clinic.clinic_map}}"
+            data-address="{{clinic.clinic_address | raw}}"
+            data-phone="{{clinic.clinic_phone | raw}}"
+            data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
+          >
 
             <p class="clinic_title">{{clinic.clinic_title}}</p>
             <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
@@ -417,6 +435,17 @@
       <h3 class="clinic_name"></h3>
 
       <div class="clinic_ratings"></div>
+      
+      <div class="clinic_contacts">
+        <p>
+          <span class="title">Адрес:</span><br>
+          <span class="address_content"></span><br>
+          <span class="title">Телефоны:</span><br>
+          <span class="phone_content"></span><br>
+          <span class="title">Время работы:</span><br>
+          <span class="work_hours_content"></span>
+        </p>
+      </div>
 
       <div class="clinic_on_map"></div>
 

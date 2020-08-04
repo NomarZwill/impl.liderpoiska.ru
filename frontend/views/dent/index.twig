@@ -1,0 +1,122 @@
+<div data-page-type="service_listing">
+
+  <div class="title_wrapper">
+
+    <a class="breadcrumbs _menu_link" href="">breadcrumbs</a>
+
+    <h1>Наши услуги</h1>
+
+  </div>
+
+  <div class="listing_container">
+
+    <div class="content_block listing_wrapper">
+
+      {% for serviseMenu in servises %}
+
+        {% if serviseMenu.parent_id == 0  %}
+
+          <div class="listing_block">
+
+            <div class="service_menu_item_wrapper">
+
+              <img src="/img/{{serviseMenu.image}}" alt="">
+
+              <h4 class="service_menu_item">
+  
+                <a href="/dent/{{serviseMenu.alias}}" class="_menu_link">
+                  {{serviseMenu.menu_title | raw}}
+                </a>
+  
+              </h4>
+
+            </div>
+
+          
+            <div class="listing_first_level level_wrapper">
+
+              {% for serviseFirst in servises %}
+
+                {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+
+                  <div class="listing_first_level_item item_wrapper">
+
+                    <a class="_link_black" href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}">     
+
+                      <span>{{serviseFirst.menu_title}}</span> 
+                      
+                    </a>
+
+                    <p class="arrow"></p>
+
+                    <div class="listing_second_level level_wrapper">
+
+                      {% for serviseSecond in servises %}
+
+                        {% if serviseSecond.parent_id == serviseFirst.old_id  %}
+
+                          <div class="listing_second_level_item item_wrapper">
+
+                            <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}"  class="_link_black">
+                      
+                              <span>{{serviseSecond.menu_title}}</span>
+        
+                            </a>
+
+                            <p class="arrow"></p>
+
+                            <div class="listing_third_level level_wrapper">
+
+                              {% for serviseThird in servises %}
+
+                                {% if serviseThird.parent_id == serviseSecond.old_id  %}
+
+                                  <div class="listing_third_level_item item_wrapper">
+
+                                    <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}"  class="_link_black">
+                      
+                                      <span>{{serviseThird.menu_title}}</span>
+                
+                                    </a>
+                                    
+                                  </div>
+
+                                {% endif %}
+
+                              {% endfor %}
+                            
+                            </div>
+
+                          </div>
+
+                        {% endif %}
+
+                      {% endfor %}
+
+                    </div>
+
+                  </div>
+
+                {% endif %}
+
+              {% endfor %}
+
+              
+            </div>
+            
+            <div class="collapse_wrapper">
+              <span class="close_block">Свернуть</span>
+              <span class="open_block _active">Развернуть</span>
+            </div>
+            
+          </div>
+
+        {% endif %}
+  
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
