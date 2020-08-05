@@ -220,7 +220,7 @@
         
               <div class="swiper-slide doctor_item_wrapper">       
       
-                {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+                {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
       
               </div>
       
@@ -383,7 +383,7 @@
               data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
             >
 
-              <p class="clinic_title">{{clinic.clinic_title}}</p>
+              <p class="clinic_title">{{clinic.card_title}}</p>
               <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
 
             </div>

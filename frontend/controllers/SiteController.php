@@ -78,11 +78,33 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $deals = Deals::find()->asArray()->all();
-        $doctors = Doctors::find()->asArray()->all();   
         $reviews = Reviews::find()->asArray()->all();  
-        $clinics = Clinics::find()->asArray()->all();  
+        $clinics = Clinics::find()->asArray()->all();
         
+        $doctors = Doctors::find()->all();  
+        $doctorsAndMedSpec = [];
         
+        foreach ($doctors as $doc) {
+            $medSpec = $doc->medSpec;
+            
+            if (count($medSpec) > 1) {
+                
+                foreach ($medSpec as $spec) {
+                    
+                    if (array_key_exists($doc->doctor_id, $doctorsAndMedSpec)) {
+                        $doctorsAndMedSpec[$doc->doctor_id] = $doctorsAndMedSpec[$doc->doctor_id] . ",<br>" . $spec->menu_title;
+                    } else {
+                        $doctorsAndMedSpec[$doc->doctor_id] = $spec->menu_title;
+                    }
+                } 
+                
+            } elseif (count($medSpec) == 1) {
+                $doctorsAndMedSpec[$doc->doctor_id] = $medSpec[0]->menu_title;
+            }
+        }
+        
+        $doctors = Doctors::find()->asArray()->all();  
+
         // print_r(count($reviews));
         // print_r($reviews[1]['review_text']);
         // exit;
@@ -91,7 +113,8 @@ class SiteController extends Controller
             'deals' => $deals,
             'doctors' => $doctors,
             'reviews' => $reviews,
-            'clinics' => $clinics
+            'clinics' => $clinics,
+            'doctorsAndMedSpec' => $doctorsAndMedSpec
         ));
     }
 

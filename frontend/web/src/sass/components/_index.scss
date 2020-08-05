@@ -17,7 +17,6 @@
       font-weight: 300;
       font-size: 72px;
       line-height: 76px;
-      color: $baseColor;
     }
 
     .top_list{
@@ -129,25 +128,6 @@
     }
   }
 
-  ._button._button_light{
-    border: 1px solid #F7C67E;
-    background: transparent;
-    padding: 9px 20px 9px 20px;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.02em;
-  }
-
-  ._button._button_light:hover{
-    border: 1px solid #F7DA7E;
-    background: #FFF9F0;
-  }
-
-  ._button._button_light:active{
-    border: 1px solid #E8A33B;
-    background: #FFF9F0;
-  }
-
   .deals_wrapper{
     position: relative;
     width: 100%;
@@ -192,35 +172,6 @@
       line-height: 24px;
       letter-spacing: 0.01em;
     }
-  }
-
-  .revolver_navigation_wrapper{
-    position: relative;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    width: 280px;
-    height: 16px;
-    margin: 0 auto;
-  }
-  
-  .swiper-button-next.revolver_navigation,
-  .swiper-button-prev.revolver_navigation{
-    position: static;
-    width: 44px;
-    height: 14px;
-    margin: 0 0 0 0;
-    background: url(/img/arrow_revolver.svg);
-    background-size: contain;
-    
-    &:hover{
-      background: url(/img/arrow_revolver_hover.svg);
-      background-size: contain;
-    }
-  }
-  
-  .swiper-button-prev.revolver_navigation{
-    transform: rotate(180deg);
   }
 
   .content_block.clinic_description_container{
@@ -349,8 +300,6 @@
     .swiper-slide{
       flex-shrink: 1;
     }
-
- 
 
     ._button._button_light{
       padding: 9px 16px 9px 16px;
@@ -695,7 +644,7 @@
   .clinic_card_wrapper{
     cursor: pointer;
     width: 288px;
-    height: 184px;
+    height: 144px;
     margin: 0 24px 0 0;
     padding: 24px 24px 0 24px;
     background: #FFFFFF;

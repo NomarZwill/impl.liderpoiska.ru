@@ -1,0 +1,148 @@
+[data-page-type='specialists']{
+
+  .title_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 24px 0 0 0;
+
+    p{
+      padding: 24px 104px 0 104px;
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  h1{
+    padding: 16px 0 0 0;
+  }
+
+  .content_block.clinics_cotnainer{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  ._index_subtitle{
+    text-align: center;
+    color: $headerBlack;
+  }
+
+  .clinics_title{
+    padding: 24px 0 0 0;
+  }
+
+  .cities{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0 0 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+
+    div:first-of-type{
+      margin: 0 24px 0 0;
+    }
+  }
+  
+  .city{
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+  }
+  
+  .city:hover{
+    color: #C73F36;
+    border-bottom: 1px dashed #C73F36;
+  }
+
+  .cities ._active{
+    border-bottom: none;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .moscow_clinics{
+    padding: 24px 0 48px 0;
+    overflow: visible;
+    
+    .revolver_navigation_wrapper{
+      display: none;
+    }
+  }
+
+  .geneva_clinics{
+    padding: 24px 0 48px 0;
+    overflow: visible;
+  }
+
+  .clinic_address{
+    color: $textColor;
+  }
+
+  .clinic_card_wrapper{
+    cursor: pointer;
+    width: 288px;
+    height: 160px;
+    margin: 0 24px 0 0;
+    padding: 24px 24px 0 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+    border-radius: 8px;
+  }
+
+  .clinic_card_wrapper:hover{
+    box-shadow: 0px 15px 25px 10px rgba(15, 4, 61, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .clinic_title{
+    padding: 0 0 4px 0;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+  }
+
+  .clinic_address{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .content_block.doctors_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 0 0 48px 0;
+
+  }
+
+  .doctors_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    height: 2336px;
+    padding: 16px 0 0 0;
+    overflow: hidden;
+  }
+
+  .doctor_item_wrapper{
+    margin: 0 24px 24px 0;
+  }
+
+  .doctor_item_wrapper:nth-of-type(4n){
+    margin: 0 0 0 0;
+  }
+
+  ._button._button_light.more_doctors{
+    margin: 16px 0 0 0;
+    padding:  18px 63px 18px 63px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+
+}

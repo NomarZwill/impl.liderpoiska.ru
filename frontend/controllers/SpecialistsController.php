@@ -5,19 +5,45 @@ use Yii;
 use yii\web\Controller;
 use backend\models\Clinics;
 use backend\models\Doctors;
+use backend\models\MedicalSpecialties;
+use backend\models\DoctorsMedSpec;
 
 class SpecialistsController extends Controller
 {
 
   public function actionIndex(){
     $clinics = Clinics::find()->asArray()->all();
-    $specialists = Doctors::find()->asArray()->all();
-    // print_r($clinics);
-    // print_r($specialists);
+    $medicalSpecialties = MedicalSpecialties::find()->asArray()->all();
+    $doctors = Doctors::find()->all();  
 
-    return $this->render('index.html', array(
+    $doctorsAndMedSpec = [];
+    
+    foreach ($doctors as $doc) {
+      $medSpec = $doc->medSpec;
+      
+      if (count($medSpec) > 1) {
+          
+        foreach ($medSpec as $spec) {
+            
+          if (array_key_exists($doc->doctor_id, $doctorsAndMedSpec)) {
+            $doctorsAndMedSpec[$doc->doctor_id] = $doctorsAndMedSpec[$doc->doctor_id] . ",<br>" . $spec->menu_title;
+          } else {
+            $doctorsAndMedSpec[$doc->doctor_id] = $spec->menu_title;
+          }
+        } 
+        
+      } elseif (count($medSpec) == 1) {
+          $doctorsAndMedSpec[$doc->doctor_id] = $medSpec[0]->menu_title;
+      }
+    }
+      
+    $doctors = Doctors::find()->asArray()->all();
+
+    return $this->render('index.twig', array(
       'clinics' => $clinics,
-      'specialists' => $specialists
+      'doctors' => $doctors,
+      'medicalSpecialties' => $medicalSpecialties,
+      'doctorsAndMedSpec' => $doctorsAndMedSpec
     ));
   }
 
@@ -27,7 +53,7 @@ class SpecialistsController extends Controller
     // exit;
 
     if ($doc !== ''){
-      return $this->render('specialist-card.html', array(
+      return $this->render('doctorPage.twig', array(
         'doc' => $doc
       ));
     } else {

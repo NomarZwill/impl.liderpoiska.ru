@@ -37,7 +37,8 @@ class OtherController extends Controller
 
   public function actionAbout(){
 
-    return 'actionAbout';
+    return $this->render('about.twig', array(
+   ));  
   }
 
   public function actionSpecialDeals(){

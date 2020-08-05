@@ -145,6 +145,25 @@ A:hover._link_black{
   background: #DADEE1;
 }
 
+._button._button_light{
+  border: 1px solid #F7C67E;
+  background: transparent;
+  padding: 9px 20px 9px 20px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+}
+
+._button._button_light:hover{
+  border: 1px solid #F7DA7E;
+  background: #FFF9F0;
+}
+
+._button._button_light:active{
+  border: 1px solid #E8A33B;
+  background: #FFF9F0;
+}
+
 h1,h1,h3,h4,h5{
   font-family: Rubik;
   font-style: normal;
@@ -154,6 +173,7 @@ h1,h1,h3,h4,h5{
 h1{
   font-size: 60px;
   line-height: 60px;
+  color: $baseColor;
 }
 
 h2{
@@ -194,4 +214,73 @@ h5{
 
 ._hidden{
   display: none !important;
+}
+
+.breadcrumbs{
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+}
+
+.revolver_navigation_wrapper{
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 280px;
+  height: 16px;
+  margin: 0 auto;
+}
+
+.swiper-button-next.revolver_navigation,
+.swiper-button-prev.revolver_navigation{
+  position: static;
+  width: 44px;
+  height: 14px;
+  margin: 0 0 0 0;
+  background: url(/img/arrow_revolver.svg);
+  background-size: contain;
+  
+  &:hover{
+    background: url(/img/arrow_revolver_hover.svg);
+    background-size: contain;
+  }
+}
+
+.swiper-button-prev.revolver_navigation{
+  transform: rotate(180deg);
+}
+
+.medical_specialties_wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  padding: 24px 0 0 0;
+}
+
+.medical_speciality{
+  cursor: pointer;
+  margin: 0 16px 16px 0;
+  padding: 12px 16px 12px 16px;
+  border: 1px solid #f7c67e;
+  border-radius: 4px;
+  background: #FFFFFF;
+  text-transform: capitalize;
+
+  span{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: $headerBlack;
+  }
+
+  &:hover,
+  &._active{
+    background: #f7c67e;
+
+  }
+
+  &:active{
+    background: #E8A33B;
+  }
+
 }

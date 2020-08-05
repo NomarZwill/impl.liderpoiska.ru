@@ -1,5 +1,5 @@
 
-<div class="card_content_wrapper">
+<div class="card_content_wrapper" data-id="{{doctor.doctor_id}}">
 
   <a href="/specialists/{{doctor.alias}}">
 
@@ -12,7 +12,7 @@
 
       <h5>{{doctor.doctor_title}}</h5>
 
-      <p>специальность</p>
+      <p>{{doctorsMedSpec | raw}}</p>
       <p>опыт работы</p>
 
     </div>
