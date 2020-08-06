@@ -6,6 +6,7 @@ import Main from './components/main';
 import Index from './components/index';
 import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
+import MedSpecFilter from './widgets/medSpecFilter';
 
 window.$ = $;
 
@@ -23,6 +24,10 @@ window.$ = $;
 
 			if ($('[data-page-type="specialists"]').length > 0) {
 	    	var serviceListing = new DoctorsListing();
+			}
+
+			if ($('[data-spec-filter]').length > 0) {
+	    	var medSpecFilter = new MedSpecFilter($('[data-spec-filter]'));
 			}
 			
   	});

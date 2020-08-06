@@ -9,23 +9,6 @@ export default class DoctorsListing{
   }
 
   init(){
-    var doctorsWrapper  = new Swiper('.doctors_wrapper', {
-      slidesPerView: 4,
-      slidesPerColumn: 5,
-      spaceBetween: 24,
-      watchOverflow: true,
-      slidesPerGroup: 4,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
-    });
-
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
