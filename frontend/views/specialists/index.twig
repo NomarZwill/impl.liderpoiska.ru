@@ -19,6 +19,8 @@
       Эстетической Стоматологии – это качество, которому веришь!
     </p>
 
+    <button class="read_more">Читать полностью</button>
+
   </div>
 
   <div class="content_block clinics_cotnainer">
@@ -44,21 +46,23 @@
         
           {% if clinic.clinic_id != 5 %}
 
-            <a href="/">
-              <div
-                class="clinic_card_wrapper"
+            <div
+                class="swiper-slide clinic_card_wrapper"
                 data-title="{{clinic.clinic_title | raw}}"
                 data-map="{{clinic.clinic_map}}"
                 data-address="{{clinic.clinic_address | raw}}"
                 data-phone="{{clinic.clinic_phone | raw}}"
                 data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
               >
+              
+              <a href="/">
   
                 <p class="clinic_title">{{clinic.card_title}}</p>
                 <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
   
-              </div>
-            </a>
+              </a>
+
+            </div>
 
           {% endif %}
 
@@ -112,7 +116,13 @@
 
     </div>
 
-    <div class="medical_specialties_wrapper">
+    <div class="medical_specialties_selector">
+
+      <span>Все врачи</span>
+      
+    </div>
+
+    <div class="medical_specialties_wrapper" data-spec-filter>
 
       <div class="medical_speciality _active" data-id="0">
         <span>Все врачи</span>
@@ -120,9 +130,11 @@
 
       {% for medicalSpeciality in medicalSpecialties %}
 
-        <div class="medical_speciality" data-id="{{medicalSpeciality.specialty_id}}">
-          <span>{{medicalSpeciality.menu_title}}</span>
-        </div>
+        <a href="/speciality/{{medicalSpeciality.alias}}">
+          <div class="medical_speciality" data-id="{{medicalSpeciality.specialty_id}}">
+            <span>{{medicalSpeciality.menu_title}}</span>
+          </div>
+        </a>
 
       {% endfor %}
 
@@ -130,20 +142,12 @@
 
     <div class="doctors_wrapper">
 
-      {% for doctor in doctors %}
-  
-        <div class="doctor_item_wrapper">       
-
-          {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
-
-        </div>
-
-      {% endfor %}
+        {{this.render('/components/doctorListing.twig', {'doctors': doctors}) | raw}}
 
     </div>
-    
-    <button class="_button _button_light more_doctors">Показать еще</button>
 
+    <button class="_button _button_light more_doctors">Показать еще</button>
+    
   </div>
 
 </div>

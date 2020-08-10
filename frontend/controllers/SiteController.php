@@ -85,21 +85,16 @@ class SiteController extends Controller
         $doctorsAndMedSpec = [];
         
         foreach ($doctors as $doc) {
-            $medSpec = $doc->medSpec;
+            $medSpec = $doc->medicalSpecialties;
             
             if (count($medSpec) > 1) {
                 
                 foreach ($medSpec as $spec) {
-                    
-                    if (array_key_exists($doc->doctor_id, $doctorsAndMedSpec)) {
-                        $doctorsAndMedSpec[$doc->doctor_id] = $doctorsAndMedSpec[$doc->doctor_id] . ",<br>" . $spec->menu_title;
-                    } else {
-                        $doctorsAndMedSpec[$doc->doctor_id] = $spec->menu_title;
-                    }
+                    $doctorsAndMedSpec[$doc->doctor_id][$spec->specialty_id] = $spec->menu_title;
                 } 
                 
             } elseif (count($medSpec) == 1) {
-                $doctorsAndMedSpec[$doc->doctor_id] = $medSpec[0]->menu_title;
+                $doctorsAndMedSpec[$doc->doctor_id] = [$doc->doctor_id => $medSpec[0]->menu_title];
             }
         }
         

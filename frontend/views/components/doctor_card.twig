@@ -1,5 +1,5 @@
 
-<div class="card_content_wrapper" data-id="{{doctor.doctor_id}}">
+<div class="card_content_wrapper" data-id="{{doctor.doctor_id}}"  data-spec-id>
 
   <a href="/specialists/{{doctor.alias}}">
 
@@ -12,7 +12,19 @@
 
       <h5>{{doctor.doctor_title}}</h5>
 
-      <p>{{doctorsMedSpec | raw}}</p>
+      <p>
+
+        {% for medSpec in doctor.medicalSpecialties %}
+
+          {% if loop.last %}
+            <span data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</span>
+          {% else %}
+            <span data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </span>
+          {% endif %}
+
+        {% endfor %}
+
+      </p>
       <p>опыт работы</p>
 
     </div>

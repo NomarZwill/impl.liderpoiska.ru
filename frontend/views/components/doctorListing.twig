@@ -1,0 +1,9 @@
+{% for doctor in doctors %}
+  
+  <div class="doctor_item_wrapper" >       
+
+    {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+
+  </div>
+
+{% endfor %}

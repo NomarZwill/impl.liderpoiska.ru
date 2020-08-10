@@ -1,6 +1,6 @@
 [data-page-type='specialists']{
 
-  .title_wrapper{
+  .content_block.title_wrapper{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -120,6 +120,10 @@
 
   }
 
+  .medical_specialties_selector{
+    display: none;
+  }
+
   .doctors_wrapper{
     display: flex;
     flex-flow: row wrap;
@@ -142,5 +146,213 @@
     letter-spacing: 0.02em;
   }
 
+  @include for-notdesc{
 
+    .content_block.title_wrapper{
+
+      p{
+        padding: 24px 16px 0 16px;
+
+      }
+    }
+
+    h1{
+      padding: 8px 0 0 0;
+    }
+
+    .content_block.clinics_cotnainer{
+      padding: 0 16px 0 16px;
+    }
+
+    .moscow_clinics{
+      padding: 24px 0 56px 0;
+
+      .revolver_navigation_wrapper{
+        display: flex;
+        padding: 24px 0 0 0;
+      }
+    }
+
+    .geneva_clinics{
+      padding: 24px 0 80px 0;
+    }
+  }
+
+  @include for-pad{
+
+    .content_block.title_wrapper{
+      width: 768px;
+    }
+
+    .content_block.clinics_cotnainer{
+      width: 100%;
+      overflow: hidden;
+      
+    }
+    
+    .moscow_clinics{
+      width: 100%;
+    }
+
+    .cities{
+      padding: 14px 0 0 0;
+    }
+
+    .content_block.doctors_container{
+      width: 768px;
+      padding: 0 16px 0 16px;
+    }
+
+    .doctors_wrapper{
+      padding: 24px 0 0 0;
+    }
+
+    .card_content_wrapper,
+    .card_content_wrapper .card_image_wrapper img,
+    .card_content_wrapper .card_image_wrapper .card_image_frame{
+      width: 232px;
+    }
+
+    .card_content_wrapper .card_image_wrapper .card_image_frame{
+      height: 235px;
+    }
+
+    .card_content_wrapper .card_image_wrapper{
+      height: 235px;
+    }
+
+    .card_content_wrapper .card_content{
+      padding: 12px 16px 0 16px;
+    }
+
+    .card_content_wrapper ._button._button_light{
+      left: 20px;
+    }
+
+    .doctor_item_wrapper,
+    .doctor_item_wrapper:nth-of-type(4n){
+      margin: 0 16px 24px 0;
+    }
+
+    .doctor_item_wrapper:nth-of-type(3n){
+      margin: 0 0 0 0;
+    }
+
+  }
+
+  @include for-mobile{
+
+    .content_block.title_wrapper{
+
+      p{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 9;
+        -webkit-box-orient: vertical;
+      }
+
+      p._active{
+        display: inline;
+      }
+
+      .read_more{
+        align-self: flex-start;
+        margin: 0 0 0 16px;
+      }
+    }
+
+    h1{
+      font-size: 36px;
+      line-height: 40px;
+      text-align: center;
+    }
+    
+    .moscow_clinics{
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .cities{
+      padding: 12px 0 0 0;
+    }
+
+    ._index_subtitle{
+      font-size: 28px;
+      line-height: 34px;
+    }
+
+    .content_block.doctors_container{
+      padding: 0 16px 0 16px;
+    }
+    
+    .doctors_title{
+      padding: 0 0 24px 0;
+    }
+
+    .medical_specialties_selector{
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 14px 8px 14px 8px;
+      border: 1px solid #DADEE1;
+      box-sizing: border-box;
+      box-shadow: inset 0px 2px 2px rgba(118, 125, 134, 0.1);
+      border-radius: 4px;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: 19px;
+        right: 8px;
+        width: 5px;
+        height: 5px;
+        border-bottom: 2px solid #B3B6BE;
+        border-right: 2px solid #B3B6BE;
+        transform: rotate(45deg);
+      }
+    }
+
+    .medical_specialties_wrapper{
+      display: none;
+    }
+
+    .medical_specialties_wrapper._active{
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      padding: 12px 0 0 0;
+      border: 1px solid #DADEE1;
+      box-sizing: border-box;
+      box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+      border-radius: 0px 0px 2px 2px;
+    }
+
+    .medical_speciality{
+      margin: 0 0 0 0;
+      border: none;
+      border-radius: 0;
+
+      &:active,
+      &._active{
+        background: $baseColor;
+
+        span{
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .doctors_wrapper{
+      flex-flow: column nowrap;
+      align-items: center;
+    }
+
+    .doctor_item_wrapper{
+      margin: 0 0 24px 0;
+    }
+
+    .doctor_item_wrapper:nth-of-type(4n){
+      margin: 0 0 24px 0;
+    }
+  }
 }

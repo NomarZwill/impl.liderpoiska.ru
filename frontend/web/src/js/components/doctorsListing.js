@@ -12,7 +12,7 @@ export default class DoctorsListing{
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      // watchOverflow: true,
+      watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -40,6 +40,20 @@ export default class DoctorsListing{
       } else if ($target.hasClass('geneva')){
         $('.geneva_clinics').removeClass('_hidden');
         $('.moscow_clinics').addClass('_hidden');
+      }
+    });
+
+    $('.read_more').on('click', function (e) {
+      $(this).siblings('p').addClass('_active');
+      $(this).addClass('_hidden');
+    });
+
+    $('.medical_specialties_selector').on('click', function(e){
+      var $itemList = $(this).siblings('.medical_specialties_wrapper');
+      if (!$itemList.hasClass('_active')) {
+        $itemList.addClass('_active');
+      } else {
+        $itemList.removeClass('_active');
       }
     });
   }

@@ -278,10 +278,6 @@
       letter-spacing: 0.01em;
       color: $headerBlack;
     }
-
-    .read_more{
-      display: none;
-    }
   }
 
   .doctors_advantages_bg{
@@ -1364,15 +1360,6 @@
 
       p._active{
         display: inline;
-      }
-
-      .read_more{
-        display: block;
-        padding: 4px 0 0 0;
-        border-bottom: 1px dashed $headerBlack;
-        color: $headerBlack;
-        line-height: 24px;
-        letter-spacing: 0.01em;
       }
     }
 

@@ -103,7 +103,7 @@ class Doctors extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getMedSpec(){
+    public function getMedicalSpecialties(){
         return $this->hasMany(MedicalSpecialties::className(), ['specialty_id' => 'specialty_id'])
             ->viaTable('doctors_med_spec', ['doctor_id' => 'doctor_id']);
     }
