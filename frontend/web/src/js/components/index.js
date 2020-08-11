@@ -93,23 +93,17 @@ export default class Index{
       slidesPerView: 4,
       slidesPerColumn: 2,
       spaceBetween: 24,
-      // watchOverflow: true,
-      slidesPerGroup: 1,
-
       breakpoints: {
         1440: {
-            slidesPerView: "auto",
+            slidesPerView: 3,
             slidesPerColumn: 2
-        }
-      },
+        },
 
-      breakpoints: {
         768: {
             slidesPerView: 1,
             slidesPerColumn: 1
         }
       },
-
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

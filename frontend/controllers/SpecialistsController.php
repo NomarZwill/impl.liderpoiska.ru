@@ -32,8 +32,8 @@ class SpecialistsController extends Controller
   }
 
   public function actionSpecialistCard($doctor){
-    $doc = Doctors::find()->where(['alias' => $doctor])->one();
-    // print_r($doc);
+    $doc = Doctors::find()->joinWith('medicalSpecialties')->where(['doctors.alias' => $doctor])->one();
+    // print_r($doc['medicalSpecialties']);
     // exit;
 
     if ($doc !== ''){

@@ -67,10 +67,22 @@
 
     </div>
 
-    <div class="doctors_wrapper">
+    <div class="doctors_wrapper swiper-container">
+
+      <div class="swiper-wrapper">
 
         {{this.render('/components/doctorListing.twig', {'doctors': medicalSpecialties[0].doctors}) | raw}}
 
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+      
     </div>
 
     <!-- <button class="_button _button_light more_doctors">Показать еще</button> -->
@@ -152,7 +164,10 @@
 
   </div>
 
-  <div class="content_block recall_wrapper">
+  <div class="content_block recall_wrapper" data-page-type="recall_form">
+
+    {{this.render('/components/recall_form.twig') | raw}}
+
   </div>
 
   <div class="content_block spec_description">
@@ -195,7 +210,162 @@
 
   </div>
 
-  <div class="content_block">
+  <div class="content_block reviews_container">
+
+    <div class="reviews_title">
+    
+      <h2 class="_index_subtitle">Отзывы пациентов о хирургах-ортодонтах</h2>
+
+      <div class="button_wrapper">
+
+        <form action="/reviews/">
+          <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
+        </form>
+  
+        <form action="/">
+          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+    
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+        
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+          </div>
+          <!-- <button class="read_more">Читать полностью</button> -->
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>

@@ -165,10 +165,10 @@
   }
 
   .burger_img{
-    border-top: 3px solid $textColor;
-    border-bottom: 10px double $textColor;
-    width: 24px;
-    height: 4px;
+    width: 32px;
+    height: 32px;
+    background: url(/img/burger_icon.svg);
+    background-size: contain;
   }
 
   @include for-pad{
@@ -279,6 +279,11 @@
 
     .clinics_mob_icon{
       display: block;
+      margin: 0 12px 0 0;
+    }
+
+    .contacts_container{
+      padding: 0 12px 0 0;
     }
 
     .phones{

@@ -1,0 +1,18 @@
+[data-page-type="doctor_page"]{
+
+  .content_block.doctor_preview{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  .doctor_preview_inner{
+    width: 1224px;
+
+    h2{
+      color: $baseColor;
+    }
+  }
+}

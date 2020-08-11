@@ -1,6 +1,6 @@
 {% for doctor in doctors %}
   
-  <div class="doctor_item_wrapper" >       
+  <div class="doctor_item_wrapper swiper-slide" >       
 
     {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
 

@@ -1,0 +1,77 @@
+<div data-page-type="doctor_page">
+
+  <div class="content_block doctor_preview">
+
+    <div class="doctor_preview_inner">
+
+      <a class="breadcrumbs _menu_link" href="/">breadcrumbs</a>
+  
+      <h2>{{doc.doctor_title}}</h1>
+  
+      <div class="specialities_wrapper">
+  
+        {% for spec in doc.medicalSpecialties%}
+  
+          <p>{{spec.menu_title}}</p>
+  
+        {% endfor %}
+  
+      </div>
+  
+      <div class="clinics_wrapper">
+  
+        <div class="clinic_item">
+          <p class="clinic_name">Центр Эстетической Стоматологии</p>
+          <p class="clinic_address">пр-кт Вернадского, д. 11/19<br>• м. Университет</p>
+          <p class="clinic_phone">Тел.: 8 (495) 600 47 45</p>
+        </div>
+  
+        <div class="clinic_item">
+          <p class="clinic_name">Центр Эстетической Стоматологии</p>
+          <p class="clinic_address">пр-кт Вернадского, д. 11/19<br>• м. Университет</p>
+          <p class="clinic_phone">Тел.: 8 (495) 600 47 45</p>
+        </div>
+  
+        <div class="clinic_item">
+          <p class="clinic_name">Центр Эстетической Стоматологии</p>
+          <p class="clinic_address">пр-кт Вернадского, д. 11/19<br>• м. Университет</p>
+          <p class="clinic_phone">Тел.: 8 (495) 600 47 45</p>
+        </div>
+  
+      </div>
+  
+      <button class="_button">Записаться на приём</button>
+  
+      <img src="{{doc.doctor_image}}" alt="">
+
+    </div>
+
+
+
+  </div>
+
+  <div class="content_block doctor_menu">
+
+  </div>
+
+  <div class="content_block doctor_video">
+
+  </div>
+
+  <div class="content_block doctor_lizcenz">
+
+  </div>
+
+  <div class="content_block doctor_education">
+
+  </div>
+
+  <div class="content_block doctor_work_example">
+
+  </div>
+
+  <div class="content_block doctor_reviews">
+
+  </div>
+
+</div>

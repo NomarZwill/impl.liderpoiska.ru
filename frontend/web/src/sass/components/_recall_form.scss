@@ -1,0 +1,154 @@
+[data-page-type="recall_form"]{
+  padding: 70px 104px 0 104px;
+
+  form{
+    position: relative;
+    padding: 24px 264px 40px 48px;
+    background: $lightBG;
+
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 16px;
+      width: 247px;
+      height: 329px;
+      background: url(/img/woman-feedback.png);
+      background-size: contain;
+    }
+  }
+
+  h2{
+    padding: 0 0 12px 0;
+    color: $headerBlack;
+  }
+
+  p{
+    letter-spacing: 0.01em;
+    line-height: 24px;
+  }
+
+  .form_fields_wrapper{
+    padding: 16px 0 24px 0;
+  }
+
+  input{
+    width: 288px;
+    margin: 0 24px 0 0;
+    padding: 14px 8px 14px 8px;
+    background: #ffffff;
+    border: 1px solid #DADEE1;
+    box-sizing: border-box;
+    box-shadow: inset 0px 2px 2px rgba(118, 125, 134, 0.1);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .submit_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    p{
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+
+  button._button{
+    margin: 0 16px 0 0;
+    padding: 0 75px 0 75px;
+    height: 48px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  @include for-notdesc{
+
+    .submit_wrapper{
+      flex-flow: column nowrap;
+      align-items: flex-start;
+    }
+
+    button._button{
+      margin: 0 0 8px 0;
+    }
+  }
+
+  @include for-pad{
+    padding: 48px 16px 0 16px;
+    
+    form{
+      width: 736px;
+      margin: 0 auto;
+      padding: 24px 238px 32px 24px;
+
+      &:after{
+        right: 4px;
+        width: 262px;
+        height: 349px;
+      }
+    }
+
+    h2{
+      padding: 0 0 8px 0;
+    }
+
+    input{
+      width: 206px;
+      margin: 0 16px 0 0;
+    }
+  }
+
+  @include for-mobile{
+    padding: 24px 0 0 0;
+
+    form{
+      padding: 24px 16px 24px 16px;
+
+      &:after{
+        top: 16px;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        background-repeat: no-repeat;
+        background-position: 0 4px;
+        background-size: cover;
+      }
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 79px;
+        height: 79px;
+        border-radius: 40px;
+        background: #c4c4c4;
+      }
+    }
+
+    h2{
+      padding: 0 0 16px 0;
+    }
+
+    .form_fields_wrapper{
+      padding: 16px 0 0 0;
+    }
+
+    input{
+      width: 100%;
+      margin: 0 0 16px 0;
+    }
+
+    button._button{
+      width: 100%;
+      height: 40px;
+    }
+  }
+}

@@ -720,6 +720,10 @@
 
   .content_block.instagram_cotnainer{
     padding: 120px 0 120px;
+
+    .revolver_navigation_wrapper{
+      display: none;
+    }
   }
 
   .instagram_title{
@@ -1113,19 +1117,12 @@
     }
 
     .content_block.instagram_cotnainer{
+      width: 768px;
       padding: 40px 16px 48px 16px;
-      width: auto;
     }
     
     .instagram_gallery{
-      width: 736px;
-
-      .swiper-wrapper{
-      }
-
-      .revolver_navigation_wrapper{
-        // display: none;
-      }
+      width: 100%;
     }
 
     .instagram_item{
@@ -1609,6 +1606,12 @@
 
     .content_block.instagram_cotnainer{
       padding: 32px 0 24px 0;
+
+      .revolver_navigation_wrapper{
+        display: flex;
+        height: auto;
+        padding: 16px 0 0 0;
+      }
     }
 
     .instagram_gallery{
