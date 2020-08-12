@@ -308,16 +308,18 @@ h5{
 
 .read_more{
   display: none;
+  cursor: pointer;
+  padding: 4px 0 0 0;
+  border-bottom: 1px dashed $headerBlack;
+  color: $headerBlack;
+  line-height: 24px;
+  letter-spacing: 0.01em;
 }
 
 @include for-mobile{
 
   .read_more{
     display: block;
-    padding: 4px 0 0 0;
-    border-bottom: 1px dashed $headerBlack;
-    color: $headerBlack;
-    line-height: 24px;
-    letter-spacing: 0.01em;
+    border-bottom: 1px dashed ;
   }
 }

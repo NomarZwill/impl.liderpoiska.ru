@@ -127,10 +127,13 @@
   .doctors_wrapper{
     display: flex;
     flex-flow: row wrap;
+    width: 100%;
+    height: 100%;
     padding: 16px 0 0 0;
   }
 
-  .doctor_item_wrapper{
+  .doctor_item_wrapper.swiper-slide{
+    width: auto;
     margin: 0 24px 24px 0;
   }
 

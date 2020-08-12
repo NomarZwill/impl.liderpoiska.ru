@@ -8,6 +8,7 @@ import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
 import MedSpecFilter from './widgets/medSpecFilter';
 import MedSpecialities from './components/medSpecialities';
+import DoctorPage from './components/doctorPage';
 
 window.$ = $;
 
@@ -29,6 +30,10 @@ window.$ = $;
 
 			if ($('[data-page-type="speciality"]').length > 0) {
 	    	var medSpecialities = new MedSpecialities();
+			}
+
+			if ($('[data-page-type="doctor_page"]').length > 0) {
+	    	var doctorPage = new DoctorPage();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {

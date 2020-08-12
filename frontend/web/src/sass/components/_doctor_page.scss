@@ -1,18 +1,293 @@
 [data-page-type="doctor_page"]{
 
   .content_block.doctor_preview{
+    width: 100%;
+    background: url(/img/wave_bg.png);
+    background-size: cover;
+  }
+  
+  .doctor_preview_bg{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
-
+    padding: 24px 0 48px 0;
+    background: radial-gradient(circle at 100% 50%, transparent 71%, #FBEDD8 calc(71% + 1px));
   }
 
-  .doctor_preview_inner{
+  .doctor_preview_container{
+    display: flex;
     width: 1224px;
+    padding: 32px 56px 0 56px;
+
+    .doctor_image{
+      width: 288px;
+      height: 292px;
+      border-radius: 8px;
+    }
+  }
+
+  .doctor_preview_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0 0 0 24px;
 
     h2{
       color: $baseColor;
+      padding: 0 0 8px 0;
+    }
+
+    button._button{
+      width: 232px;
+      padding: 16px 0 16px 0;
     }
   }
+
+  .specialities_wrapper{
+    display: flex;
+
+    a{
+      margin: 0 16px 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .clinics_wrapper{
+    width: 100%;
+    padding: 24px 0 24px 0;
+
+    .revolver_navigation_wrapper{
+      display: none;
+    }
+  }
+
+  .clinic_item{
+    width: 256px;
+    margin: 0 16px 0 0;
+    padding: 12px 16px 24px 16px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+    border-radius: 8px;
+
+    p{
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .clinic_item:hover{
+    box-shadow: 0px 15px 25px 10px rgba(15, 4, 61, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .clinic_name{
+    font-weight: 600;
+    color: $headerBlack;
+  }
+  
+  .clinic_address{
+    padding: 4px 0 4px 0;
+  }
+
+  .clinic_item:last-of-type{
+    margin: 0 0 0 0;
+  }
+
+  .content_block.doctor_video{
+    padding: 48px 0 48px 0;
+
+    h2{
+      padding: 0 0 24px 0;
+    }
+
+  }
+  
+  .content_block.doctor_lizcenz{
+    width: 100%;
+    padding: 48px 0 56px 0;
+    background: $lightBG;
+
+    h2{
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .lizcenz_item.swiper-slide{
+    flex-shrink: 1;
+    margin: 0 32px 0 0;
+
+    img{
+    }
+  }
+
+  .content_block.doctor_education{
+    padding: 48px 0 48px 0;
+
+    h2{
+      padding: 0 0 24px 0;
+    }
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .doctor_education_content{
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    .show_all{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 41px;
+      background: linear-gradient(transparent 0%, #FFFFFF 30%);
+    }
+
+    .read_more{
+      display: block;
+      padding: 16px 0 0 0;
+      border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+      line-height: 24px;
+    }
+  }
+
+  .content_block.doctor_work_example{
+    width: 100%;
+    padding: 48px 0 48px 0;
+    background: #FFF9F0;
+
+    h2{
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .doctor_work_wrapper{
+    width: 100%;
+    
+    .revolver_navigation_wrapper{
+      height: auto;
+      padding: 40px 0 0 0;
+    }
+  }
+  
+  .doctor_work_item.swiper-slide{
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 1;
+
+    p{
+      text-align: center;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      
+    }
+    
+    span:last-of-type{
+      position: relative;
+      padding: 4px 0 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+
+      &:before{
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: -28px;
+        width: 20px;
+        height: 20px;
+        background: url(/img/camera_icon.svg);
+      }
+    }
+
+    
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      width: 492px;
+      height: 336px;
+      border-radius: 4px;
+    }
+
+    &:before{
+      top: 8px;
+      left: 8px;
+      background: $baseColor;
+      z-index: 1;
+    }
+
+    &:after{
+      top: 4px;
+      left: 4px;
+      background: #BB979F;
+      z-index: 2;
+    }
+  }
+  
+  .bg_filter{
+    display: none;
+    width: 492px;
+    height: 336px;
+    background: #782F40;
+    opacity: 0.7;
+    border-radius: 4px;
+    z-index: 4;
+
+    button{
+      color: #FFFFFF;
+
+      &:hover{
+        background: transparent;
+      }
+    }
+  }
+
+  .doctor_work_image{
+    position: relative;
+    width: 492px;
+    height: 336px;
+    margin: 0 0 24px 0;
+    background-size: contain;
+    border-radius: 4px;
+    z-index: 3;
+
+    &:hover{
+      
+      .bg_filter{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .popup_gallery_wrapper{
+    display: none;
+  }
+
+  .popup_gallery_wrapper._active{
+    display: flex;
+  }
+
+  
+
+  .content_block{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  h2{
+    color: $headerBlack;
+  }
+
 }

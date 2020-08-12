@@ -140,9 +140,13 @@
 
     </div>
 
-    <div class="doctors_wrapper">
+    <div class="doctors_wrapper swiper-container">
+
+      <div class="swiper-wrapper">
 
         {{this.render('/components/doctorListing.twig', {'doctors': doctors}) | raw}}
+
+      </div>
 
     </div>
 
