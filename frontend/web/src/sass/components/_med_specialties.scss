@@ -105,79 +105,9 @@
     }
   }
 
-  // .content_block.reviews_container{
-  //   display: flex;
-  //   flex-flow: column nowrap;
-  //   align-items: center;
-  //   width: 100%;
-  //   padding: 48px 0 80px 0;
-  //   background: url(/img/wave_bg.png);
-  // }
-
-  // .reviews_title{
-  //   width: 1016px;
-
-  //   h2{
-  //     text-align: center;
-  //     color: $headerBlack;
-  //   }
-
-  //   .button_wrapper{
-  //     display: flex;
-  //     justify-content: center;
-  //     padding: 16px 0 32px 0;
-  //   }
-  // }
-
-  // .review_popup_button{
-  //   margin: 0 0 0 16px;
-  //   padding: 10px 40px 10px 40px;
-  //   font-size: 14px;
-  //   line-height: 20px;
-  //   letter-spacing: 0.02em;
-  // }
-
-  // .reviews_wrapper{
-  //   width: 100%;
-  //   height: 100%;
-
-  //   .revolver_navigation_wrapper{
-  //     height: auto;
-  //     padding: 24px 0 0 0;
-  //   }
-  // }
-
-  // .review_item_wrapper{
-  //   position: relative;
-  //   width: 600px;
-  //   padding: 32px 40px 32px 40px;
-  //   background: #ffffff;
-  //   box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
-  //   border-radius: 8px;
-
-  //   hr{
-  //     width: 468px;
-  //     height: 1px;
-  //     margin-left: auto;
-  //     background-color: #dadee1;
-  //     text-align: end;
-  //   }
-  // }
-
-  // .big_quotes{
-  //   position: absolute;
-  //   top: 16px;
-  //   left: 40px;
-  //   width: 37px;
-  //   height: 24px;
-  //   background: url(/img/big_quotes.svg);
-  // }
-
-  // .review_text{
-  //   padding: 24px 0 16px 0;
-  // }
-
-
+  .content_block.reviews_container{
+    width: 100%;
+  }
 
   @include for-pad{
 
@@ -218,18 +148,6 @@
         padding: 0 0 16px 0;
       }
     }
-
-    // .content_block.reviews_container{
-    //   padding: 40px 0 56px 0;
-    // }
-  
-    // .reviews_title{
-    //   width: 736px;
-    
-    //   .button_wrapper{
-    //     padding: 16px 0 24px 0;
-    //   }
-    // }
   }
 
   @include for-mobile{
@@ -301,38 +219,5 @@
         padding: 0 0 0 12px;
       }
     }
-
-    // .content_block.reviews_container{
-    //   padding: 48px 16px 40px 16px;
-    //   background: url(/img/wave_bg.png);
-    // }
-  
-    // .reviews_title{
-    //   width: 100%;
-  
-    //   .button_wrapper{
-    //     padding: 16px 0 24px 0;
-    //     flex-flow: column nowrap;
-    //     align-items: center;
-    //   }
-
-    //   ._button._button_light._button_to_all{
-    //     border: none;
-    //     background: transparent;
-    //     padding: 0 0 0 0;
-  
-    //     span{
-    //       border-bottom: 1px solid $headerBlack;
-    //     }
-    //   }
-    // }
-
-    // .review_popup_button{
-    //   margin: 16px 0 0 0;
-    // }
-
-    // .review_item_wrapper{
-    //   width: 100%;
-    // }
   }
 }

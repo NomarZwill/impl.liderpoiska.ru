@@ -67,7 +67,32 @@
   }
 
   .review_text{
+    position: relative;
     padding: 24px 0 16px 0;
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+
+    .show_all{
+      height: 0;
+      overflow: hidden;
+    }
+
+    &._compact{
+      height: 300px;
+      overflow: hidden;
+
+      .show_all{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        padding: 16px 0 16px 0;
+        background: linear-gradient(rgba(255, 255, 255, 0) 0%, #FFFFFF 30%);
+      }
+    }
   }
 
   @include for-pad{
@@ -112,6 +137,16 @@
 
     .review_item_wrapper{
       width: 100%;
+      padding: 40px 16px 24px 16px;
+
+      hr{
+        width: calc(100% - 50px);
+      }
+    }
+
+    .big_quotes{
+      top: 24px;
+      left: 12px;
     }
   }
 }

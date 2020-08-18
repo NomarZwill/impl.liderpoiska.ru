@@ -1,0 +1,194 @@
+<div data-page-type="service_page">
+  
+  <div class="content_block title_container">
+    
+    <div class="title_wrapper">
+
+      <a class="breadcrumbs _menu_link" href="">breadcrumbs</a>
+
+      <div class="top_img"></div>
+
+      <h1>{{currentService.menu_title}}</h1>
+
+      <button class="_button popup_button">Записаться&nbsp;на&nbsp;приём</button>
+
+    </div>
+
+  </div>
+
+  <div class="content_block page_menu_container">
+
+    <div class="service_description">
+      <p>{{currentService.head_text | raw}}</p>
+    </div>
+
+    <div class="page_menu_wrapper">
+
+      <h4>Содержание</h4>
+      
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#prices">Цены на услуги</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#doctors">Специалисты отделения</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#description">Особенности проведения</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#when_say">Когда обращаться</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#reviews">Отзывы пациентов</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#faq">Вопросы и ответы</a>
+      </div>
+        
+    </div>
+
+  </div>
+
+  <div class="content_block subservice_wrapper">
+
+    <div class="service_image_wrapper">
+
+      <img src="/img/{{currentService.image}}" alt="">
+
+    </div>
+  
+    <div class="subservice_listing">
+
+      {% for serviseFirst in childrenService %}
+
+        <div class="subservice_listing_item item_wrapper">
+
+          <a class="_link_black" href="/dent/{{currentService.alias}}/{{serviseFirst.alias}}">     
+
+            <span>{{serviseFirst.menu_title}}</span> 
+            
+          </a>
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+    
+    <div class="collapse_wrapper">
+      <span class="close_block">Свернуть</span>
+      <span class="open_block _active">Развернуть</span>
+    </div>
+      
+  </div>
+
+  <div class="content_block prices_wrapper">
+
+    <h2>{{currentService.price_title}}</h2>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Костная пластика челюстно-лицевой области</p>
+      <div class="line"></div>
+      <p class="price_value">8 332 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Костная пластика челюстно-лицевой области с применением аутогенных костных блоков</p>
+      <div class="line"></div>
+      <p class="price_value">69 969 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Прием (осмотр, консультация) врача-стоматолога хирурга</p>
+      <div class="line"></div>
+      <p class="price_value">1 500 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Вскрытие и дренирование одонтогенного абсцесса</p>
+      <div class="line"></div>
+      <p class="price_value">851 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Лечение перикоронита (промывание, рассечение и/или иссечение капюшона)</p>
+      <div class="line"></div>
+      <p class="price_value">1 588 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Костная пластика челюстно-лицевой области</p>
+      <div class="line"></div>
+      <p class="price_value">8 332 руб.</p>
+    </div>
+
+    <div class="price_item_wrapper">
+      <p class="price_name">Костная пластика челюстно-лицевой области с применением аутогенных костных блоков</p>
+      <div class="line"></div>
+      <p class="price_value">69 969 руб.</p>
+    </div>
+
+    <div class="show_all _hidden">
+      <button class="read_more">Показать все цены</button>
+    </div>
+    
+  </div>
+
+  <div class="content_block doctors_container">
+    
+    <div class="doctors_title">
+
+      <h2>Cпециалисты</h2>
+
+      <form action="/specialists/">
+        <button class="_button _button_light _button_to_all"><span>Все стоматолог-хирурги</span> →</button>
+      </form>
+
+    </div>
+
+    <div class="swiper-container doctors_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for doctor in doctors %}
+    
+          <div class="swiper-slide doctor_item_wrapper">       
+  
+            {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="content_block description_wrapper">
+
+    <h2>Стоматология хирургия: особенности проведения</h2>
+
+
+    <div class="content_note">
+      
+      <p>
+        Доктор по завершении диагностики определяет необходимость 
+        в хирургическом вмешательстве и определяет перечень 
+        проводимых процедур.
+      </p>
+
+    </div>
+  </div>
+
+
+</div>

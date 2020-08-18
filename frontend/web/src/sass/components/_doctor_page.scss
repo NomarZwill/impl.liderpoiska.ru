@@ -1,9 +1,11 @@
 [data-page-type="doctor_page"]{
+  position: relative;
 
   .content_block.doctor_preview{
     width: 100%;
     background: url(/img/wave_bg.png);
     background-size: cover;
+    z-index: 100;
   }
   
   .doctor_preview_bg{
@@ -12,25 +14,29 @@
     align-items: center;
     width: 100%;
     padding: 24px 0 48px 0;
-    background: radial-gradient(circle at 100% 50%, transparent 71%, #FBEDD8 calc(71% + 1px));
+    background: radial-gradient(circle at 100% 50%, rgba(255, 255, 255, 0) 71%, #FBEDD8 calc(71% + 1px));
   }
 
   .doctor_preview_container{
     display: flex;
     width: 1224px;
     padding: 32px 56px 0 56px;
-
+  }
+  
+  .doctor_preview_wrapper{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0 0 0 288px;
+    
     .doctor_image{
+      position: absolute;
+      top: 0;
+      left: -24px;
       width: 288px;
       height: 292px;
       border-radius: 8px;
     }
-  }
-
-  .doctor_preview_wrapper{
-    display: flex;
-    flex-flow: column nowrap;
-    padding: 0 0 0 24px;
 
     h2{
       color: $baseColor;
@@ -44,9 +50,22 @@
   }
 
   .specialities_wrapper{
-    display: flex;
+    position: relative;
+    width: 100%;
+    
+    &:after{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 21px;
+      top: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 86%, rgba(255, 255, 255, 1) 100%);
+      z-index: 10;
+    }
 
     a{
+      display: block;
+      width: auto;
       margin: 0 16px 0 0;
       font-size: 14px;
       line-height: 20px;
@@ -55,8 +74,9 @@
   }
 
   .clinics_wrapper{
-    width: 100%;
-    padding: 24px 0 24px 0;
+    width: 800px;
+    padding: 24px 32px 24px 32px;
+    overflow: hidden;
 
     .revolver_navigation_wrapper{
       display: none;
@@ -104,6 +124,29 @@
     }
 
   }
+
+  .content_block.doctor_menu{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 16px 20px 16px;
+    border-top: 1px solid #FBEDD8;
+    border-bottom: 1px solid #FBEDD8;
+  }
+
+  .chapter_link_container{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 1224px;
+    padding: 0 0 0 56px;
+  }
+
+  .chapter_link{
+    margin: 0 32px 0 0;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
   
   .content_block.doctor_lizcenz{
     width: 100%;
@@ -115,12 +158,18 @@
     }
   }
 
+  .lizcenz_wrapper{
+    width: 100%;
+    overflow: hidden;
+
+    .revolver_navigation_wrapper{
+      margin: 16px auto 0 auto;
+    }
+  }
+
   .lizcenz_item.swiper-slide{
     flex-shrink: 1;
     margin: 0 32px 0 0;
-
-    img{
-    }
   }
 
   .content_block.doctor_education{
@@ -138,15 +187,24 @@
 
   .doctor_education_content{
     position: relative;
-    height: 200px;
+    height: auto;
     overflow: hidden;
 
     .show_all{
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 41px;
-      background: linear-gradient(transparent 0%, #FFFFFF 30%);
+      height: 0;
+      overflow: hidden;
+    }
+
+    &._compact{
+      height: 600px;
+
+      .show_all{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 41px;
+        background: linear-gradient(rgba(255, 255, 255, 0) 0%, #FFFFFF 30%);
+      }
     }
 
     .read_more{
@@ -178,7 +236,6 @@
   
   .doctor_work_item.swiper-slide{
     position: relative;
-    cursor: pointer;
     flex-shrink: 1;
 
     p{
@@ -188,25 +245,6 @@
       letter-spacing: 0.01em;
       
     }
-    
-    span:last-of-type{
-      position: relative;
-      padding: 4px 0 0 0;
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 0.02em;
-
-      &:before{
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        left: -28px;
-        width: 20px;
-        height: 20px;
-        background: url(/img/camera_icon.svg);
-      }
-    }
-
     
     &:before,
     &:after{
@@ -231,6 +269,26 @@
       z-index: 2;
     }
   }
+
+  .inner_gallery_button{
+    cursor: pointer;
+    position: relative;
+    padding: 4px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: $textColor;
+
+    &:before{
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: -28px;
+      width: 20px;
+      height: 20px;
+      background: url(/img/camera_icon.svg);
+    }
+  }
   
   .bg_filter{
     display: none;
@@ -251,6 +309,7 @@
   }
 
   .doctor_work_image{
+    cursor: pointer;
     position: relative;
     width: 492px;
     height: 336px;
@@ -270,15 +329,9 @@
     }
   }
 
-  .popup_gallery_wrapper{
-    display: none;
+  .content_block.doctor_reviews{
+    width: 100%;
   }
-
-  .popup_gallery_wrapper._active{
-    display: flex;
-  }
-
-  
 
   .content_block{
     display: flex;
@@ -290,4 +343,309 @@
     color: $headerBlack;
   }
 
+  @include for-notdesc{
+
+    .clinics_wrapper{
+      width: 100%;
+    }
+
+    .inner_gallery_button{
+      color: $headerBlack;
+      border-bottom: 1px dashed rgba(51, 54, 56, 0.4);
+    }
+
+    .doctor_preview_bg{
+      padding: 24px 0 32px 0;
+    }
+
+    .doctor_preview_wrapper{
+
+      button._button{
+        padding: 12px 0 12px 0;
+      }
+    }
+  }
+
+  @include for-pad{
+
+    .doctor_preview_container{
+      width: 768px;
+      padding: 32px 16px 0 16px;
+
+    }
+    
+    .clinics_wrapper{
+      width: 100%;
+      padding: 24px 0 24px 0;
+    }
+    
+    .doctor_preview_bg{
+      padding: 24px 0 32px 0;
+    }
+    
+    .doctor_preview_wrapper{
+      width: 568px;
+      margin: 0 0 0 168px;
+      padding: 0 0 0 0;
+      
+      h2{
+        padding: 0 0 12px 0;
+      }
+
+      .doctor_image{
+        width: 168px;
+        height: 168px;
+        left: -184px;
+      }
+    }
+
+    .content_block.doctor_menu{
+      width: 100%;
+      padding: 20px 16px 20px 16px;
+    }
+  
+    .chapter_link_container{
+      width: 736px;
+      padding: 0 0 0 0;
+    }
+  
+    .chapter_link{
+      margin: 0 32px 0 0;
+      line-height: 23px;
+      letter-spacing: 0.01em;
+    }
+    
+    .content_block.doctor_video,
+    .content_block.doctor_lizcenz{
+      padding: 40px 0 40px 0;
+    }
+
+    .content_block.doctor_education{
+      padding: 40px 16px 40px 16px;
+    }
+    
+    .content_block.doctor_work_example{
+      padding: 32px 0 40px 0;
+    }
+    
+    
+
+    .content_block.doctor_reviews{
+      padding: 40px 0 32px 0;
+    }
+
+
+  }
+
+  @include for-mobile{
+
+    .content_block.doctor_preview{
+      background: none;
+    }
+
+    .doctor_preview_bg{
+      background: none;
+    }
+
+    .doctor_preview_container{
+      width: 100%;
+      padding: 8px 16px 0 16px;
+
+    }
+    
+    .doctor_preview_wrapper{
+      width: 100%;
+      align-items: center;
+      padding: 0 0 0 0;
+      
+      h2{
+        padding: 0 0 8px 0;
+      }
+
+      .doctor_image{
+        position: static;
+        width: 288px;
+        height: 292px;
+      }
+    }
+
+    .specialities_wrapper{
+      width: auto;
+      padding:0 0 16px 0;
+    }
+
+    .clinics_wrapper {
+      padding: 16px 0 48px 0;
+
+      .revolver_navigation_wrapper{
+        display: flex;
+        margin: 16px 0 0 0;
+      }
+    }
+
+    .content_block.doctor_menu{
+      padding: 32px 0 16px 0;
+    }
+
+    .chapter_link_container{
+      flex-flow: column nowrap;
+      width: 100%;
+      padding: 0 0 0 40px;
+    }
+
+    .chapter_link_wrapper{
+      padding: 0 0 12px 0;
+    }
+    
+    .chapter_link{
+      position: relative;
+
+      &:before{
+        content: '— ';
+        position: absolute;
+        left: -24px;
+      }
+    }
+
+    .content_block.doctor_video{
+      padding: 32px 16px 32px 16px;
+
+      h2{
+        padding: 0 0 16px 0;
+      }
+    }
+
+    video{
+      width: 100%;
+    }
+
+    .content_block.doctor_lizcenz{
+      padding: 24px 0 32px 0;
+
+      h2{
+        padding: 0 0 16px 0;
+      }
+    }
+
+    .content_block.doctor_education{
+      padding: 32px 16px 32px 16px;
+
+      h2{
+        padding: 0 0 16px 0;
+      }
+    }
+
+    .content_block.doctor_work_example{
+      padding: 32px 0 32px 0;
+
+      h2{
+        padding: 0 0 16px 0;
+      }
+    }
+
+    .doctor_work_item.swiper-slide{
+      
+      &:before,
+      &:after{
+        width: 288px;
+        height: 196px;
+      }
+    }
+    
+    .doctor_work_image{
+      width: 288px;
+      height: 196px;
+      
+    }
+
+    .content_block.doctor_reviews{
+      padding: 32px 16px 40px 16px;
+    }
+  }
+
+}
+
+.popup_filter_bg{
+
+  .review_item_wrapper{
+    position: relative;
+    width: 808px;
+    max-height: calc(100% - 112px);
+    padding: 48px 40px 32px 40px;
+    background: #ffffff;
+    box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+    border-radius: 8px;
+    overflow: auto;
+
+    hr{
+      width: 676px;
+      height: 1px;
+      margin-left: auto;
+      background-color: #dadee1;
+      text-align: end;
+    }
+
+    .close_icon{
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  .big_quotes{
+    position: absolute;
+    top: 32px;
+    left: 40px;
+    width: 37px;
+    height: 24px;
+    background: url(/img/big_quotes.svg);
+  }
+
+  .review_text{
+    position: relative;
+    padding: 24px 0 16px 0;
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+
+    .signature{
+      padding: 16px 0 0 0;
+    }
+  }
+
+  .popup_close_button{
+    display: none;
+    cursor: pointer;
+    margin: 0 auto;
+    border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+    color: $headerBlack;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  @include for-mobile{
+
+    .review_item_wrapper{
+      width: 100%;
+      margin: 56px 0 56px 0;
+      padding: 48px 12px 32px 12px;
+
+
+      hr{
+        width: calc(100% - 50px);
+      }
+    }
+
+    .big_quotes{
+      top: 32px;
+      left: 12px;
+    }
+
+    .popup_close_button{
+      display: block;
+      width: 66px;
+      margin: 0 auto;
+    }
+  }
 }

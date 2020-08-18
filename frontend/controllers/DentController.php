@@ -4,6 +4,8 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\Servises;
+use backend\models\Doctors;
+use backend\models\DoctorsMedSpec;
 
 
 class DentController extends Controller
@@ -22,13 +24,39 @@ class DentController extends Controller
       ));  
    }
    public function actionFirstLevel($firstLevel){
-      return 'actionFirstLevel';
+
+      $currentService = Servises::find()
+      ->where(['alias' => $firstLevel])
+      ->asArray()
+      ->all();
+
+      $childrenService = Servises::find()
+      ->where(['parent_id' => $currentService[0]['old_id']])
+      ->asArray()
+      ->all();
+
+      $doctors = Doctors::find()
+      ->joinWith('medicalSpecialties')
+      ->asArray()
+      ->all();
+
+      //   print_r($childrenService);
+      //   exit;
+
+      return $this->render('servicePage.twig', array(
+         'currentService' => $currentService[0],
+         'childrenService' => $childrenService,
+         'doctors' => $doctors
+      )); 
    }
    public function actionSecondLevel($firstLevel, $secondLevel){
       return 'actionSecondLevel';
    }
    public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel){
       return 'actionThirdLevel';
+   }
+   public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel){
+      return 'actionFourthLevel';
    }
  
 

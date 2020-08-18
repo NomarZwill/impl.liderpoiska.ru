@@ -9,6 +9,7 @@ import DoctorsListing from './components/doctorsListing';
 import MedSpecFilter from './widgets/medSpecFilter';
 import MedSpecialities from './components/medSpecialities';
 import DoctorPage from './components/doctorPage';
+import ServicePage from './components/servicePage';
 
 window.$ = $;
 
@@ -22,6 +23,10 @@ window.$ = $;
 
 			if ($('[data-page-type="service_listing"]').length > 0) {
 	    	var serviceListing = new ServiceListing($('[data-page-type="ServiceListing"]'));
+			}
+
+			if ($('[data-page-type="service_page"]').length > 0) {
+	    	var servicePage = new ServicePage();
 			}
 
 			if ($('[data-page-type="specialists"]').length > 0) {

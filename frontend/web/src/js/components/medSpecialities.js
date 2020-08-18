@@ -1,16 +1,16 @@
 'use strict';
 
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 export default class MedSpecialities{
 
   constructor(){
+    Swiper.use([Navigation, Pagination]);
     this.init();
   }
 
   init(){
 
-    console.log(document.documentElement.clientWidth);
     if (document.documentElement.clientWidth <= 768){
 
       var doctorsWrapper  = new Swiper('.doctors_wrapper', {

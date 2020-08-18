@@ -7,24 +7,28 @@
       <a class="breadcrumbs _menu_link" href="/">breadcrumbs</a>
   
       <div class="doctor_preview_container">
-    
-        <div class="doctor_image" style="background: url({{doc.doctor_image}});"></div>
   
         <div class="doctor_preview_wrapper">
   
           <h2>{{doc.doctor_title}}</h1>
       
-          <div class="specialities_wrapper">
+          <div class="swiper-container specialities_wrapper">
+
+            <div class="swiper-wrapper">
       
-            {% for spec in doc.medicalSpecialties%}
+              {% for spec in doc.medicalSpecialties%}
+        
+                <a class="swiper-slide _menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title}}</a>
+        
+              {% endfor %}
       
-              <a class="_menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title}}</a>
-      
-            {% endfor %}
-      
+            </div>
+
           </div>
+
+          <div class="doctor_image" style="background: url({{doc.doctor_image}}); background-size: cover;"></div>
   
-          <div class="swiper_container clinics_wrapper">
+          <div class="swiper-container clinics_wrapper">
   
             <div class="swiper-wrapper">
         
@@ -88,9 +92,30 @@
 
   <div class="content_block doctor_menu">
 
+    <div class="chapter_link_container">
+      
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#video">Видео</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#lizcenz">Сертификаты</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#education">Образование</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#work_example">Примеры работ</a>
+      </div>
+      <div class="chapter_link_wrapper">
+        <a class="chapter_link _menu_link_dashed_black" href="#reviews">Отзывы</a>
+      </div>
+      
+    </div>
+    
   </div>
 
   <div class="content_block doctor_video">
+    <a name="video"></a>
 
     <h2>Видео о враче</h2>
 
@@ -99,6 +124,8 @@
   </div>
 
   <div class="content_block doctor_lizcenz">
+
+    <a name="lizcenz"></a>
 
     <h2>Сертификаты</h2>
 
@@ -146,12 +173,14 @@
 
   <div class="content_block doctor_education">
 
+    <a name="education"></a>
+
     <h2>Образование</h2>
 
     <div class="doctor_education_content">
       {{doc.content | raw}}
 
-      <div class="show_all">
+      <div class="show_all _hidden">
         <button class="read_more">Показать полностью</button>
       </div>
 
@@ -162,15 +191,19 @@
 
   <div class="content_block doctor_work_example">
 
+    <a name="work_example"></a>
+
     <h2>Примеры работы</h2>
 
     <div class="swiper-container doctor_work_wrapper">
 
       <div class="swiper-wrapper">
 
+        {% for i in 1..10 %}
+    
           <div class="swiper-slide doctor_work_item">
 
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65.png');">
+            <div class="doctor_work_image" style="background: url('/img/test_img/image 65.png'); background-size: contain;" data-gallery-id="{{i}}">
 
               <div class="bg_filter">
                 <button class="_button _button_light">Смотреть фотографии</button>
@@ -181,163 +214,12 @@
             <p>
               <span>Детское протезирование после травмы</span> 
               <br>
-              <span>2 фотографии</span>
-            </p>
-
-            <div class="popup_gallery_wrapper">
-
-              <h2>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h2>
-
-              <div class="swiper-container popup_gallery">
-
-                <div class="swiper-wrapper">
-
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-
-                </div>
-
-              </div>
-
-              <div class="swiper-container popup_gallery_thumbs">
-
-                <div class="swiper-wrapper">
-
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-                  <div class="swiper-slide doctor_work_item _popup"></div>
-
-                </div>
-
-              </div>
-
-              <p>
-                Пациент обратился с жалобой на неудобное использование полного 
-                съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
-                Была проведена костная пластика и установка дентальных 
-                имплантантов, что позволило нам через 7 месяцев забыть о 
-                существовании полных съемных протезов навсегда. Фото сделано на 
-                профилактическом осмотре через 5 лет после имплантации.
-              </p>
-
-              <div class="diagonal_navigation">
-
-                <div class="diagonal_navigation_bg"></div>
-                <div class="swiper-button-prev _diagonal_navigation"></div>
-                <span class="current_slide">01</span>
-                <br>
-                <span class="total_slides">03</span>
-                <div class="swiper-button-next _diagonal_navigation"></div>
-        
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="swiper-slide doctor_work_item">
-
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65-1.png');">
-              
-              <div class="bg_filter">
-                <button class="_button _button_light">Смотреть фотографии</button>
-              </div>
-              
-            </div>
-            
-            <p>
-
-              <span></span> 
-
-              <br>
-              
-              <span>5 фотографий</span>
-
+              <button class="inner_gallery_button">2 фотографии</button>
             </p>
 
           </div>
 
-          <div class="swiper-slide doctor_work_item">
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65-2.png');">
-            
-              <div class="bg_filter">
-                <button class="_button _button_light">Смотреть фотографии</button>
-              </div>
-              
-            </div>
-            
-            <p>
-
-              <span>Детское протезирование после травмы</span> 
-
-              <br>
-              
-              <span>2 фотографии</span>
-
-            </p>
-
-          </div>
-
-          <div class="swiper-slide doctor_work_item">
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65.png');">
-            
-              <div class="bg_filter">
-                <button class="_button _button_light">Смотреть фотографии</button>
-              </div>
-              
-            </div>
-            
-            <p>
-
-              <span>Детское протезирование после травмы</span> 
-
-              <br>
-              
-              <span>2 фотографии</span>
-
-            </p>
-
-          </div>
-
-          <div class="swiper-slide doctor_work_item">
-
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65-1.png');">
-            
-              <div class="bg_filter">
-                <button class="_button _button_light">Смотреть фотографии</button>
-              </div>
-              
-            </div>
-            
-            <p>
-              <span>Детское протезирование после травмы</span> 
-              <br>
-              <span>2 фотографии</span>
-            </p>
-
-          </div>
-
-          <div class="swiper-slide doctor_work_item">
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65-2.png');">
-            
-              <div class="bg_filter">
-                <button class="_button _light_button">Смотреть фотографии</button>
-              </div>
-              
-            </div>
-            
-            <p>
-
-              <span>Детское протезирование после травмы</span> 
-
-              <br>
-              
-              <span>2 фотографии</span>
-
-            </p>
-
-          </div>
+        {% endfor %}
 
       </div>
 
@@ -352,8 +234,294 @@
 
   </div>
 
-  <div class="content_block doctor_reviews">
+  <div class="content_block doctor_reviews" data-type="reviews_block">
+
+    <a name="reviews"></a>
+
+    <div class="reviews_title">
+    
+      <h2 class="_index_subtitle">Отзывы пациентов о хирургах-ортодонтах</h2>
+
+      <div class="button_wrapper">
+
+        <form action="/reviews/">
+          <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
+        </form>
+  
+        <form action="/">
+          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+    
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+        
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
 
   </div>
 
+</div>
+
+<div class="popup_filter_bg">
+
+  <div class="review_item_wrapper _hidden">
+    
+    <div class="close_icon"></div>       
+    <div class="big_quotes"></div>
+    <hr>
+    <div class="review_text">
+
+      <p class="main_text"></p>
+      <p class="signature"></p>
+
+    </div>
+    <div class="popup_close_button">Закрыть</div>       
+
+    
+
+  </div>
+
+  {% for i in 1..10 %}
+    
+    <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
+
+      <div class="close_icon"></div>
+
+      <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
+
+      <div class="swiper-container popup_gallery">
+
+        <div class="swiper-wrapper">
+
+          {% for i in 1..10 %}
+
+            <div class="swiper-slide doctor_work_item _popup">
+              <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+        <div class="popup_navigation_wrapper">
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next "></div>
+  
+        </div>
+
+      </div>
+
+      <div class="swiper-container popup_gallery_thumbs">
+
+        <div class="swiper-wrapper">
+
+          {% for i in 1..10 %}
+
+            <div class="swiper-slide doctor_work_item _popup">
+              <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <p>
+        Пациент обратился с жалобой на неудобное использование полного 
+        съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
+        Была проведена костная пластика и установка дентальных 
+        имплантантов, что позволило нам через 7 месяцев забыть о 
+        существовании полных съемных протезов навсегда. Фото сделано на 
+        профилактическом осмотре через 5 лет после имплантации.
+      </p>
+
+      <div class="diagonal_navigation">
+
+        <div class="diagonal_navigation_bg"></div>
+        <div class="swiper-button-prev _diagonal_navigation"></div>
+        <span class="current_slide">01</span>
+        <br>
+        <span class="total_slides">03</span>
+        <div class="swiper-button-next _diagonal_navigation"></div>
+
+      </div>
+
+      <button class="popup_close_button">Закрыть</button> 
+
+    </div>
+
+  {% endfor %}
+  
 </div>

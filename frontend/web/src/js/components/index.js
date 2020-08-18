@@ -1,10 +1,11 @@
 'use strict';
 
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 export default class Index{
 
   constructor(){
+  	Swiper.use([Navigation, Pagination]);
     this.init();
   }
 
@@ -24,6 +25,7 @@ export default class Index{
       // }
 
     });
+
 
     var clinicDescriptionGalleryContainer  = new Swiper('.clinic_description_gallery', {
       slidesPerView: 1,
@@ -89,24 +91,23 @@ export default class Index{
 
     });
 
-    var instagramWrapper  = new Swiper('.instagram_gallery', {
-      slidesPerView: 4,
-      slidesPerColumn: 2,
+    var instagramWrapper = new Swiper('.instagram_gallery', {
+      slidesPerView: 1,
+      slidesPerColumn: 1,
       spaceBetween: 24,
-      breakpoints: {
-        1440: {
-            slidesPerView: 3,
-            slidesPerColumn: 2
-        },
-
-        768: {
-            slidesPerView: 1,
-            slidesPerColumn: 1
-        }
-      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+          slidesPerColumn: 2
+        },
+        1440: {
+          slidesPerView: 4,
+          slidesPerColumn: 2,
+        },
       },
 
       // pagination: {

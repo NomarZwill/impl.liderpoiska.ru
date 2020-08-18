@@ -1,9 +1,10 @@
 @import '_mixins';
 @import '_colors';
 @import 'components/*';
-@import '../../node_modules/swiper/src/swiper.scss';
-@import '../../node_modules/swiper/src/components/pagination/pagination.scss';
-@import '../../node_modules/swiper/src/components/navigation/navigation.scss';
+@import '../../node_modules/swiper/swiper.scss';
+@import '../../node_modules/swiper/components/pagination/pagination.scss';
+@import '../../node_modules/swiper/components/navigation/navigation.scss';
+@import '../../node_modules/swiper/components/thumbs/thumbs.scss';
 
 @font-face {
   font-family: 'Rubik';
@@ -92,6 +93,20 @@ A:visited._menu_link_dashed{
 
 A:hover._menu_link_dashed{
   color: $baseColor;
+}
+
+A:link._menu_link_dashed_black{
+  border-bottom: 1px dashed rgba(51, 54, 56, 0.4);
+}
+
+A:visited._menu_link_dashed_black{
+  color: $headerBlack;
+}
+
+A:hover._menu_link_dashed_black{
+  color: $baseColor;;
+  border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+
 }
 
 A:visited._menu_link_no_borders{
@@ -265,6 +280,10 @@ h5{
     background: url(/img/arrow_revolver_hover.svg);
     background-size: contain;
   }
+
+  &:after{
+    content: none;
+  }
 }
 
 .swiper-button-prev.revolver_navigation{
@@ -307,19 +326,73 @@ h5{
 }
 
 .read_more{
-  display: none;
   cursor: pointer;
   padding: 4px 0 0 0;
-  border-bottom: 1px dashed $headerBlack;
+  border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
   color: $headerBlack;
   line-height: 24px;
   letter-spacing: 0.01em;
 }
 
-@include for-mobile{
+.diagonal_navigation{
+  position: absolute;
+  width: 112px;
+  height: 48px;
+  padding: 16px 0 0 20px;
+  color: #FFFFFF;
+  z-index: 5;
 
-  .read_more{
-    display: block;
-    border-bottom: 1px dashed ;
+  .swiper-button-next._diagonal_navigation{
+    top: 50px;
+    right: -16px;
   }
+
+  .swiper-button-prev._diagonal_navigation{
+    top: 24px;
+  }
+
+  p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .current_slide{
+    position: absolute;
+    top: 0;
+    left: 46px;
+  }
+
+  .total_slides{
+    position: absolute;
+    top: 25px;
+    left: 72px;
+  }
+
+  &:after{
+    content: '';
+    width: 48px;
+    border-top: 1px solid #FFFFFF;
+    position: absolute;
+    top: 20px;
+    left: 48px;
+    transform: rotate(-45deg);
+  }
+
+}
+
+.swiper-button-next._diagonal_navigation,
+.swiper-button-prev._diagonal_navigation{
+  width: 28px;
+  height: 14px;
+  background: url(/img/arrow_diagonal_nav.svg);
+
+  &:before,
+  &:after{
+    content: none;
+  }
+}
+
+.swiper-button-prev._diagonal_navigation{
+  transform: rotate(180deg);
 }

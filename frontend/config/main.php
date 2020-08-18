@@ -42,9 +42,10 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
-                ['pattern'=>'/dent/<firstLevel:\w+>/<secondLevel:\w+>/<thirdLevel:\w+>','route'=>'dent/third-level', 'suffix'=>'/'],
-                ['pattern'=>'/dent/<firstLevel:\w+>/<secondLevel:\w+>','route'=>'dent/second-level', 'suffix'=>'/'],
-                ['pattern'=>'/dent/<firstLevel:\w+>','route'=>'dent/first-level', 'suffix'=>'/'],
+                ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>/<fourthLevel:[\w-]+>','route'=>'dent/fourth-level', 'suffix'=>'/'],
+                ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>','route'=>'dent/third-level', 'suffix'=>'/'],
+                ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>','route'=>'dent/second-level', 'suffix'=>'/'],
+                ['pattern'=>'/dent/<firstLevel:[\w-]+>','route'=>'dent/first-level', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/<doctor:[\w-]+>','route'=>'specialists/specialist-card', 'suffix'=>'/'],
                 ['pattern'=>'/speciality/<specID:[\w-]+>','route'=>'med-specialties/speciality-name', 'suffix'=>'/'],
                 ['pattern'=>'/agreement/','route'=>'other/agreement', 'suffix'=>'/'],
