@@ -53,7 +53,6 @@
     h4{
       position: relative;
       padding: 0 0 16px 0;
-      color: $headerBlack;
 
       &:before{
         content: '';
@@ -74,7 +73,6 @@
 
   .chapter_link{
     position: relative;
-    color: $headerBlack;
 
     &:before{
       content: '— ';
@@ -136,7 +134,6 @@
 
     h2{
       padding: 0 0 24px 0;
-      color: $headerBlack;
     }
 
     .show_all{
@@ -201,8 +198,6 @@
 
     h2{
       padding: 0 12px 0 0;
-      text-align: center;
-      color: $headerBlack;
     }
 
     form{
@@ -215,6 +210,7 @@
     position: relative;
     width: 1016px;
     padding: 32px 16px 32px 80px;
+    margin: 0 auto;
     background: $lightBG;
     border-radius: 8px;
 
@@ -228,10 +224,340 @@
       background: url(/img/info_icon.svg);
     }
 
-    p{
+    &._advantages:before{
+      top: 24px;
+      background: url(/img/pluses.svg);
+    }
+
+    &._disadvantages:before{
+      top: 24px;
+      background: url(/img/minuses.svg);
+    }
+
+    p,
+    span,
+    li{
       line-height: 26px;
       letter-spacing: 0.01em;
     }
+  }
+
+  .big_number_list{
+    list-style-type: none;
+    counter-reset: num;
+    padding: 0 0 24px 0;
+
+    li{
+      position: relative;
+      margin: 0 0 0 48px;
+      padding: 24px 0 0 0;
+
+      &:before{
+        content: counter(num);
+        counter-increment: num;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: -64px;
+        width: 48px;
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: 0.01em;
+        text-align: center;
+        color: $baseColor;
+      }
+
+      p{
+        padding: 0 0 24px 0;
+        line-height: 26px;
+        letter-spacing: 0.01em;
+      }
+
+      hr{
+        width: 650px;
+        height: 1px;
+        margin: 0 auto;
+        background-color: #dadee1;
+        text-align: center;
+      }
+    }
+  }
+
+  .content_block.service_video_container{
+    width: 100%;
+    padding: 48px 0 48px 40px;
+
+    .swiper-slide{
+      flex-shrink: 1;
+    }
+
+    .content_note{
+      margin: 48px auto 0;
+
+      &:before{
+        background: url(/img/book_icon.svg);
+      }
+      
+      ol{
+        list-style-type: none;
+        counter-reset: num;
+        padding: 8px 0 0 0;
+    
+        li{
+          position: relative;
+          margin: 0 0 0 29px;
+          padding: 0 0 8px 0;
+    
+          &:before{
+            content: counter(num)". ";
+            counter-increment: num;
+            position: absolute;
+            width: 20px;
+            left: -28px;
+            // text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .service_video_wrapper .swiper-wrapper{
+    padding: 0 0 24px 0;
+  }
+
+  .service_video_title{
+    padding: 0 0 24px 0;
+  }
+
+  .service_video_item_wrapper{
+    
+    video{
+      width: 496px;
+      height: auto;
+    }
+
+    p{
+      padding: 4px 0 0 0;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+
+  .content_block.when_say_container{
+
+    h4{
+      padding: 0 0 24px 0;
+      font-weight: 600;
+    }
+
+  }
+
+  .content_note._dashes{
+
+    ul{
+      list-style-type: none;
+      padding: 8px 0 0 0;
+
+      li{
+        position: relative;
+        margin: 0 0 0 29px;
+        padding: 0 0 8px 0;
+
+        &:before{
+          content: "— ";
+          position: absolute;
+          width: 20px;
+          left: -28px;
+        }
+      }
+    }
+  }
+
+  .content_block.photo_example_wrapper{
+    width: 100%;
+    padding: 48px 0 48px 40px;
+
+    .swiper-slide{
+      flex-shrink: 1;
+    }
+
+    h3{
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .photo_gallery_wrapper .swiper-wrapper{
+    padding: 0 0 24px 0;
+  }
+
+  
+
+  .photo_example_image{
+    width: 496px;
+    height: 336px;
+    border-radius: 4px;
+  }
+
+  .content_block.advantages_wrapper{
+    width: 100%;
+  }
+
+  .director_word_container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 32px 0 56px 0;
+    background: radial-gradient(circle at 100% 50%, #FFF9F0 53%, #FBEDD8 calc(53% + 1px));
+  }
+
+  .director_word_wrapper{
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    width: 704px;
+    margin: 0 0 0 368px;
+
+    h2{
+      padding: 0 0 24px 0;
+      text-align: start;
+    }
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .director_word_img{
+    position: absolute;
+    left: -368px;
+    width: 320px;
+    height: 320px;
+    background: url(/img/vrachi/pasryan0001.jpg);
+    border-radius: 4px;
+  }
+
+  .director_word_signature_wrapper{
+    position: relative;
+    padding: 16px 280px 0 0;
+
+    p{
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+      color: $textColor;
+    }
+
+    span{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .director_word_signature{
+    position: absolute;
+    top: 16px;
+    right: 56px;
+    width: 184px;
+    height: 72px;
+    background: url(/img/sign.png);
+  }
+
+  .adwises_container{
+
+    & > p{
+      width: 1016px;
+      margin: 0 auto;
+      padding: 32px 0 32px 0;
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+
+    h3{
+      padding: 48px 0 24px 0;
+    }
+  }
+
+  .content_note.analysis_container{
+    display: flex;
+    flex-flow: row wrap;
+
+    &:before{
+      top: 40px;
+      background: url(/img/+−.svg);
+      background-position: top;
+      background-repeat: no-repeat;
+    }
+
+    h4{
+      width: 100%;
+      padding: 0 0 16px 0;
+      text-align: start;
+    }
+  }
+
+  .analysis_wrapper{
+    width: 50%;
+
+    ul{
+      list-style-type: none;
+      padding: 8px 0 0 0;
+
+      li{
+        position: relative;
+        margin: 0 0 0 29px;
+        padding: 0 0 8px 0;
+
+        &:before{
+          content: "";
+          position: absolute;
+          width: 12px;
+          height: 24px;
+          left: -28px;
+          background: url(/img/+.svg);
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+
+    &._disadvantages{
+
+      ul{
+
+        li:before{
+          background: url(/img/−.svg);
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+
+  .content_block.recall_wrapper{
+    padding: 24px 0 0 0;
+  }
+
+  .content_block.doctor_reviews{
+    width: 100%;
+    padding: 48px 0 0 0;
+  }
+
+
+
+  h2,
+  h3,
+  h4{
+    text-align: center;
+    color: $headerBlack;
   }
 
   .content_block{

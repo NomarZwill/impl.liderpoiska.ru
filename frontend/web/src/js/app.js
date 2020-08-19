@@ -7,6 +7,7 @@ import Index from './components/index';
 import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
 import MedSpecFilter from './widgets/medSpecFilter';
+import FullReviewPopup from './widgets/fullReviewPopup';
 import MedSpecialities from './components/medSpecialities';
 import DoctorPage from './components/doctorPage';
 import ServicePage from './components/servicePage';
@@ -43,6 +44,10 @@ window.$ = $;
 
 			if ($('[data-spec-filter]').length > 0) {
 	    	var medSpecFilter = new MedSpecFilter($('[data-spec-filter]'));
+			}
+
+			if ($('.content_block.doctor_reviews').length > 0) {
+	    	var fullReviewPopup = new FullReviewPopup();
 			}
 			
   	});

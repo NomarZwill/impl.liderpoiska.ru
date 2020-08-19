@@ -34,6 +34,48 @@ export default class ServicePage{
 
     });
 
+    var videoWrapper  = new Swiper('.service_video_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      // }
+
+    });
+
+    var photoWrapper  = new Swiper('.photo_gallery_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      // }
+
+    });
+
+    var reviewWrapper  = new Swiper('.reviews_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   type: 'bullets',
+      // }
+
+    });
+
     
   }
 }
