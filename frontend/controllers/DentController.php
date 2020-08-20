@@ -6,6 +6,7 @@ use yii\web\Controller;
 use backend\models\Servises;
 use backend\models\Doctors;
 use backend\models\DoctorsMedSpec;
+use backend\models\Faq;
 
 
 class DentController extends Controller
@@ -40,13 +41,19 @@ class DentController extends Controller
       ->asArray()
       ->all();
 
-      //   print_r($childrenService);
+      $faq = Faq::find()
+      ->limit(10)
+      ->asArray()
+      ->all();
+
+      //   print_r($faq);
       //   exit;
 
       return $this->render('servicePage.twig', array(
          'currentService' => $currentService[0],
          'childrenService' => $childrenService,
-         'doctors' => $doctors
+         'doctors' => $doctors,
+         'faq' => $faq
       )); 
    }
    public function actionSecondLevel($firstLevel, $secondLevel){

@@ -2,7 +2,6 @@
 
   .content_block.title_container{
     width: 100%;
-    padding: 56px 0 64px 0;
     background: radial-gradient(circle at 0 100%,#fff9f0 60%,#FBEDD8 calc(60% + 1px));
 
     .popup_button{
@@ -11,7 +10,7 @@
 
     .top_img{
       position: absolute;
-      top: -47px;
+      bottom: 0px;
       right: 104px;
       width: 400px;
       height: 288px;
@@ -23,7 +22,7 @@
     position: relative;
     width: 1016px;
     margin: 0 auto;
-    padding: 0 16px 0 16px;
+    padding: 56px 16px 64px 16px;
   }
 
   h1{
@@ -87,6 +86,7 @@
     align-items: center;
     padding: 32px 0 32px 48px;
     background: $lightBG;
+    border-radius: 8px;
   }
 
   .service_image_wrapper{
@@ -551,7 +551,82 @@
     padding: 48px 0 0 0;
   }
 
+  .content_block.faq_container{
+    padding: 24px 0 16px 0;
 
+    h2{
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .content_block.checkup_container{
+    display: flex;
+
+    h4{
+      min-width: 224px;
+      margin: 0 24px 0 0;
+      text-align: start;
+    }
+  }
+
+  .auditor_wrapper{
+    display: flex;
+    padding: 0 0 0 24px;
+    border-left: 1px solid #DADEE1;
+
+    p{
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+  }
+  
+  .auditor_name{
+    text-decoration: underline;
+    text-decoration-color: rgba(51, 54, 56, 0.4);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+  }
+
+  .auditor_image{
+    min-width: 88px;
+    height: 88px;
+    margin: 0 24px 0 0;
+    background: url('/img/vrachi/Dre_Victoria .png') no-repeat;
+    background-size: auto 120px;
+    background-position: 50% 40%;
+    border-radius: 44px;
+  }
+
+  .content_block.rating_container{
+    display: flex;
+    margin: 48px auto 48px auto;
+    padding: 16px 0 0 0;
+    border-top: 1px solid #DADEE1;
+
+    p{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .stars_wrapper{
+    width: 136px;
+    height: 24px;
+    margin: 0 8px 0 4px;
+    background: url(/img/stars_test.png) no-repeat;
+    background-size: contain;
+  }
+
+  .votes_stars_value{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: $secondaryTextColor;
+  }
 
   h2,
   h3,
@@ -562,5 +637,173 @@
 
   .content_block{
     width: 1016px;
+  }
+
+  @include for-notdesc{
+
+    .content_block.title_container{
+      overflow: hidden;
+    }
+
+    .content_block.page_menu_container{
+      flex-flow: column nowrap;
+      padding: 24px 16px 40px 16px;
+    }
+    
+    .service_description{
+      order: 2;
+      margin: 0 0 0 0;
+    }
+    
+    .page_menu_wrapper{
+      order: 1;
+      padding: 8px 0 24px 0;
+
+      h4{
+        text-align: start;
+      }
+    }
+
+    .director_word_wrapper{
+      margin: 0 0 0 0;
+      align-items: center;
+
+      h2{
+        padding: 24px 0 16px 0;
+        text-align: center;
+      }
+    }
+  }
+
+  @include for-pad{
+
+    .content_block.title_container{
+      background: radial-gradient(circle at 0 55%,#fff9f0 70%,#fbedd8 calc(70% + 1px));
+
+      .top_img{
+        width: 352px;
+        height: 256px;
+        right: 8px;
+      }
+
+      .popup_button{
+        padding: 12px 33px 12px 33px;
+      }
+    }
+
+    .title_wrapper{
+      width: 768px;
+      padding: 24px 16px 32px 16px;
+    }
+
+    h1{
+      width: 480px;
+      font-size: 44px;
+      line-height: 54px;
+    }
+
+    .content_block.subservice_wrapper{
+      padding: 16px 0 24px 40px;
+    }
+
+    .service_image_wrapper{
+
+      img{
+        width: 88px;
+        height: 88px;
+      }
+    }
+
+    .subservice_listing{
+      width: 552px;
+    }
+
+    .subservice_listing_item{
+      width: 248px;
+      margin: 0 24px 12px 0;
+    }
+
+    .content_block.prices_wrapper{
+      margin: 40px auto 0;
+      padding: 24px 16px 32px 16px;
+
+      .show_all{
+        padding: 24px 16px 32px 16px;
+      }
+    }
+
+    .content_block.doctors_container{
+      padding: 40px 0 40px 16px;
+    }
+
+    .doctors_title{
+      flex-flow: column nowrap;
+      align-items: center;
+
+      h2{
+        padding: 0 0 8px 0;
+      }
+    }
+
+    .big_number_list{
+      padding: 0 0 16px 0;
+    }
+
+    .content_block.service_video_container{
+      padding: 40px 0 40px 16px;
+
+      .content_note{
+        margin: 40px auto 0;
+      }
+    }
+
+    .content_block.photo_example_wrapper{
+      padding: 40px 0 40px 16px;
+    }
+
+    .director_word_container{
+      padding: 32px 0 32px 0;
+      background: #FBEDD8;
+    }
+
+    .director_word_wrapper{
+      width: 736px;
+    }
+
+    .director_word_img{
+      position: static;
+    }
+
+    .content_note{
+      width: 736px;
+    }
+
+    .content_block{
+      width: 736px;
+    }
+
+    .adwises_container{
+
+      & > p{
+        width: 768px;
+        padding: 24px 16px 24px 16px;
+      }
+
+      h3{
+        padding: 40px 0 24px 0;
+      }
+    }
+
+    .content_block.doctor_reviews{
+      padding: 40px 0 0 0;
+    }
+
+    .content_block.faq_container{
+      padding: 64px 0 0 0;
+    }
+
+    .item_answer{
+      width: 720px;
+    }
   }
 }

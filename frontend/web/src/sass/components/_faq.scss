@@ -1,0 +1,101 @@
+[data-type="faq"]{
+
+  .faq_item_wrapper{
+    padding: 0 0 32px 0;
+  }
+
+  .item_question{
+    position: relative;
+    padding: 16px 48px 16px 56px;
+    background: #FFF9F0;
+    border-radius: 4px;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 32px;
+      height: 32px;
+      background: url(/img/question_icon.svg);
+    }
+  }
+  
+  .arrow{
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 12px);
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    
+    &:before{
+      content: '';
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      width: 6px;
+      height: 6px;
+      border-top: 2px solid $textColor;
+      border-right: 2px solid $textColor;
+      transform: rotate(135deg);
+    }
+
+    &._close:before{
+      transform: rotate(-45deg);
+      top: 10px;
+    }
+  }
+
+  .item_answer{
+    width: 990px;
+    max-height: 1000px;
+    margin: 24px 0 0 auto;
+    padding: 0 0 0 16px;
+    border-left: 2px solid #BD9B74;
+    transition: all 0.4s;
+
+    &._collapse{
+      transition: all 0.3s;
+      max-height: 0;
+      margin: 0 0 0 auto;
+      overflow: hidden;
+    }
+  }
+
+
+
+  .signature_wrapper{
+    display: flex;
+    padding: 12px 0 0 0;
+  }
+
+  .signature_image{
+    width: 48px;
+    height: 48px;
+    margin: 0 12px 0 0;
+    border-radius: 4px;
+    background: url(/img/vrachi/pasryan0001.jpg) no-repeat;
+    background-size: contain;
+  }
+
+  .signature_text{
+
+    a{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    p{
+      padding: 2px 0 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  p{
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+}

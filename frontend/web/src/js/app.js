@@ -8,6 +8,7 @@ import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
+import Faq from './widgets/faq';
 import MedSpecialities from './components/medSpecialities';
 import DoctorPage from './components/doctorPage';
 import ServicePage from './components/servicePage';
@@ -48,6 +49,10 @@ window.$ = $;
 
 			if ($('.content_block.doctor_reviews').length > 0) {
 	    	var fullReviewPopup = new FullReviewPopup();
+			}
+
+			if ($('[data-type="faq"]').length > 0) {
+	    	var faq = new Faq();
 			}
 			
   	});
