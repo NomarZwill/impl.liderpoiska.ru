@@ -179,6 +179,35 @@ A:hover._link_black{
   background: #FFF9F0;
 }
 
+@include for-mobile{
+
+  ._button._button_light._button_to_all{
+  
+    border: none;
+    background: transparent;
+    padding: 0 0 0 0;
+  
+    span{
+      border-bottom: 1px solid $headerBlack;
+    }
+  }
+  
+  ._button._button_light._button_to_all:hover{
+    border: none;
+    background: transparent;
+    color: #C73F36;
+  
+    span{
+      border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+    }
+  }
+  
+  ._button._button_light._button_to_all:active{
+    border: none;
+    background: transparent;
+  }
+}
+
 h1,h1,h3,h4,h5{
   font-family: Rubik;
   font-style: normal;
@@ -238,6 +267,11 @@ h4{
   font-size: 24px;
   line-height: 30px;
   letter-spacing: 0.02em;
+
+  @include for-mobile{
+    font-size: 20px;
+    line-height: 28px;
+  }
 }
 
 h5{

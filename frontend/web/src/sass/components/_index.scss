@@ -1236,31 +1236,6 @@
       text-align: center;
     }
 
-    ._button._button_light._button_to_all{
-      border: none;
-      background: transparent;
-      padding: 0 0 0 0;
-
-      span{
-        border-bottom: 1px solid $headerBlack;
-      }
-    }
-  
-    ._button._button_light._button_to_all:hover{
-      border: none;
-      background: transparent;
-      color: #C73F36;
-
-      span{
-        border-bottom: 1px solid rgba(120, 47, 64, 0.4);
-      }
-    }
-  
-    ._button._button_light._button_to_all:active{
-      border: none;
-      background: transparent;
-    }
-
     .clinic_description_wrapper{
       width: 100%;
       height: auto;

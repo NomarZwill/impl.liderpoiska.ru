@@ -19,7 +19,11 @@
   <div class="content_block page_menu_container">
 
     <div class="service_description">
+
       <p>{{currentService.head_text | raw}}</p>
+
+      <button class="read_more">Читать полностью</button>
+
     </div>
 
     <div class="page_menu_wrapper">
@@ -76,8 +80,8 @@
     </div>
     
     <div class="collapse_wrapper">
-      <span class="close_block">Свернуть</span>
-      <span class="open_block _active">Развернуть</span>
+      <span class="close_block read_more">Свернуть</span>
+      <span class="open_block read_more _hidden">Развернуть</span>
     </div>
       
   </div>
