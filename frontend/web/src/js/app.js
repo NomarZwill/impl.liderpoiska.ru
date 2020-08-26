@@ -6,12 +6,15 @@ import Main from './components/main';
 import Index from './components/index';
 import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
-import MedSpecFilter from './widgets/medSpecFilter';
-import FullReviewPopup from './widgets/fullReviewPopup';
-import Faq from './widgets/faq';
 import MedSpecialities from './components/medSpecialities';
 import DoctorPage from './components/doctorPage';
 import ServicePage from './components/servicePage';
+import Contacts from './components/contacts';
+import YaMapContacts from './components/yaMapContacts';
+import MedSpecFilter from './widgets/medSpecFilter';
+import FullReviewPopup from './widgets/fullReviewPopup';
+import Faq from './widgets/faq';
+import Ratings from './widgets/ratings';
 
 window.$ = $;
 
@@ -43,6 +46,10 @@ window.$ = $;
 	    	var doctorPage = new DoctorPage();
 			}
 
+			if ($('[data-page-type="contacts"]').length > 0) {
+	    	var contacts = new Contacts();
+			}
+
 			if ($('[data-spec-filter]').length > 0) {
 	    	var medSpecFilter = new MedSpecFilter($('[data-spec-filter]'));
 			}
@@ -53,6 +60,16 @@ window.$ = $;
 
 			if ($('[data-type="faq"]').length > 0) {
 	    	var faq = new Faq();
+			}
+
+			if ($('[data-type="ratings"]').length > 0) {
+	    	var ratings = new Ratings();
+			}
+
+			if ($('.map').length > 0) {
+				if(($('[data-page-type="contacts"]').length > 0)) {
+					var map = new YaMapContacts();	
+				}
 			}
 			
   	});

@@ -98,4 +98,20 @@
     line-height: 24px;
     letter-spacing: 0.01em;
   }
+
+  @include for-mobile{
+
+    .faq_item_wrapper{
+      padding: 0 0 16px 0;
+    }
+
+    .signature_text{
+
+      a{
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+      }
+    }
+  }
 }

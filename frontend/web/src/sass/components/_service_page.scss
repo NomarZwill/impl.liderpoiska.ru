@@ -232,6 +232,7 @@
     &._advantages:before{
       top: 24px;
       background: url(/img/pluses.svg);
+      background-size: contain;
     }
 
     &._disadvantages:before{
@@ -510,6 +511,14 @@
   .analysis_wrapper{
     width: 50%;
 
+    span{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+
     ul{
       list-style-type: none;
       padding: 8px 0 0 0;
@@ -581,15 +590,20 @@
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.02em;
+
+      span:last-of-type{
+        display: inline-block;
+        padding: 4px 0 0 0;
+      }
     }
   }
   
   .auditor_name{
-    text-decoration: underline;
-    text-decoration-color: rgba(51, 54, 56, 0.4);
+    display: inline-block;
+    border-bottom: 1px solid rgba(51, 54, 56, 0.4);
     font-weight: 600;
     font-size: 18px;
-    line-height: 24px;
+    line-height: 22px;
     letter-spacing: 0.01em;
     color: $headerBlack;
   }
@@ -966,6 +980,10 @@
 
     .content_block.doctors_container{
       padding: 0 0 32px 16px;
+
+      ._button._button_light{
+        padding: 0 0 0 0;
+      }
     }
 
     .doctors_title{
@@ -1016,6 +1034,10 @@
           background-size: contain;
         }
       }
+
+      .swiper-slide{
+        flex-shrink: 0;
+      }
     }
 
     .service_video_title{
@@ -1024,6 +1046,14 @@
 
     .service_video_wrapper .swiper-wrapper{
       padding: 0 0 16px 16px;
+    }
+
+    .service_video_item_wrapper{
+
+      video{
+        width: 100%;
+        height: auto;
+      }
     }
 
     .content_block.when_say_container{
@@ -1044,6 +1074,11 @@
     
     .photo_gallery_wrapper .swiper-wrapper{
       padding: 0 0 16px 16px;
+    }
+
+    .photo_example_image{
+      width: 288px;
+      height: 196px;
     }
 
     .director_word_container{
@@ -1072,18 +1107,95 @@
 
     .adwises_container > p{
       width: 100%;
+      padding: 24px 0 24px 0;
+    }
+
+    .adwises_container{
+      padding: 0 16px 0 16px;
+
+      h3{
+        padding: 32px 0 24px 0;
+      }
+    }
+    
+    .content_note._advantages:before{
+      top: 16px;
+      left: 12px;
+    }
+
+    .content_note.analysis_container:before{
+      top: 22px;
+      background-size: contain;
+    }
+
+    .analysis_wrapper{
+      width: 100%;
+    }
+
+    .content_block.recall_wrapper{
+
+      h2{
+        text-align: start;
+      }
+    }
+    
+    .content_block.doctor_reviews{
+      padding: 32px 0 0 0;
+    }
+
+    .content_block.faq_container{
+      padding: 32px 16px 0 16px;
+
+      h2{
+        padding: 0 0 16px 0;
+      }
     }
 
     .item_answer{
-      width: 100%;
+      width: calc(100% - 12px);
+      margin: 16px 0 0 12px;
+      padding: 0 0 0 12px;
     }
 
     .content_block.checkup_container{
       flex-flow: column nowrap;
+      padding: 0 16px 0 16px;
 
       h4{
         width: auto;
+        padding: 0 0 8px 0;
+        font-weight: 600;
       }
+    }
+
+    .auditor_wrapper{
+      padding: 0 0 0 0;
+      border: none;
+
+      p span:last-of-type{
+        display: inline-block;
+        padding: 4px 0 0 0;
+      }
+    }
+
+    .auditor_name{
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .content_block.rating_container{
+      flex-flow: row wrap;
+      margin: 32px 0 24px 0;
+      padding: 16px 16px 0 16px;
+
+      p:first-of-type{
+        flex-grow: 1;
+        padding: 0 0 4px 0;
+      }
+    }
+
+    .stars_wrapper{
+      margin: 0 8px 0 0;
     }
   }
 }

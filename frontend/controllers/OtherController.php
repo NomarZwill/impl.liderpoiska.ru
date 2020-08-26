@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use backend\models\Clinics;
 
 class OtherController extends Controller
 {
@@ -17,8 +18,24 @@ class OtherController extends Controller
   }
 
   public function actionContacts(){
+    $clinics = Clinics::find()->asArray()->all();
+    // $clinics = Clinics::find()->one();
+
     
-    return 'actionContacts';
+    // foreach ($clinics as $clinic){
+      
+    //   $clinic->clinic_phone = html_entity_decode($clinic->clinic_phone, ENT_HTML5);
+    //   $clinic->save();
+
+    // }
+
+    // print_r($clinics->clinic_opening_hours);
+    // print_r(html_entity_decode($clinics->clinic_opening_hours, ENT_HTML5));
+    // exit;
+    
+    return $this->render('contacts.twig', array(
+      'clinics' => $clinics
+    ));
   }
 
   public function actionClinicContacts($clinic){

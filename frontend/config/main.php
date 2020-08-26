@@ -49,7 +49,7 @@ return [
                 ['pattern'=>'/specialists/<doctor:[\w-]+>','route'=>'specialists/specialist-card', 'suffix'=>'/'],
                 ['pattern'=>'/speciality/<specID:[\w-]+>','route'=>'med-specialties/speciality-name', 'suffix'=>'/'],
                 ['pattern'=>'/agreement/','route'=>'other/agreement', 'suffix'=>'/'],
-                ['pattern'=>'/contacts/<clinic:\w+>','route'=>'other/clinic-contacts', 'suffix'=>'/'],
+                ['pattern'=>'/contacts/<clinic:[\w-]+>','route'=>'other/clinic-contacts', 'suffix'=>'/'],
                 ['pattern'=>'/contacts/','route'=>'other/contacts', 'suffix'=>'/'],
                 ['pattern'=>'/partners/','route'=>'other/partners', 'suffix'=>'/'],
                 ['pattern'=>'/price/','route'=>'other/prices', 'suffix'=>'/'],

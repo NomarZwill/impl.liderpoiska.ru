@@ -1,0 +1,46 @@
+[data-type="ratings"]{
+
+  .swiper-slide.rating_item_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 184px;
+    height: 94px;
+  }
+
+  .logo_img{
+    width: 184px;
+    height: 40px;
+    background: url(/img/zoon.png);
+  }
+
+  p{
+    padding: 12px 0 4px 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .rating_value_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+
+  }
+
+  .stars{
+    width: 128px;
+    height: 20px;
+    // margin: 0 8px 0 4px;
+    background: url(/img/stars_test.png) no-repeat;
+    background-size: contain;
+  }
+
+  .rating_value{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: $headerBlack;
+  }
+
+
+}

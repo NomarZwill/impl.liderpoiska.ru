@@ -134,7 +134,12 @@
     }
 
     h2{
+      width: calc(100% - 96px);
       padding: 0 0 16px 0;
+    }
+
+    p:first-of-type{
+      width: calc(100% - 96px);
     }
 
     .form_fields_wrapper{
@@ -149,6 +154,12 @@
     button._button{
       width: 100%;
       height: 40px;
+    }
+  }
+
+  @media (max-width: 489px){ 
+    p:first-of-type{
+      width: 100%;
     }
   }
 }
