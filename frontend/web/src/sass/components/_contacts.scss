@@ -17,17 +17,118 @@
     padding: 32px 0 0 0;
 
     .map{
+      width: 55%;
       height: 720px;
+      margin-left: auto;
     }
   }
 
-  .side_pane_wrapper{
+  .side_pane_container{
     position: absolute;
     top: 32px;
     left: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
     width: 50%;
     height: 720px;
+    padding: 96px 88px 0 0;
     background: radial-gradient(circle at 175% 50%,rgba(255, 255, 255, 0) 47%,#FFF9F0 calc(47% + 1px));
+  }
+
+  .cities{
+    position: relative;
+    display: flex;
+    // justify-content: space-between;
+    padding: 16px 0 0 0;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: .01em;
+    color: #333638;
+
+  }
+  
+  .city{
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+
+    &:first-of-type{
+      margin: 0 16px 0 0;
+    }
+  }
+
+  .cities ._active{
+    border-bottom: none;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .balloon_layout{
+    position: relative;
+    display: none;
+    width: 432px;
+    height: auto;
+    padding: 32px 40px 40px 40px;
+    background: white;
+    border-radius: 8px;
+
+    .arrow{
+      cursor: pointer;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      background: url(/img/close_icon.svg);
+      background-size: contain;
+    }
+  }
+
+  .balloon_inner_header{
+
+    h4{
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 30px;
+      letter-spacing: 0.02em;
+      color: $headerBlack;
+    }
+  }
+
+  .balloon_inner_body{
+
+    p{
+      padding: 8px 0 0 0;
+    }
+
+    span{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: $textColor;
+    }
+
+    .title{
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .balloon_inner_footer{
+    padding: 16px 0 0 0;
+
+    .popup_button{
+      width: 208px;
+      height: 48px;
+      margin: 0 12px 0 0;
+    }
+
+    ._button._button_light{
+      height: 48px;
+      padding: 14px 27px 14px 27px;
+      color: $headerBlack;
+    }
   }
 
   .content_block.clinic_info_container{

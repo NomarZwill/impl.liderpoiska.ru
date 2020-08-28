@@ -11,7 +11,6 @@ export default class Contacts{
 
   
   init(){
-
     var galleryContainer  = new Swiper('.clinic_gallery', {
       slidesPerView: 'auto',
       spaceBetween: 24,
@@ -32,5 +31,7 @@ export default class Contacts{
       },
 
     });
+
+    
   }
 }

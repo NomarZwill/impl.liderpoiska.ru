@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\Clinics;
+use common\models\api\Maps;
 
 class OtherController extends Controller
 {
@@ -19,17 +20,15 @@ class OtherController extends Controller
 
   public function actionContacts(){
     $clinics = Clinics::find()->asArray()->all();
+
     // $clinics = Clinics::find()->one();
 
-    
     // foreach ($clinics as $clinic){
-      
     //   $clinic->clinic_phone = html_entity_decode($clinic->clinic_phone, ENT_HTML5);
     //   $clinic->save();
-
     // }
 
-    // print_r($clinics->clinic_opening_hours);
+    // print_r(json_encode($maps));
     // print_r(html_entity_decode($clinics->clinic_opening_hours, ENT_HTML5));
     // exit;
     

@@ -14,35 +14,39 @@
       <div id="map" data-mapDotX="" data-mapDotY="" data-name="name" data-address="address" data-balloon="" data-hint=""></div>
     </div>
 
-    <div class="side_pane_wrapper">
+    <div class="side_pane_container">
 
-      <div class="cities">
+      <div class="side_pane_wrapper">
 
-        <div class="city moscow _active">Москва</div>
-        <div class="city geneva">Женева</div>
+        <div class="cities">
   
+          <div class="city moscow _active">Москва</div>
+          <div class="city geneva">Женева</div>
+    
+        </div>
+  
+        <h3></h3>
+  
+        <div class="clinic_contacts">
+          <p>
+            <span class="title">Адрес:</span><br>
+            <span class="address_content"></span><br>
+            <span class="title">Телефоны:</span><br>
+            <span class="phone_content"></span><br>
+            <span class="title">Время работы:</span><br>
+            <span class="work_hours_content"></span>
+          </p>
+        </div>
+  
+        <div class="button_container">
+  
+          <button class="popup_button _button">Записаться на приём</button>
+          <a class="_button _button_light" href="/contacts/{{clinic.alias}}">О клинике</a>
+  
+        </div>
+
       </div>
 
-      <h3></h3>
-
-      <div class="clinic_contacts">
-        <p>
-          <span class="title">Адрес:</span><br>
-          <span class="address_content"></span><br>
-          <span class="title">Телефоны:</span><br>
-          <span class="phone_content"></span><br>
-          <span class="title">Время работы:</span><br>
-          <span class="work_hours_content"></span>
-        </p>
-      </div>
-
-      <div class="button_container">
-
-        <button class="popup_button _button">Записаться на приём</button>
-        <a class="_button _button_light" href="/contacts/{{clinic.alias}}">О клинике</a>
-
-      </div>
-      
     </div>
 
   </div>
