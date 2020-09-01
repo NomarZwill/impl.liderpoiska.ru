@@ -41,7 +41,9 @@ export default class YaMapContacts{
       var objectCoordinates = [$("#map").attr("data-mapDotX"), $("#map").attr("data-mapDotY")];
       var myBalloonLayout = ymaps.templateLayoutFactory.createClass(
 				`<div class="balloon_layout _item_on_map">
+          <div class="close"></div>
           $[[options.contentLayout]]
+          <div class="close _mobile_button">Закрыть</div>
       </div>`,
         {
           build: function() {
@@ -86,8 +88,7 @@ export default class YaMapContacts{
       });
       
       var myBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-       `<div class="arrow"></div>
-        <div class="balloon_inner">
+       `<div class="balloon_inner" data-id={{properties.id}}>
 
           <div class="balloon_inner_header">
 
@@ -117,7 +118,7 @@ export default class YaMapContacts{
           <div class="balloon_inner_footer">
 
             <button class="popup_button _button">Записаться на приём</button>
-            <a class="_button _button_light" href="/contacts/{{clinic.alias}}">О клинике</a>
+            <a class="_button _button_light" href="/contacts/{{properties.alias}}">О клинике</a>
 
           </div>
 
@@ -134,6 +135,8 @@ export default class YaMapContacts{
           geoObjectIconLayout: 'default#image',
           geoObjectIconImageHref: '/img/map_location_pin.svg',
           geoObjectIconImageSize: [40, 50],
+          geoObjectBalloonPane: 'outerBalloon',
+          geoObjectBalloonShadowPane: 'outerBalloon'
 				}
       );
       
@@ -155,33 +158,62 @@ export default class YaMapContacts{
 					// console.log(`objectManager length: ${objectManager.objects.getLength()}`);
           objectManager.objects.setObjectOptions(1, {iconImageHref: '/img/map_location_pin_active.svg'});
           activeObjectID = 1;
-					myMap.geoObjects.add(objectManager);
+          setActivePinInfo(activeObjectID);
+          myMap.geoObjects.add(objectManager);
 					// console.log(`objectManager: ${objectManager.getBounds()}`);
           myMap.setBounds(getLocationBounds('moscow'));
-          
         });
 
       objectManager.objects.events.add('click', function (e) {
-        objectManager.objects.setObjectOptions(activeObjectID,
-        {iconImageHref: '/img/map_location_pin.svg'});
-        objectManager.objects.setObjectOptions(e.get('objectId'),
-        {iconImageHref: '/img/map_location_pin_active.svg'});
+
+        objectManager.objects.setObjectOptions(
+          activeObjectID,
+          {iconImageHref: '/img/map_location_pin.svg'}
+        );
+
+        objectManager.objects.setObjectOptions(
+          e.get('objectId'),
+          {iconImageHref: '/img/map_location_pin_active.svg'}
+        );
+
         activeObjectID = e.get('objectId');
-    });
+        setActivePinInfo(activeObjectID);
+      });
         
       $('.content_block.clinic_on_map_container .cities').on('click', function(e) {
         var $el = $(e.target);
         
         if ($el.hasClass('moscow')) {
           myMap.setBounds(getLocationBounds('moscow'));
+
+          objectManager.objects.setObjectOptions(1, {iconImageHref: '/img/map_location_pin_active.svg'});
+
+          objectManager.objects.setObjectOptions(
+            activeObjectID,
+            {iconImageHref: '/img/map_location_pin.svg'}
+          );
+  
+          activeObjectID = 1;
+          setActivePinInfo(activeObjectID);
           
         } else if ($el.hasClass('geneva')) {
           myMap.setBounds(getLocationBounds('geneva'));
+
+          objectManager.objects.setObjectOptions(5, {iconImageHref: '/img/map_location_pin_active.svg'});
+
+          objectManager.objects.setObjectOptions(
+            activeObjectID,
+            {iconImageHref: '/img/map_location_pin.svg'}
+          );
+  
+          activeObjectID = 5;
+          setActivePinInfo(activeObjectID);
         }
 
         $('.city').removeClass('_active');
         $el.addClass('_active');
       });
+
     });
 
     function getLocationBounds(location) {
@@ -193,5 +225,16 @@ export default class YaMapContacts{
         console.log('getLocationBounds error');
       }
     };
+
+    function setActivePinInfo(clinicID) {
+      var $currentClinicInfo = $(`.clinic_info_wrapper[data-id="${clinicID}"]`);
+      var $mapInfoPane = $('.side_pane_wrapper');
+
+      $mapInfoPane.find('h3').html($currentClinicInfo.data('name'));
+      $mapInfoPane.find('.address_content').html($currentClinicInfo.data('address'));
+      $mapInfoPane.find('.phone_content').html($currentClinicInfo.data('phones'));
+      $mapInfoPane.find('.work_hours_content').html($currentClinicInfo.data('work-hours'));
+      $mapInfoPane.find('.button_container ._button_light').prop('href', `/contacts/${$currentClinicInfo.data('alias')}`);
+    }
   }
 }

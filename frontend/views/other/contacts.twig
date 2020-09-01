@@ -10,10 +10,6 @@
 
   <div class="content_block clinic_on_map_container">
 
-    <div class="map">
-      <div id="map" data-mapDotX="" data-mapDotY="" data-name="name" data-address="address" data-balloon="" data-hint=""></div>
-    </div>
-
     <div class="side_pane_container">
 
       <div class="side_pane_wrapper">
@@ -30,9 +26,13 @@
         <div class="clinic_contacts">
           <p>
             <span class="title">Адрес:</span><br>
-            <span class="address_content"></span><br>
+            <span class="address_content"></span>
+          </p>
+          <p>
             <span class="title">Телефоны:</span><br>
             <span class="phone_content"></span><br>
+          </p>
+          <p>
             <span class="title">Время работы:</span><br>
             <span class="work_hours_content"></span>
           </p>
@@ -49,6 +49,9 @@
 
     </div>
 
+    <div class="map">
+      <div id="map" data-mapDotX="" data-mapDotY="" data-name="name" data-address="address" data-balloon="" data-hint=""></div>
+    </div>
   </div>
 
   <div class="content_block clinic_info_container">
@@ -57,7 +60,14 @@
 
       <h2>{{clinic.clinic_title}}</h2>
 
-      <div class="clinic_info_wrapper">
+      <div class="clinic_info_wrapper"
+        data-type="clinic_info_block"
+        data-id="{{clinic.clinic_id}}"
+        data-name="{{clinic.clinic_title}}"
+        data-address="{{clinic.clinic_address}}"
+        data-phones="{{clinic.clinic_phone}}"
+        data-work-hours="{{clinic.clinic_opening_hours}}"
+        data-alias="{{clinic.alias}}">
 
 
         <div class="swiper-container clinic_gallery">

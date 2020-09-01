@@ -34,13 +34,37 @@
     height: 720px;
     padding: 96px 88px 0 0;
     background: radial-gradient(circle at 175% 50%,rgba(255, 255, 255, 0) 47%,#FFF9F0 calc(47% + 1px));
+    z-index: 2;
+  }
+
+  .side_pane_wrapper{
+    width: 416px;
+
+    h3{
+      padding: 0 0 8px 0;
+      color: $headerBlack;
+    }
+
+    .button_container{
+      width: 100%;
+      padding: 24px 0 0 0;
+
+      .popup_button{
+        margin: 0 16px 0 0;
+        padding: 12px 33px 12px 33px;
+      }
+
+      ._button._button_light{
+        padding: 13px 35px 14px 35px;
+      }
+    }
   }
 
   .cities{
     position: relative;
     display: flex;
     // justify-content: space-between;
-    padding: 16px 0 0 0;
+    padding: 16px 0 16px 0;
     font-size: 18px;
     line-height: 28px;
     letter-spacing: .01em;
@@ -62,6 +86,17 @@
     font-weight: 600;
     line-height: 24px;
   }
+  .clinic_contacts p{
+    padding: 8px 0 0 0;
+    line-height: 24px;
+  }
+
+  .clinic_contacts .title{
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+  }
 
   .balloon_layout{
     position: relative;
@@ -70,9 +105,10 @@
     height: auto;
     padding: 32px 40px 40px 40px;
     background: white;
+    box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
     border-radius: 8px;
 
-    .arrow{
+    .close{
       cursor: pointer;
       position: absolute;
       top: 12px;
@@ -81,6 +117,10 @@
       height: 32px;
       background: url(/img/close_icon.svg);
       background-size: contain;
+    }
+
+    .close._mobile_button{
+      display: none;
     }
   }
 
@@ -134,13 +174,6 @@
   .content_block.clinic_info_container{
     padding: 0 0 64px 0;
   }
-
-  .clinic_info_wrapper{
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-end;
-  }
   
   h2{
     padding: 64px 0 30px 0;
@@ -148,217 +181,128 @@
     text-align: center;
   }
 
-  .clinic_gallery{
-    position: absolute;
-    top: 0;
-    left: -12px;
-    
-    img{
-      display: block;
-      width: 600px;
-      height: auto;
-    }
-    
-    &.swiper-container{
-      width: 50%;
-    }
-  }
-  
-  .clinic_main_info_wrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 50%;
-
-    .info_item{
-      // width: 50%;
-      padding: 0 40px 16px 0;
-
-      p{
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0.01em;
-      }
-    }
-
-    .info_item_title{
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.01em;
-    }
-  }
-
-  .clinic_address{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-
-  .clinic_work_hours{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 5;
-
-    td:last-of-type{
-      padding: 0 0 5px 10px;
-    }
-  }
-
-  .button_container{
-    width: 50%;
-    padding: 8px 0 0 0;
-
-    .popup_button{
-      margin: 0 16px 0 0;
-      padding: 12px 33px 12px 33px;
-    }
-
-    ._button._button_light{
-      padding: 13px 39px 14px 39px;
-      font-size: 16px;
-      letter-spacing: 0.01em;
-      color: $headerBlack;
-    }
-  }
-
-  .additional_info{
-    position: relative;
-    width: 50%;
-    padding: 24px 16px 0 32px;
-
-    p{
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: 0.02em;
-
-      &:before{
-        content: '';
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        top: 24px;
-        left: 0px;
-        background: url(/img/info_icon.svg);
-        background-size: contain;
-      }
-    }
-  
-  }
-  .ratings_container{
-    order: 6;
-    padding: 24px 0 0 0;
-
-    .revolver_navigation_wrapper{
-      display: none;
-    }
-  }
-
-  .swiper-container{
-    width: 100%;
-  }
-
   @include for-notdesc{
 
-    .content_block.clinic_info_container{
-      padding: 0 16px 0 16px;
-    }
-    
-    .clinic_gallery{
-      display: none;
+    .content_block.clinic_on_map_container{
+      padding: 0 0 0 0;
+  
+      .map{
+        width: 100%;
+        height: 600px;
+        margin-left: 0;
+      }
     }
 
-    .clinic_main_info_wrapper{
+    .balloon_layout{
       display: flex;
-      flex-flow: row wrap;
-      width: 100%;
     }
 
-    .ratings_container{
-      order: 0;
+    .side_pane_container{
+      position: static;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      padding: 0 0 0 0;
+      background: none;
+      z-index: 0;
+    }
 
-      .revolver_navigation_wrapper{
-        display: flex;
-        margin: 24px auto 0 auto;
+    .side_pane_wrapper{
+      width: auto;
+
+      h3,
+      .clinic_contacts,
+      .button_container{
+        display: none;
       }
     }
 
-    .button_container,
-    .additional_info{
-      width: 100%;
+
+    .cities{
+      padding: 12px 0 24px 0;
     }
 
-    .button_container{
-      padding: 24px 0 0 0;
-    }
-
-    .additional_info{
-      padding: 16px 0 0 32px;
-
-      p:before{
-        top: 16px;
-      }
+    .content_block.clinic_info_container{
+      position: static;
+      padding: 0 16px 0 16px;
     }
   }
 
   @include for-pad{
 
+    .content_block.title_container{
+  
+      h1{
+        padding: 8px 0 0 0;
+      }
+    }
+
     .content_block.clinic_info_container{
-      padding: 0 0 48px 0;
+      padding: 0 16px 48px 16px;
     }
 
     h2{
       padding: 40px 0 16px 0;
     }
-
-    .clinic_address,
-    .clinic_work_hours{
-      width: 50%;
-    }
   }
 
   @include for-mobile{
 
+    .content_block.clinic_on_map_container{
+  
+      .map{
+        height: 400px;
+      }
+    }
+
+
     .content_block.clinic_info_container{
-      padding: 0 0 32px 0;
+      padding: 0 16px 32px 16px;
     }
 
     h2{
       padding: 32px 0 8px 0;
       text-align: start;
     }
-
-    .clinic_main_info_wrapper{
-      flex-flow: column nowrap;
-
-      .info_item{
-        padding: 0 0 12px 0;
-      }
-    }
-
-    .ratings_container{
-      padding: 12px 0 0 0;
-
-      .revolver_navigation_wrapper{
-        margin: 16px auto 0 auto;
-      }
-    }
-
-    .button_container{
+    
+    .balloon_layout{
       display: flex;
       flex-flow: column nowrap;
+      align-items: center;
+      width: 288px;
+      padding: 32px 12px 32px 12px;
 
+      .close{
+        top: 8px;
+        right: 8px;
+      }
+
+      .close._mobile_button{
+        display: block;
+        position: static;
+        background: none;
+        width: auto;
+        height: auto;
+        padding: 16px 0 0 0;
+        border-bottom: 1px dashed rgba(120, 47,64, 0.4);
+      }
+    }
+
+    .balloon_inner_footer{
+      display: flex;
+      flex-flow: column nowrap;
+  
       .popup_button{
         order: 2;
         width: 100%;
         margin: 16px 0 0 0;
       }
-
+  
       ._button._button_light{
+        width: 100%;
         text-align: center;
       }
     }
-
   }
 }

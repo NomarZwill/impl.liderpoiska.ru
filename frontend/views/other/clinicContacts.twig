@@ -1,0 +1,395 @@
+<div data-page-type="clinic_contacts">
+
+  <div class="content_block title_container">
+    
+    <div class="breadcrumbs_wrapper">
+
+      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
+      <span class="breadcrumbs _menu_link"> → </span>
+      <span class="breadcrumbs _menu_link">Контакты</span>
+
+    </div>
+
+    <h1>{{clinic.clinic_title}}</h1>
+
+  </div>
+
+  <div class="content_block clinic_info_container">
+
+    <div class="clinic_info_wrapper"
+      data-type="clinic_info_block"
+      data-id="{{clinic.clinic_id}}"
+      data-name="{{clinic.clinic_title}}"
+      data-address="{{clinic.clinic_address}}"
+      data-phones="{{clinic.clinic_phone}}"
+      data-work-hours="{{clinic.clinic_opening_hours}}"
+      data-alias="{{clinic.alias}}">
+
+
+      <div class="swiper-container clinic_gallery">
+
+        <div class="swiper-wrapper">
+
+          {% for i in 1..5 %}
+
+            <div class="swiper-slide">
+
+              <img src="/img/about_photo_test.png" alt="">
+
+            </div>
+
+          {% endfor %}
+
+
+        </div>
+
+        <div class="diagonal_navigation">
+
+          <div class="swiper-button-prev _diagonal_navigation swiper-button-disabled"></div>
+          <span class="current_slide">01</span>
+          <br>
+          <span class="total_slides">05</span>
+          <div class="swiper-button-next _diagonal_navigation"></div>
+
+        </div>
+
+      </div>
+
+      <div class="clinic_main_info_wrapper">
+
+        <div class="clinic_address info_item">
+          <span class="info_item_title">Адрес:</span><br>
+          <p>{{clinic.clinic_address | raw}}</p>
+          <a class="_menu_link_dashed_black" href="#map">Показать на карте</a>
+        </div>
+
+        <div class="clinic_work_hours info_item">
+
+          <span class="info_item_title">Время работы:</span><br>
+
+          <table>
+            <tbody>
+              <tr>
+                <td>Будни:</td>
+                <td>9:00—20:30</td>
+              </tr>
+              <tr>
+                <td>Суббота:</td>
+                <td>9:00—18:00</td>
+              </tr>
+              <tr>
+                <td>Воскресенье:</td>
+                <td>10:00—17:00</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div class="clinic_phones info_item">
+          <span class="info_item_title">Телефоны:</span><br>
+          <p>
+            +7 (495) 930-22-56<br>
+            +7 (495) 930-49-20
+          </p>
+        </div>
+
+        <div class="clinic_whats_app info_item">
+          <span class="info_item_title">Whatsapp:</span><br>
+          <p>
+            +7 (925) 041-67-51
+          </p>
+        </div>
+
+        <div class="clinic_e-mail info_item">
+          <span class="info_item_title">Эл/почта:</span><br>
+          <a class="_link_black" href="mailto:ces_un@mail.ru">ces_un@mail.ru</a>
+        </div>
+      </div>
+
+      <div class="button_container">
+
+        <button class="popup_button _button">Записаться на приём</button>
+
+      </div>
+
+      <div class="additional_info">
+
+        <p>
+          Стоматологическая помощь инвалидам и лицам с ограниченными 
+          возможностями здоровья осуществляется по предварительной 
+          записи
+        </p>
+
+      </div>
+
+    </div>
+    <a name="map"></a>
+
+    
+  </div>
+  
+  <div class="content_block rating_map_block">
+    
+    <h3 class="rating_title">Рейтинг клиники</h3>
+    
+    {{this.render('/components/ratings.twig', {}) | raw}}
+    
+    <div class="clinic_map">
+      {{clinic.clinic_map | raw}}
+    </div>
+
+  </div>
+
+  <div class="content_block doctors_container">
+    
+    <div class="doctors_title">
+
+      <h2 class="_index_subtitle">Принимающие доктора</h2>
+
+    </div>
+
+    <div class="swiper-container doctors_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for doctor in doctors %}
+    
+          <div class="swiper-slide doctor_item_wrapper">       
+  
+            {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="content_block doctor_reviews" data-type="reviews_block">
+
+    <a name="reviews"></a>
+
+    <div class="reviews_title">
+    
+      <h2 class="_index_subtitle">Отзывы пациентов</h2>
+
+      <div class="button_wrapper">
+
+        <form action="/reviews/">
+          <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
+        </form>
+  
+        <form action="/">
+          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+    
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+        
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
+              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
+              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
+              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
+              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
+
+          <div class="big_quotes"></div>
+          <hr>
+          <div class="review_text">
+
+            <p>
+              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
+              настраивался на посещение имплантолога. Увидел рекламу в интернете 
+              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
+              Всем рекомендую!
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Показать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="popup_filter_bg">
+
+  <div class="review_item_wrapper _hidden">
+    
+    <div class="close_icon"></div>       
+    <div class="big_quotes"></div>
+    <hr>
+    <div class="review_text">
+
+      <p class="main_text"></p>
+      <p class="signature"></p>
+
+    </div>
+    <div class="popup_close_button">Закрыть</div>       
+
+  </div>
+  
+</div>

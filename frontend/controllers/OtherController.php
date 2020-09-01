@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\Clinics;
+use backend\models\Doctors;
 use common\models\api\Maps;
 
 class OtherController extends Controller
@@ -38,8 +39,12 @@ class OtherController extends Controller
   }
 
   public function actionClinicContacts($clinic){
-    
-    return 'actionClinicContacts';
+    $currentClinic = Clinics::find()->where(['clinics.alias' => $clinic])->asArray()->one();
+    $doctors = Doctors::find()->asArray()->all();      
+    return $this->render('clinicContacts.twig', array(
+      'clinic' => $currentClinic,
+      'doctors' => $doctors
+    ));
   }
 
   public function actionPartners(){

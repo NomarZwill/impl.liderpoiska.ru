@@ -10,6 +10,7 @@ import MedSpecialities from './components/medSpecialities';
 import DoctorPage from './components/doctorPage';
 import ServicePage from './components/servicePage';
 import Contacts from './components/contacts';
+import ClinicContacts from './components/clinicContacts';
 import YaMapContacts from './components/yaMapContacts';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
@@ -48,6 +49,10 @@ window.$ = $;
 
 			if ($('[data-page-type="contacts"]').length > 0) {
 	    	var contacts = new Contacts();
+			}
+
+			if ($('[data-page-type="clinic_contacts"]').length > 0) {
+	    	var clinicContacts = new ClinicContacts();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {

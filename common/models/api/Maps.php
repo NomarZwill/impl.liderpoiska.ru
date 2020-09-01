@@ -27,6 +27,7 @@ class Maps extends BaseObject{
 	              'coordinates' => [$clinic->clinic_latitude, $clinic->clinic_longitude]
 	            ],
 	            'properties' => [
+                'id' => $clinic->clinic_id,
 	              'organization' => $clinic->clinic_title,
                 'address' => $clinic->clinic_address,
                 'phone' => $clinic->clinic_phone,
