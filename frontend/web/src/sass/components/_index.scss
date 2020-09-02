@@ -43,10 +43,21 @@
         left: -60px;
         width: 48px;
         height: 48px;
-        border: 1px solid $baseColor;
-        border-radius: 24px;
         box-sizing: border-box;
+        background-size: contain;
       }
+    }
+
+    .top_list_item._premium:before{
+      background: url(/img/premium_segment.svg);
+    }
+
+    .top_list_item._spec:before{
+      background: url(/img/specialist.svg);
+    }
+
+    .top_list_item._innovation:before{
+      background: url(/img/instruments.svg);
     }
 
     .popup_button{
@@ -59,7 +70,8 @@
       right: 130px;
       width: 500px;
       height: 477px;
-      background: url(/img/woman_first_screen_top.png);
+      background: url(/img/woman_first_screen.png);
+      background-size: cover;
     }
   }
 
@@ -107,8 +119,7 @@
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
-    height: 460px;
-    padding: 0 0 0 40px;
+    padding: 0 0 120px 40px;
 
     h2{
       padding: 0 0 32px 0;
@@ -181,44 +192,71 @@
   }
   
   .clinic_description_wrapper{
-    display: flex;
-    flex-flow: column wrap;
-    height: 736px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     padding: 112px 0 88px 40px;
-    align-items: flex-end;
     
     .diagonal_navigation{
-      bottom: 40px;
-      left: 26px;
-    }
-  }
-
-  .clinic_description_gallery{
-    position: relative;
-    width: 968px;
-    overflow: hidden;
-
-    img{
-      width: inherit;
-      height: auto;
+      bottom: 16px;
+      left: 16px;
     }
   }
 
   .clinic_description_title{
-    width: 408px;
+    grid-column-start: 2; 
+    grid-column-end: 6; 
+    grid-row-start: 1; 
+    grid-row-end: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     margin: 0 24px 0 0;
     padding: 0 0 32px 0;
+    
+    h2{
+      width: 496px;
+    }
+  }
 
+  .clinic_description_gallery{
+    grid-column-start: 6; 
+    grid-column-end: 13; 
+    grid-row-start: 1; 
+    grid-row-end: 3;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .swiper-slide{
+      display: flex;
+      align-items: flex-end;
+    }
+
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
 
   .clinic_description_content{
-    width: 408px;
+    grid-column-start: 2; 
+    grid-column-end: 6; 
+    grid-row-start: 2; 
+    grid-row-end: 3;
+    display: flex;
+    justify-content: flex-end;
     margin: 0 24px 0 0;
-
+    
     p{
       line-height: 26px;
       letter-spacing: 0.01em;
       color: $headerBlack;
+      // min-width: 496px;
+      width: 496px;
+    }
+
+    .read_more{
+      display: none;
     }
   }
 
@@ -245,7 +283,7 @@
   }
 
   .doctors_wrapper .swiper-wrapper{
-    padding: 4px 0 80px 0;
+    padding: 4px 0 32px 0;
   }
 
   .doctors_title{
@@ -253,6 +291,8 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    width: 1224px;
+    margin: 0 auto 0 auto;
     padding: 0 0 24px 0;
 
     h2{
@@ -269,13 +309,14 @@
 
     form{
       position: absolute;
-      top: 88px;
-      right: 332px;
+      bottom: 30px;
+      right: 0;
     }
   }
   
   .content_block.advantages_container{
     width: 100%;
+    padding: 40px 0 0 0;
 
     &:before,
     &:after{
@@ -549,7 +590,7 @@
 
     .cities ._active{
       border-bottom: none;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 24px;
     }
   }
@@ -606,7 +647,7 @@
 
   .clinic_title{
     padding: 0 0 4px 0;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 24px;
     letter-spacing: 0.01em;
     color: $headerBlack;
@@ -650,7 +691,7 @@
 
     .title{
       padding: 8px 0 0 0;
-      font-weight: 600;
+      font-weight: 500;
       color: $headerBlack;
     }
   }
@@ -713,6 +754,19 @@
         line-height: 20px;
         letter-spacing: 0.02em;
       }
+
+      .top_list_item:before{
+          top: -4px;
+          left: -40px;
+          width: 32px;
+          height: 32px;
+      }
+      
+      .top_list_item._premium:before,  
+      .top_list_item._spec:before,
+      .top_list_item._innovation:before{
+        background-size: contain;
+      }
     }
 
     .services_item a._menu_link{
@@ -733,21 +787,24 @@
     }
 
     .clinic_description_wrapper{
+      display: flex;
       margin: 0 auto;
       flex-flow: column nowrap;
       align-items: center;
     }
 
     .clinic_description_title{
-      order: 1;
-    }
 
-    .clinic_description_gallery{
-      order: 2;
+      h2{
+        width: auto;
+      }
     }
 
     .clinic_description_content{
-      order: 3;
+
+      p{
+        width: auto;
+      }
     }
 
     .content_block.advantages_container{
@@ -769,6 +826,14 @@
       }
     }
 
+    .doctors_title{
+      width: 100%;
+    }
+
+    .content_block.advantages_container{
+      padding: 0 0 0 0;
+    }
+
     .reviews_cotnainer_bg{
       display: none;
     }
@@ -788,7 +853,7 @@
 
       .top_wrapper{
         width: 768px;
-        padding: 24px 0 0 0;
+        padding: 24px 16px 0 16px;
       }
 
       h1{
@@ -796,21 +861,17 @@
         line-height: 54px;
       }
 
+      .top_list{
+        padding: 16px 0 8px 40px;
+      }
+
       .top_list_item{
-        padding: 0 0 16px 0;
+        padding: 0 0 24px 0;
 
         & p{
           font-size: 16px;
           line-height: 24px;
           letter-spacing: 0.01em;
-        }
-  
-        &:before{
-          top: -4px;
-          left: -40px;
-          width: 32px;
-          height: 32px;
-          border-radius: 16px;
         }
       }
 
@@ -819,7 +880,7 @@
         right: 0;
         width: 412px;
         height: 393px;
-        background-size: contain;
+        // background-size: contain;
 
         &:before{
           content: '';
@@ -860,6 +921,7 @@
     }
 
     .content_block.deals_container{
+      padding: 0 0 40px 16px;
 
       h2{
         padding: 0 0 12px 0;
@@ -941,6 +1003,10 @@
     }
 
     .doctors_title{
+
+      p{
+        width: auto;
+      }
 
       form{
         position: static;
@@ -1066,10 +1132,6 @@
     .instagram_gallery{
       width: 100%;
       height: 628px;
-
-      .swiper-wrapper{
-      }
-
     }
 
     .instagram_item{
@@ -1108,7 +1170,7 @@
       }
 
       .top_list{
-        padding: 12px 0 16px 32px;
+        padding: 12px 0 16px 40px;
 
       }
 
@@ -1125,13 +1187,13 @@
           letter-spacing: 0.02em;
         }
   
-        &:before{
-          top: 8px;
-          left: -32px;
-          width: 24px;
-          height: 24px;
-          border-radius: 12px;
-        }
+        // &:before{
+        //   top: 8px;
+        //   left: -32px;
+        //   width: 24px;
+        //   height: 24px;
+        //   border-radius: 12px;
+        // }
       }
 
       .top_list_item:last-of-type{
@@ -1143,7 +1205,9 @@
         right: 0;
         width: 224px;
         height: 320px;
-        background-size: cover;
+        background-size: 135%;
+        background-position: -25% 0;
+        background-repeat: no-repeat;
       }
 
       .popup_button{
@@ -1182,7 +1246,7 @@
       }
 
       form{
-        padding: 0 0 24px 0;
+        padding: 0 0 20px 0;
       }
     }
 
@@ -1240,21 +1304,28 @@
       width: 100%;
       height: auto;
       padding: 24px 16px 32px 16px;
+
       
       .diagonal_navigation{
-        bottom: 40px;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin: 0 auto 0 auto;
       }
     }
-
+    
     .clinic_description_title{
       width: auto;
       padding: 0 0 16px 0;
     }
-
+    
     .clinic_description_gallery{
       width: 288px;
-      height: 188px;
       padding: 0 0 16px 0;
+      
+      .swiper-wrapper{
+        padding: 0 0 8px 0;
+      }
 
       img{
         display: block;
@@ -1265,12 +1336,11 @@
 
     .clinic_description_content{
       position: relative;
+      display: block;
       width: 100%;
       margin: 0 0 0 0;
       
       p{
-        // height: 208px;
-        // text-overflow: ellipsis;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 8;
@@ -1279,6 +1349,10 @@
 
       p._active{
         display: inline;
+      }
+
+      .read_more{
+        display: block;
       }
     }
 

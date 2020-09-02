@@ -9,10 +9,38 @@
 @font-face {
   font-family: 'Rubik';
   src:  
-    url('/fonts/Rubik.woff2') format('woff2'),
-    url('/fonts/Rubik.woff') format('woff'),
-    url('/fonts/Rubik.ttf') format('truetype');
+    // url('/fonts/Rubik.woff2') format('woff2'),
+    // url('/fonts/Rubik.woff') format('woff'),
+    url('/fonts/Rubik-Regular.ttf') format('truetype'),
+    // url('/fonts/Rubik-Black.ttf') format('truetype'),
+    // url('/fonts/Rubik-BlackItalic.ttf') format('truetype'),
+    url('/fonts/Rubik-Bold.ttf') format('truetype'),
+    // url('/fonts/Rubik-BoldItalic.ttf') format('truetype'),
+    url('/fonts/Rubik-ExtraBold.ttf') format('truetype'),
+    // url('/fonts/Rubik-ExtraBoldItalic.ttf') format('truetype'),
+    // url('/fonts/Rubik-Italic.ttf') format('truetype'),
+    // url('/fonts/Rubik-LightItalic.ttf') format('truetype'),
+    url('/fonts/Rubik-Medium.ttf') format('truetype'),
+    // url('/fonts/Rubik-MediumItalic.ttf') format('truetype'),
+    url('/fonts/Rubik-SemiBold.ttf') format('truetype');
+    // url('/fonts/Rubik-SemiBoldItalic.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src:  
+    url('/fonts/Rubik-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src:  
+  url('/fonts/Rubik-Medium.ttf') format('truetype');
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -106,7 +134,6 @@ A:visited._menu_link_dashed_black{
 A:hover._menu_link_dashed_black{
   color: $baseColor;;
   border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
-
 }
 
 A:visited._menu_link_no_borders{

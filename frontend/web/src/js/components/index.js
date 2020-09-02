@@ -13,7 +13,7 @@ export default class Index{
     var dealsContainer  = new Swiper('.deals_wrapper', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      watchOverflow: true,
+      // watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
