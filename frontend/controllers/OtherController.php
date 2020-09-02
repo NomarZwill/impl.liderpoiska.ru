@@ -16,7 +16,8 @@ class OtherController extends Controller
 
   public function actionAgreement(){
 
-    return 'actionAgreement';
+    return $this->render('agreement.twig', array(
+    ));
   }
 
   public function actionContacts(){

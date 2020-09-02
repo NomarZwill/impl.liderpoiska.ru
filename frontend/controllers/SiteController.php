@@ -80,25 +80,11 @@ class SiteController extends Controller
         $deals = Deals::find()->asArray()->all();
         $reviews = Reviews::find()->asArray()->all();  
         $clinics = Clinics::find()->asArray()->all();
-        
-        $doctors = Doctors::find()->all();  
-        $doctorsAndMedSpec = [];
-        
-        foreach ($doctors as $doc) {
-            $medSpec = $doc->medicalSpecialties;
-            
-            if (count($medSpec) > 1) {
                 
-                foreach ($medSpec as $spec) {
-                    $doctorsAndMedSpec[$doc->doctor_id][$spec->specialty_id] = $spec->menu_title;
-                } 
-                
-            } elseif (count($medSpec) == 1) {
-                $doctorsAndMedSpec[$doc->doctor_id] = [$doc->doctor_id => $medSpec[0]->menu_title];
-            }
-        }
-        
-        $doctors = Doctors::find()->asArray()->all();  
+        $doctors = Doctors::find()
+            ->joinWith('medicalSpecialties')
+            ->asArray()
+            ->all();  
 
         // print_r(count($reviews));
         // print_r($reviews[1]['review_text']);
@@ -109,7 +95,6 @@ class SiteController extends Controller
             'doctors' => $doctors,
             'reviews' => $reviews,
             'clinics' => $clinics,
-            'doctorsAndMedSpec' => $doctorsAndMedSpec
         ));
     }
 
