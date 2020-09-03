@@ -25,6 +25,7 @@ window.$ = $;
 			
 			if ($('[data-page-type="index"]').length > 0) {
 				var index = new Index();
+				var fullReviewPopup = new FullReviewPopup(478, 160, 300);
 			}
 
 			if ($('[data-page-type="service_listing"]').length > 0) {
@@ -60,7 +61,7 @@ window.$ = $;
 			}
 
 			if ($('.content_block.doctor_reviews').length > 0) {
-	    	var fullReviewPopup = new FullReviewPopup();
+	    	var fullReviewPopup = new FullReviewPopup(300, 300, 300);
 			}
 
 			if ($('[data-type="faq"]').length > 0) {

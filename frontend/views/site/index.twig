@@ -259,27 +259,27 @@
       
           <div class="advantages_content">
       
-            <div class="advantages_item">
+            <div class="advantages_item interdoc">
               <p>Междисциплинарный подход в&nbsp;лечении</p>
             </div>
             
-            <div class="advantages_item">
+            <div class="advantages_item insurance">
               <p>Сотрудничество со всеми страховыми компаниями Москвы</p>
             </div>
       
-            <div class="advantages_item">
+            <div class="advantages_item guarantee">
               <p>Пожизненная гарантия на&nbsp;имплантаты</p>
             </div>
       
-            <div class="advantages_item">
+            <div class="advantages_item loyalty">
               <p>Программа лояльности пациентов</p>
             </div>
       
-            <div class="advantages_item">
+            <div class="advantages_item sleep">
               <p>Лечение во сне</p>
             </div>
       
-            <div class="advantages_item">
+            <div class="advantages_item location">
               <p>Удобные локации<br> <span>в шаговой доступности от метро</span></p>
             </div>
             
@@ -320,14 +320,63 @@
 
       <div class="swiper-wrapper">
 
+        <div class="swiper-slide review_item_wrapper">       
+  
+          <div class="big_quotes"></div>
+
+          <hr>
+
+          <div class="review_text">
+
+            <p>
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
+              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
+              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
+              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
+              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
+              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
+            </p>
+
+            <div class="show_all _hidden">
+              <button class="read_more">Читать полностью</button>
+            </div>
+
+          </div>
+
+          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+
+        </div>
+
         {% for review in reviews %}
     
           <div class="swiper-slide review_item_wrapper">       
   
             <div class="big_quotes"></div>
+
             <hr>
-            <div class="review_text">{{review.review_text | raw}}</div>
-            <!-- <button class="read_more">Читать полностью</button> -->
+
+            <div class="review_text">
+
+              {{review.review_text | raw}}
+
+              <div class="show_all _hidden">
+                <button class="read_more">Читать полностью</button>
+              </div>
+
+            </div>
+
             <p><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
   
           </div>
@@ -384,7 +433,7 @@
             >
 
               <p class="clinic_title">{{clinic.card_title}}</p>
-              <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+              <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
 
             </div>
 
@@ -420,7 +469,7 @@
           >
 
             <p class="clinic_title">{{clinic.clinic_title}}</p>
-            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+            <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
 
           </div>
 
@@ -440,8 +489,12 @@
         <p>
           <span class="title">Адрес:</span><br>
           <span class="address_content"></span><br>
+        </p>
+        <p>
           <span class="title">Телефоны:</span><br>
           <span class="phone_content"></span><br>
+        </p>
+        <p>
           <span class="title">Время работы:</span><br>
           <span class="work_hours_content"></span>
         </p>
@@ -453,53 +506,35 @@
   
   </div>
 
-  <div class="content_block instagram_cotnainer">
+  {{this.render('/components/instagram.twig') | raw}}
 
-    <div class="instagram_title">
-      <h2 class="_index_subtitle">Мы в Instagram</h2>
-    </div>
 
-    <div class="swiper-container instagram_gallery">
+</div>
 
-      <div class="swiper-wrapper">
+<div class="popup_filter_bg">
 
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo1.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo2.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo3.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo4.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo5.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo6.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <img src="/img/instagram/photo7.png" alt="">
-        </div>
-        <div class="swiper-slide instagram_item">
-          <a href="https://www.instagram.com/impl.ru/"><div class="instagram_link"></div></a>
-        </div>
+  <div class="scroll_block">
 
-      </div>
-
-      <div class="revolver_navigation_wrapper">
-
-        <div class="swiper-button-prev revolver_navigation"></div>
-        {# <div class="swiper-pagination revolver_pagination"></div> #}
-        <div class="swiper-button-next revolver_navigation"></div>
-
-      </div>
+    <div class="review_item_wrapper _hidden">
       
+      <div class="close_icon"></div>  
+
+      <div class="big_quotes"></div>
+
+      <hr>
+
+      <div class="review_text">
+  
+        <p class="main_text"></p>
+        <p class="signature"></p>
+  
+      </div>
+
+      <div class="popup_close_button">Закрыть</div>       
+  
     </div>
 
   </div>
 
+  
 </div>

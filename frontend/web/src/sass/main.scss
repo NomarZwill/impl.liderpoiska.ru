@@ -58,6 +58,11 @@ body{
   // background-color: $clrBg;
 }
 
+body._popup_mode{
+  overflow: hidden !important;
+  padding: 0 17px 0 0;
+}
+
 .content_block{
   width: 1224px;
   margin: auto;

@@ -78,7 +78,7 @@ export default class Index{
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      // watchOverflow: true,
+      watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -100,6 +100,11 @@ export default class Index{
         prevEl: '.swiper-button-prev'
       },
       breakpoints: {
+        320: {
+          slidesPerView: 1,
+          slidesPerColumn: 1,    
+        },
+
         768: {
           slidesPerView: 3,
           slidesPerColumn: 2
@@ -148,7 +153,7 @@ export default class Index{
     //   }
     // });
 
-    $('.read_more').on('click', function (e) {
+    $('.clinic_description_wrapper .read_more').on('click', function (e) {
       $(this).siblings('p').addClass('_active');
       $(this).addClass('_hidden');
     })
@@ -200,17 +205,16 @@ export default class Index{
       var $target = $(e.target).closest('.clinic_card_wrapper');
       // console.log($target.hasClass('clinic_card_wrapper'));
 
-      $('.clinic_card_wrapper').removeClass('_active');
-      $target.addClass('_active');
-
-      $('.clinic_info .clinic_name').html($target.data('title'));
-      $('.clinic_info .clinic_on_map').html($target.data('map'));
-      $('.clinic_info .address_content').html($target.data('address'));
-      $('.clinic_info .phone_content').html($target.data('phone'));
-      $('.clinic_info .work_hours_content').html($target.data('opening-hours'));
-
-
+      if ($target.length !== 0){
+        $('.clinic_card_wrapper').removeClass('_active');
+        $target.addClass('_active');
+  
+        $('.clinic_info .clinic_name').html($target.data('title'));
+        $('.clinic_info .clinic_on_map').html($target.data('map'));
+        $('.clinic_info .address_content').html($target.data('address'));
+        $('.clinic_info .phone_content').html($target.data('phone'));
+        $('.clinic_info .work_hours_content').html($target.data('opening-hours'));
+      }
     });
   }
-
 }
