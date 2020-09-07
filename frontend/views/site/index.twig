@@ -241,62 +241,7 @@
     
       </div>
     
-      <div class="content_block advantages_container">
-    
-        <div class="advantages_wrapper">
-    
-          <div class="advantages_title">
-      
-            <h2 class="_index_subtitle">Не просто стоматология</h2>
-      
-            <p>
-              Мы стремимся к тому, чтобы услуги были высочайшего класса.
-              Сюда тоже следует поставить короткий и ёмкий текст про то, 
-              какие мы молодцы и у нас всё на высшем уровне.
-            </p>
-      
-          </div>
-      
-          <div class="advantages_content">
-      
-            <div class="advantages_item interdoc">
-              <p>Междисциплинарный подход в&nbsp;лечении</p>
-            </div>
-            
-            <div class="advantages_item insurance">
-              <p>Сотрудничество со всеми страховыми компаниями Москвы</p>
-            </div>
-      
-            <div class="advantages_item guarantee">
-              <p>Пожизненная гарантия на&nbsp;имплантаты</p>
-            </div>
-      
-            <div class="advantages_item loyalty">
-              <p>Программа лояльности пациентов</p>
-            </div>
-      
-            <div class="advantages_item sleep">
-              <p>Лечение во сне</p>
-            </div>
-      
-            <div class="advantages_item location">
-              <p>Удобные локации<br> <span>в шаговой доступности от метро</span></p>
-            </div>
-            
-          </div>
-      
-          <div class="advantages_img_wrapper">
-            <a class="_menu_link" href="/lizcenz/">
-      
-              <div class="advantages_img"></div>
-              <p class="advantages_text">Сертификаты и лицензии</p>
-              
-            </a>
-          </div>
-    
-        </div>
-    
-      </div>
+      {{this.render('/components/advantages.twig', {"title": "Не просто стоматология"}) | raw}}
 
     </div>
 
@@ -353,9 +298,9 @@
               <button class="read_more">Читать полностью</button>
             </div>
 
-          </div>
+            <p class="signature">Антипова Евгения 28 лет | 10 сентября 2015</p>
 
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+          </div>
 
         </div>
 
@@ -367,7 +312,7 @@
 
             <hr>
 
-            <div class="review_text">
+            <div class="review_text" data-id="{{review.review_id}}">
 
               {{review.review_text | raw}}
 
@@ -375,9 +320,10 @@
                 <button class="read_more">Читать полностью</button>
               </div>
 
+              <p class="signature"><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
+
             </div>
 
-            <p><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
   
           </div>
   

@@ -82,4 +82,25 @@ class Servises extends \yii\db\ActiveRecord
         ];
     }
 
+    public function setFirstLevelChildCount(array &$allServices){
+
+        foreach ($allServices as $key => $service){
+            if ($service['parent_id'] === '0') {
+               $allServices[$key]['first_level_child_count'] = Servises::getFirstLevelChildCount($allServices, $service['old_id']);
+            }
+         }
+    }
+
+    public function getFirstLevelChildCount(array $allServices, string $parentOldID){
+        $childCounter = 0;
+
+        foreach ($allServices as $service) {
+            if ($service['parent_id'] === $parentOldID) {
+                $childCounter++;
+            }
+        }
+
+        return $childCounter;
+    }
+
 }

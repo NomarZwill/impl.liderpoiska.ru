@@ -1,0 +1,258 @@
+.content_block.advantages_container{
+  width: 100%;
+  padding: 40px 0 0 0;
+
+  &:before,
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+
+  &:before{
+    left: -90px;
+    width: 340px;
+    height: 494px;
+    background: url(/img/left_bg_instruments.png);
+  }
+
+  &:after{
+    right: 0;
+    width: 312px;
+    height: 358px;
+    background: url(/img/right_bg_instruments.png);
+  }
+}
+
+.advantages_wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 1224px;
+  height: 568px;
+  margin: 0 auto;
+  padding: 0 0 120px 0;
+}
+
+.advantages_title{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  p{
+    width: 800px;
+    padding: 8px 0 48px 0;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+}
+
+.advantages_content{
+  display: flex;
+  flex-flow: row wrap;
+  width: 800px;
+}
+
+.advantages_item{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  min-height: 48px;
+  margin: 0 0 32px 0;
+  padding: 0 84px 0 0;
+  color: $headerBlack;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60px;
+    width: 48px;
+    height: 48px;
+    box-sizing: border-box;
+  }
+
+  span{
+    font-size: 14px;
+    color: $textColor;
+  }
+}
+
+.advantages_item:nth-of-type(n + 5){
+  margin: 0 0 0 0;
+}
+
+.advantages_item.interdoc:before{
+  background: url(/img/interdoc-icon.svg);
+  background-size: contain;
+}
+.advantages_item.insurance:before{
+  background: url(/img/insurance-icon.svg);
+  background-size: contain;
+}
+.advantages_item.guarantee:before{
+  background: url(/img/guarantee-icon.svg);
+  background-size: contain;
+}
+.advantages_item.loyalty:before{
+  background: url(/img/loyalty-icon.svg);
+  background-size: contain;
+}
+.advantages_item.sleep:before{
+  background: url(/img/sleep-icon.svg);
+  background-size: contain;
+}
+.advantages_item.location:before{
+  background: url(/img/location-icon.svg);
+  background-size: contain;
+}
+
+.advantages_img_wrapper{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  a._menu_link{
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+  }
+
+  a._menu_link:hover{
+    color: #C73F36;
+  }
+}
+
+.advantages_img{
+  width: 182px;
+  height: 167px;
+  margin: 0 auto;
+  background: url(/img/certificates.png);
+  background-size: contain;
+}
+
+.advantages_text{
+  padding: 8px 0 0 0;
+}
+
+@media (max-width: 1560px) and (min-width: 1440px){
+
+  .content_block.advantages_container{  
+
+    &:before{
+      content: none;
+    }
+  }
+}
+
+@include for-notdesc{
+
+  .content_block.advantages_container{
+    padding: 0 0 0 0;
+
+    &:before,
+    &:after{
+      content: none;
+    }
+  }
+
+  .advantages_img_wrapper{
+
+    A:link._menu_link{
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      border-bottom: none;
+    }
+  }
+}
+
+@include for-pad{
+
+  .advantages_wrapper{
+    height: auto;
+    padding: 0 16px 40px 16px;
+  }
+
+  .advantages_title{
+
+    p{
+      width: 100%;
+    }
+  }
+
+  .advantages_content{
+    justify-content: space-between;
+    padding: 0 0 0 60px;
+  }
+
+  .advantages_item{
+    width: 300px;
+    margin: 0 0 24px 0;
+    padding: 0 0 0 0;
+  }
+
+  .advantages_img{
+    width: 124px;
+    height: 114px;
+  }
+
+  .advantages_text{
+    border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@include for-mobile{
+
+  .advantages_wrapper{
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    padding: 0 16px 32px 16px;
+  }
+  
+  .advantages_title{
+    
+    p{
+      width: 100%;
+      padding: 8px 0 16px 0;
+    }
+  }
+  
+  .advantages_content{
+    width: 100%;
+    padding: 0 0 0 60px;
+  }
+  
+  .advantages_item{
+    margin: 0 0 24px 0;
+    padding: 0 0 0 0;
+    
+  }
+
+  .advantages_img_wrapper{
+    padding: 8px 0 0 0;
+  }
+  
+  .advantages_img{
+    width: 48px;
+    height: 44px;
+  }
+  
+  .advantages_text{
+    border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .advantages_item:nth-of-type(n + 5){
+    margin: 0 0 24px 0;
+
+  }
+}

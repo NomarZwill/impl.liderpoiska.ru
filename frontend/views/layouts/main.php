@@ -209,7 +209,7 @@ AppAsset::register($this);
 
         <p>Информация, представленная на сайте, не может быть использована для постановки диагноза, назначения лечения и не заменяет прием врача.</p>
 
-        <a class="_menu_link_no_borders lp_label" href="http://liderpoiska.ru/" target="_blank">Создание&nbsp;и&nbsp;продвижение&nbsp;сайта<br>«Лидер поиска»</a>
+        <p class="lp_label">Создание&nbsp;и&nbsp;продвижение&nbsp;сайта<br><a class="_link" href="http://liderpoiska.ru/" target="_blank">«Лидер поиска»</a></p>
     </div>
     
 </footer>

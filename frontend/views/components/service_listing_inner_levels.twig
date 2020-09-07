@@ -1,0 +1,57 @@
+<div class="listing_first_level_item item_wrapper">
+
+  <a class="_link_black" href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}">
+
+    <span>{{serviseFirst.menu_title}}</span> 
+    
+  </a>
+
+  <p class="arrow"></p>
+
+  <div class="listing_second_level level_wrapper">
+
+    {% for serviseSecond in servises %}
+
+      {% if serviseSecond.parent_id == serviseFirst.old_id  %}
+
+        <div class="listing_second_level_item item_wrapper">
+
+          <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}"  class="_link_black">
+    
+            <span>{{serviseSecond.menu_title}}</span>
+
+          </a>
+
+          <p class="arrow"></p>
+
+          <div class="listing_third_level level_wrapper">
+
+            {% for serviseThird in servises %}
+
+              {% if serviseThird.parent_id == serviseSecond.old_id  %}
+
+                <div class="listing_third_level_item item_wrapper">
+
+                  <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}"  class="_link_black">
+    
+                    <span>{{serviseThird.menu_title}}</span>
+
+                  </a>
+                  
+                </div>
+
+              {% endif %}
+
+            {% endfor %}
+          
+          </div>
+
+        </div>
+
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+
+</div>

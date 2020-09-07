@@ -25,7 +25,7 @@ window.$ = $;
 			
 			if ($('[data-page-type="index"]').length > 0) {
 				var index = new Index();
-				var fullReviewPopup = new FullReviewPopup(478, 160, 300);
+				var fullReviewPopup = new FullReviewPopup(454, 160, 300);
 			}
 
 			if ($('[data-page-type="service_listing"]').length > 0) {

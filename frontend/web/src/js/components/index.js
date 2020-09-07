@@ -78,17 +78,22 @@ export default class Index{
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      watchOverflow: true,
+      // watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
+      
       // pagination: {
       //   el: '.swiper-pagination',
       //   type: 'bullets',
       // }
 
+    });
+
+    clinicsWrapper.on('resize', function(){
+      this.update();
     });
 
     var instagramWrapper = new Swiper('.instagram_gallery', {
@@ -114,7 +119,6 @@ export default class Index{
           slidesPerColumn: 2,
         },
       },
-
       // pagination: {
       //   el: '.swiper-pagination',
       //   type: 'bullets',
@@ -122,9 +126,12 @@ export default class Index{
 
     });
 
+    instagramWrapper.on('resize', function(){
+      this.update();
+    });
+
     var $images = $('[data-bg-image]');
     $images.each(i => {
-      // console.log(i);
       $($images[i]).css('background', `url(${$($images[i]).attr('data-bg-image')})`);
     });
 

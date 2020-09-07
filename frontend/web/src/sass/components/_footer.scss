@@ -228,7 +228,7 @@
       line-height: 20px;
     }
 
-    p{
+    p:first-of-type{
       width: 688px;
       line-height: 20px;
     }
@@ -236,6 +236,7 @@
 
   .lp_label{
     position: relative;
+    // width: 100%;
     margin-left: auto;
     padding: 0 0 0 39px;
 
@@ -370,9 +371,9 @@
     .footer_bottom_wrapper{
       flex-flow: column wrap;
       padding: 0 16px 0 16px;
-      height: 96px;
+      height: 65px;
 
-      p{
+      p:first-of-type{
         width: 480px;
         padding: 4px 0 0 0;
       }
@@ -429,6 +430,13 @@
       height: 192px;
       padding: 24px 0 0 16px;
 
+      .phones{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+      }
+
       .contacts_wrapper{
         margin-left: 0;
 
@@ -457,9 +465,8 @@
       padding: 0 16px 0 16px;
       height: 192px;
 
-      p{
+      p:first-of-type{
         width: 288px;
-        padding: 4px 0 16px 0;
       }
 
     }

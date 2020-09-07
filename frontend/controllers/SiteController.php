@@ -86,8 +86,23 @@ class SiteController extends Controller
             ->asArray()
             ->all();  
 
-        // print_r(count($reviews));
-        // print_r($reviews[1]['review_text']);
+        // $data = json_decode(file_get_contents('https://www.impl.ru/vyigruzka-dannyix/'), TRUE);
+
+
+        // foreach ($data['reviews'] as $key => $value) {
+            
+        //     $review = Reviews::find()->where(['reviews.old_id' => $value['id']])->one();
+            
+        //     // print_r($value['id']);
+            
+        //     $review->date = $value['publishedon'];
+            
+        //     $review->save();
+            
+            // break;
+            
+        // }
+        // print_r($data);
         // exit;
 
         return $this->render('index.twig', array(

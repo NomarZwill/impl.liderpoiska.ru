@@ -15,8 +15,9 @@ class DentController extends Controller
    public function actionIndex(){
       $servises = Servises::find()->asArray()->all();
 
+      Servises::setFirstLevelChildCount($servises);
 
-      //   print_r($servises);
+      //   print_r($servises[0]);
       //   print_r($reviews[1]['review_text']);
       //   exit;
 

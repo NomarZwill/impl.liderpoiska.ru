@@ -4,22 +4,31 @@
   <a href="/specialists/{{doctor.alias}}">
 
     <div class="card_image_wrapper">
+
       <img src="{{doctor.doctor_image}}" alt="">
+
       <div class="card_image_frame"></div>
+
     </div>
+
+  </a>
 
     <div class="card_content">
 
-      <h5>{{doctor.doctor_title}}</h5>
+      <a href="/specialists/{{doctor.alias}}">
+
+        <h5>{{doctor.doctor_title}}</h5>
+
+      </a>
 
       <p>
 
         {% for medSpec in doctor.medicalSpecialties %}
 
           {% if loop.last %}
-            <span data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</span>
+            <a href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</a>
           {% else %}
-            <span data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </span>
+            <a href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </a>
           {% endif %}
 
         {% endfor %}
@@ -31,6 +40,6 @@
 
     <button class="_button _button_light">Записаться на приём</button>
 
-  </a>
+  
 
 </div>

@@ -41,6 +41,10 @@
       top: 12px;
       right: 12px;
     }
+
+    .show_all{
+      display: none;
+    }
   }
 
   .big_quotes{
@@ -55,6 +59,9 @@
   .review_text{
     position: relative;
     padding: 24px 0 16px 0;
+    line-height: 26px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
 
     p{
       line-height: 26px;
@@ -63,6 +70,7 @@
 
     .signature{
       padding: 16px 0 0 0;
+      color: $textColor;
     }
   }
 

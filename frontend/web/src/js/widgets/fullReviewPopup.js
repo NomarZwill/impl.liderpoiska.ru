@@ -14,45 +14,58 @@ export default class fullReviewPopup{
       document.body.clientWidth, document.documentElement.clientWidth
     );
 
-    $reviews.each(function(i){
-      var $review = $($reviews[i]);
-      var $reviewText = $review.find('.review_text');
+    function normalizeReviewHeight(){
+      $reviews.each(function(i){
+        var $review = $($reviews[i]);
+        var $reviewText = $review.find('.review_text');
+        
+        if (scrollWidth > 1440) {
 
-      if (scrollWidth > 1440) {
+          if ($reviewText.height() > maxHeightDesc){
+            addCompactForm($review, $reviewText);
+          }  
+        } else if (scrollWidth >= 768) {
 
-        if ($reviewText.height() > maxHeightDesc){
-          addCompactForm($review, $reviewText);
-        }  
-      } else if (scrollWidth >= 768) {
+          if ($reviewText.height() > maxHeightPad){
+            addCompactForm($review, $reviewText);
+          }
+        } else {
 
-        if ($reviewText.height() > maxHeightPad){
-          addCompactForm($review, $reviewText);
+          if ($reviewText.height() > maxHeightMob){
+            addCompactForm($review, $reviewText);
+          }
         }
-      } else {
-
-        if ($reviewText.height() > maxHeightMob){
-          addCompactForm($review, $reviewText);
-        }
-      }
-    });
+      });
+    }
 
     function addCompactForm($review, $reviewText){
+
+      console.log("compact");
 
       $reviewText.addClass('_compact');
       $reviewText.find('.show_all').removeClass('_hidden');
 
       $review.find('.read_more').on('click', function(e){
-        var reviewText = $(this).closest('.show_all').siblings('p').html(); 
-        var reviewSignature = $(this).closest('.review_text').siblings('p').html()
+        // var reviewText = $(this).closest('.show_all').siblings('p').html(); 
+        var reviewText = $reviewText.html(); 
+        // var reviewSignature = $(this).closest('.review_text').siblings('p').html()
 
-        $('.popup_filter_bg .main_text').html(reviewText);
-        $('.popup_filter_bg .signature').html(reviewSignature);
+        $('.popup_filter_bg .review_text').html(reviewText);
+        // $('.popup_filter_bg .signature').html(reviewSignature);
         $('.popup_filter_bg').addClass('_active');
         $('.popup_filter_bg .review_item_wrapper').removeClass('_hidden');
 
         $('body').addClass('_popup_mode');
       });
     }
+
+    normalizeReviewHeight();
+
+    $(window).resize(function () {
+      console.log('resize');
+      normalizeReviewHeight();
+    });
+
 
     $('.popup_filter_bg .review_item_wrapper').find('.close_icon').on('click', function(e){
       $(this).closest('.review_item_wrapper').addClass('_hidden');

@@ -32,76 +32,155 @@
 
             </div>
 
-          
-            <div class="listing_first_level level_wrapper">
+            <div class="listing_first_level level_wrapper" data-first-level-count={{serviseMenu.first_level_child_count}}>
 
-              {% for serviseFirst in servises %}
+              {% set totalValue = serviseMenu.first_level_child_count %}
 
-                {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+              <div class="listing_first_level level_wrapper column">
 
-                  <div class="listing_first_level_item item_wrapper">
+                {% set currentIndex = 0 %}
 
-                    <a class="_link_black" href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}">     
+                {% for serviseFirst in servises %}
 
-                      <span>{{serviseFirst.menu_title}}</span> 
-                      
-                    </a>
+                  {% if serviseFirst.parent_id == serviseMenu.old_id %}
 
-                    <p class="arrow"></p>
+                    {% set currentIndex = currentIndex + 1 %}
+                    
+                    {% if currentIndex > 0 and currentIndex <= (totalValue / 3)|round(0, 'ceil') %}
 
-                    <div class="listing_second_level level_wrapper">
+                      {{this.render(
+                        '/components/service_listing_inner_levels.twig',
+                        {
+                          'servises': servises,
+                          'serviseMenu': serviseMenu,
+                          'serviseFirst': serviseFirst
+                        }
+                      ) | raw}}
 
-                      {% for serviseSecond in servises %}
+                    {% endif %}
 
-                        {% if serviseSecond.parent_id == serviseFirst.old_id  %}
+                  {% endif %}
 
-                          <div class="listing_second_level_item item_wrapper">
+                {% endfor %}
 
-                            <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}"  class="_link_black">
-                      
-                              <span>{{serviseSecond.menu_title}}</span>
-        
-                            </a>
+              </div>
 
-                            <p class="arrow"></p>
+              <div class="listing_first_level level_wrapper column">
 
-                            <div class="listing_third_level level_wrapper">
-
-                              {% for serviseThird in servises %}
-
-                                {% if serviseThird.parent_id == serviseSecond.old_id  %}
-
-                                  <div class="listing_third_level_item item_wrapper">
-
-                                    <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}"  class="_link_black">
-                      
-                                      <span>{{serviseThird.menu_title}}</span>
-                
-                                    </a>
-                                    
-                                  </div>
-
-                                {% endif %}
-
-                              {% endfor %}
-                            
-                            </div>
-
-                          </div>
-
-                        {% endif %}
-
-                      {% endfor %}
-
-                    </div>
-
-                  </div>
-
-                {% endif %}
-
-              {% endfor %}
-
+                {% set currentIndex = 0 %}
               
+                {% for serviseFirst in servises %}
+
+                  {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+
+                    {% set currentIndex = currentIndex + 1 %}
+
+                    {% if currentIndex > (totalValue / 3)|round(0, 'ceil') and currentIndex <= (2 * totalValue / 3)|round(0, 'ceil')  %}
+
+                      {{this.render(
+                        '/components/service_listing_inner_levels.twig',
+                        {
+                          'servises': servises,
+                          'serviseMenu': serviseMenu,
+                          'serviseFirst': serviseFirst
+                        }
+                      ) | raw}}
+
+                    {% endif %}
+
+                  {% endif %}
+
+                {% endfor %}
+              
+              </div>
+
+              <div class="listing_first_level level_wrapper column">
+
+                {% set currentIndex = 0 %}
+
+                {% for serviseFirst in servises %}
+
+                  {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+
+                    {% if currentIndex > (2 * totalValue / 3)|round(0, 'ceil') and currentIndex <= totalValue  %}
+
+                      {{this.render(
+                        '/components/service_listing_inner_levels.twig',
+                        {
+                          'servises': servises,
+                          'serviseMenu': serviseMenu,
+                          'serviseFirst': serviseFirst
+                        }
+                      ) | raw}}
+
+                    {% endif %}
+
+                  {% endif %}
+
+                {% endfor %}
+              
+              </div>
+
+              <div class="listing_first_level level_wrapper column _pad">
+
+                {% set currentIndex = 0 %}
+
+                {% for serviseFirst in servises %}
+
+                  {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+
+                    {% if currentIndex <= (totalValue / 2)|round(0, 'ceil')  %}
+
+                      {{this.render(
+                        '/components/service_listing_inner_levels.twig',
+                        {
+                          'servises': servises,
+                          'serviseMenu': serviseMenu,
+                          'serviseFirst': serviseFirst
+                        }
+                      ) | raw}}
+
+                    {% endif %}
+
+                  {% endif %}
+
+                {% endfor %}
+              
+              </div>
+
+              <div class="listing_first_level level_wrapper column _pad">
+
+                {% set currentIndex = 0 %}
+
+                {% for serviseFirst in servises %}
+
+                  {% if serviseFirst.parent_id == serviseMenu.old_id  %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+
+                    {% if currentIndex > (totalValue / 2)|round(0, 'ceil')  %}
+
+                      {{this.render(
+                        '/components/service_listing_inner_levels.twig',
+                        {
+                          'servises': servises,
+                          'serviseMenu': serviseMenu,
+                          'serviseFirst': serviseFirst
+                        }
+                      ) | raw}}
+
+                    {% endif %}
+
+                  {% endif %}
+
+                {% endfor %}
+
+              </div>
+
             </div>
             
             <div class="collapse_wrapper">
