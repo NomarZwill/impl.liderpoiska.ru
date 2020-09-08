@@ -136,6 +136,7 @@
 
 .advantages_text{
   padding: 8px 0 0 0;
+  color: $headerBlack;
 }
 
 @media (max-width: 1560px) and (min-width: 1440px){
@@ -171,8 +172,9 @@
 }
 
 @include for-pad{
-
+  
   .advantages_wrapper{
+    width: 768px;
     height: auto;
     padding: 0 16px 40px 16px;
   }

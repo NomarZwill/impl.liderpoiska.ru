@@ -12,6 +12,7 @@ import ServicePage from './components/servicePage';
 import Contacts from './components/contacts';
 import ClinicContacts from './components/clinicContacts';
 import YaMapContacts from './components/yaMapContacts';
+import About from './components/about';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
@@ -54,6 +55,10 @@ window.$ = $;
 
 			if ($('[data-page-type="clinic_contacts"]').length > 0) {
 	    	var clinicContacts = new ClinicContacts();
+			}
+
+			if ($('[data-page-type="about"]').length > 0) {
+	    	var about = new About();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {
