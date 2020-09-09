@@ -49,7 +49,8 @@ class OtherController extends Controller
   }
 
   public function actionPartners(){
-    return 'actionPartners';
+
+    return $this->render('partners.twig');
   }
 
   public function actionPrices(){

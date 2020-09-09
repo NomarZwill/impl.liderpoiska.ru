@@ -97,8 +97,6 @@ export default class Index{
     });
 
     var instagramWrapper = new Swiper('.instagram_gallery', {
-      slidesPerView: 1,
-      slidesPerColumn: 1,
       spaceBetween: 24,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -112,11 +110,13 @@ export default class Index{
 
         768: {
           slidesPerView: 3,
-          slidesPerColumn: 2
+          slidesPerColumn: 2,
+          slidesPerColumnFill: 'row',
         },
         1440: {
           slidesPerView: 4,
           slidesPerColumn: 2,
+          slidesPerColumnFill: 'row',
         },
       },
       // pagination: {

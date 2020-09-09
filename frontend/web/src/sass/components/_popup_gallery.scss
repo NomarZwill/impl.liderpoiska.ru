@@ -229,6 +229,17 @@
 
 }
 
+@include for-pad{
+
+  .popup_filter_bg{
+    
+    .review_item_wrapper{
+      width: 736px;
+    }
+  }
+
+}
+
 @include for-mobile{
 
   .popup_filter_bg{

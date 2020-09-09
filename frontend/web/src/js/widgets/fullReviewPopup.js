@@ -39,9 +39,6 @@ export default class fullReviewPopup{
     }
 
     function addCompactForm($review, $reviewText){
-
-      console.log("compact");
-
       $reviewText.addClass('_compact');
       $reviewText.find('.show_all').removeClass('_hidden');
 
@@ -59,13 +56,8 @@ export default class fullReviewPopup{
       });
     }
 
+    window.addEventListener('resize', normalizeReviewHeight, { passive: true });
     normalizeReviewHeight();
-
-    $(window).resize(function () {
-      console.log('resize');
-      normalizeReviewHeight();
-    });
-
 
     $('.popup_filter_bg .review_item_wrapper').find('.close_icon').on('click', function(e){
       $(this).closest('.review_item_wrapper').addClass('_hidden');

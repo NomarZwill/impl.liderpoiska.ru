@@ -1,0 +1,79 @@
+[data-page-type="partners"]{
+
+  .content_block.title_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 1016px;
+    padding: 24px 0 48px 0;
+  }
+
+  h1{
+    padding: 16px 0 32px 0;
+  }
+
+  p{
+    line-height: 26px;
+    letter-spacing: 0.01em;
+  }
+
+  .marketing_contacts{
+    position: relative;
+    width: 100%;
+    margin: 24px 0 0 0;
+    padding: 19px 48px 19px 80px;
+    background: #F8F8F8;
+    border-radius: 8px;
+
+    &:before{
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      width: 48px;
+      height: 48px;
+      background: url(/img/info_icon.svg);
+    }
+  }
+
+  @include for-notdesc{
+
+  }
+
+  @include for-pad{
+
+    .content_block.title_container{
+      width: 768px;
+      padding: 24px 16px 40px 16px;
+    }
+
+    h1{
+      padding: 8px 0 24px 0;
+    }
+  }
+
+  @include for-mobile{
+
+    .content_block.title_container{
+      width: 100%;
+      padding: 24px 16px 24px 16px;
+    }
+
+    h1{
+      padding: 8px 0 16px 0;
+    }
+
+    .marketing_contacts{
+      margin: 16px 0 0 0;
+      padding: 16px 12px 16px 52px;
+  
+      &:before{
+        top: 16px;
+        left: 12px;
+        width: 32px;
+        height: 32px;
+        background-size: contain;
+      }
+    }
+  }
+}
