@@ -13,6 +13,7 @@ import Contacts from './components/contacts';
 import ClinicContacts from './components/clinicContacts';
 import YaMapContacts from './components/yaMapContacts';
 import About from './components/about';
+import Partners from './components/partners';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
@@ -26,7 +27,7 @@ window.$ = $;
 			
 			if ($('[data-page-type="index"]').length > 0) {
 				var index = new Index();
-				var fullReviewPopup = new FullReviewPopup(454, 160, 300);
+				var fullReviewPopup = new FullReviewPopup(393, 130, 300);
 			}
 
 			if ($('[data-page-type="service_listing"]').length > 0) {
@@ -59,6 +60,10 @@ window.$ = $;
 
 			if ($('[data-page-type="about"]').length > 0) {
 	    	var about = new About();
+			}
+
+			if ($('[data-page-type="partners"]').length > 0) {
+	    	var partners = new Partners();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {

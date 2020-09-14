@@ -26,15 +26,15 @@
         {% for medSpec in doctor.medicalSpecialties %}
 
           {% if loop.last %}
-            <a href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</a>
+            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</a>
           {% else %}
-            <a href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </a>
+            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </a>
           {% endif %}
 
         {% endfor %}
 
       </p>
-      <p>опыт работы</p>
+      <p class="work_experience">Опыт работы — </p>
 
     </div>
 

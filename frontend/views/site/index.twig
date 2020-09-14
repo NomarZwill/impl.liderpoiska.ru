@@ -94,7 +94,9 @@
   
             <a class="_menu_link_no_borders" href="/specialnoe/{{deal.alias}}">
 
-              <div class="deal_item" data-bg-image="/img/{{deal.deals_index_image}}">
+              <div class="deal_item">
+
+                <div class="deal_img" style="background: url(/img/{{deal.deals_index_image}});" data-deal-alias="{{deal.alias}}"></div>
 
                 <div class="deal_text">
                   <h4>{{deal.deals_title}}</h4>
@@ -298,9 +300,9 @@
               <button class="read_more">Читать полностью</button>
             </div>
 
-            <p class="signature">Антипова Евгения 28 лет | 10 сентября 2015</p>
-
           </div>
+
+            <p class="signature">Антипова Евгения 28 лет | 10 сентября 2015</p>
 
         </div>
 
@@ -320,10 +322,9 @@
                 <button class="read_more">Читать полностью</button>
               </div>
 
-              <p class="signature"><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
-
             </div>
 
+            <p class="signature"><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
   
           </div>
   

@@ -232,6 +232,7 @@
 
     .listing_first_level{
       width: 548px;
+      padding: 8px 0 0 0;
     }
 
     .listing_first_level_item{
@@ -258,7 +259,7 @@
 
     .listing_block{
       flex-flow: column nowrap;
-      padding: 12px 12px 12px 12px;
+      padding: 12px 12px 24px 12px;
     }
 
     .service_menu_item_wrapper{
@@ -278,7 +279,11 @@
     }
 
     .listing_first_level._long{
-      max-height: 116px;
+      // max-height: 116px;
+
+      &:nth-of-type(){
+        display: none;
+      }
     }
 
     .listing_first_level_item{

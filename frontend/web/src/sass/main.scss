@@ -61,6 +61,10 @@ body{
 body._popup_mode{
   overflow: hidden !important;
   padding: 0 17px 0 0;
+
+  @include for-notdesc{
+    padding: 0 0 0 0;
+}
 }
 
 .content_block{
@@ -381,14 +385,11 @@ h5{
   &:hover,
   &._active{
     background: #f7c67e;
-
   }
 
   &:active{
     background: #E8A33B;
-  }
-
-  
+  } 
 }
 
 .read_more{

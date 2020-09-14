@@ -14,8 +14,14 @@ export default class ServiceListing{
       }
     });
 
-    $('.listing_first_level_item.with_children p').on('click', function(e){
+    $('.listing_first_level_item.with_children > p').on('click', function(e){
       if (!$(e.target).hasClass('_active')) {
+        $(this).siblings('.listing_second_level').find('.arrow._active').removeClass('_active');
+        $(this).siblings('.listing_second_level').find('.listing_third_level._active').removeClass('_active');
+
+      }
+
+      if (!$(e.target).closest('.listing_block').find('.close_block').hasClass('_active')) {
         openBlock($(e.target).closest('.listing_block').find('.open_block')[0]);
       }
 
@@ -31,16 +37,17 @@ export default class ServiceListing{
       }
     });
 
-    $('.listing_second_level_item.with_children p').on('click', function(e){
+    $('.listing_second_level_item.with_children > p').on('click', function(e){
       $(e.target).toggleClass('_active');
       $(this).siblings('.listing_third_level').toggleClass('_active');
     });
 
-    var $firstLevekBlocks = $('.listing_first_level');
+    var $firstLevekBlocks = $('.listing_block > .listing_first_level');
 
     $firstLevekBlocks.each( function(i){
       if (isLongList($firstLevekBlocks[i])) {
-        $($firstLevekBlocks[i]).addClass('_long');
+        // $($firstLevekBlocks[i]).addClass('_long');
+        minimizeLongList($($firstLevekBlocks[i]));
       } else {
         $($firstLevekBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden');
       }
@@ -54,7 +61,8 @@ export default class ServiceListing{
       $(e.target).toggleClass('_active');
       $(e.target).siblings('.open_block').toggleClass('_active');
       var $innerBlock = $(e.target).closest('.collapse_wrapper').siblings('.listing_first_level')
-      $innerBlock.addClass('_long');
+      // $innerBlock.addClass('_long');
+      minimizeLongList($innerBlock);
       $innerBlock.find('.listing_first_level_item.with_children p').removeClass('_active');
       $innerBlock.find('.listing_second_level').removeClass('_active');
       $innerBlock.find('.listing_second_level_item.with_children p').removeClass('_active');
@@ -65,7 +73,8 @@ export default class ServiceListing{
     function openBlock(el){
       $(el).toggleClass('_active');
       $(el).siblings('.close_block').toggleClass('_active');
-      $(el).closest('.collapse_wrapper').siblings('.listing_first_level').removeClass('_long');
+      // $(el).closest('.collapse_wrapper').siblings('.listing_first_level').removeClass('_long');
+      expandLongList($(el).closest('.collapse_wrapper').siblings('.listing_first_level'));
     };
 
     function isLongList(el){
@@ -74,6 +83,19 @@ export default class ServiceListing{
       } else {
         return false;
       }
-    }
+    };
+
+    function minimizeLongList($el){
+      $el.find('.listing_first_level_item').each(function (i, el) {
+        if (i > 2) {
+          $(el).addClass('_hidden');
+        }
+      });
+    };
+
+    function expandLongList($el){
+      $el.find('.listing_first_level_item').removeClass('_hidden');
+      
+    };
   }
 }

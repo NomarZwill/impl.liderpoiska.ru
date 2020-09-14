@@ -105,13 +105,15 @@ export default class Index{
       breakpoints: {
         320: {
           slidesPerView: 1,
-          slidesPerColumn: 1,    
+          slidesPerColumn: 1,  
+          spaceBetween: 16,  
         },
 
         768: {
           slidesPerView: 3,
           slidesPerColumn: 2,
           slidesPerColumnFill: 'row',
+          spaceBetween: 16,
         },
         1440: {
           slidesPerView: 4,
@@ -130,10 +132,10 @@ export default class Index{
       this.update();
     });
 
-    var $images = $('[data-bg-image]');
-    $images.each(i => {
-      $($images[i]).css('background', `url(${$($images[i]).attr('data-bg-image')})`);
-    });
+    // var $images = $('[data-bg-image]');
+    // $images.each(i => {
+    //   $($images[i]).css('background', `url(${$($images[i]).attr('data-bg-image')})`);
+    // });
 
     // var $diagonalNavTotal = $('.total_slides');
     

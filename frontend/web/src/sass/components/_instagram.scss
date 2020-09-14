@@ -23,12 +23,13 @@
     }
 
     .swiper-slide{
-      height: auto;
+      height: 290px;
       overflow: hidden;
     }
   }
 
   .instagram_item{
+    height: 290px;
     border: 1px solid #DADEE1;
     border-radius: 8px;
     
@@ -58,6 +59,10 @@
 
       .swiper-wrapper{
         height: 500px;
+      }
+
+      .swiper-slide{
+        height: 237px;
       }
     }
 

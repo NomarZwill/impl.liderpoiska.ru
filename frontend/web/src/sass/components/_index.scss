@@ -150,41 +150,6 @@
     }
   }
 
-  .deal_item_wrapper{
-    width: 600px;
-    height: 240px;
-  }
-
-  .deal_item_wrapper:nth-of-type(even){
-
-    .deal_text{
-      background: linear-gradient(110deg, #FBEDD8 57%, transparent calc(57% + 1px));
-      color: $headerBlack;
-    }
-  }
-  
-  .deal_item{
-    height: 240px;
-    border-radius: 8px;
-  }
-  
-  .deal_text{
-    height: 240px;
-    padding: 40px 49% 0 24px;
-    border-radius: 8px;
-    background: linear-gradient(110deg, $baseColor 57%, transparent calc(57% + 1px));
-    color: #FFFFFF;
-    
-    h4{
-      padding: 0 0 8px 0;
-    }
-
-    p{
-      line-height: 24px;
-      letter-spacing: 0.01em;
-    }
-  }
-
   .content_block.clinic_description_container{
     width: 100%;
     margin-left: auto;
@@ -422,6 +387,9 @@
 
     & > p{
       padding: 16px 0 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
     }
   }
 
@@ -437,7 +405,7 @@
     }
 
     &._compact{
-    max-height: 344px;
+    max-height: 410px;
     overflow: hidden;
     }
 
@@ -446,7 +414,7 @@
       bottom: 0;
       width: 100%;
       height: auto;
-      padding: 16px 0 16px 0;
+      padding: 16px 0 0 0;
       background: linear-gradient(rgba(255, 255, 255, 0) 0%, #fff9f0 30%);
     }
   }
@@ -574,6 +542,22 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.02em;
+  }
+
+  .metro{
+    position: relative;
+    padding: 0 0 0 10px;
+
+    &:before{
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background: red;
+      border-radius: 2px;
+    }
   }
 
   .clinic_info{
@@ -937,14 +921,14 @@
       }
 
       & > p{
-        padding: 0 0 8px 0;
+        padding: 8px 0 0 0;
       }
     }
     
     .review_text{
 
       &._compact{
-        max-height: 160px;
+        max-height: 150px;
       }
     }
 
@@ -1074,7 +1058,7 @@
 
     .content_block.deals_container{
       height: auto;
-      padding: 0 0 32px 16px;
+      padding: 0 0 32px 0;
 
       h2{
         padding: 0 0 4px 0;
@@ -1091,43 +1075,13 @@
       align-items: center;
     }
 
-    .deal_item_wrapper{
-      width: 288px;
-      height: 144px;
-    }
-
-    .deal_item{
-      height: 144px;
-      background-size: cover !important;
-      background-position: center !important;
-    }
-
     .deals_wrapper{
       height: auto;
+
+      .swiper-wrapper{
+        padding: 0 0 24px 16px;
+      }
     } 
-    
-    .deal_text{
-      height: 144px;
-      padding: 12px 30% 0 16px;
-      background: linear-gradient(110deg,#782f40 70%,transparent calc(70% + 1px));
-
-      h4{
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.01em;
-      }
-
-      p{
-        font-size: 12px;
-        line-height: 18px;
-        letter-spacing: 0.02em;
-      }
-
-    }
-
-    .deal_item_wrapper:nth-of-type(even) .deal_text{
-      background: linear-gradient(110deg,#fbedd8 70%,transparent calc(70% + 1px));
-    }
 
     ._index_subtitle{
       font-size: 28px;
@@ -1266,14 +1220,18 @@
       }
 
       & > p{
-        padding: 0 0 8px 0;
+        padding: 16px 0 8px 0;
       }
     }
-    
+
     .review_text{
 
       &._compact{
-        max-height: 300px;
+        max-height: 270px;
+      }
+
+      .show_all{
+        padding: 8px 0 0 0;
       }
     }
     

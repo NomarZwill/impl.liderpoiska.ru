@@ -5,7 +5,9 @@ use Yii;
 use yii\web\Controller;
 use backend\models\Clinics;
 use backend\models\Doctors;
+use backend\models\Deals;
 use common\models\api\Maps;
+
 
 class OtherController extends Controller
 {
@@ -60,14 +62,16 @@ class OtherController extends Controller
 
   public function actionAbout(){
 
-    return $this->render('about.twig', array(
-   ));  
+    return $this->render('about.twig');  
   }
 
   public function actionSpecialDeals(){
+    $deals = Deals::find()->asArray()->all();
 
-    return 'actionSpecialDeals';
-  }
+    return $this->render('specialDealsListing.twig', array(
+      'deals' => $deals
+    ));  
+   }
 
   public function actionSpecialDeal($deal){
 

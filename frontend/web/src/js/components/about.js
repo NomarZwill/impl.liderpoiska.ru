@@ -58,6 +58,7 @@ export default class About{
       } else if (scrollWidth >= 768 && equipmentContainer !== null) {
         equipmentContainer.destroy();
         equipmentContainer = null;
+        $('.revolver_navigation_wrapper').addClass('_hidden');
       }
     };
 
