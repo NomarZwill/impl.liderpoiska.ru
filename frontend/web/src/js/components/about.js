@@ -64,39 +64,5 @@ export default class About{
 
     window.addEventListener('resize', swiperInitWatch, { passive: true });
     swiperInitWatch();
-
-    var instagramWrapper = new Swiper('.instagram_gallery', {
-      spaceBetween: 24,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          slidesPerColumn: 1,    
-        },
-
-        768: {
-          slidesPerView: 3,
-          slidesPerColumn: 2,
-          slidesPerColumnFill: 'row',
-        },
-        1440: {
-          slidesPerView: 4,
-          slidesPerColumn: 2,
-          slidesPerColumnFill: 'row',
-        },
-      },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
-    });
-
-    instagramWrapper.on('resize', function(){
-      this.update();
-    });
   }
 }

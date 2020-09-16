@@ -6,6 +6,7 @@ export default class ServiceListing{
   }
 
   init(){
+    var $listing_wrapper = $('.content_block.listing_wrapper');
     var $firstLevelItems = $('.listing_first_level_item');
 
     $firstLevelItems.each( function(i){
@@ -42,21 +43,14 @@ export default class ServiceListing{
       $(this).siblings('.listing_third_level').toggleClass('_active');
     });
 
-    var $firstLevekBlocks = $('.listing_block > .listing_first_level');
-
-    $firstLevekBlocks.each( function(i){
-      if (isLongList($firstLevekBlocks[i])) {
-        // $($firstLevekBlocks[i]).addClass('_long');
-        minimizeLongList($($firstLevekBlocks[i]));
-      } else {
-        $($firstLevekBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden');
-      }
-    });
-
+    
+    var $firstLevelBlocks = $('.listing_block > .listing_first_level');
+    
+    
     $('.open_block').on('click', function(e){
       openBlock(e.target);
     });
-
+    
     $('.close_block').on('click', function(e){
       $(e.target).toggleClass('_active');
       $(e.target).siblings('.open_block').toggleClass('_active');
@@ -68,7 +62,7 @@ export default class ServiceListing{
       $innerBlock.find('.listing_second_level_item.with_children p').removeClass('_active');
       $innerBlock.find('.listing_third_level').removeClass('_active');
     });
-
+    
     
     function openBlock(el){
       $(el).toggleClass('_active');
@@ -76,7 +70,7 @@ export default class ServiceListing{
       // $(el).closest('.collapse_wrapper').siblings('.listing_first_level').removeClass('_long');
       expandLongList($(el).closest('.collapse_wrapper').siblings('.listing_first_level'));
     };
-
+    
     function isLongList(el){
       if (el.offsetHeight > 116) {
         return true;
@@ -84,18 +78,54 @@ export default class ServiceListing{
         return false;
       }
     };
-
+    
     function minimizeLongList($el){
-      $el.find('.listing_first_level_item').each(function (i, el) {
-        if (i > 2) {
-          $(el).addClass('_hidden');
-        }
-      });
+      
+      if (getScrollWidth() < 768) {
+        $el.find('.listing_first_level_item').each(function (i, el) {
+          if (i > 2) {
+            $(el).addClass('_hidden');
+          }
+        });
+      }
     };
-
+    
     function expandLongList($el){
       $el.find('.listing_first_level_item').removeClass('_hidden');
-      
     };
+    
+    function normalizeLongList(){
+      if (getScrollWidth() < 768 && !$listing_wrapper.hasClass('_is_mobile_view')) {
+        $listing_wrapper.addClass('_is_mobile_view');
+        $firstLevelBlocks.each( function(i){
+          
+          if (isLongList($firstLevelBlocks[i])) {
+            minimizeLongList($($firstLevelBlocks[i]));
+            $($firstLevelBlocks[i]).siblings('.collapse_wrapper').removeClass('_hidden');
+          } else {
+            $($firstLevelBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden');
+          }
+        });
+        
+      } else if (getScrollWidth() >= 768 && $listing_wrapper.hasClass('_is_mobile_view')) {
+        $listing_wrapper.removeClass('_is_mobile_view');
+        $firstLevelBlocks.each( function(i){
+          expandLongList($($firstLevelBlocks[i]));
+          $($firstLevelBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden');
+          
+        });
+      };
+    };
+    
+    function getScrollWidth() {
+      return Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
+        document.body.offsetWidth, document.documentElement.offsetWidth,
+        document.body.clientWidth, document.documentElement.clientWidth
+        );
+      };
+      
+      window.addEventListener('resize', normalizeLongList, { passive: true });
+      normalizeLongList();
+    }
   }
-}

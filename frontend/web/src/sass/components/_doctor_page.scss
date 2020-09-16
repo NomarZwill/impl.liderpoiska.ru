@@ -7,6 +7,25 @@
     background-size: cover;
     z-index: 100;
   }
+
+  .breadcrumbs_wrapper{
+    padding: 0 16px 0 16px;
+  }
+
+  .breadcrumbs{
+    position: relative;
+    margin: 0 16px 0 0;
+
+    &:before{
+      content: "→";
+      position: absolute;
+      right: -16px;
+    }
+
+    &:last-of-type:before{
+      content: none;
+    }
+  }
   
   .doctor_preview_bg{
     display: flex;
@@ -38,8 +57,7 @@
       border-radius: 8px;
     }
 
-    h2{
-      color: $baseColor;
+    h1{
       padding: 0 0 8px 0;
     }
 
@@ -56,10 +74,11 @@
     &:after{
       content: '';
       position: absolute;
-      width: 100%;
+      width: 30px;
       height: 21px;
       top: 0;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 86%, rgba(255, 255, 255, 1) 100%);
+      right: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 75%);
       z-index: 10;
     }
 
@@ -84,6 +103,7 @@
   }
 
   .clinic_item{
+    cursor: pointer;
     width: 256px;
     margin: 0 16px 0 0;
     padding: 12px 16px 24px 16px;
@@ -91,7 +111,8 @@
     box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
     border-radius: 8px;
 
-    p{
+    p,
+    a{
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.02em;
@@ -443,6 +464,13 @@
       background: none;
     }
 
+    .breadcrumbs{
+  
+      &:last-of-type{
+       padding: 4px 0 0 0;
+      }
+    }
+
     .doctor_preview_bg{
       background: none;
     }
@@ -458,8 +486,9 @@
       align-items: center;
       padding: 0 0 0 0;
       
-      h2{
+      h1{
         padding: 0 0 8px 0;
+        text-align: center;
       }
 
       .doctor_image{

@@ -13,13 +13,20 @@ class DentController extends Controller
 {
 
    public function actionIndex(){
+      // $servises = Servises::find()->all();
+
+      // foreach ($servises as $serviсe) {
+      //    $serviсe->head_text = html_entity_decode( $serviсe->head_text, ENT_HTML5);
+      //    $serviсe->save();
+      // }
+
       $servises = Servises::find()->asArray()->all();
+      // print_r(html_entity_decode($servises[4]['head_text'], ENT_HTML5));
+      //   print_r($reviews[1]['review_text']);
+      // exit;
 
       Servises::setFirstLevelChildCount($servises);
 
-      //   print_r($servises[0]);
-      //   print_r($reviews[1]['review_text']);
-      //   exit;
 
       return $this->render('index.twig', array(
          'servises' => $servises

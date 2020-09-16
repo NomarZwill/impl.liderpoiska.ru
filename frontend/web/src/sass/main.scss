@@ -5,6 +5,7 @@
 @import '../../node_modules/swiper/components/pagination/pagination.scss';
 @import '../../node_modules/swiper/components/navigation/navigation.scss';
 @import '../../node_modules/swiper/components/thumbs/thumbs.scss';
+@import '//vendor/twentytwenty-master/scss/twentytwenty.scss';
 
 @font-face {
   font-family: 'Rubik';
@@ -244,7 +245,7 @@ A:hover._link_black{
   }
 }
 
-h1,h1,h3,h4,h5{
+h1,h2,h3,h4,h5{
   font-family: Rubik;
   font-style: normal;
   font-weight: 300;

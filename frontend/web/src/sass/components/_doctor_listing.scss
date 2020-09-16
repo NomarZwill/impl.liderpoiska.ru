@@ -17,6 +17,10 @@
     padding: 16px 0 0 0;
   }
 
+  .read_more{
+    display: none;
+  }
+
   .content_block.clinics_cotnainer{
     position: relative;
     display: flex;
@@ -85,9 +89,9 @@
   .clinic_card_wrapper{
     cursor: pointer;
     width: 288px;
-    height: 160px;
+    height: 180px;
     margin: 0 24px 0 0;
-    padding: 24px 24px 0 24px;
+    padding: 24px 24px 24px 24px;
     background: #FFFFFF;
     box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
     border-radius: 8px;
@@ -106,10 +110,38 @@
     color: $headerBlack;
   }
 
-  .clinic_address{
+  .clinic_address,
+  .clinic_phone{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.02em;
+  }
+
+  .clinic_phone{
+    display: block;
+    margin: 4px 0 0 0;
+  }
+
+  .metro{
+    position: relative;
+    padding: 0 0 0 10px;
+
+    &:before{
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background: red;
+      border-radius: 2px;
+    }
+  }
+
+  .metro._no_dot{
+    &:before{
+      content: none;
+    }
   }
 
   .content_block.doctors_container{
@@ -132,7 +164,7 @@
     padding: 16px 0 0 0;
   }
 
-  .doctor_item_wrapper.swiper-slide{
+  .doctor_item_wrapper{
     width: auto;
     margin: 0 24px 24px 0;
   }
@@ -268,6 +300,10 @@
       font-size: 36px;
       line-height: 40px;
       text-align: center;
+    }
+
+    .read_more{
+      display: block;
     }
     
     .moscow_clinics{

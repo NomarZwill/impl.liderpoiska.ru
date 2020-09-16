@@ -11,6 +11,25 @@
     padding: 16px 0 32px 0;
   }
 
+  .breadcrumbs_wrapper{
+    padding: 0 16px 0 16px;
+  }
+
+  .breadcrumbs{
+    position: relative;
+    margin: 0 16px 0 0;
+
+    &:before{
+      content: "→";
+      position: absolute;
+      right: -16px;
+    }
+
+    &:last-of-type:before{
+      content: none;
+    }
+  }
+
   .doctors_wrapper{
     width: 100%;
     height: 100%;
@@ -212,7 +231,7 @@
       img{
         width: 288px;
         height: auto;
-        margin: 0 0 16px 0;
+        margin: 0 16px 0 0;
       }
   
       ul{

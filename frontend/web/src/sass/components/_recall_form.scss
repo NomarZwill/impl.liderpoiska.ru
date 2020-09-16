@@ -16,12 +16,14 @@
       background: url(/img/woman-feedback.png);
       background-size: contain;
     }
+
+    h2{
+      padding: 0 0 12px 0;
+      text-align: start;
+      color: $headerBlack;
+    }
   }
 
-  h2{
-    padding: 0 0 12px 0;
-    color: $headerBlack;
-  }
 
   p{
     letter-spacing: 0.01em;
@@ -93,11 +95,12 @@
         width: 262px;
         height: 349px;
       }
+
+      h2{
+        padding: 0 0 8px 0;
+      }
     }
 
-    h2{
-      padding: 0 0 8px 0;
-    }
 
     input{
       width: 206px;
@@ -131,12 +134,13 @@
         border-radius: 40px;
         background: #c4c4c4;
       }
+      
+      h2{
+        width: calc(100% - 96px);
+        padding: 0 0 16px 0;
+      }
     }
 
-    h2{
-      width: calc(100% - 96px);
-      padding: 0 0 16px 0;
-    }
 
     p:first-of-type{
       width: calc(100% - 96px);

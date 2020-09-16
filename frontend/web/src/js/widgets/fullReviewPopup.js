@@ -19,12 +19,12 @@ export default class fullReviewPopup{
         var $review = $($reviews[i]);
         var $reviewText = $review.find('.review_text');
         
-        if (scrollWidth > 1440) {
+        if (getScrollWidth() > 1440) {
 
           if ($reviewText.height() > maxHeightDesc){
             addCompactForm($review, $reviewText);
           }  
-        } else if (scrollWidth >= 768) {
+        } else if (getScrollWidth() >= 768) {
 
           if ($reviewText.height() > maxHeightPad){
             addCompactForm($review, $reviewText);
@@ -55,6 +55,14 @@ export default class fullReviewPopup{
         $('body').addClass('_popup_mode');
       });
     }
+
+    function getScrollWidth() {
+      return Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
+        document.body.offsetWidth, document.documentElement.offsetWidth,
+        document.body.clientWidth, document.documentElement.clientWidth
+      );
+    };
 
     window.addEventListener('resize', normalizeReviewHeight, { passive: true });
     normalizeReviewHeight();

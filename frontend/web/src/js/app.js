@@ -18,6 +18,7 @@ import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
 import Ratings from './widgets/ratings';
+import InstagramGallery from './widgets/instagramGallery';
 
 window.$ = $;
 
@@ -27,7 +28,7 @@ window.$ = $;
 			
 			if ($('[data-page-type="index"]').length > 0) {
 				var index = new Index();
-				var fullReviewPopup = new FullReviewPopup(393, 130, 300);
+				var fullReviewPopup = new FullReviewPopup(393, 116, 300);
 			}
 
 			if ($('[data-page-type="service_listing"]').length > 0) {
@@ -80,6 +81,10 @@ window.$ = $;
 
 			if ($('[data-type="ratings"]').length > 0) {
 	    	var ratings = new Ratings();
+			}
+
+			if ($('[data-type="instagram_block"]').length > 0) {
+	    	var instagramGallery = new InstagramGallery();
 			}
 
 			if ($('.map').length > 0) {

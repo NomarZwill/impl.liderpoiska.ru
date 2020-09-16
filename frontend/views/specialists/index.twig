@@ -2,7 +2,7 @@
 
   <div class="content_block title_wrapper">
 
-    <a class="breadcrumbs _menu_link" href="/">breadcrumbs</a>
+    <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
 
     <h1>Наши специалисты</h1>
 
@@ -46,23 +46,24 @@
         
           {% if clinic.clinic_id != 5 %}
 
-            <div
-                class="swiper-slide clinic_card_wrapper"
-                data-title="{{clinic.clinic_title | raw}}"
-                data-map="{{clinic.clinic_map}}"
-                data-address="{{clinic.clinic_address | raw}}"
-                data-phone="{{clinic.clinic_phone | raw}}"
-                data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
-              >
-              
-              <a href="/">
-  
-                <p class="clinic_title">{{clinic.card_title}}</p>
-                <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
-  
-              </a>
+            <a href="/contacts/{{clinic.alias}}">
 
-            </div>
+              <div
+                  class="swiper-slide clinic_card_wrapper"
+                  data-title="{{clinic.clinic_title | raw}}"
+                  data-map="{{clinic.clinic_map}}"
+                  data-address="{{clinic.clinic_address | raw}}"
+                  data-phone="{{clinic.clinic_phone | raw}}"
+                  data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
+                >
+
+                  <a class="clinic_title _link">{{clinic.card_title}}</a>
+                  <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
+                  <a class="clinic_phone" href="tel:{{clinic.main_phone | raw}}">Тел.: {{clinic.main_phone | raw}}</a>
+
+              </div>
+
+            </a>
 
           {% endif %}
 
@@ -96,7 +97,8 @@
           >
 
             <p class="clinic_title">{{clinic.clinic_title}}</p>
-            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+            <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
+            <a class="clinic_phone" href="tel:{{clinic.main_phone | raw}}">Тел.: {{clinic.main_phone | raw}}</a>
 
           </div>
 
@@ -140,13 +142,9 @@
 
     </div>
 
-    <div class="doctors_wrapper swiper-container">
+    <div class="doctors_wrapper">
 
-      <div class="swiper-wrapper">
-
-        {{this.render('/components/doctorListing.twig', {'doctors': doctors}) | raw}}
-
-      </div>
+      {{this.render('/components/doctorListing.twig', {'doctors': doctors}) | raw}}
 
     </div>
 

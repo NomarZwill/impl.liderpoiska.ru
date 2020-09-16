@@ -405,7 +405,7 @@
     }
 
     &._compact{
-    max-height: 410px;
+    max-height: 400px;
     overflow: hidden;
     }
 
@@ -414,7 +414,7 @@
       bottom: 0;
       width: 100%;
       height: auto;
-      padding: 16px 0 0 0;
+      padding: 8px 0 0 0;
       background: linear-gradient(rgba(255, 255, 255, 0) 0%, #fff9f0 30%);
     }
   }
@@ -557,6 +557,12 @@
       height: 4px;
       background: red;
       border-radius: 2px;
+    }
+  }
+
+  .metro._no_dot{
+    &:before{
+      content: none;
     }
   }
 
@@ -928,7 +934,7 @@
     .review_text{
 
       &._compact{
-        max-height: 150px;
+        max-height: 140px;
       }
     }
 
