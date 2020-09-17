@@ -30,6 +30,9 @@ export default class DoctorPage{
       spaceBetween: 16,
     });
 
+    
+    
+
     var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
@@ -44,6 +47,21 @@ export default class DoctorPage{
 
     });
 
+    $('.content_block.doctor_lizcenz .lizcenz_item').on('click', function(e) {
+      var lizcenzItem = $(this).html();
+      $('.popup_filter_bg .lizcenz_item_wrapper').html(lizcenzItem);
+      $('.popup_filter_bg').addClass('_active');
+      $('.popup_filter_bg .popup_lizcenz_wrapper').removeClass('_hidden');
+
+      $('body').addClass('_popup_mode');
+    });
+
+    $('.popup_filter_bg .popup_lizcenz_wrapper').find('.close_icon').on('click', function(e){
+      $(this).closest('.popup_lizcenz_wrapper').addClass('_hidden');
+      $('.popup_filter_bg').removeClass('_active');
+      $('body').removeClass('_popup_mode');
+    });
+
     if ($('.doctor_education_content').height() > 600){
       $('.doctor_education_content').addClass('_compact');
       $('.doctor_education_content .show_all').removeClass('_hidden');
@@ -55,6 +73,7 @@ export default class DoctorPage{
 
     var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
       slidesPerView: 'auto',
+      initialSlide: 3,
       spaceBetween: 24,
       observer: true,
       observeParents: true,
@@ -115,8 +134,6 @@ export default class DoctorPage{
       popupSwipers.push(bigSlides, thumbs);
     });
 
-    console.log(popupSwipers);
-
     $('.doctor_work_example .doctor_work_image').on('click', function(e){
       var currentID = $(this).data('gallery-id');
       openInnerGallery(currentID);
@@ -128,7 +145,7 @@ export default class DoctorPage{
     });
     
     function openInnerGallery(id){
-      $('body').css('overflow', 'hidden');
+      $('body').addClass('_popup_mode');
       var $currentPopupGallery = null;
 
       $popupGalleries.each(function(i){
@@ -149,7 +166,13 @@ export default class DoctorPage{
     $('.popup_gallery_wrapper .close_icon').on('click', function(e){
       $(this).closest('.popup_gallery_wrapper').removeClass('_active');
       $(this).closest('.popup_filter_bg').removeClass('_active');
-      $('body').css('overflow', 'auto');
+      $('body').removeClass('_popup_mode');
+    });
+
+    $('.popup_filter_bg .popup_gallery_wrapper').find('.popup_close_button').on('click', function(e){
+      $(this).closest('.popup_gallery_wrapper').removeClass('_hidden');
+      $('.popup_filter_bg').removeClass('_active');
+      $('body').removeClass('_popup_mode');
     });
 
     $('.popup_gallery_wrapper .swiper-button-next._diagonal_navigation').on('click', function(e){
@@ -172,7 +195,7 @@ export default class DoctorPage{
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      centeredSlides: true,
+      // centeredSlides: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

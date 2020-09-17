@@ -143,7 +143,6 @@
     h2{
       padding: 0 0 24px 0;
     }
-
   }
 
   .content_block.doctor_menu{
@@ -168,7 +167,64 @@
     line-height: 24px;
     letter-spacing: 0.01em;
   }
+
+  .video_item_wrapper{
+    position: relative;
+    
+    iframe{
+      border-radius: 8px;
+    }
+  }
   
+  .play_button_wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+  
+  .play_button{
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: #ffffff;
+
+    &:before{
+      content: "";
+      position: absolute;
+      top: calc(50% - 8px);
+      left: calc(50% - 7px);
+      width: 17px;
+      height: 18px;
+      background: url(/img/play-icon.svg);
+    }
+
+    &:hover:before{
+      background: url(/img/play-icon-hover.svg);
+    }
+
+    &:after{
+      content: "";
+      position: absolute;
+      top: calc(50% - 32px);
+      left: calc(50% - 32px);
+      width: 62px;
+      height: 62px;
+      border: 1px solid rgba(120, 47, 64, 0.4);
+      border-radius: 31px;
+    }
+
+    &:hover:after{
+      border: 1px solid rgba(189, 155, 116, 0.4);
+    }
+  }
+
   .content_block.doctor_lizcenz{
     width: 100%;
     padding: 48px 0 56px 0;
@@ -180,8 +236,13 @@
   }
 
   .lizcenz_wrapper{
+    position: relative;
     width: 100%;
     overflow: hidden;
+
+    .swiper-wrapper{
+      padding: 4px 0 0 0;
+    }
 
     .revolver_navigation_wrapper{
       margin: 16px auto 0 auto;
@@ -189,8 +250,14 @@
   }
 
   .lizcenz_item.swiper-slide{
+    cursor: pointer;
     flex-shrink: 1;
     margin: 0 32px 0 0;
+
+    &:hover{
+      box-shadow: 0px 15px 25px 10px rgba(15, 4, 61, 0.1);
+      transform: translateY(-4px);
+    }
   }
 
   .content_block.doctor_education{
@@ -200,9 +267,38 @@
       padding: 0 0 24px 0;
     }
 
+    &,
     p{
       line-height: 26px;
       letter-spacing: 0.01em;
+    }
+
+    ol{
+      list-style-type: none;
+      counter-reset: num;
+      padding: 12px 0 0 0;
+
+      li{
+        position: relative;
+        margin: 0 0 0 56px;
+        padding: 12px 0 0 0;
+  
+        &:before{
+          content: counter(num) ".";
+          counter-increment: num;
+          position: absolute;
+          left: -30px;
+          letter-spacing: 0.01em;
+          text-align: center;
+        }
+  
+        &,
+        p{
+          padding: 0 0 12px 0;
+          line-height: 26px;
+          letter-spacing: 0.01em;
+        }
+      }
     }
   }
 
@@ -354,6 +450,10 @@
     width: 100%;
   }
 
+  .reviews_wrapper{
+    padding: 0 0 0 24px;
+  }
+
   .content_block{
     display: flex;
     flex-flow: column nowrap;
@@ -435,6 +535,14 @@
       line-height: 23px;
       letter-spacing: 0.01em;
     }
+
+    .video_item_wrapper{
+
+      iframe{
+        width: 736px;
+        height: 414px;
+      }
+    }
     
     .content_block.doctor_video,
     .content_block.doctor_lizcenz{
@@ -448,14 +556,14 @@
     .content_block.doctor_work_example{
       padding: 32px 0 40px 0;
     }
-    
-    
 
     .content_block.doctor_reviews{
       padding: 40px 0 32px 0;
     }
 
-
+    .reviews_wrapper{
+      padding: 0 16px 0 16px;
+    }
   }
 
   @include for-mobile{
@@ -544,8 +652,36 @@
       }
     }
 
-    video{
-      width: 100%;
+    .video_item_wrapper{
+
+      iframe{
+        width: 288px;
+        height: 162px;
+      }
+    }
+
+    .play_button{
+      top: calc(50% - 24px);
+      left: calc(50% - 24px);
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+  
+      &:before{
+        top: calc(50% - 6px);
+        left: calc(50% - 5px);
+        width: 12px;
+        height: 13px;
+        background-size: contain;
+      }
+  
+      &:after{
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        width: 38px;
+        height: 38px;
+        border-radius: 19px;
+      }
     }
 
     .content_block.doctor_lizcenz{
@@ -590,5 +726,21 @@
     .content_block.doctor_reviews{
       padding: 32px 16px 40px 16px;
     }
+
+    .reviews_wrapper{
+      padding: 0 0 0 0;
+    }
+  }
+}
+
+.popup_lizcenz_wrapper{
+  position: absolute;
+  margin: 70px 0 70px 0;
+  padding: 48px 48px 48px 48px;
+  background: #ffffff;
+
+  img{
+    width: 360px;
+    height: auto;
   }
 }

@@ -112,8 +112,12 @@
 
     <h2>Видео о враче</h2>
 
-    {# <video src="/video/video_1.mp4" controls="controls"></video> #}
-    <iframe width="808" height="455" src="https://www.youtube.com/embed/Sn7CC9Z51so" frameborder="0" allowfullscreen></iframe>
+    <div class="video_item_wrapper">
+      <div id="video_item"></div>
+      <div class="play_button_wrapper">
+        <button class="play_button"></button>
+      </div>
+    </div>
 
   </div>
 
@@ -444,80 +448,112 @@
       <div class="popup_close_button">Закрыть</div>       
 
     </div>
-    
-  </div>
 
-  {% for i in 1..10 %}
-    
-    <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
-
-      <div class="close_icon"></div>
-
-      <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
-
-      <div class="swiper-container popup_gallery">
-
-        <div class="swiper-wrapper">
-
-          {% for i in 1..10 %}
-
-            <div class="swiper-slide doctor_work_item _popup">
-              <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
-            </div>
-
-          {% endfor %}
-
-        </div>
-
-        <div class="popup_navigation_wrapper">
-
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next "></div>
-  
-        </div>
+    <div class="popup_lizcenz_wrapper _hidden">
+      
+      <div class="close_icon"></div>       
+      
+      <div class="lizcenz_item_wrapper">
 
       </div>
 
-      <div class="swiper-container popup_gallery_thumbs">
-
-        <div class="swiper-wrapper">
-
-          {% for i in 1..10 %}
-
-            <div class="swiper-slide doctor_work_item _popup">
-              <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
-            </div>
-
-          {% endfor %}
-
-        </div>
-
-      </div>
-
-      <p>
-        Пациент обратился с жалобой на неудобное использование полного 
-        съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
-        Была проведена костная пластика и установка дентальных 
-        имплантантов, что позволило нам через 7 месяцев забыть о 
-        существовании полных съемных протезов навсегда. Фото сделано на 
-        профилактическом осмотре через 5 лет после имплантации.
-      </p>
-
-      <div class="diagonal_navigation">
-
-        <div class="diagonal_navigation_bg"></div>
-        <div class="swiper-button-prev _diagonal_navigation"></div>
-        <span class="current_slide">01</span>
-        <br>
-        <span class="total_slides">03</span>
-        <div class="swiper-button-next _diagonal_navigation"></div>
-
-      </div>
-
-      <button class="popup_close_button">Закрыть</button> 
+      <div class="popup_close_button">Закрыть</div>       
 
     </div>
 
-  {% endfor %}
+    {% for i in 1..10 %}
+      
+      <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
+
+        <div class="close_icon"></div>
+
+        <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
+
+        <div class="swiper-container popup_gallery">
+
+          <div class="swiper-wrapper">
+
+            {% for i in 1..10 %}
+
+              <div class="swiper-slide doctor_work_item _popup">
+                <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+              </div>
+
+            {% endfor %}
+
+          </div>
+
+          <div class="popup_navigation_wrapper">
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next "></div>
+    
+          </div>
+
+        </div>
+
+        <div class="swiper-container popup_gallery_thumbs">
+
+          <div class="swiper-wrapper">
+
+            {% for i in 1..10 %}
+
+              <div class="swiper-slide doctor_work_item _popup">
+                <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+              </div>
+
+            {% endfor %}
+
+          </div>
+
+        </div>
+
+        <p>
+          Пациент обратился с жалобой на неудобное использование полного 
+          съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
+          Была проведена костная пластика и установка дентальных 
+          имплантантов, что позволило нам через 7 месяцев забыть о 
+          существовании полных съемных протезов навсегда. Фото сделано на 
+          профилактическом осмотре через 5 лет после имплантации.
+        </p>
+
+        <div class="diagonal_navigation">
+
+          <div class="diagonal_navigation_bg"></div>
+          <div class="swiper-button-prev _diagonal_navigation"></div>
+          <span class="current_slide">01</span>
+          <br>
+          <span class="total_slides">03</span>
+          <div class="swiper-button-next _diagonal_navigation"></div>
+
+        </div>
+
+        <button class="popup_close_button">Закрыть</button> 
+
+      </div>
+
+    {% endfor %}
+
+  </div>
   
 </div>
+
+<script src="//www.youtube.com/player_api"></script>
+
+<script>
+  var play;
+  
+  function onYouTubePlayerAPIReady() {
+      play = new YT.Player('video_item', {
+        videoId: 'Sn7CC9Z51so',
+        width: '808',
+        height: '455',
+      });
+      $('.play_button').on('click', function() {
+        play.playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+      // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
+  }
+
+</script>
