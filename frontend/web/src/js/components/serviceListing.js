@@ -19,7 +19,8 @@ export default class ServiceListing{
       if (!$(e.target).hasClass('_active')) {
         $(this).siblings('.listing_second_level').find('.arrow._active').removeClass('_active');
         $(this).siblings('.listing_second_level').find('.listing_third_level._active').removeClass('_active');
-
+      } else {
+        $(e.target).closest('.listing_block').find('.collapse_wrapper._short_list').addClass('_hidden');
       }
 
       if (!$(e.target).closest('.listing_block').find('.close_block').hasClass('_active')) {
@@ -28,6 +29,12 @@ export default class ServiceListing{
 
       $(e.target).toggleClass('_active');
       $(this).siblings('.listing_second_level').toggleClass('_active');
+
+      if ($(e.target).closest('.listing_block').find('.collapse_wrapper._short_list').length !== 0
+        && $(e.target).closest('.listing_block').find('.arrow._active').length === 0) {
+        $(e.target).closest('.listing_block').find('.close_block').removeClass('_active');
+        $(e.target).closest('.listing_block').find('.open_block').addClass('_active');
+      }
     });
 
     var $secondLevelItems = $('.listing_second_level_item');
@@ -54,6 +61,7 @@ export default class ServiceListing{
     $('.close_block').on('click', function(e){
       $(e.target).toggleClass('_active');
       $(e.target).siblings('.open_block').toggleClass('_active');
+      $(e.target).closest('.collapse_wrapper._short_list').addClass('_hidden');
       var $innerBlock = $(e.target).closest('.collapse_wrapper').siblings('.listing_first_level')
       // $innerBlock.addClass('_long');
       minimizeLongList($innerBlock);
@@ -65,6 +73,7 @@ export default class ServiceListing{
     
     
     function openBlock(el){
+      $(el).closest('.collapse_wrapper').removeClass('_hidden');
       $(el).toggleClass('_active');
       $(el).siblings('.close_block').toggleClass('_active');
       // $(el).closest('.collapse_wrapper').siblings('.listing_first_level').removeClass('_long');
@@ -103,7 +112,7 @@ export default class ServiceListing{
             minimizeLongList($($firstLevelBlocks[i]));
             $($firstLevelBlocks[i]).siblings('.collapse_wrapper').removeClass('_hidden');
           } else {
-            $($firstLevelBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden');
+            $($firstLevelBlocks[i]).siblings('.collapse_wrapper').addClass('_hidden _short_list');
           }
         });
         

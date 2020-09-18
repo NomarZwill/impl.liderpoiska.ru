@@ -277,13 +277,13 @@
       overflow: hidden;
     }
 
-    .listing_first_level._long{
-      // max-height: 116px;
+    // .listing_first_level._long{
+    //   // max-height: 116px;
 
-      &:nth-of-type(){
-        display: none;
-      }
-    }
+    //   &:nth-of-type(){
+    //     display: none;
+    //   }
+    // }
 
     .listing_first_level_item{
       width: 100%;

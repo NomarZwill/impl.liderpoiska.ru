@@ -44,7 +44,8 @@ window.$ = $;
 			}
 
 			if ($('[data-page-type="speciality"]').length > 0) {
-	    	var medSpecialities = new MedSpecialities();
+				var medSpecialities = new MedSpecialities();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="doctor_page"]').length > 0) {

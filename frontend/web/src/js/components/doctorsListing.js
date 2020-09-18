@@ -43,7 +43,7 @@ export default class DoctorsListing{
       }
     });
 
-    $('.read_more').on('click', function (e) {
+    $('.content_block.title_wrapper .read_more').on('click', function (e) {
       $(this).siblings('p').addClass('_active');
       $(this).addClass('_hidden');
     });

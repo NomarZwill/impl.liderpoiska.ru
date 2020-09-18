@@ -5,14 +5,16 @@
     flex-flow: column nowrap;
     align-items: center;
     padding: 24px 104px 0 104px;
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
   }
 
   h1{
     padding: 16px 0 32px 0;
-  }
-
-  .breadcrumbs_wrapper{
-    padding: 0 16px 0 16px;
+    text-align: center;
   }
 
   .breadcrumbs{
@@ -117,6 +119,8 @@
     li{
       list-style-type: none;
       padding: 0 0 16px 0;
+      line-height: 26px;
+      letter-spacing: 0.01em;
 
       &:before{
         content: "– ";
@@ -126,7 +130,12 @@
 
   .content_block.reviews_container{
     width: 100%;
+
+    .review_text._compact{
+      height: 150px;
+    }
   }
+
 
   @include for-pad{
 
@@ -231,11 +240,21 @@
       img{
         width: 288px;
         height: auto;
-        margin: 0 16px 0 0;
+        margin: 0 24px 16px 0;
       }
   
       ul{
         padding: 0 0 0 12px;
+      }
+    }
+  }
+
+  @media (max-width: 344px){
+
+    .content_block.spec_description{
+  
+      img{
+        margin: 0 0 16px 0;
       }
     }
   }

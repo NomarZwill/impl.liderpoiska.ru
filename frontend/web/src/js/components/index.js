@@ -32,6 +32,24 @@ export default class Index{
       // spaceBetween: 24,
       watchOverflow: true,
       slidesPerGroup: 1,
+      on : {
+        init: function() {
+          console.log(this.slides.length);
+          if (this.slides.length < 10) {
+            this.$el.find('.total_slides').html('0' + this.slides.length);
+          } else {
+            this.$el.find('.total_slides').html(this.slides.length);
+          }
+        },
+
+        slideChange: function() {
+          if (this.activeIndex < 9) {
+            this.$el.find('.current_slide').html('0' + (this.activeIndex + 1));
+          } else {
+            this.$el.find('.current_slide').html(this.activeIndex + 1);
+          }
+        }
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -95,36 +113,6 @@ export default class Index{
     clinicsWrapper.on('resize', function(){
       this.update();
     });
-
-    // var $images = $('[data-bg-image]');
-    // $images.each(i => {
-    //   $($images[i]).css('background', `url(${$($images[i]).attr('data-bg-image')})`);
-    // });
-
-    // var $diagonalNavTotal = $('.total_slides');
-    
-    // $diagonalNavTotal.each(i => {
-    //   // console.log(i);
-    //   var $gallery = $($diagonalNavTotal[i]).closest('.swiper_container');
-    //   var totalSlides = $gallery.find('.swiper-slide').length;
-    //   if (totalSlides > 9) {
-    //     $($diagonalNavTotal[i]).text(totalSlides);
-    //   } else {
-    //     $($diagonalNavTotal[i]).text('0' + totalSlides);
-    //   }
-    // });
-
-    // $('.swiper-button-next._diagonal_navigation').on('click', e => {
-    //   var currentSlideNumber = $(e.target).siblings('.current_slide').html();
-    //   // console.log(currentSlideNumber);
-
-    //   if (currentSlideNumber > 8) {
-    //     $(e.target).siblings('.current_slide').html(+currentSlideNumber + 1);
-        
-    //   } else {
-    //     $(e.target).siblings('.current_slide').html('0' + (+currentSlideNumber + 1));
-    //   }
-    // });
 
     $('.clinic_description_wrapper .read_more').on('click', function (e) {
       $(this).siblings('p').addClass('_active');
