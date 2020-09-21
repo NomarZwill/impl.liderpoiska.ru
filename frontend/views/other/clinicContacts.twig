@@ -6,7 +6,7 @@
 
       <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
       <span class="breadcrumbs _menu_link"> → </span>
-      <span class="breadcrumbs _menu_link">Контакты</span>
+      <a class="breadcrumbs _menu_link" href="/contacts/">Контакты</a>
 
     </div>
 
@@ -124,7 +124,6 @@
       </div>
 
     </div>
-    <a name="map"></a>
 
     
   </div>
@@ -132,11 +131,16 @@
   <div class="content_block rating_map_block">
     
     <h3 class="rating_title">Рейтинг клиники</h3>
-    
+
     {{this.render('/components/ratings.twig', {}) | raw}}
-    
-    <div class="clinic_map">
-      {{clinic.clinic_map | raw}}
+
+    <a name="map"></a>
+
+    <div class="clinic_map map" 
+      data-latitude="{{clinic.clinic_latitude}}" 
+      data-longitude="{{clinic.clinic_longitude}}"
+      data-clinic-address="{{clinic.clinic_address_short}}">
+      
     </div>
 
   </div>
@@ -393,3 +397,5 @@
   </div>
   
 </div>
+
+<script defer src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>

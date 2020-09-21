@@ -12,6 +12,7 @@ import ServicePage from './components/servicePage';
 import Contacts from './components/contacts';
 import ClinicContacts from './components/clinicContacts';
 import YaMapContacts from './components/yaMapContacts';
+import YaMapClinicContacts from './components/yaMapClinicContacts';
 import About from './components/about';
 import Partners from './components/partners';
 import MedSpecFilter from './widgets/medSpecFilter';
@@ -89,8 +90,13 @@ window.$ = $;
 			}
 
 			if ($('.map').length > 0) {
+
 				if(($('[data-page-type="contacts"]').length > 0)) {
-					var map = new YaMapContacts();	
+					var map = new YaMapContacts();
+				}
+
+				if(($('[data-page-type="clinic_contacts"]').length > 0)) {
+					var clinicOnMap = new YaMapClinicContacts();	
 				}
 			}
 			

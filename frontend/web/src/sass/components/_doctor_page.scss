@@ -46,12 +46,12 @@
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    padding: 0 0 0 288px;
+    padding: 0 0 0 312px;
     
     .doctor_image{
       position: absolute;
       top: 0;
-      left: -24px;
+      left: 0;
       width: 288px;
       height: 292px;
       border-radius: 8px;
@@ -93,9 +93,33 @@
   }
 
   .clinics_wrapper{
+    position: relative;
+    left: -16px;
     width: 800px;
-    padding: 24px 32px 24px 32px;
+    padding: 24px 32px 24px 16px;
     overflow: hidden;
+
+    &:before{
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0, rgba(255, 255, 255, 0) 25%);
+      z-index: 10;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      top: 0;
+      right: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 75%);
+      z-index: 10;
+    }
 
     .revolver_navigation_wrapper{
       display: none;
@@ -175,74 +199,18 @@
       border-radius: 8px;
     }
   }
-  
-  .play_button_wrapper{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-  }
-  
-  .play_button{
-    cursor: pointer;
-    position: absolute;
-    top: calc(50% - 40px);
-    left: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    border-radius: 40px;
-    background: #ffffff;
-
-    &:before{
-      content: "";
-      position: absolute;
-      top: calc(50% - 8px);
-      left: calc(50% - 7px);
-      width: 17px;
-      height: 18px;
-      background: url(/img/play-icon.svg);
-    }
-
-    &:hover:before{
-      background: url(/img/play-icon-hover.svg);
-    }
-
-    &:after{
-      content: "";
-      position: absolute;
-      top: calc(50% - 32px);
-      left: calc(50% - 32px);
-      width: 62px;
-      height: 62px;
-      border: 1px solid rgba(120, 47, 64, 0.4);
-      border-radius: 31px;
-    }
-
-    &:hover:after{
-      border: 1px solid rgba(189, 155, 116, 0.4);
-    }
-  }
 
   .content_block.doctor_lizcenz{
     width: 100%;
     padding: 48px 0 56px 0;
     background: $lightBG;
-
-    h2{
-      padding: 0 0 24px 0;
-    }
   }
 
   .lizcenz_wrapper{
     position: relative;
     width: 100%;
     overflow: hidden;
-
-    .swiper-wrapper{
-      padding: 4px 0 0 0;
-    }
+    padding: 24px 0 0 0;
 
     .revolver_navigation_wrapper{
       margin: 16px auto 0 auto;
@@ -252,11 +220,17 @@
   .lizcenz_item.swiper-slide{
     cursor: pointer;
     flex-shrink: 1;
+    width: auto;
     margin: 0 32px 0 0;
 
     &:hover{
       box-shadow: 0px 15px 25px 10px rgba(15, 4, 61, 0.1);
       transform: translateY(-4px);
+    }
+
+    img{
+      width: auto;
+      max-height: 270px;
     }
   }
 
@@ -585,7 +559,7 @@
 
     .doctor_preview_container{
       width: 100%;
-      padding: 8px 16px 0 16px;
+      padding: 8px 0 0 0;
 
     }
     
@@ -595,7 +569,7 @@
       padding: 0 0 0 0;
       
       h1{
-        padding: 0 0 8px 0;
+        padding: 0 16px 8px 16px;
         text-align: center;
       }
 
@@ -608,16 +582,30 @@
 
     .specialities_wrapper{
       width: auto;
-      padding:0 0 16px 0;
+      padding:0 16px 16px 16px;
     }
 
-    .clinics_wrapper {
-      padding: 16px 0 48px 0;
+    .clinics_wrapper{
+      left: auto;
+      padding: 16px 16px 48px 16px;
+
+      &:before,
+      &:after{
+        content: none;
+      }
+
+      .swiper-wrapper{
+        height: auto;
+      }
 
       .revolver_navigation_wrapper{
         display: flex;
-        margin: 16px 0 0 0;
+        margin: 16px auto 0 auto;
       }
+    }
+    .clinic_item{
+      width: 288px;
+      padding: 12px 32px 24px 16px;
     }
 
     .content_block.doctor_menu{
@@ -660,36 +648,12 @@
       }
     }
 
-    .play_button{
-      top: calc(50% - 24px);
-      left: calc(50% - 24px);
-      width: 48px;
-      height: 48px;
-      border-radius: 24px;
-  
-      &:before{
-        top: calc(50% - 6px);
-        left: calc(50% - 5px);
-        width: 12px;
-        height: 13px;
-        background-size: contain;
-      }
-  
-      &:after{
-        top: calc(50% - 20px);
-        left: calc(50% - 20px);
-        width: 38px;
-        height: 38px;
-        border-radius: 19px;
-      }
-    }
-
     .content_block.doctor_lizcenz{
       padding: 24px 0 32px 0;
+    }
 
-      h2{
-        padding: 0 0 16px 0;
-      }
+    .lizcenz_wrapper{
+      padding: 16px 0 0 0;
     }
 
     .content_block.doctor_education{

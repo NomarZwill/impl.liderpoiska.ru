@@ -146,12 +146,21 @@
 
           <div class="clinic_e-mail info_item">
             <span class="info_item_title">Эл/почта:</span><br>
-            <a href="mailto:ces_un@mail.ru">ces_un@mail.ru</a>
+            <a class="_menu_link" href="mailto:ces_un@mail.ru">ces_un@mail.ru</a>
           </div>
+
+          {% if clinic.clinic_id == 5 %}
+
+            <div class="clinic_e-mail info_item">
+              <span class="info_item_title">Сайт:</span><br>
+              <a class="_menu_link" href="http://{{clinic.clinic_site}}">{{clinic.clinic_site}}</a>
+            </div>
+
+          {% endif %}
+
         </div>
 
         {{this.render('/components/ratings.twig', {}) | raw}}
-
 
         <div class="button_container">
 

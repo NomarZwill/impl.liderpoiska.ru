@@ -10,23 +10,40 @@ export default class MedSpecialities{
   }
 
   init(){
+    var doctorsWrapper = null;
 
-    if (document.documentElement.clientWidth <= 768){
+    function getScrollWidth() {
+      return Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
+        document.body.offsetWidth, document.documentElement.offsetWidth,
+        document.body.clientWidth, document.documentElement.clientWidth
+      );
+    };
 
-      var doctorsWrapper  = new Swiper('.doctors_wrapper', {
-        slidesPerView: 'auto',
-        spaceBetween: 12,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
-  
-      });
-    }
+    var switchMobileMode = function(e) {
+
+      if (getScrollWidth() < 768 && doctorsWrapper === null) {
+        doctorsWrapper  = new Swiper('.doctors_wrapper', {
+          slidesPerView: 'auto',
+          spaceBetween: 12,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          // pagination: {
+          //   el: '.swiper-pagination',
+          //   type: 'bullets',
+          // }
+        });
+
+      } else if (getScrollWidth() >= 768 && doctorsWrapper !== null) {
+        doctorsWrapper.destroy();
+        doctorsWrapper = null;
+      }
+    };
+
+    window.addEventListener('resize', switchMobileMode, { passive: true });
+    switchMobileMode();
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
@@ -39,7 +56,6 @@ export default class MedSpecialities{
       //   el: '.swiper-pagination',
       //   type: 'bullets',
       // }
-
     });
   }
 }

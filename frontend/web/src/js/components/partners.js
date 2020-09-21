@@ -11,18 +11,21 @@ export default class Partners{
   
   init(){
     var partnersLogoContainer = null;
-    var scrollWidth = 0;
     var $logoNavigation = $('.revolver_navigation_wrapper');
     var $moreGiftsButton = $('.partners_gifts_container button');
     var $giftItems = $('.partners_gifts_item');
 
-    var switchMobileMode = function(e) {
-      scrollWidth = Math.max(
+    function getScrollWidth() {
+      return Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
         document.body.offsetWidth, document.documentElement.offsetWidth,
         document.body.clientWidth, document.documentElement.clientWidth
       );
+    };
 
-      if (scrollWidth < 768 && partnersLogoContainer === null) {
+    var switchMobileMode = function(e) {
+
+      if (getScrollWidth() < 768 && partnersLogoContainer === null) {
         partnersLogoContainer  = new Swiper('.partners_logo_container', {
           slidesPerView: 2,
           spaceBetween: 12,
@@ -46,7 +49,7 @@ export default class Partners{
           }
         }
 
-      } else if (scrollWidth >= 768 && partnersLogoContainer !== null) {
+      } else if (getScrollWidth() >= 768 && partnersLogoContainer !== null) {
         partnersLogoContainer.destroy();
         partnersLogoContainer = null;
         $logoNavigation.addClass('_hidden');

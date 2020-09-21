@@ -541,28 +541,6 @@
     letter-spacing: 0.02em;
   }
 
-  .metro{
-    position: relative;
-    padding: 0 0 0 10px;
-
-    &:before{
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 0;
-      width: 4px;
-      height: 4px;
-      background: red;
-      border-radius: 2px;
-    }
-  }
-
-  .metro._no_dot{
-    &:before{
-      content: none;
-    }
-  }
-
   .clinic_info{
     width: 100%;
     // padding: 80px 0 0 0;

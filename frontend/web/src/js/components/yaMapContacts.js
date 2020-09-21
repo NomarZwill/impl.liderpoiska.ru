@@ -177,7 +177,8 @@ export default class YaMapContacts{
         );
 
         activeObjectID = e.get('objectId');
-        setActivePinInfo(activeObjectID);
+        // setActivePinInfo(activeObjectID);
+        // myMap.setCenter(objectManager.objects._objectsById[activeObjectID].geometry.coordinates);
       });
         
       $('.content_block.clinic_on_map_container .cities').on('click', function(e) {

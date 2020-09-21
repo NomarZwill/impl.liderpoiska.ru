@@ -251,7 +251,7 @@
 
       <div class="swiper-wrapper">
 
-        {% for i in 1..10 %}
+        {# {% for i in 1..10 %}
     
           <div class="swiper-slide service_video_item_wrapper">
   
@@ -261,7 +261,56 @@
   
           </div>
   
-        {% endfor %}
+        {% endfor %} #}
+
+          <div class="swiper-slide service_video_item_container">
+  
+
+            <div class="service_video_item_wrapper">
+
+              <div id="video_item_0" class="servise_video"></div>
+  
+              <div class="play_button_wrapper">
+                <button class="play_button"></button>
+              </div>
+
+            </div>
+
+            <p>Хирургическая стоматология. Удаление кисты зуба и резекция корня зуба.</p>
+  
+          </div>
+
+          <div class="swiper-slide service_video_item_container">
+  
+            <div class="service_video_item_wrapper">
+
+              <div id="video_item_1" class="servise_video"></div>
+  
+              <div class="play_button_wrapper">
+                <button class="play_button"></button>
+              </div>
+
+            </div>
+
+            <p>Хирургическая стоматология. Удаление кисты зуба и резекция корня зуба.</p>
+  
+          </div>
+
+          <div class="swiper-slide service_video_item_container">
+  
+            <div class="service_video_item_wrapper">
+
+              <div id="video_item_2" class="servise_video"></div>
+  
+              <div class="play_button_wrapper">
+                <button class="play_button"></button>
+              </div>
+
+            </div>
+
+            <p>Хирургическая стоматология. Удаление кисты зуба и резекция корня зуба.</p>
+  
+          </div>
 
       </div>
 
@@ -803,3 +852,42 @@
   </div>
   
 </div>
+
+<script src="//www.youtube.com/player_api"></script>
+
+<script>
+  var player = [];
+  
+  function onYouTubePlayerAPIReady() {
+      player[0] = new YT.Player('video_item_0', {
+        videoId: 'Sn7CC9Z51so',
+        width: '496',
+        height: '286',
+      });
+      $('#video_item_0').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
+        player[0].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+
+      player[1] = new YT.Player('video_item_1', {
+        videoId: 'Sn7CC9Z51so',
+        width: '496',
+        height: '286',
+      });
+      $('#video_item_1').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
+        player[1].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+
+      player[2] = new YT.Player('video_item_2', {
+        videoId: 'Sn7CC9Z51so',
+        width: '496',
+        height: '286',
+      });
+      $('#video_item_2').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
+        player[2].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+      // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
+  };
+</script>
