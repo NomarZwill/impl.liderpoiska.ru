@@ -41,8 +41,6 @@
     }
   }
 
-
-
   .rating_map_block{
     width: 100%;
     padding: 24px 0 0 0;
@@ -76,8 +74,12 @@
     }
   }
 
-  .doctors_wrapper .swiper-wrapper{
-    padding: 4px 0 32px 0;
+  .doctors_wrapper{
+    padding: 0 24px 0 24px;
+
+    .swiper-wrapper{
+      padding: 4px 0 32px 0;
+    } 
   }
 
   .swiper-slide.doctor_item_wrapper{
@@ -111,7 +113,6 @@
     }
     
     .clinic_info_wrapper{
-      width: 100%;
       padding: 0 16px 0 16px;
       flex-flow: row wrap;
     }
@@ -122,12 +123,12 @@
 
     div.additional_info{
       width: 50%;
-      padding: 24px 0 0 32px;
+      padding: 0 0 0 32px;
       flex-grow: 1;
       align-self: center;
 
       p:before{
-        top: 24px;
+        top: 0;
       }
     }
 
@@ -157,6 +158,10 @@
 
   @include for-pad{
 
+    .clinic_info_wrapper{
+      width: 768px;
+    }
+
     .rating_title{
       padding: 16px 0 24px 0;
     }
@@ -174,12 +179,21 @@
       }
     }
 
-    .doctors_wrapper .swiper-wrapper{
-      padding: 0 0 24px 0;
+    .doctors_wrapper{
+      padding: 0 16px 0 16px;
+  
+      .swiper-wrapper{
+        padding: 0 0 24px 0;
+      } 
     }
   }
 
   @include for-mobile{
+
+    .clinic_info_wrapper{
+      width: 100%;
+      flex-flow: column nowrap;
+    }
     
     .breadcrumbs_wrapper{
       flex-wrap: wrap;
@@ -193,6 +207,15 @@
       padding: 16px 0 0 0;
     }
 
+    div.button_container{
+      width: 100%;
+      padding: 0 0 16px 0;
+    }
+
+    div.additional_info{
+      width: 100%;
+    }
+
     .rating_title{
       padding: 8px 0 20px 0;
     }
@@ -201,8 +224,12 @@
       padding: 32px 0 0 0;
 
       h2{
-        padding: 0 0 16px 0;
+        padding: 0 16px 16px 16px;
       }
+    }
+
+    .doctors_wrapper{
+      padding: 0 16px 0 16px;
     }
 
     .content_block.doctor_reviews{

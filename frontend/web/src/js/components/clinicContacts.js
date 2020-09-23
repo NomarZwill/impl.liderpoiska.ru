@@ -47,8 +47,8 @@ export default class ClinicContacts{
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      centeredSlides: true,
-      initialSlide: 3,
+      // centeredSlides: true,
+      // initialSlide: 3,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -62,8 +62,8 @@ export default class ClinicContacts{
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      centeredSlides: true,
-      initialSlide: 2,
+      // centeredSlides: true,
+      // initialSlide: 2,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

@@ -10,7 +10,6 @@ export default class YaMapClinicContacts{
       $('.clinic_map').data('latitude'),
       $('.clinic_map').data('longitude')
     ];
-    console.log(clinicCoordinates);
 
     ymaps.ready(function(){
 			var map = document.querySelector(".map");
@@ -27,7 +26,7 @@ export default class YaMapClinicContacts{
         iconImageSize: [40, 50],
         iconImageOffset: [0, -25],
         hideIconOnBalloonOpen: false,
-        balloonOffset: [20, -25]
+        balloonOffset: [20, 25]
       });
 
       myMap.geoObjects.add(clinic);

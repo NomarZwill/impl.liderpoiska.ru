@@ -183,6 +183,15 @@
 
   @include for-pad{
 
+    .clinic_main_info_wrapper{
+      padding: 24px 0 8px 0;
+    }
+
+    div.button_container{
+      align-self: flex-start;
+      padding: 0 0 0 0;
+    }
+
     .clinic_address,
     .clinic_work_hours{
       width: 50%;
@@ -195,13 +204,31 @@
 
   @include for-mobile{
 
-
     .clinic_main_info_wrapper{
       flex-flow: column nowrap;
+      padding: 16px 0 0 0;
 
       .info_item{
         padding: 0 0 12px 0;
       }
+    }
+
+    .diagonal_navigation{
+      bottom: 8px;
+      right: calc(50% - 62px);
+      color: #ffffff;
+
+      &:after{
+        border-top: 1px solid #ffffff;
+      }
+
+      .swiper-button-next._diagonal_navigation,
+      .swiper-button-prev._diagonal_navigation{
+        background: url(/img/arrow_diagonal_nav_mobile_white.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
     }
 
     .ratings_container{
@@ -215,6 +242,7 @@
     .button_container{
       display: flex;
       flex-flow: column nowrap;
+      padding: 4px 0 0 0;
 
       .popup_button{
         order: 2;

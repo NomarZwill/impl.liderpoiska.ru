@@ -1,0 +1,116 @@
+[data-page-type="prices"]{
+
+  .content_block.title_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 24px 0 32px 0;
+  }
+
+  h1{
+    padding: 16px 0 0 0;
+  }
+
+  .content_block.menu_container{
+    position: fixed;
+    top: 336px;
+    left: 124px;
+    width: 304px;
+    padding: 24px 24px 12px 49px;
+    background: #F8F8F8;
+    border-radius: 8px;
+  }
+
+  .menu_item_wrapper{
+    padding: 0 0 12px 0;
+  }
+  
+  .menu_item{
+    position: relative;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: $headerBlack;
+
+    &:before{
+      content: "—";
+      position: absolute;
+      left: -22px;
+    }
+  }
+
+  .content_block.service_block_container{
+    padding: 24px 0 0 0;
+  }
+
+  .block_title{
+    padding: 0 0 16px 0;
+
+    h2{
+      text-align: center;
+      color: $headerBlack;
+    }
+  }
+
+  .service_price_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 12px 4px 12px 4px;
+  }
+
+  .service_price_name{
+    max-width: 704px;
+
+    p{
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  .service_price_points{
+    flex-grow: 1;
+    height: 15px;
+    margin: 0 8px 0 8px;
+    border-bottom: 1px dotted $textColor;
+  }
+
+  .content_block{
+    width: 1016px;
+  }
+
+  @include for-notdesc{
+
+    h1{
+      padding: 8px 0 0 0;
+    }
+  }
+
+  @include for-pad{
+
+    .content_block.menu_container{
+      position: static;
+      width: 736px;
+    }
+    
+    .menu_wrapper{
+      display: flex;
+      flex-flow: column wrap;
+      height: 276px;
+    }
+
+    .menu_item_wrapper{
+      width: 39%;
+    }
+
+  }
+
+  @include for-mobile{
+
+    .content_block.title_container{
+      padding: 24px 16px 24px 16px;
+    }
+
+    .content_block.menu_container{
+      display: none;
+    }
+  }
+}
