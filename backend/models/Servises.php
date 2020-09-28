@@ -103,4 +103,10 @@ class Servises extends \yii\db\ActiveRecord
         return $childCounter;
     }
 
+    public function getPrices(){
+        return $this->hasMany(Prices::className(), ['prices_id' => 'prices_id'])
+            ->viaTable('service_and_prices', ['service_id' => 'servise_id']);
+    }
+
+
 }

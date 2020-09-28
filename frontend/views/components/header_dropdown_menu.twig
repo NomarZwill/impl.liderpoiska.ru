@@ -1,0 +1,67 @@
+<div data-page-type="header_dropdown_menu">
+
+  <div class="category_wrapper">
+
+    {% for serviseMenu in servises %}
+
+      {% if serviseMenu.parent_id == 0 %}
+
+        <div class="category_item_wrapper">
+
+          <p class="category_name">{{serviseMenu.menu_title | raw}}</p>
+
+          <div class="listing_first_level level_container _hidden">
+
+            <div class="listing_first_level level_wrapper column">
+
+              {% for serviseFirst in servises %}
+              
+                {% if loop.index <= (loop.length / 2)|round(0, 'ceil')  %}
+
+                  {{this.render(
+                    '/components/service_listing_inner_levels.twig',
+                    {
+                      'servises': servises,
+                      'serviseMenu': serviseMenu,
+                      'serviseFirst': serviseFirst
+                    }
+                  ) | raw}}
+
+                {% endif %}
+
+              {% endfor %}
+            
+            </div>
+
+            <div class="listing_first_level level_wrapper column">
+
+              {% for serviseFirst in servises %}
+              
+                {% if loop.index > (loop.length / 2)|round(0, 'ceil')  %}
+
+                  {{this.render(
+                    '/components/service_listing_inner_levels.twig',
+                    {
+                      'servises': servises,
+                      'serviseMenu': serviseMenu,
+                      'serviseFirst': serviseFirst
+                    }
+                  ) | raw}}
+
+                {% endif %}
+
+              {% endfor %}
+            
+            </div>
+
+          </div>
+
+        </div>
+
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+
+</div>

@@ -3,13 +3,14 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use frontend\controllers\MainController;
 use backend\models\Servises;
 use backend\models\Doctors;
 use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
 
 
-class DentController extends Controller
+class DentController extends MainController
 {
 
    public function actionIndex(){

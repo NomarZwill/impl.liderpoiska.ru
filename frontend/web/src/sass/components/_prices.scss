@@ -1,4 +1,9 @@
 [data-page-type="prices"]{
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
 
   .content_block.title_container{
     display: flex;
@@ -12,9 +17,9 @@
   }
 
   .content_block.menu_container{
-    position: fixed;
-    top: 336px;
-    left: 124px;
+    position: absolute;
+    top: 172px;
+    left: calc((100% - 1672px) / 2);
     width: 304px;
     padding: 24px 24px 12px 49px;
     background: #F8F8F8;
@@ -37,12 +42,45 @@
       left: -22px;
     }
   }
+  
+  .hot_deal_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 16px 24px 16px 24px;
+    background: $lightBG;
+    border-radius: 8px;
+
+    ._button{
+      width: 232px;
+      height: 56px;
+    }
+  }
+
+  .hot_deal_text_wrapper{
+    padding: 0 56px 0 32px;
+
+    h3{
+      color: $baseColor;
+    }
+
+    p{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+  }
 
   .content_block.service_block_container{
-    padding: 24px 0 0 0;
+    padding: 24px 0 24px 0;
+    overflow: hidden;
+
+    &._last_block{
+      margin: 0 auto 24px auto;
+    }
   }
 
   .block_title{
+    position: relative;
     padding: 0 0 16px 0;
 
     h2{
@@ -51,36 +89,144 @@
     }
   }
 
+  .collapse_wrapper{
+    position: absolute;
+    display: none;
+    top: 12px;
+    right: 0;
+
+    span{
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+  }
+
+  .button_wrapper{
+    display: flex;
+    justify-content: center;
+
+    ._button{
+      width: 232px;
+      height: 48px;
+    }
+    
+  }
+
   .service_price_wrapper{
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
-    padding: 12px 4px 12px 4px;
+    padding: 12px 0 12px 4px;
   }
 
   .service_price_name{
     max-width: 704px;
 
     p{
+      position: relative;
+      display: inline;
+      background-color: #ffffff;
       line-height: 26px;
       letter-spacing: 0.01em;
     }
   }
 
-  .service_price_points{
-    flex-grow: 1;
-    height: 15px;
-    margin: 0 8px 0 8px;
+  .dot_tail{
+    position: absolute;
+    bottom: 20px;
+    left: 4px;
+    width: 1000px;
     border-bottom: 1px dotted $textColor;
   }
 
+  .service_price_points{
+    flex-grow: 1;
+    height: 15px;
+  }
+
+  .service_price_value{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 3px 0;
+    background: #ffffff;
+    font-weight: 500;
+
+    &:before{
+      content: "";
+      width: 5px;
+      height: 100%;
+      background: #ffffff;
+    }
+  }
+
   .content_block{
-    width: 1016px;
+    max-width: 1016px;
+  }
+
+  // *** для скользящего меню ***
+
+  .sticky {
+    position: fixed;
+    z-index: 101;
+  }
+  .stop {
+    position: relative;
+    z-index: 101;
+  }
+
+  // ****************************
+
+  @media (max-width: 1716px) and (min-width: 1440px){
+    align-items: flex-start;
+    // padding: 0 0 0 352px;
+
+    .content_block.menu_container{
+      top: 172px;
+      left: 24px;
+    }
+
+    .content_block.service_block_container,
+    .content_block.hot_deal_container{
+      margin: 0 0 0 352px;
+    }
+
+    .block_title{
+  
+      h2{
+        text-align: start;
+      }
+    }
   }
 
   @include for-notdesc{
 
     h1{
       padding: 8px 0 0 0;
+    }
+
+    .content_block.service_block_container{
+      padding: 24px 16px 24px 16px;
+    }  
+
+    .hot_deal_wrapper{
+      position: relative;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      padding: 16px 24px 24px 178px;
+
+      img{
+        position: absolute;
+        top: 16px;
+        left: 24px;
+      }
+    }
+
+    .hot_deal_text_wrapper{
+      padding: 0 0 16px 0;
     }
   }
 
@@ -89,6 +235,11 @@
     .content_block.menu_container{
       position: static;
       width: 736px;
+    }
+
+    .sticky{
+      position: static;
+      height: auto;
     }
     
     .menu_wrapper{
@@ -101,6 +252,17 @@
       width: 39%;
     }
 
+    .dot_tail{
+      width: 700px;
+    }
+
+    .service_price_name{
+      max-width: 480px;
+    }
+
+    .content_block{
+      width: 768px;
+    }
   }
 
   @include for-mobile{
@@ -110,7 +272,120 @@
     }
 
     .content_block.menu_container{
+      // display: none;
+      height: 0;
+    }
+
+    .content_block.hot_deal_container{
+      padding: 0 16px 0 16px;
+    }
+
+    .hot_deal_wrapper{
+      align-items: center;
+      padding: 12px 12px 24px 12px;
+
+      img{
+        top: 12px;
+        left: 12px;
+        width: 60px;
+        height: 60px;
+      }
+
+      ._button{
+        width: 264px;
+        height: 48px;
+      }
+    }
+
+    .hot_deal_text_wrapper{
+      
+      h3{
+        display: flex;
+        align-items: center;
+        min-height: 60px;
+        padding: 0 0 0 84px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    .block_title{
+      padding: 12px 0 12px 0;
+      border-top: 1px solid #DADEE1;
+
+      h2{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.01em;
+        text-align: start;
+      }
+    }
+
+    .collapse_wrapper{
+      display: block;
+    }
+
+    .content_block.service_block_container{
+      padding: 0 16px 0 16px;
+      overflow: hidden;
+    }
+
+    .service_block_wrapper{
+      height: 0;
+      
+      &._active{
+        height: auto;
+        padding: 0 0 24px 0;
+      }
+    }
+
+    .service_price_wrapper{
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 12px 0 12px 0;
+      border-bottom: 1px solid #DADEE1;
+
+    }
+    
+    .service_price_wrapper:nth-last-of-type(2){
+      border-bottom: none;
+    }
+
+    .dot_tail,
+    .service_price_points{
       display: none;
+    }
+
+    .service_price_name{
+      max-width: none;
+  
+      p{
+        display: block;
+        line-height: 20px;
+      }
+    }
+
+    .service_price_value{
+      padding: 4px 0 0 0;
+
+      &:before{
+        content: none;
+      }
+    }  
+
+    .button_wrapper{
+      padding: 4px 0 0 0;
+
+      ._button{
+        width: 100%;
+      }
+    }
+
+    .content_block{
+      width: 100%;
     }
   }
 }

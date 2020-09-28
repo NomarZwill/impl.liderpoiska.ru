@@ -77,7 +77,18 @@ AppAsset::register($this);
 
     <div class="header_navbar_wrapper">
 
-        <div class="navbar_item"><a class="_menu_link_no_borders" href="/dent/">Услуги</a></div>
+        <div class="navbar_item service_dropdown_menu_container">
+
+            <a class="_menu_link_no_borders" href="/dent/">Услуги</a>
+
+            <div class="service_dropdown_menu_wrapper">
+
+                <?= $this->render('../components/header_dropdown_menu.twig', ['servises' => Yii::$app->params['servises']]) ?>
+
+            </div>
+
+        </div>
+
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/about/">О компании</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/specialists/">Стоматологи</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Клиники</a></div>

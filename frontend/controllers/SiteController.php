@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\User;
+use frontend\controllers\MainController;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -21,7 +22,7 @@ use backend\models\Clinics;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends MainController
 {
     /**
      * @inheritdoc
@@ -80,29 +81,23 @@ class SiteController extends Controller
         $deals = Deals::find()->asArray()->all();
         $reviews = Reviews::find()->asArray()->all();  
         $clinics = Clinics::find()->asArray()->all();
-                
         $doctors = Doctors::find()
             ->joinWith('medicalSpecialties')
             ->asArray()
             ->all();  
 
+        // Yii::$app->params['servises'] = Servises::find()->asArray()->all();
+
         // $data = json_decode(file_get_contents('https://www.impl.ru/vyigruzka-dannyix/'), TRUE);
 
-
         // foreach ($data['reviews'] as $key => $value) {
-            
         //     $review = Reviews::find()->where(['reviews.old_id' => $value['id']])->one();
-            
-        //     // print_r($value['id']);
-            
+        //     print_r($value['id']);
         //     $review->date = $value['publishedon'];
-            
         //     $review->save();
-            
-            // break;
-            
+        //      break;
         // }
-        // print_r($data);
+        // print_r($servises);
         // exit;
 
         return $this->render('index.twig', array(
@@ -110,6 +105,7 @@ class SiteController extends Controller
             'doctors' => $doctors,
             'reviews' => $reviews,
             'clinics' => $clinics,
+            // 'servises' => $servises,
         ));
     }
 

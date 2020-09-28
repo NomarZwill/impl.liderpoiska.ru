@@ -15,6 +15,7 @@ import YaMapContacts from './components/yaMapContacts';
 import YaMapClinicContacts from './components/yaMapClinicContacts';
 import About from './components/about';
 import Partners from './components/partners';
+import Prices from './components/prices';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
@@ -67,6 +68,10 @@ window.$ = $;
 
 			if ($('[data-page-type="partners"]').length > 0) {
 	    	var partners = new Partners();
+			}
+
+			if ($('[data-page-type="prices"]').length > 0) {
+	    	var prices = new Prices();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {

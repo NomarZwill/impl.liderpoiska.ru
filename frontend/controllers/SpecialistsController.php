@@ -3,12 +3,13 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use frontend\controllers\MainController;
 use backend\models\Clinics;
 use backend\models\Doctors;
 use backend\models\MedicalSpecialties;
 use backend\models\DoctorsMedSpec;
 
-class SpecialistsController extends Controller
+class SpecialistsController extends MainController
 {
 
   public function actionIndex(){

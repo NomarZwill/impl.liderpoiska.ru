@@ -3,13 +3,17 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use frontend\controllers\MainController;
 use backend\models\Clinics;
 use backend\models\Doctors;
 use backend\models\Deals;
+use backend\models\Servises;
+use backend\models\Prices;
+use backend\models\ServiceAndPrices;
 use common\models\api\Maps;
 
 
-class OtherController extends Controller
+class OtherController extends MainController
 {
 
   public function actionIndex(){
@@ -43,7 +47,11 @@ class OtherController extends Controller
 
   public function actionClinicContacts($clinic){
     $currentClinic = Clinics::find()->where(['clinics.alias' => $clinic])->asArray()->one();
-    $doctors = Doctors::find()->asArray()->all();      
+    $doctors = Doctors::find()
+            ->joinWith('medicalSpecialties')
+            ->asArray()
+            ->all();     
+    
     return $this->render('clinicContacts.twig', array(
       'clinic' => $currentClinic,
       'doctors' => $doctors
@@ -57,7 +65,32 @@ class OtherController extends Controller
 
   public function actionPrices(){
 
-    return 'actionPrices';
+    $firstLevelParents = Servises::find()->where(['servises.parent_id' => 0])->asArray()->all();
+
+    $firstLevelServices = Servises::find()
+    ->where(['servises.parent_id' => 0])
+    ->joinWith('prices')
+    ->asArray()
+    ->all();   
+    // print_r($firstLevelServices[0]);
+    // exit;
+
+    // foreach ($firstLevelParents as $firstLevelParent ){
+    //   $prices = explode('||', $firstLevelParent['price_to_service']);
+
+    //   foreach ($prices as $price){
+    //     $price_row = Prices::find()->where(['prices.old_id' => $price])->asArray()->one();
+
+    //     $midTableRow = new ServiceAndPrices;
+    //     $midTableRow->service_id = $firstLevelParent['servise_id'];
+    //     $midTableRow->prices_id = $price_row['prices_id'];
+    //     $midTableRow->save();
+    //   }
+    // }
+
+    return $this->render('prices.twig', array(
+      'firstLevelServices' => $firstLevelServices
+    ));  
   }
 
   public function actionAbout(){
@@ -74,8 +107,11 @@ class OtherController extends Controller
    }
 
   public function actionSpecialDeal($deal){
+    $deal = Deals::find()->where(['deals.alias' => $deal])->asArray()->one();
 
-    return 'actionSpecialDeal';
+    return $this->render('specialDealPage.twig', array(
+      'deal' => $deal
+    ));  
   }
   
   public function actionReviews(){

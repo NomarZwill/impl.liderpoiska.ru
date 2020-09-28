@@ -1,0 +1,208 @@
+<div data-page-type="prices">
+
+  <div class="content_block title_container">
+    
+    <div class="breadcrumbs_wrapper">
+
+      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
+
+    </div>
+
+    <h1>Цены на услуги</h1>
+
+  </div>
+
+  <div class="content_block menu_container">
+
+    <div class="menu_wrapper">
+
+      <div class="menu_item_wrapper">
+        <a class="menu_item _menu_link_dashed_black" href="#general">Общие</a>
+      </div>
+
+      {% for firstLevelService in firstLevelServices %}
+
+        <div class="menu_item_wrapper">
+          <a class="menu_item _menu_link_dashed_black" href="#{{firstLevelService.alias}}">{{firstLevelService.menu_title | raw}}</a>
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  <div class="content_block service_block_container">
+
+    <a name="general"></a>
+
+    <div class="block_title">
+
+      <h2>Общие</h2>
+
+      <div class="collapse_wrapper">
+
+        <span class="open_block _hidden">+</span>
+        <span class="close_block">-</span>
+
+      </div>
+
+    </div>
+
+    <div class="service_block_wrapper _active">
+
+      <div class="service_price_wrapper">
+
+        <span class="dot_tail"></span>
+        <div class="service_price_name"><p>Прием (осмотр, консультация) гигиениста стоматологического&ensp;</p></div>
+        <div class="service_price_points"></div>
+        <div class="service_price_value">8 332 руб.</div>
+
+      </div>
+
+      <div class="service_price_wrapper">
+
+        <span class="dot_tail"></span>
+        <div class="service_price_name"><p>Прием (осмотр, консультация) врача-стоматолога-терапевта&ensp;</p></div>
+        <div class="service_price_points"></div>
+        <div class="service_price_value">69 969 руб.</div>
+
+      </div>
+
+      <div class="service_price_wrapper">
+
+        <span class="dot_tail"></span>
+        <div class="service_price_name"><p>Инъекционная анестезия&ensp;</p></div>
+        <div class="service_price_points"></div>
+        <div class="service_price_value">12 460 руб.</div>
+
+      </div>
+
+      <div class="service_price_wrapper">
+
+        <span class="dot_tail"></span>
+        <div class="service_price_name"><p>Интралигаментарная местная анестезия&ensp;</p></div>
+        <div class="service_price_points"></div>
+        <div class="service_price_value">851 руб.</div>
+
+      </div>
+
+      <div class="button_wrapper">
+        <button class="_button">Записаться на приём</button>
+      </div>
+
+    </div>
+
+  </div>
+  
+  <div class="content_block hot_deal_container">
+
+    <div class="hot_deal_wrapper">
+
+      <img src="/img/hot_deal_1_test.png" alt="">
+
+      <div class="hot_deal_text_wrapper">
+
+        <h3>Брекет-система под ключ на год!</h3>
+        <p>
+          Уникальное предложение для исправления прикуса.<br>100% лечение под ключ!
+        </p>
+
+      </div>
+
+      <button class="_button">Записаться на приём</button>
+
+    </div>
+
+  </div>
+
+  {% for firstLevelService in firstLevelServices %}
+
+    {% if loop.last %}
+
+      <div class="content_block service_block_container _last_block">
+
+        <a name="{{firstLevelService.alias}}"></a>
+
+        <div class="block_title">
+
+          <h2>{{firstLevelService.menu_title | raw}}</h2>
+
+          <div class="collapse_wrapper">
+
+            <span class="open_block">+</span>
+            <span class="close_block _hidden">-</span>
+    
+          </div>
+
+        </div>
+
+        <div class="service_block_wrapper">
+
+          {% for price in firstLevelService.prices %}
+
+            <div class="service_price_wrapper">
+              <span class="dot_tail"></span>
+              <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+              <div class="service_price_points"></div>
+              <div class="service_price_value">{{price.price}} руб.</div>
+
+            </div>
+
+          {% endfor %}
+
+          <div class="button_wrapper">
+            <button class="_button">Записаться на приём</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    {% else %}
+
+    
+      <div class="content_block service_block_container">
+        
+        <a name="{{firstLevelService.alias}}"></a>
+        
+        <div class="block_title">
+          
+          <h2>{{firstLevelService.menu_title | raw}}</h2>
+          
+          <div class="collapse_wrapper">
+            
+            <span class="open_block">+</span>
+            <span class="close_block _hidden">-</span>
+            
+          </div>
+          
+        </div>
+        
+        <div class="service_block_wrapper">
+          
+          {% for price in firstLevelService.prices %}
+          
+          <div class="service_price_wrapper">
+            <span class="dot_tail"></span>
+            <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+            <div class="service_price_points"></div>
+            <div class="service_price_value">{{price.price}} руб.</div>
+            
+          </div>
+          
+          {% endfor %}
+          
+          <div class="button_wrapper">
+            <button class="_button">Записаться на приём</button>
+          </div>
+          
+        </div>
+        
+      </div>
+
+    {% endif %}
+    
+  {% endfor %}
+    
+  </div>
