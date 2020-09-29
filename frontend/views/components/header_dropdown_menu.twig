@@ -2,6 +2,10 @@
 
   <div class="category_wrapper">
 
+    <div class="back_button_wrapper">
+      <button>Назад</button>
+    </div>
+
     {% for serviseMenu in servises %}
 
       {% if serviseMenu.parent_id == 0 %}
@@ -10,22 +14,32 @@
 
           <p class="category_name">{{serviseMenu.menu_title | raw}}</p>
 
-          <div class="listing_first_level level_container _hidden">
+          <div class="listing_first_level level_container _hidden" data-first-level-count={{serviseMenu.first_level_child_count}}>
+
+            {% set totalValue = serviseMenu.first_level_child_count %}
 
             <div class="listing_first_level level_wrapper column">
 
-              {% for serviseFirst in servises %}
-              
-                {% if loop.index <= (loop.length / 2)|round(0, 'ceil')  %}
+              {% set currentIndex = 0 %}
 
-                  {{this.render(
-                    '/components/service_listing_inner_levels.twig',
-                    {
-                      'servises': servises,
-                      'serviseMenu': serviseMenu,
-                      'serviseFirst': serviseFirst
-                    }
-                  ) | raw}}
+              {% for serviseFirst in servises %}
+
+                {% if serviseFirst.parent_id == serviseMenu.old_id %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+              
+                  {% if currentIndex <= (totalValue / 2)|round(0, 'ceil') %}
+
+                    {{this.render(
+                      '/components/service_listing_inner_levels.twig',
+                      {
+                        'servises': servises,
+                        'serviseMenu': serviseMenu,
+                        'serviseFirst': serviseFirst
+                      }
+                    ) | raw}}
+
+                  {% endif %}
 
                 {% endif %}
 
@@ -35,18 +49,26 @@
 
             <div class="listing_first_level level_wrapper column">
 
-              {% for serviseFirst in servises %}
-              
-                {% if loop.index > (loop.length / 2)|round(0, 'ceil')  %}
+              {% set currentIndex = 0 %}
 
-                  {{this.render(
-                    '/components/service_listing_inner_levels.twig',
-                    {
-                      'servises': servises,
-                      'serviseMenu': serviseMenu,
-                      'serviseFirst': serviseFirst
-                    }
-                  ) | raw}}
+              {% for serviseFirst in servises %}
+
+                {% if serviseFirst.parent_id == serviseMenu.old_id %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+              
+                  {% if currentIndex > (totalValue / 2)|round(0, 'ceil')  %}
+
+                    {{this.render(
+                      '/components/service_listing_inner_levels.twig',
+                      {
+                        'servises': servises,
+                        'serviseMenu': serviseMenu,
+                        'serviseFirst': serviseFirst
+                      }
+                    ) | raw}}
+
+                  {% endif %}
 
                 {% endif %}
 
@@ -62,6 +84,10 @@
 
     {% endfor %}
 
+  </div>
+
+  <div class="close_dropdown_menu">
+    <span>Закрыть</span>
   </div>
 
 </div>

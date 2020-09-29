@@ -13,7 +13,6 @@ export default class Index{
     var dealsContainer  = new Swiper('.deals_wrapper', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      // watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -34,7 +33,6 @@ export default class Index{
       slidesPerGroup: 1,
       on : {
         init: function() {
-          console.log(this.slides.length);
           if (this.slides.length < 10) {
             this.$el.find('.total_slides').html('0' + this.slides.length);
           } else {
@@ -96,7 +94,6 @@ export default class Index{
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      // watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -164,7 +161,6 @@ export default class Index{
 
     $('.clinics_cotnainer .clinics_wrapper').on('click', function (e) {
       var $target = $(e.target).closest('.clinic_card_wrapper');
-      // console.log($target.hasClass('clinic_card_wrapper'));
 
       if ($target.length !== 0){
         $('.clinic_card_wrapper').removeClass('_active');

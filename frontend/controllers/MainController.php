@@ -10,8 +10,10 @@ use backend\models\Servises;
 class MainController extends Controller{
 
   public function beforeAction($action){
+    $servises = Servises::find()->asArray()->all();
+    Servises::setFirstLevelChildCount($servises);
 
-    Yii::$app->params['servises'] = Servises::find()->asArray()->all();
+    Yii::$app->params['servises'] = $servises;
     return parent::beforeAction($action);
   }
 

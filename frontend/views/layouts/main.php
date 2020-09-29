@@ -79,7 +79,7 @@ AppAsset::register($this);
 
         <div class="navbar_item service_dropdown_menu_container">
 
-            <a class="_menu_link_no_borders" href="/dent/">Услуги</a>
+            <a class="_menu_link_no_borders" href="" onclick="return false">Услуги</a>
 
             <div class="service_dropdown_menu_wrapper">
 

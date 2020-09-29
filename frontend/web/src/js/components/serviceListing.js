@@ -6,8 +6,8 @@ export default class ServiceListing{
   }
 
   init(){
-    var $listing_wrapper = $('.content_block.listing_wrapper');
-    var $firstLevelItems = $('.listing_first_level_item');
+    var $listing_wrapper = $('[data-page-type="service_listing"] .content_block.listing_wrapper');
+    var $firstLevelItems = $('[data-page-type="service_listing"] .listing_first_level_item');
 
     $firstLevelItems.each( function(i){
       if ($($firstLevelItems[i]).find('.listing_second_level_item').length > 0){
@@ -15,7 +15,7 @@ export default class ServiceListing{
       }
     });
 
-    $('.listing_first_level_item.with_children > p').on('click', function(e){
+    $('[data-page-type="service_listing"] .listing_first_level_item.with_children > p').on('click', function(e){
       if (!$(e.target).hasClass('_active')) {
         $(this).siblings('.listing_second_level').find('.arrow._active').removeClass('_active');
         $(this).siblings('.listing_second_level').find('.listing_third_level._active').removeClass('_active');
@@ -37,7 +37,7 @@ export default class ServiceListing{
       }
     });
 
-    var $secondLevelItems = $('.listing_second_level_item');
+    var $secondLevelItems = $('[data-page-type="service_listing"] .listing_second_level_item');
 
     $secondLevelItems.each( function(i){
       if ($($secondLevelItems[i]).find('.listing_third_level_item').length > 0){
@@ -45,16 +45,16 @@ export default class ServiceListing{
       }
     });
 
-    $('.listing_second_level_item.with_children > p').on('click', function(e){
+    $('[data-page-type="service_listing"] .listing_second_level_item.with_children > p').on('click', function(e){
       $(e.target).toggleClass('_active');
       $(this).siblings('.listing_third_level').toggleClass('_active');
     });
 
     
-    var $firstLevelBlocks = $('.listing_block > .listing_first_level');
+    var $firstLevelBlocks = $('[data-page-type="service_listing"] .listing_block > .listing_first_level');
     
     
-    $('.open_block').on('click', function(e){
+    $('[data-page-type="service_listing"] .open_block').on('click', function(e){
       openBlock(e.target);
     });
     
