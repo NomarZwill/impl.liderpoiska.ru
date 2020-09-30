@@ -308,6 +308,7 @@
     .service_dropdown_menu_wrapper{
       position: absolute;
       top: 0;
+      min-height: auto;
     }
 
     .navbar_item{
@@ -322,7 +323,7 @@
           content: "";
           position: absolute;
           top: 23px;
-          right: 26px;
+          right: 16px;
           width: 5px;
           height: 5px;
           border-bottom: 2px solid #B3B6BE;

@@ -188,19 +188,120 @@
       
 
       button{
+        position: relative;
         width: 100%;
-        height: 48px;
+        height: 56px;
         padding: 0 0 0 36px;
         text-align: start;
         line-height: 24px;
         letter-spacing: 0.01em;
+
+        &:before{
+          content: "";
+          position: absolute;
+          top: 24px;
+          left: 18px;
+          width: 5px;
+          height: 5px;
+          border-bottom: 2px solid #B3B6BE;
+          border-right: 2px solid #B3B6BE;
+          transform: rotate(135deg);
+        }
       }
     } 
 
     .category_wrapper{
+      width: 100%;
       padding: 0 0 0 0;
       background: #ffffff;
       box-shadow: none;
+    }
+
+    .mobile_active_block_display_wrapper{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .category_item_wrapper{
+      padding: 0 16px 0 16px;
+
+      &:last-of-type{
+
+        .category_name{
+           border-bottom: none;
+        }
+      }
+    }
+
+    .category_name{
+      padding: 16px 0 16px 0;
+      border-bottom: 1px solid rgba(51, 54, 56, 0.4);
+    }
+
+    .listing_first_level.level_container{
+      top: 57px;
+      left: 0;
+      flex-flow: column nowrap;
+      width: 100%;
+      height: 200vw;
+      padding: 0 16px 0 16px;
+      background: #ffffff;
+
+      .listing_first_level.level_wrapper.column:last-of-type{
+
+        .item_wrapper:last-of-type{
+          border-bottom: none;
+        }
+      }
+    }
+
+    .listing_first_level.level_wrapper.column{
+      width: 100%;
+  
+      &:first-of-type{
+        margin: 0 0 0 0;
+      }
+    }
+
+    .item_wrapper{
+      position: relative;
+      padding: 16px 0 16px 0;
+      border-bottom: 1px solid rgba(51, 54, 56, 0.4);
+
+      ._link_black{
+        border-bottom: none;
+      }
+    } 
+
+    .with_children > p{
+      position: absolute;
+      top: 16px;
+      right: 0;
+
+      &:after{
+        transform: rotate(-45deg);
+      }
+    }
+
+    .listing_second_level._active,
+    .listing_third_level._active{
+      position: absolute;
+      top: 57px;
+      left: 0;
+      width: 100%;
+      padding: 0 16px 0 16px;
+      background: #ffffff;
+      z-index: 100;
+    }
+
+    .listing_second_level_item{
+
+      &:before{
+        content: none;
+      }
     }
   }
 }
