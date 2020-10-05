@@ -32,7 +32,7 @@
   .content_block.page_menu_container{
     display: flex;
     flex-flow: row nowrap;
-    padding: 40px 16px 48px 16px;
+    padding: 40px 0 48px 0;
 
   }
 
@@ -676,7 +676,7 @@
 
     .content_block.page_menu_container{
       flex-flow: column nowrap;
-      padding: 24px 16px 40px 16px;
+      padding: 24px 0 40px 0;
     }
     
     .service_description{

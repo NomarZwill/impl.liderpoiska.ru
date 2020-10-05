@@ -37,7 +37,8 @@
     justify-content: center;
     background: linear-gradient(90deg, rgba(248, 248, 248, 1) 30%, rgba(255, 255, 255, 1) 30%);
     width: calc(100vw - 17px);
-    min-height: 200vh;
+    max-height: calc(100vh - 160px);
+    overflow: auto;
     z-index: 100;
 
     &._active{
@@ -308,7 +309,9 @@
     .service_dropdown_menu_wrapper{
       position: absolute;
       top: 0;
-      min-height: auto;
+      min-height: 100%;
+      max-height: none;
+      overflow: visible;
     }
 
     .navbar_item{
