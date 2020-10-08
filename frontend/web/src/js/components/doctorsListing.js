@@ -1,10 +1,11 @@
 'use strict';
 
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 export default class DoctorsListing{
 
   constructor(){
+    Swiper.use([Navigation, Pagination]);
     this.init();
   }
 
@@ -12,12 +13,12 @@ export default class DoctorsListing{
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
       slidesPerView: "auto",
       spaceBetween: 24,
-      watchOverflow: true,
       slidesPerGroup: 1,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
+      
       // pagination: {
       //   el: '.swiper-pagination',
       //   type: 'bullets',

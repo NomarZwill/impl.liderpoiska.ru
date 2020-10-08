@@ -5,7 +5,7 @@
     width: 100%;
     background: url(/img/wave_bg.png);
     background-size: cover;
-    z-index: 100;
+    z-index: 10;
   }
 
   .breadcrumbs_wrapper{
@@ -14,12 +14,12 @@
 
   .breadcrumbs{
     position: relative;
-    margin: 0 16px 0 0;
+    margin: 0 20px 0 0;
 
     &:before{
       content: "→";
       position: absolute;
-      right: -16px;
+      right: -20px;
     }
 
     &:last-of-type:before{
@@ -129,7 +129,7 @@
   .clinic_item{
     cursor: pointer;
     width: 256px;
-    margin: 0 16px 0 0;
+    // margin: 0 16px 0 0;
     padding: 12px 16px 24px 16px;
     background: #FFFFFF;
     box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
@@ -221,7 +221,6 @@
     cursor: pointer;
     flex-shrink: 1;
     width: auto;
-    margin: 0 32px 0 0;
 
     &:hover{
       box-shadow: 0px 15px 25px 10px rgba(15, 4, 61, 0.1);
@@ -422,6 +421,7 @@
 
   .content_block.doctor_reviews{
     width: 100%;
+    margin: 0 0 24px 0;
   }
 
   .reviews_wrapper{

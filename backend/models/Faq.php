@@ -43,11 +43,11 @@ class Faq extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'faq_id' => 'Faq ID',
-            'faq_title' => 'Faq Title',
-            'faq_query' => 'Faq Query',
-            'keywords' => 'Keywords',
-            'faq_answer' => 'Faq Answer',
+            'faq_id' => 'ID',
+            'faq_title' => 'Заголовок',
+            'faq_query' => 'Вопрос',
+            'keywords' => 'Ключевые слова',
+            'faq_answer' => 'Ответ',
             'alias' => 'Alias',
             'old_id' => 'Old ID',
         ];

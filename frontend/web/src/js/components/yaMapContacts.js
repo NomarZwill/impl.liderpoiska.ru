@@ -141,7 +141,7 @@ export default class YaMapContacts{
       );
       
       var serverData = null;
-      var activeObjectID = null
+      var activeObjectID = null;
 			var serverResponse = fetch("/api/maps/")
 				.then(function(response) {
 					if (response.ok) { 
@@ -177,7 +177,8 @@ export default class YaMapContacts{
         );
 
         activeObjectID = e.get('objectId');
-        // setActivePinInfo(activeObjectID);
+        // console.log(activeObjectID);
+        setActivePinInfo(activeObjectID);
         // myMap.setCenter(objectManager.objects._objectsById[activeObjectID].geometry.coordinates);
       });
         

@@ -40,6 +40,14 @@
       content: "—";
       position: absolute;
       left: -22px;
+      font-weight: 400;
+      color: $headerBlack;
+    }
+
+    &._active{
+      border: none;
+      font-weight: 500;
+      color: $baseColor;
     }
   }
   
@@ -194,12 +202,16 @@
       margin: 0 0 0 352px;
     }
 
-    .block_title{
-  
-      h2{
-        text-align: start;
-      }
+    .content_block.service_block_container._last_block{
+      margin: 0 0 24px 352px;
     }
+
+    // .block_title{
+  
+    //   h2{
+    //     text-align: start;
+    //   }
+    // }
   }
 
   @include for-notdesc{
@@ -211,6 +223,10 @@
     .content_block.service_block_container{
       padding: 24px 16px 24px 16px;
     }  
+
+    .content_block.hot_deal_container{
+      padding: 0 16px 0 16px;
+    }
 
     .hot_deal_wrapper{
       position: relative;
@@ -227,6 +243,15 @@
 
     .hot_deal_text_wrapper{
       padding: 0 0 16px 0;
+    }
+
+    .menu_item{
+
+      &._active{
+        border-bottom: 1px dashed rgba(51, 54, 56, 0.4);
+        font-weight: 400;
+        color: $headerBlack;
+      }
     }
   }
 
@@ -274,10 +299,6 @@
     .content_block.menu_container{
       // display: none;
       height: 0;
-    }
-
-    .content_block.hot_deal_container{
-      padding: 0 16px 0 16px;
     }
 
     .hot_deal_wrapper{

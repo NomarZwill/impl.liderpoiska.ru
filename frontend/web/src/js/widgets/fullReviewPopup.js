@@ -45,6 +45,7 @@ export default class FullReviewPopup{
         $('.popup_filter_bg .review_item_wrapper').removeClass('_hidden');
 
         $('body').addClass('_popup_mode');
+        console.log('fullReviewPopup');
       });
     }
 

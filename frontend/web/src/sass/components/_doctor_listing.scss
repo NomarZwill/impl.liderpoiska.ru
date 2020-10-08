@@ -69,8 +69,11 @@
   }
 
   .moscow_clinics{
-    padding: 24px 0 48px 0;
     overflow: visible;
+
+    & > .swiper-wrapper{
+      padding: 24px 0 16px 0;
+    }
     
     .revolver_navigation_wrapper{
       display: none;
@@ -90,7 +93,7 @@
     cursor: pointer;
     width: 288px;
     height: 180px;
-    margin: 0 24px 0 0;
+    // margin: 0 24px 0 0;
     padding: 24px 24px 24px 24px;
     background: #FFFFFF;
     box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
@@ -196,20 +199,22 @@
     }
 
     .content_block.clinics_cotnainer{
-      padding: 0 16px 0 16px;
+      padding: 0 16px 24px 16px;
     }
 
     .moscow_clinics{
-      padding: 24px 0 56px 0;
+
+      .swiper_wrapper{
+        padding: 24px 0 16px 0;
+      }
 
       .revolver_navigation_wrapper{
         display: flex;
-        padding: 24px 0 0 0;
       }
     }
 
     .geneva_clinics{
-      padding: 24px 0 80px 0;
+      padding: 24px 0 32px 0;
     }
   }
 

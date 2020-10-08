@@ -10,6 +10,7 @@ use backend\models\Deals;
 use backend\models\Servises;
 use backend\models\Prices;
 use backend\models\ServiceAndPrices;
+use backend\models\Reviews;
 use common\models\api\Maps;
 
 
@@ -115,8 +116,53 @@ class OtherController extends MainController
   }
   
   public function actionReviews(){
+    $reviews = Reviews::find()
+      ->where(['year' => date('Y')])
+      ->limit(5)
+      ->all();
+    $yearsList = Reviews::getYearsList();
+    // print_r($yearsList);
+    // exit;
 
-    return 'actionReviews';
+    return $this->render('reviews.twig', array(
+      'yearsList' => $yearsList,
+      'activeYear' => date('Y'),
+      'singleYearReviews' => $reviews,
+    ));  
+  }
+
+  public function actionAjaxReviewsSingleYear(){
+    $activeYear = $_GET['activeYear'];
+    $reviews = Reviews::find()
+      ->where(['year' => $activeYear])
+      ->limit(5)
+      ->all();
+
+    return json_encode([
+      'listing' => $this->renderPartial('/components/reviews_page_listing.twig', array(
+        'singleYearReviews' => $reviews,
+      )),
+    ]);
+
+  }
+
+  public function actionAjaxGetMoreReviews(){
+    $activeYear = $_GET['activeYear'];
+    $previousReviewCount = $_GET['previousReviewCount'];
+    $reviews = Reviews::find()
+      ->where(['year' => $activeYear])
+      ->offset($previousReviewCount)
+      ->limit(5)
+      ->all();
+    $isListEnd = (count($reviews) < 5) ? true : false;
+
+    return json_encode([
+      'listing' => $this->renderPartial('/components/reviews_page_listing.twig', array(
+        'singleYearReviews' => $reviews,
+      )),
+      'isListEnd' => $isListEnd
+    ]);
+
   }
 
   public function actionFaq(){

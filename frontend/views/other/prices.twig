@@ -145,7 +145,7 @@
               <span class="dot_tail"></span>
               <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
               <div class="service_price_points"></div>
-              <div class="service_price_value">{{price.price}} руб.</div>
+              <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
 
             </div>
 
@@ -187,7 +187,7 @@
             <span class="dot_tail"></span>
             <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
             <div class="service_price_points"></div>
-            <div class="service_price_value">{{price.price}} руб.</div>
+            <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
             
           </div>
           

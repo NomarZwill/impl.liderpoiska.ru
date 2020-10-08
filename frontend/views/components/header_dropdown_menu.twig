@@ -10,11 +10,13 @@
 
       {% if serviseMenu.parent_id == 0 %}
 
-        <div class="category_item_wrapper">
+        <div class="category_item_wrapper" data-servise-id={{serviseMenu.servise_id}}>
 
           <p class="category_name">{{serviseMenu.menu_title | raw}}</p>
 
           <div class="listing_first_level level_container _hidden" data-first-level-count={{serviseMenu.first_level_child_count}}>
+
+            <a href="/dent/{{serviseMenu.alias}}" class="category_link _link_black">{{serviseMenu.menu_title | raw}}</a>
 
             {% set totalValue = serviseMenu.first_level_child_count %}
 
@@ -83,6 +85,8 @@
       {% endif %}
 
     {% endfor %}
+
+    <a href="/dent/" class="all_services category_item_wrapper _menu_link_no_borders">Все услуги</a>
 
     <div class="mobile_active_block_display_wrapper"></div>
 

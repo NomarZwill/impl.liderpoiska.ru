@@ -85,6 +85,8 @@ AppAsset::register($this);
 
                 <?= $this->render('../components/header_dropdown_menu.twig', ['servises' => Yii::$app->params['servises']]) ?>
 
+                <div class="service_dropdown_menu_shadow"></div>
+
             </div>
 
         </div>

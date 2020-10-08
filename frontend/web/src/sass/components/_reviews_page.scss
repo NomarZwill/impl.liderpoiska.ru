@@ -1,0 +1,167 @@
+[data-page-type="reviews_page"]{
+
+  .content_block.reviews_title{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 24px 0 40px 0;
+    
+    ._button._button_light._link_black{
+      border: 1px solid #F7C67E;
+    }
+  }
+
+  h1{
+    padding: 16px 0 16px 0;
+    text-align: center;
+  }
+
+  .content_block.reviews_container{
+    padding: 0 0 48px 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  .years_selector{
+    display: none;
+  }
+
+  .years_wrapper{
+    display: flex;
+    justify-content: center;
+  }
+
+  .year_item_wrapper{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 68px;
+    height: 40px;
+    margin: 0 16px 0 0;
+    padding: 0 16px 0 16px;
+    border: 1px solid #f7c67e;
+    border-radius: 4px;
+    background: #FFFFFF;
+  
+    span{
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+      color: $headerBlack;
+    }
+  
+    &:hover,
+    &._active{
+      background: #f7c67e;
+    }
+  
+    &:active{
+      background: #E8A33B;
+    } 
+  }
+
+  .year_item_wrapper:last-of-type{
+    margin: 0 0 0 0;
+  }
+
+  .reviews_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 32px 0 0 0;
+  }
+
+  .review_item_wrapper{
+    width: 1016px;
+    margin: 0 0 24px 0;
+
+    hr{
+      width: 890px;
+    }
+  }
+
+  .review_text{
+    line-height: 26px;
+    letter-spacing: 0.01em;
+  }
+
+  .more_reviews_button{
+    width: 223px;
+    height: 56px;
+  }
+
+  @include for-pad{
+
+    h1{
+      padding: 8px 0 8px 0;
+    }
+
+    .content_block.reviews_container{
+      padding: 0 0 40px 0;
+    }
+
+    .review_item_wrapper{
+      width: 736px;
+  
+      hr{
+        width: 608px;
+      }
+    }
+  }
+
+  @include for-mobile{
+
+    .content_block.reviews_title{
+      padding: 24px 16px 32px 16px;
+    }
+
+    h1{
+      padding: 8px 0 16px 0;
+    }
+
+    .content_block.reviews_container{
+      padding: 0 16px 32px 16px;
+    }
+
+    .years_selector{
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 48px;
+      padding: 0 0 0 8px;
+      background: #FFFFFF;
+      border: 1px solid #DADEE1;
+      box-shadow: inset 0px 2px 2px rgba(118, 125, 134, 0.1);
+      border-radius: 4px;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: 19px;
+        right: 8px;
+        width: 5px;
+        height: 5px;
+        border-bottom: 2px solid #B3B6BE;
+        border-right: 2px solid #B3B6BE;
+        transform: rotate(45deg);
+      }
+    }
+
+    .years_wrapper{
+      display: none;
+    }
+
+    .reviews_wrapper{
+      padding: 24px 0 0 0;
+    }
+
+    .review_item_wrapper{
+      width: 100%;
+  
+      hr{
+        width: calc(100% - 48px);
+      }
+    }
+  }
+}

@@ -39,11 +39,13 @@ return [
         ],
         
         'urlManager' => [
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                //'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                ['pattern'=>'/update','route'=>'site/index'],
             ],
+            
         ],
         
     ],

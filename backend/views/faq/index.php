@@ -1,0 +1,66 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel backend\models\FaqSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'FAQ';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="faq-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Добавить вопрос', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            [
+                'attribute' => 'faq_id',
+                'contentOptions' => [
+                    'style' => [
+                        'width' => '50px',
+                        'white-space' => 'normal',
+                    ],
+                ],
+            ],
+
+            [
+                'attribute' => 'faq_query',
+                'contentOptions' => [
+                    'style' => [
+                        'max-width' => '400px',
+                        'white-space' => 'normal',
+                    ],
+                ],
+            ],
+
+            [
+                'attribute' => 'faq_answer',
+                'contentOptions' => [
+                    'style' => [
+                        'max-width' => '600px',
+                        'white-space' => 'normal',
+                    ],
+                ],
+            ],
+
+            // 'faq_title:ntext',
+            // 'keywords:ntext',
+            //'alias:ntext',
+            //'old_id',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+</div>

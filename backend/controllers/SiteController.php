@@ -60,43 +60,43 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $data = file_get_contents('https://www.impl.ru/vyigruzka-dannyix/');
+        // $data = file_get_contents('https://www.impl.ru/vyigruzka-dannyix/');
         
         // print_r($data);
 
-        $data = json_decode($data, true);
+        // $data = json_decode($data, true);
 
         // print_r($data);
         // print_r(count($data['doctors']));
             	
     	// exit;
 
-    	foreach ($data['medicalSpecialties'] as $key => $value) {
-            if(!MedicalSpecialties::find()->where(['old_id' => $value['id']])->one()){
-                    $model = new MedicalSpecialties();
+    	// foreach ($data['medicalSpecialties'] as $key => $value) {
+        //     if(!MedicalSpecialties::find()->where(['old_id' => $value['id']])->one()){
+        //             $model = new MedicalSpecialties();
                     
-                    $model->specialty_title = $value['pagetitle'];
-                    $model->specialty_long_title = $value['longtitle'];
-                    $model->specialty_description = $value['description'];
-                    $model->introtext = $value['introtext'];
-                    $model->alias = $value['alias'];
-                    $model->menu_title = $value['menutitle'];
-                    $model->content = $value['content'];
-                    $model->speciality_review = $value['tv.review-to-special'];
-                    $model->head_text = $value['tv.head-text'];
-                    $model->price_title = $value['tv.price-title'];
-                    $model->review_title = $value['tv.review-title'];
-                    $model->faq_title = $value['tv.faq-title'];
-                    $model->medic_to_special = $value['tv.medic-to-special'];
-                    $model->query_to_service = $value['tv.query-to-service'];
-                    $model->price_to_service = $value['tv.price-to-service'];
-                    $model->keywords = $value['tv.keywords'];
-              $model->old_id = $value['id'];
+        //             $model->specialty_title = $value['pagetitle'];
+        //             $model->specialty_long_title = $value['longtitle'];
+        //             $model->specialty_description = $value['description'];
+        //             $model->introtext = $value['introtext'];
+        //             $model->alias = $value['alias'];
+        //             $model->menu_title = $value['menutitle'];
+        //             $model->content = $value['content'];
+        //             $model->speciality_review = $value['tv.review-to-special'];
+        //             $model->head_text = $value['tv.head-text'];
+        //             $model->price_title = $value['tv.price-title'];
+        //             $model->review_title = $value['tv.review-title'];
+        //             $model->faq_title = $value['tv.faq-title'];
+        //             $model->medic_to_special = $value['tv.medic-to-special'];
+        //             $model->query_to_service = $value['tv.query-to-service'];
+        //             $model->price_to_service = $value['tv.price-to-service'];
+        //             $model->keywords = $value['tv.keywords'];
+        //       $model->old_id = $value['id'];
               // $model->date = strtotime($value['publishedon']);
           
-              $model->save();
-            }	 
-          }
+        //     $model->save();
+        //   }	 
+        // }
         return $this->render('index');
     }
 

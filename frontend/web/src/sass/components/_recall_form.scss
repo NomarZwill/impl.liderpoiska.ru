@@ -37,7 +37,7 @@
   input{
     width: 288px;
     margin: 0 24px 0 0;
-    padding: 14px 8px 14px 8px;
+    padding: 20px 8px 8px 8px;
     background: #ffffff;
     border: 1px solid #DADEE1;
     box-sizing: border-box;
@@ -46,6 +46,35 @@
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.02em;
+  }
+
+  .inut_wrapper{
+    position: relative;
+
+    span{
+      position: absolute;
+      bottom: 4px;
+      left: 8px;
+      opacity: 0.6;
+      visibility: hidden;
+      transition: 0.3s;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    input:placeholder-shown ~ span {
+      visibility: visible;
+    }
+
+    input:placeholder-shown:focus ~ span,
+    input:not(:placeholder-shown) ~ span {
+      bottom: 19px;
+      opacity: 1;
+      visibility: visible;
+      font-size: 10px;
+      line-height: 14px;
+    }
   }
 
   .submit_wrapper{

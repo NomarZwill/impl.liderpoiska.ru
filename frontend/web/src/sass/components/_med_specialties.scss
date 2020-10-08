@@ -24,7 +24,7 @@
     &:before{
       content: "→";
       position: absolute;
-      right: -16px;
+      right: -20px;
     }
 
     &:last-of-type:before{
@@ -108,7 +108,7 @@
 
     img{
       float: left;
-      margin: 0 24px 0 0;
+      margin: 0 24px 12px 0;
     }
 
     ul{
@@ -132,7 +132,7 @@
     width: 100%;
 
     .review_text._compact{
-      height: 150px;
+      height: 200px;
     }
   }
 
@@ -246,6 +246,13 @@
   
       ul{
         padding: 0 0 0 12px;
+      }
+    }
+
+    .content_block.reviews_container{
+  
+      .review_text._compact{
+        height: 360px;
       }
     }
   }

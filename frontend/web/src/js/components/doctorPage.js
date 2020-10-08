@@ -30,9 +30,6 @@ export default class DoctorPage{
       spaceBetween: 16,
     });
 
-    
-    
-
     var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
@@ -69,7 +66,6 @@ export default class DoctorPage{
         $(this).closest('.doctor_education_content').removeClass('_compact');
       });
     }
-
 
     var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
       slidesPerView: 'auto',

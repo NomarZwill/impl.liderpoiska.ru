@@ -25,6 +25,25 @@
     padding: 56px 16px 64px 16px;
   }
 
+  .breadcrumbs_wrapper{
+    padding: 0 20px 0 0;
+  }
+
+  .breadcrumbs{
+    position: relative;
+    margin: 0 20px 0 0;
+
+    &:before{
+      content: "→";
+      position: absolute;
+      right: -20px;
+    }
+
+    &:last-of-type:before{
+      content: none;
+    }
+  }
+
   h1{
     padding: 16px 0 24px 0;
   }
@@ -733,7 +752,8 @@
       .top_img{
         width: 352px;
         height: 256px;
-        right: 8px;
+        right: 28px;
+        background-size: cover;
       }
 
       .popup_button{
@@ -743,6 +763,7 @@
 
     .title_wrapper{
       width: 768px;
+      min-height: 272px;
       padding: 24px 16px 32px 16px;
     }
 
@@ -899,6 +920,7 @@
 
     .title_wrapper{
       width: 100%;
+      min-height: 192px;
       margin: 0 0 0 0;
       padding: 32px 16px 40px 16px;
     }

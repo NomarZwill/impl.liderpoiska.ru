@@ -43,11 +43,33 @@ class Reviews extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'review_id' => 'Review ID',
-            'author' => 'Author',
-            'date' => 'Date',
-            'review_text' => 'Review Text',
-            'review_title' => 'Review Title',
+            'review_id' => 'ID',
+            'author' => 'Автор',
+            'date' => 'Дата',
+            'review_text' => 'Текст отзыва',
+            'review_title' => 'Заголовок',
         ];
     }
+
+    public function getYearsList(){
+        $yearsSet = [];
+        $reviews = Reviews::find()->all();
+        foreach ($reviews as $review){
+            if (array_search(substr($review->date, 0, 4), $yearsSet) === false) {
+                array_push($yearsSet, substr($review->date, 0, 4));
+            }
+        }
+        rsort($yearsSet);
+        return $yearsSet;
+    }
+
+    // public function getSingleYearReviews($reviews, $year){
+    //     $yearsSet = [];
+    //     foreach ($reviews as $review){
+    //         if (substr($review->date, 0, 4) === $year){
+    //             array_push($yearsSet, $review);
+    //         }
+    //     }
+    //     return $yearsSet;
+    // }
 }

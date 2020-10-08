@@ -44,12 +44,12 @@ class Prices extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'prices_id' => 'Prices ID',
-            'prices_name' => 'Prices Name',
-            'price' => 'Price',
+            'prices_id' => 'ID',
+            'prices_name' => 'Название услуги',
+            'price' => 'Цена',
             'price_hide' => 'Price Hide',
-            'keywords' => 'Keywords',
-            'code' => 'Code',
+            'keywords' => 'Ключевые слова',
+            'code' => 'Код',
             'alias' => 'Alias',
             'old_id' => 'Old ID',
         ];

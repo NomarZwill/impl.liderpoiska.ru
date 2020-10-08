@@ -1,4 +1,4 @@
-<div class="listing_first_level_item item_wrapper">
+<div class="listing_first_level_item item_wrapper" data-servise-id={{serviseFirst.servise_id}}>
 
   <a class="_link_black" href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}">
 
@@ -14,7 +14,7 @@
 
       {% if serviseSecond.parent_id == serviseFirst.old_id  %}
 
-        <div class="listing_second_level_item item_wrapper">
+        <div class="listing_second_level_item item_wrapper" data-servise-id={{serviseSecond.servise_id}}>
 
           <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}"  class="_link_black">
     
@@ -30,7 +30,7 @@
 
               {% if serviseThird.parent_id == serviseSecond.old_id  %}
 
-                <div class="listing_third_level_item item_wrapper">
+                <div class="listing_third_level_item item_wrapper" data-servise-id={{serviseThird.servise_id}}>
 
                   <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}"  class="_link_black">
     

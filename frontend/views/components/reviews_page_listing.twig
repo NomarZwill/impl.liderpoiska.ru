@@ -1,0 +1,23 @@
+{% for review in singleYearReviews %}
+
+  <div class="review_item_wrapper">       
+
+    <div class="big_quotes"></div>
+    <hr>
+    <div class="review_text" data-id="{{review.review_id}}">
+
+      {{review.review_text | raw}}
+
+      <div class="show_all _hidden">
+        <button class="read_more">Показать полностью</button>
+      </div>
+
+    </div>
+
+    <p><span>{{review.author}}</span> | <span>{{review.date|date("d.m.Y")}}</span></p>
+
+  </div>
+
+{% endfor %}
+
+<button class="more_reviews_button _button _button_light">Показать еще</button>

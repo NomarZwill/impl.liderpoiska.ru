@@ -1,0 +1,49 @@
+<div data-page-type="reviews_page">
+
+  <div class="content_block reviews_title">
+
+    <div class="breadcrumbs_wrapper">
+      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
+    </div>
+
+    <h1>Отзывы пациентов</h1>
+
+    <a class="_button _button_light _link_black" href="#review_form">Оставить свой отзыв</a>
+
+  </div>
+
+  <div class="content_block reviews_container" data-type="reviews_block">
+
+    <div class="years_selector">
+      <span>{{activeYear}}</span>
+    </div>
+
+    <div class="years_wrapper">
+
+      {% for year in yearsList %}
+
+          <div class="year_item_wrapper" data-year="{{year}}">
+            <span>{{year}}</span>
+          </div>
+
+      {% endfor %}
+
+    </div>
+
+    <div class="reviews_wrapper" data-active-year="{{activeYear}}">
+
+      {{this.render('/components/reviews_page_listing.twig', {'singleYearReviews': singleYearReviews}) | raw}}
+
+    </div>
+
+  </div>
+  
+  <div class="content_block review_form_wrapper" data-page-type="review_form">
+
+    <a name="review_form"></a>
+
+    {{this.render('/components/review_form.twig') | raw}}
+
+  </div>
+  
+</div>
