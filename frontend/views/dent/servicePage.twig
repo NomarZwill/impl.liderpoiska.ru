@@ -590,7 +590,12 @@
   
   <div class="content_block recall_wrapper" data-page-type="recall_form">
 
-    {{this.render('/components/recall_form.twig') | raw}}
+    {{this.render('/components/recall_form.twig', 
+    {
+      'title': '<h2>Бесплатная консультация</h2>', 
+      'title_description': 'Задайте вопросы по телефону +7&nbsp;(495)&nbsp;150-27-16 или оставьте заявку, мы перезвоним в&nbsp;течение рабочего дня.',
+      'submit_button_title': 'Записаться'
+    }) | raw}}
 
   </div>
 

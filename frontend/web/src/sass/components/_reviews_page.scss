@@ -17,6 +17,7 @@
   }
 
   .content_block.reviews_container{
+    position: relative;
     padding: 0 0 48px 0;
     box-shadow: none;
     background: none;
@@ -146,14 +147,62 @@
         border-right: 2px solid #B3B6BE;
         transform: rotate(45deg);
       }
+
+      &._active:before{
+        transform: rotate(-135deg);
+      }
     }
 
     .years_wrapper{
       display: none;
+
+      &._active{
+        position: absolute;
+        top: 48px;
+        left: 16px;
+        display: flex;
+        flex-flow: column nowrap;
+        width: calc(100% - 32px);
+        padding: 12px 0 12px 0;
+        background: #ffffff;
+        border: 1px solid #DADEE1;
+        box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+        border-radius: 0px 0px 2px 2px;
+        z-index: 10;
+
+      }
     }
 
     .reviews_wrapper{
       padding: 24px 0 0 0;
+    }
+
+    .year_item_wrapper{
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      margin: 0 0 0 0;
+      padding: 0 8px 0 8px;
+      border: none;
+      border-radius: 0;
+      background: #FFFFFF;
+    
+      span{
+        color: $headerBlack;
+      }
+    
+      &:hover,
+      &._active{
+        background: #782F40;
+
+        span{
+          color: #ffffff;
+        }
+      }
+    
+      &:active{
+        background: #782F40;
+      } 
     }
 
     .review_item_wrapper{

@@ -47,26 +47,6 @@
     }
   }
 
-  [data-deal-alias="spec02"]{
-    background-size: 200% !important;
-    background-position: -508px -261px !important;
-  }
-
-  [data-deal-alias="birthday"]{
-    background-size: 200% !important;
-    background-position: -507px -700px !important;
-  }
-
-  [data-deal-alias="spec01"]{
-    background-size: 120% !important;
-    background-position: -102px -43px !important;
-  }
-
-  [data-deal-alias="spec03"]{
-    background-size: 100% !important;
-    background-position: 0 0 !important;
-  }
-
   @include for-notdesc{
 
     .content_block.title_container{
@@ -96,26 +76,6 @@
       .deal_text{
         background: linear-gradient(110deg, #FBEDD8 69%, transparent calc(69% + 1px));
       }
-    }
-
-    [data-deal-alias="spec02"]{
-      background-size: 200% !important;
-      background-position: -368px -147px !important;
-    }
-  
-    [data-deal-alias="birthday"]{
-      background-size: 200% !important;
-      background-position: -364px -474px !important;
-    }
-  
-    [data-deal-alias="spec01"]{
-      background-size: 105% !important;
-      background-position: -18px 0 !important;
-    }
-  
-    [data-deal-alias="spec03"]{
-      background-size: 115% !important;
-      background-position: -55px 0 !important;
     }
   }
 
@@ -149,26 +109,6 @@
     .deal_img{
       width: 250px;
       height: 142px;
-    }
-
-    [data-deal-alias="spec02"]{
-      background-size: 120% !important;
-      background-position: -50px -34px !important;
-    }
-  
-    [data-deal-alias="birthday"]{
-      background-size: 125% !important;
-      background-position: -63px -170px !important;
-    }
-  
-    [data-deal-alias="spec01"]{
-      background-size: 142% !important;
-      background-position: -80px 0 !important;
-    }
-  
-    [data-deal-alias="spec03"]{
-      background-size: 150% !important;
-      background-position: -90px 0 !important;
     }
   }
 }

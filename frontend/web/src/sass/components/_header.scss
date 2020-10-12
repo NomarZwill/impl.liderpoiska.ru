@@ -69,6 +69,10 @@
     }
 
   }
+
+  .mobile_mini_footer{
+    display: none;
+  }
   
   .logo_wrapper{
     display: flex;
@@ -141,7 +145,7 @@
     flex-flow: row nowrap;
   }
 
-  .phones p{
+  .phones a{
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -149,7 +153,7 @@
     color: $headerBlack;
   }
 
-  .phones p:last-of-type{
+  .phones a:last-of-type{
     margin: 0 0 0 16px;
   }
 
@@ -257,7 +261,7 @@
       flex-flow: column nowrap;
     }
 
-    .phones p:last-of-type{
+    .phones a:last-of-type{
       margin: 0 0 0 0;
     }
 
@@ -308,10 +312,11 @@
         flex-flow: column nowrap;
         align-items: flex-start;
         width: 100%;
-        height: calc(100vh - 64px);
-        padding: 0 16px 0 16px;
+        min-height: calc(100vh - 64px);
+        padding: 0 0 0 0;
         background: #ffffff;
         border-top: 1px solid rgba(51, 54, 56, 0.4);
+        overflow-y: scroll;
         z-index: 100;
       }
     }
@@ -325,8 +330,9 @@
     }
 
     .navbar_item{
-      width: 100%;
+      width: calc(100% - 32px);
       height: auto;
+      margin: 0 16px 0 16px;
       padding: 16px 0 16px 0;
       border-bottom: 1px solid rgba(51, 54, 56, 0.4);
 
@@ -354,7 +360,7 @@
 
       }
 
-      &:last-of-type{
+      &:nth-last-of-type(2){
         padding: 16px 0 16px 0;
         border-bottom: none;
       }
@@ -364,6 +370,64 @@
         letter-spacing: 0.01em;
         color: $headerBlack;
       }
+    }
+
+    .mobile_mini_footer{
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      padding: 16px 16px 24px 16px;
+      // height: 174px;
+      background: $lightBG;
+
+
+      .phones,
+      .work_hours{
+        display: block;
+      }
+
+      .phones{
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 0 0 12px 0;
+        
+        a{
+          font-weight: 400;
+          color: $textColor;
+        }
+
+        a:last-of-type{
+          margin: 8px 0 0 0;
+        }
+      }
+
+      .work_hours{
+        padding: 0 0 12px 0;
+
+        p{
+          font-size: 14px;
+          line-height: 20px;
+          letter-spacing: 0.02em;
+          color: $textColor;
+        }
+      }
+
+      .instagram{
+        position: relative;
+        margin: 0 0 0 27px;
+
+        a:before{
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -30px;
+          width: 24px;
+          height: 24px;
+          background: url(/img/instagram-icon.svg);
+          background-size: contain;
+        }
+      }
+
     }
 
     .logo_img{

@@ -20,8 +20,10 @@ export default class Main{
 
       if (getScrollWidth() >= 768) {
         $($('[data-page-type="header_dropdown_menu"] .category_item_wrapper')[0]).addClass('_active');
-        $($('[data-page-type="header_dropdown_menu"] .category_item_wrapper')[0]).addClass('_active');
         $($('[data-page-type="header_dropdown_menu"] .category_item_wrapper')[0]).find('.listing_first_level.level_container').removeClass('_hidden');
+      } else {
+        $('[data-page-type="header_dropdown_menu"] .category_wrapper').append($('.mobile_mini_footer'));
+
       }
     }
 
@@ -36,6 +38,16 @@ export default class Main{
       $('.service_dropdown_menu_wrapper .listing_first_level.level_container').addClass('_hidden');
       $('.service_dropdown_menu_wrapper .category_item_wrapper').removeClass('_hidden');
       $('[data-page-type="header_dropdown_menu"] .mobile_active_block_display_wrapper').empty();
+
+      if (getScrollWidth() < 768) {
+        $('.header_navbar_wrapper').append($('.mobile_mini_footer'));
+      }
+    }
+
+    function closeLayoutPopup(){
+      $('.layout_popup').addClass('_hidden');
+      $('.layout_popup .scroll_wrapper').empty();
+      $('body').removeClass('_popup_mode');
     }
 
     $('.service_dropdown_menu_container').on('click', function(e){
@@ -63,8 +75,12 @@ export default class Main{
 
     $('body').on('click', function(e){
       if ($(e.target).closest('.header_navbar_wrapper').length === 0 
-       && $(e.target).closest('.burger_wrapper').length === 0) {
+       && $(e.target).closest('.burger_wrapper').length === 0
+       && $(e.target).closest('.popup_button_wrapper.recall_form_popup').length === 0
+       && $(e.target).closest('.recall_form_wrapper form').length === 0
+       && $(e.target).closest('.contacts_mob_icon').length === 0) {
         closeDropdownMenu();
+        closeLayoutPopup();
       }
     });
 
@@ -130,6 +146,26 @@ export default class Main{
       }
     };
 
+    //------- popup recall form --------
+
+    $('.popup_button_wrapper.recall_form_popup form .close_icon')
+    .add('.popup_button_wrapper.recall_form_popup form .close_icon_mobile')
+    .on('click', function(e){
+      closeLayoutPopup();
+    });
+
+    $('.recall_form_popup')
+    .add('.contacts_mob_icon')
+    .on('click', function(e){
+      closeDropdownMenu();
+      $('.popup_button_wrapper.recall_form_popup')
+        .find('.recall_form_wrapper')
+        .clone(true)
+        .appendTo('.layout_popup .scroll_wrapper');
+      $('.layout_popup').removeClass('_hidden');
+      $('.layout_popup .recall_form_wrapper').removeClass('_hidden');
+      $('body').addClass('_popup_mode');
+    });
 
     //------- for mobile --------
 
@@ -196,6 +232,7 @@ export default class Main{
       switch(getMobileDisplayChildrenValue()) {
         case 0:
           $('.service_dropdown_menu_wrapper').removeClass('_active');
+          $('.header_navbar_wrapper').append($('.mobile_mini_footer'));
           break;
         case 1:
           $mobileActiveBlockDisplayWrapper.children('.listing_first_level').remove();

@@ -51,8 +51,8 @@ AppAsset::register($this);
         <div class="contacts_container">
     
             <div class="phones">
-                <p>+7 (495) 150-27-16</p>
-                <p>+7 (495) 930-22-56</p>
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                <a href="tel:4959302256">+7 (495) 930-22-56</a>
             </div>
     
             <div class="work_hours">
@@ -63,8 +63,21 @@ AppAsset::register($this);
     
         </div>
     
-        <div class="popup_button_wrapper">
+        <div class="popup_button_wrapper recall_form_popup">
+
             <button class="_button popup_button">Заказать звонок</button>
+
+            <div class="recall_form_wrapper _hidden" data-page-type="recall_form">
+
+                <?= $this->render('../components/recall_form.twig', 
+                [
+                    'title' => '<h3>Заказать звонок</h3>',
+                    'title_description' => 'Оставьте ваши данные, и мы перезвоним в течение 15 минут.',
+                    'submit_button_title' => 'Отправить'
+                ]) ?>
+
+            </div>
+
         </div>
 
         <div class="burger_wrapper">
@@ -97,6 +110,23 @@ AppAsset::register($this);
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/price/">Цены</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/partners/">Партнёры</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Контакты</a></div>
+        
+        <div class="mobile_mini_footer">
+
+            <div class="phones">
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                <a href="tel:4959302256">+7 (495) 930-22-56</a>
+            </div>
+
+            <div class="work_hours">
+                <p>Будни: 9:00—20:30,<br> Сб: 9:00—18:00, Вс: 10:00—17:00</p>
+            </div>
+
+            <div class="instagram">
+                <a class="_menu_link" href="https://www.instagram.com/impl.ru/" target="_blank">Наш инстаграм</a>
+            </div>
+
+        </div>
 
     </div>
 
@@ -125,8 +155,8 @@ AppAsset::register($this);
             <div class="contacts_wrapper">
 
                 <div class="phones">
-                    <p>+7 (495) 150-27-16</p>
-                    <p>+7 (495) 930-22-56</p>
+                    <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                    <a href="tel:4959302256">+7 (495) 930-22-56</a>
                 </div>
         
                 <div class="work_hours">
@@ -200,8 +230,8 @@ AppAsset::register($this);
             </a>
 
             <div class="phones">
-                <p>+7 (495) 150-27-16</p>
-                <p>+7 (495) 930-22-56</p>
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                <a href="tel:4959302256">+7 (495) 930-22-56</a>
             </div>
     
             <div class="work_hours">
@@ -223,6 +253,10 @@ AppAsset::register($this);
         <p>Информация, представленная на сайте, не может быть использована для постановки диагноза, назначения лечения и не заменяет прием врача.</p>
 
         <p class="lp_label">Создание&nbsp;и&nbsp;продвижение&nbsp;сайта<br><a class="_link" href="http://liderpoiska.ru/" target="_blank">«Лидер поиска»</a></p>
+    </div>
+
+    <div class="layout_popup _hidden">
+        <div class="scroll_wrapper"></div>
     </div>
     
 </footer>

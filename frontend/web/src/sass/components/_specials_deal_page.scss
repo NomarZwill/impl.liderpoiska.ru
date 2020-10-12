@@ -7,6 +7,16 @@
     padding: 24px 104px 32px 104px;
   }
 
+  .breadcrumbs_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .breadcrumbs{
+    margin: 0 4px 0 0;
+  }
+
   h1{
     padding: 16px 0 0 0;
     text-align: center;
@@ -16,8 +26,9 @@
     padding: 0 104px 48px 104px;
 
     img{
+      display: block;
       width: 100%;
-      height: 320px;
+      height: auto;
     }
   }
 
@@ -53,8 +64,16 @@
       padding: 24px 16px 24px 16px;
     }
 
+    h1{
+      padding: 8px 0 0 0;
+    }
+
     .content_block.deal_wpapper{
       padding: 0 16px 32px 16px;
+    }
+
+    .deal_content{
+      padding: 16px 0 0 0;
     }
 
   }
