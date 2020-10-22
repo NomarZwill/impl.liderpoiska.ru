@@ -1,0 +1,218 @@
+[data-page-type="licenses"]{
+
+  .content_block.title_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 24px 0 32px 0;
+  }
+
+  h1{
+    padding: 16px 0 0 0;
+    text-align: center;
+  }
+
+  .content_block.company_info_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0 104px 48px 104px;
+  }
+
+  .requisites_wrapper{
+
+    h4{
+      width: 100%;
+      color: $headerBlack;
+    }
+  }
+
+  .requisites_raw,
+  .requisites_raw_title,
+  .organization_item,
+  .organization_title{
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .requisites_raw{
+    padding: 12px 0 0 0;
+  }
+
+  .requisites_raw_title{
+    font-weight: 500;
+  }
+
+  .document_templates_wrapper.page_menu_wrapper{
+    width: 25%;
+    margin: 0 0 0 100px;
+    padding: 0 24px 0 0;
+  }
+
+  .page_menu_wrapper{
+    padding: 8px 0 0 0;
+
+    h4{
+      position: relative;
+      padding: 0 0 16px 0;
+      color: $headerBlack;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: -9px;
+        left: -56px;
+        width: 48px;
+        height: 48px;
+        background: url(/img/book_icon.svg);
+        background-size: contain;
+      }
+    }
+  }
+
+  .chapter_link_wrapper:first-of-type{
+    padding: 0 0 12px 0;
+  }
+
+  .document_template.chapter_link_wrapper{
+    width: 200px;
+  }
+
+  .chapter_link{
+    position: relative;
+
+    &:before{
+      content: '— ';
+      position: absolute;
+      left: -24px;
+    }
+  }
+
+  .other_info_wrapper{
+
+    p{
+      padding: 24px 0 0 0;
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+  
+  h2{
+    text-align: center;
+    color: $headerBlack;
+  }
+  .content_block.clinic_licenses{
+    width: 100%;
+    padding: 48px 0 48px 0;
+    background: $lightBG;
+    overflow: hidden;
+
+    h2{
+      padding: 0 0 16px 0;
+    }
+
+    .swiper-wrapper{
+      padding: 0 24px 16px 24px;
+    }
+
+    .swiper-slide{
+      flex-shrink: 1;
+    }
+  }
+
+  .content_block.controlling_organizations_container{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 48px 104px 48px 104px;
+
+    h2{
+      width: 100%;
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .organization_item{
+    width: 50%;
+    padding: 0 0 40px 0;
+  }
+
+  .organization_title{
+    display: inline-block;
+    width: 100%;
+    padding: 0 0 8px 0;
+    font-weight: 500;
+    color: $headerBlack;
+  }
+
+  @include for-notdesc{
+
+    h1{
+        padding: 8px 0 0 0;
+    }
+
+    .content_block.company_info_wrapper{
+      padding: 0 16px 40px 16px;
+    }
+
+    .document_templates_wrapper.page_menu_wrapper{
+      width: 100%;
+      margin: 0 0 0 24px;
+      padding: 32px 0 0 0;
+
+      h4{
+        padding: 0 0 16px 24px;
+  
+        &:before{
+          left: -31px;
+        }
+      }
+    }
+
+    .organization_item{
+      width: 100%;
+      padding: 0 0 24px 0;
+    }
+  }
+
+  @include for-pad{
+
+    .content_block.title_container{
+      padding: 24px 16px 32px 16px;
+    }
+
+    .document_template.chapter_link_wrapper{
+      width: 100%;
+    }
+    
+    .content_block.clinic_licenses{
+      padding: 40px 0 40px 0;
+    }
+
+    .content_block.controlling_organizations_container{
+      padding: 40px 16px 16px 16px;  
+    }
+  }
+
+
+  @include for-mobile{
+
+    .content_block.title_container{
+      padding: 24px 0 24px 0;
+    }
+
+    .content_block.company_info_wrapper{
+      padding: 0 16px 32px 16px;
+    }
+
+    .requisites_raw{
+      padding: 8px 0 0 0;
+    }
+
+    .content_block.clinic_licenses{
+      padding: 24px 0 24px 0;
+    }
+
+    .content_block.controlling_organizations_container{
+      padding: 32px 16px 8px 16px;  
+    }
+  }
+}

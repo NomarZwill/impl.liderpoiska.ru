@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use frontend\controllers\MainController;
 use backend\models\Servises;
+use backend\models\Prices;
 use backend\models\Doctors;
 use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
@@ -33,49 +34,157 @@ class DentController extends MainController
          'servises' => $servises
       ));  
    }
-   public function actionFirstLevel($firstLevel){
 
+   public function actionFirstLevel($firstLevel){
       $currentService = Servises::find()
-      ->where(['alias' => $firstLevel])
-      ->asArray()
-      ->all();
+         ->where(['alias' => $firstLevel])
+         ->all();
 
       $childrenService = Servises::find()
-      ->where(['parent_id' => $currentService[0]['old_id']])
-      ->asArray()
-      ->all();
+         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->all();
+
+      $servisesWithPrices = Servises::find()
+         ->where(['servises.servise_id' => $currentService[0]['servise_id']])
+         ->joinWith('prices')
+         ->all(); 
 
       $doctors = Doctors::find()
-      ->joinWith('medicalSpecialties')
-      ->asArray()
-      ->all();
+         ->joinWith('medicalSpecialties')
+         ->all();
 
       $faq = Faq::find()
-      ->limit(10)
-      ->asArray()
-      ->all();
+         ->limit(10)
+         ->all();
 
-      //   print_r($faq);
+      //   print_r($servisesWithPrices);
       //   exit;
 
       return $this->render('servicePage.twig', array(
          'currentService' => $currentService[0],
          'childrenService' => $childrenService,
+         'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
          'faq' => $faq
       )); 
    }
+
    public function actionSecondLevel($firstLevel, $secondLevel){
-      return 'actionSecondLevel';
+      $currentService = Servises::find()
+         ->where(['alias' => $secondLevel])
+         ->all();
+
+      $childrenService = Servises::find()
+         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->all();
+
+      $servisesWithPrices = Servises::find()
+         ->where(['servises.servise_id' => $currentService[0]['servise_id']])
+         ->joinWith('prices')
+         ->all(); 
+
+      $mainParent = Servises::find()
+         ->where(['alias' => $firstLevel])
+         ->all();
+
+      $doctors = Doctors::find()
+         ->joinWith('medicalSpecialties')
+         ->all();
+
+      $faq = Faq::find()
+         ->limit(10)
+         ->all();
+
+      //   print_r($servisesWithPrices);
+      //   exit;
+
+      return $this->render('servicePage.twig', array(
+         'currentService' => $currentService[0],
+         'childrenService' => $childrenService,
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'mainParent' => $mainParent[0],
+         'doctors' => $doctors,
+         'faq' => $faq
+      )); 
    }
+
    public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel){
-      return 'actionThirdLevel';
+      $currentService = Servises::find()
+         ->where(['alias' => $thirdLevel])
+         ->all();
+
+      $childrenService = Servises::find()
+         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->all();
+
+      $servisesWithPrices = Servises::find()
+         ->where(['servises.servise_id' => $currentService[0]['servise_id']])
+         ->joinWith('prices')
+         ->all(); 
+
+      $mainParent = Servises::find()
+         ->where(['alias' => $firstLevel])
+         ->all();
+
+      $parent = Servises::find()
+         ->where(['alias' => $secondLevel])
+         ->all();
+
+      $doctors = Doctors::find()
+         ->joinWith('medicalSpecialties')
+         ->all();
+
+      $faq = Faq::find()
+         ->limit(10)
+         ->all();
+
+      //   print_r($servisesWithPrices);
+      //   exit;
+
+      return $this->render('servicePage.twig', array(
+         'currentService' => $currentService[0],
+         'childrenService' => $childrenService,
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'mainParent' => $mainParent[0],
+         'parent' => $parent[0],
+         'doctors' => $doctors,
+         'faq' => $faq
+      )); 
    }
+
    public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel){
-      return 'actionFourthLevel';
+      $currentService = Servises::find()
+         ->where(['alias' => $fourthLevel])
+         ->all();
+
+      $servisesWithPrices = Servises::find()
+         ->where(['servises.servise_id' => $currentService[0]['servise_id']])
+         ->joinWith('prices')
+         ->all(); 
+
+      $mainParent = Servises::find()
+         ->where(['alias' => $firstLevel])
+         ->all();
+
+      $doctors = Doctors::find()
+         ->joinWith('medicalSpecialties')
+         ->all();
+
+      $faq = Faq::find()
+         ->limit(10)
+         ->all();
+
+      //   print_r($servisesWithPrices);
+      //   exit;
+
+      return $this->render('servicePage.twig', array(
+         'currentService' => $currentService[0],
+         'childrenService' => '',
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'mainParent' => $mainParent[0],
+         'parent' => '',
+         'doctors' => $doctors,
+         'faq' => $faq
+      )); 
    }
- 
-
-
-
 }

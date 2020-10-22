@@ -13,16 +13,14 @@ class SpecialistsController extends MainController
 {
 
   public function actionIndex(){
-    $clinics = Clinics::find()->asArray()->all();
-    $medicalSpecialties = MedicalSpecialties::find()->asArray()->all(); 
+    $clinics = Clinics::find()->all();
+    $medicalSpecialties = MedicalSpecialties::find()->all(); 
     $doctors = Doctors::find()
       ->joinWith('medicalSpecialties')
       ->limit(20)
-      ->asArray()
       ->all();
 
-    // print_r(count($doctors));
-    // echo count($doctors);
+    // print_r($doctors);
     // exit;
       
     return $this->render('index.twig', array(
@@ -46,28 +44,27 @@ class SpecialistsController extends MainController
     }
   }
 
-  public function actionAjaxMedSpecFilter(){
-    $filterSetting = $_GET['spec_id'];
+  // public function actionAjaxMedSpecFilter(){
+  //   $filterSetting = $_GET['spec_id'];
 
-    return $this->getFilteredMedSpecList($filterSetting, 20, 0);
-  }
+  //   return $this->getFilteredMedSpecList($filterSetting, 20, 0);
+  // }
 
   public function actionAjaxMoreCard(){
     $spec_id = $_GET['spec_id'];
     $cardCount = $_GET['currentCardCount'];
+    $cardLimit = $_GET['cardLimit'];
 
-    return $this->getFilteredMedSpecList($spec_id, 20, $cardCount);
+    return $this->getFilteredMedSpecList($spec_id, $cardLimit, $cardCount);
   }
 
   public function getFilteredMedSpecList($spec_id, $limit, $offset){
 
     if ($spec_id === '0') {
-      // $doctors = Doctors::find()->limit($limit)->offset($offset)->asArray()->all();
-      // $doctorsAndMedSpec = SpecialistsController::getDoctorsAndMedSpecList(Doctors::find()->all());
       $doctors = Doctors::find()
         ->joinWith('medicalSpecialties')
-        ->limit($limit)
         ->offset($offset)
+        ->limit($limit)
         ->asArray()
         ->all();
 
@@ -76,7 +73,6 @@ class SpecialistsController extends MainController
       return json_encode([
         'listing' => $this->renderPartial('/components/doctorListing.twig', array(
           'doctors' => $doctors,
-          // 'doctorsAndMedSpec' => $doctorsAndMedSpec
         )),
         'isListEnd' => $isListEnd,
         'doctors' => $doctors
@@ -85,38 +81,20 @@ class SpecialistsController extends MainController
       $doctors = Doctors::find()
         ->joinWith('medicalSpecialties')
         ->where(['doctors_med_spec.specialty_id' => $spec_id])
-        ->limit($limit)
         ->offset($offset)
+        ->limit($limit)
         ->asArray()
         ->all();
+
+        $isListEnd = (count($doctors) < $limit) ? true : false;
   
       return json_encode([
         'listing' => $this->renderPartial('/components/doctorListing.twig', array(
           'doctors' => $doctors,
         )),
+        'isListEnd' => $isListEnd,
         'doctors' => $doctors
       ]);
     }
-  }
-
-
-  public static function getDoctorsAndMedSpecList($doctors){
-    $doctorsAndMedSpec = [];
-    
-    foreach ($doctors as $doc) {
-      $medSpec = $doc->medicalSpecialties;
-      
-      if (count($medSpec) > 1) {
-          
-        foreach ($medSpec as $spec) {
-          $doctorsAndMedSpec[$doc->doctor_id][$spec->specialty_id] = $spec->menu_title;
-        } 
-        
-      } elseif (count($medSpec) == 1) {
-          $doctorsAndMedSpec[$doc->doctor_id][$medSpec[0]->specialty_id] = $medSpec[0]->menu_title;
-      }
-    }
-
-    return $doctorsAndMedSpec;
   }
 }

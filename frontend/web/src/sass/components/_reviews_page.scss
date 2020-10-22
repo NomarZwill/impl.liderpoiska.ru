@@ -91,6 +91,13 @@
     height: 56px;
   }
 
+  .content_block.review_form_wrapper{
+
+    .close_icon{
+      display: none;
+    }
+  }
+
   @include for-pad{
 
     h1{
@@ -107,6 +114,10 @@
       hr{
         width: 608px;
       }
+    }
+
+    .content_block.review_form_wrapper{
+      padding: 0 16px 40px 16px;
     }
   }
 

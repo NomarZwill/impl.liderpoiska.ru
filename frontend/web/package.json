@@ -38,12 +38,14 @@
   },
   "dependencies": {
     "chosen-js": "^1.8.7",
+    "flatpickr": "^4.6.6",
     "jquery-autocomplete": "^1.2.8",
     "jquery-autocompleter": "^0.3.0",
     "js-cookie": "2.1.4",
     "lightbox2": "2.11.1",
     "slick-carousel": "^1.8.1",
     "sortablejs": "^1.10.0",
-    "swiper": "^6.1.1"
+    "swiper": "^6.1.1",
+    "zurb-twentytwenty": "^0.1.1"
   }
 }

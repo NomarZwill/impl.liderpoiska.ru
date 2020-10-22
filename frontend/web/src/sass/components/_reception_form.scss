@@ -1,0 +1,247 @@
+[data-type="reception_form"]{
+
+  form{
+    position: relative;
+    width: 704px;
+    margin: 0 auto;
+    padding: 24px 48px 48px 48px;
+    background: #FFFFFF;
+    border-radius: 8px;
+  }
+
+  h2{
+    color: $headerBlack;
+  }
+
+  .close_icon_mobile{
+    display: none;
+  }
+
+  .form_fields_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 24px 0 8px 0;
+  }
+
+  input,
+  .current_select{
+    width: 288px;
+    margin: 0 16px 16px 0;
+    padding: 18px 8px 8px 8px;
+    background: #ffffff;
+    border: 1px solid #DADEE1;
+    box-sizing: border-box;
+    box-shadow: inset 0px 2px 2px rgba(118, 125, 134, 0.1);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  input[name='date']{
+    width: 152px;
+
+    & + span{
+      top: 5px;
+    }
+  }
+
+  .input_wrapper{
+    position: relative;
+    display: block;
+
+    span{
+      cursor: text;
+      position: absolute;
+      top: 15px;
+      left: 8px;
+      opacity: 0.6;
+      visibility: hidden;
+      transition: 0.3s;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+    
+    input:placeholder-shown ~ span {
+      visibility: visible;
+    }
+
+    input:placeholder-shown:focus ~ span,
+    input:not(:placeholder-shown) ~ span {
+      cursor: default;
+      top: 4px;
+      opacity: 1;
+      visibility: visible;
+      font-size: 10px;
+      line-height: 14px;
+    }
+
+    input:placeholder-shown:focus ~ span.hide_if_focus_span,
+    input:not(:placeholder-shown) ~ span.hide_if_focus_span {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  .hide_if_focus_span{
+    padding: 8px 0 0 0;
+  }
+
+  .input_clinic_wrapper{
+    position: relative;
+    overflow: hidden;
+
+    &[data-state="active"] {
+      overflow: visible;
+
+      .current_select {
+        
+        &:before{
+          top: 22px;
+          transform: rotate(-135deg);
+        }
+      }
+      
+      .clinics_list {
+        opacity: 1;
+      }
+      
+      .clinic_item_label + .clinic_item_input + .clinic_item_label {
+        max-height: 48px;
+      }
+    }
+  }
+
+  .current_select{
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 3px 8px 3px 8px;
+    color: $headerBlack;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 19px;
+      right: 8px;
+      width: 5px;
+      height: 5px;
+      border-bottom: 2px solid #727581;
+      border-right: 2px solid #727581;
+      transform: rotate(45deg);
+    }
+  }
+
+  .clinics_list{
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: calc(100% - 16px);
+    padding: 16px 0 16px 0;
+    background: #ffffff;
+    border: 1px solid #DADEE1;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+    border-radius: 0px 0px 2px 2px;
+    opacity: 0;
+    z-index: 10;
+    
+    .clinic_item_input{
+      display: none;
+
+      &:checked + label {
+        background: #FEF6F2;
+      }
+
+      &:checked + label:hover {
+        background: $baseColor;
+        color: #ffffff;
+      }
+      
+      // &:disabled + label {
+      //   opacity: 0.6;
+      //   pointer-events: none;
+      // }
+    }
+
+    .clinic_item_label{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 0 16px 0 16px;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+
+      &:hover{
+        background: $baseColor;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .submit_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    p{
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+
+  button._button{
+    margin: 0 16px 0 0;
+    padding: 0 75px 0 75px;
+    height: 48px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  @include for-mobile{
+
+    .close_icon{
+      top: 12px;
+      right: 12px;
+    }
+
+    h2{
+      font-size: 24px;
+      line-height: 30px;
+    }
+
+    .form_fields_wrapper{
+      padding: 16px 0 0 0;
+    }
+
+    input,
+    .current_select,
+    input:not([name="date"]){
+      width: 264px;
+      margin: 0 0 16px 0;
+    }
+
+    .clinics_list{
+      width: 100%;
+    }
+
+    .submit_wrapper{
+      flex-flow: column nowrap;
+
+      ._button{
+        width: 100%;
+        margin: 0 0 8px 0;
+        padding: 12px 0 12px 0;
+      }
+  
+    }
+  }
+}

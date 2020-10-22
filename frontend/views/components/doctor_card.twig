@@ -26,9 +26,9 @@
         {% for medSpec in doctor.medicalSpecialties %}
 
           {% if loop.last %}
-            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}</a>
+            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}</a>
           {% else %}
-            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title}}, </a>
+            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}, </a>
           {% endif %}
 
         {% endfor %}
@@ -38,7 +38,7 @@
 
     </div>
 
-    <button class="_button _button_light">Записаться на приём</button>
+    <button class="reception_button _button _button_light">Записаться на приём</button>
 
   
 

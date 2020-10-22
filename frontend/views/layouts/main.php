@@ -67,21 +67,29 @@ AppAsset::register($this);
 
             <button class="_button popup_button">Заказать звонок</button>
 
-            <div class="recall_form_wrapper _hidden" data-page-type="recall_form">
+            <div class="recall_form_container _hidden">
 
-                <?= $this->render('../components/recall_form.twig', 
-                [
-                    'title' => '<h3>Заказать звонок</h3>',
-                    'title_description' => 'Оставьте ваши данные, и мы перезвоним в течение 15 минут.',
-                    'submit_button_title' => 'Отправить'
-                ]) ?>
+                <div class="recall_form_wrapper" data-page-type="recall_form">
+
+                    <?= $this->render('../components/recall_form.twig', 
+                    [
+                        'title' => '<h3>Заказать звонок</h3>',
+                        'title_description' => 'Оставьте ваши данные, и мы перезвоним в течение 15 минут.',
+                        'submit_button_title' => 'Отправить'
+                    ]) ?>
+
+                </div>
 
             </div>
 
         </div>
 
         <div class="burger_wrapper">
-            <div class="burger_img"></div>
+            <div class="burger_img">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
 
     </div>
@@ -166,7 +174,7 @@ AppAsset::register($this);
             </div>
 
             <div class="popup_button_wrapper">
-                <button class="_button popup_button">Записаться&nbsp;на&nbsp;прием</button>
+                <button class="reception_button _button popup_button">Записаться&nbsp;на&nbsp;прием</button>
             </div>
 
         </div>
@@ -257,6 +265,17 @@ AppAsset::register($this);
 
     <div class="layout_popup _hidden">
         <div class="scroll_wrapper"></div>
+    </div>
+
+    <div class="reception_form_container _hidden">
+        <?= $this->render(
+            '../components/reception_form.twig', ['clinics' => Yii::$app->params['clinics']]) ?>
+    </div>
+
+    <div class="review_form_container _hidden">
+        <div class="review_form_wrapper" data-page-type="review_form">
+            <?= $this->render('../components/review_form.twig') ?>
+        </div>
     </div>
     
 </footer>

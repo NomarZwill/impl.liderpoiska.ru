@@ -11,8 +11,7 @@ export default class Faq{
     $firstBlock.addClass('_close');
     $firstBlock.closest('.faq_item_wrapper').find('.item_answer').removeClass('_collapse');
 
-   $('[data-type="faq"] .arrow').each(function(){
-    $(this).on('click', function(e){
+    function setFaqInteractive(){
       var $answerBlock = $(this).closest('.faq_item_wrapper').find('.item_answer');
 
       if (!$answerBlock.hasClass('_collapse')) {
@@ -22,7 +21,10 @@ export default class Faq{
         $(this).addClass('_close');
         $answerBlock.removeClass('_collapse');
       }
-    });
+    }
+
+   $('[data-type="faq"] .arrow').each(function(){
+    $(this).on('click', setFaqInteractive);
    });
 
   }

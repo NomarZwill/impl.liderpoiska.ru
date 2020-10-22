@@ -10,7 +10,7 @@ export default class ServicePage{
 
   init(){
     
-    if ($('.price_item_wrapper').length > 5) {
+    if ($('.service_price_wrapper').length > 5) {
       $('.prices_wrapper .show_all').removeClass('_hidden');
       $('.prices_wrapper').addClass('_compact');
     }

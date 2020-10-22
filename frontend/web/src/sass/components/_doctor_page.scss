@@ -1,10 +1,15 @@
 [data-page-type="doctor_page"]{
   position: relative;
 
+  h1{
+    font-size: 40px;
+    line-height: 44px;
+  }
+
   .content_block.doctor_preview{
     width: 100%;
-    background: url(/img/wave_bg.png);
-    background-size: cover;
+    background: url(/img/wave_bg.svg);
+    background-size: 25%;
     z-index: 10;
   }
 
@@ -305,6 +310,13 @@
     }
   }
 
+  .content_block.doctor_reviews{
+
+    .review_text._compact{
+      height: 200px;
+    }
+  } 
+
   .content_block.doctor_work_example{
     width: 100%;
     padding: 48px 0 48px 0;
@@ -440,6 +452,11 @@
 
   @include for-notdesc{
 
+    h1{
+      font-size: 36px;
+      line-height: 40px;
+    }
+
     .clinics_wrapper{
       width: 100%;
     }
@@ -459,9 +476,19 @@
         padding: 12px 0 12px 0;
       }
     }
+    .doctor_work_image:hover {
+
+      .bg_filter{
+        display: none;
+      }
+    }
   }
 
   @include for-pad{
+
+    .content_block.doctor_preview{
+      background-size: 50%;
+    }
 
     .doctor_preview_container{
       width: 768px;

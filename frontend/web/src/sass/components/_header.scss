@@ -213,10 +213,48 @@
   }
 
   .burger_img{
+    position: relative;
     width: 32px;
     height: 32px;
-    background: url(/img/burger_icon.svg);
-    background-size: contain;
+    overflow: hidden;
+    // background: url(/img/burger_icon.svg);
+    // background-size: contain;
+  }
+
+  .burger_img div {
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: #727581;
+    position: absolute;
+    top: 10px;
+    left: 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .burger_img div:nth-child(1){
+    transform: translate(0, 0);
+  }
+  .burger_img div:nth-child(2){
+    transform: translate(0, 6px);
+  }
+  .burger_img div:nth-child(3){
+    transform: translate(0, 12px);
+  }
+
+  .burger_img._active{
+
+    & div:nth-child(1){
+      transform: translate(0, 5px) rotate(45deg);
+    }
+
+    & div:nth-child(2){
+      transform: translate(0, 5px) rotate(-45deg);
+    }
+
+    & div:nth-child(3){
+      transform: translate(0, 50px);
+    }
   }
 
   @include for-notdesc{
@@ -283,6 +321,10 @@
 
     .navbar_item{
       padding: 0 32px 0 0;
+    }
+
+    .navbar_item:nth-last-of-type(2){
+      padding: 0 0 0 0;
     }
     
     .navbar_item:first-of-type > a{

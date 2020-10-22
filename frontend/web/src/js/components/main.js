@@ -1,5 +1,8 @@
 'use strict';
 
+import flatpickr from "flatpickr";
+import { Russian } from "flatpickr/dist/l10n/ru.js";
+
 export default class Main{
 
   constructor(){
@@ -46,8 +49,23 @@ export default class Main{
 
     function closeLayoutPopup(){
       $('.layout_popup').addClass('_hidden');
+
+      if ($('.layout_popup .reception_form_wrapper').length !== 0) {
+        $('.layout_popup .reception_form_wrapper')
+        .appendTo('.reception_form_container');
+        $('.reception_form_wrapper .current_select').html($('.reception_form_wrapper .current_select').data('default'));
+        $('.reception_form_wrapper .clinic_item_input')[0].checked = true;
+      } else if($('.layout_popup .review_form_wrapper').length !== 0) {
+        $('.layout_popup .review_form_wrapper')
+        .appendTo('.review_form_container');
+      }  else if ('.layout_popup .recall_form_wrapper'.length !== 0) {
+        $('.layout_popup .recall_form_wrapper')
+        .appendTo('.popup_button_wrapper.recall_form_popup .recall_form_container');
+      }
+
       $('.layout_popup .scroll_wrapper').empty();
       $('body').removeClass('_popup_mode');
+      console.log('closeLayoutPopup');
     }
 
     $('.service_dropdown_menu_container').on('click', function(e){
@@ -77,8 +95,12 @@ export default class Main{
       if ($(e.target).closest('.header_navbar_wrapper').length === 0 
        && $(e.target).closest('.burger_wrapper').length === 0
        && $(e.target).closest('.popup_button_wrapper.recall_form_popup').length === 0
-       && $(e.target).closest('.recall_form_wrapper form').length === 0
-       && $(e.target).closest('.contacts_mob_icon').length === 0) {
+       && $(e.target).closest('.layout_popup .scroll_wrapper').length === 0
+       && $(e.target).closest('.contacts_mob_icon').length === 0
+       && $(e.target).closest('.reception_button').length === 0
+       && $(e.target).closest('.review_item_wrapper .read_more').length === 0
+       && $(e.target).closest('.doctor_work_wrapper').length === 0
+       && $(e.target).closest('.review_popup_button').length === 0) {
         closeDropdownMenu();
         closeLayoutPopup();
       }
@@ -150,6 +172,10 @@ export default class Main{
 
     $('.popup_button_wrapper.recall_form_popup form .close_icon')
     .add('.popup_button_wrapper.recall_form_popup form .close_icon_mobile')
+    .add('.reception_form_wrapper .close_icon')
+    .add('.reception_form_wrapper .close_icon_mobile')
+    .add('.review_form_wrapper .close_icon')
+    .add('.review_form_wrapper .close_icon_mobile')
     .on('click', function(e){
       closeLayoutPopup();
     });
@@ -160,10 +186,65 @@ export default class Main{
       closeDropdownMenu();
       $('.popup_button_wrapper.recall_form_popup')
         .find('.recall_form_wrapper')
-        .clone(true)
         .appendTo('.layout_popup .scroll_wrapper');
       $('.layout_popup').removeClass('_hidden');
       $('.layout_popup .recall_form_wrapper').removeClass('_hidden');
+      $('body').addClass('_popup_mode');
+    });
+
+    //------- popup reception form -------
+
+    $('.reception_button').on('click', function(e){
+      closeDropdownMenu();
+      $('.reception_form_container')
+        .find('.reception_form_wrapper')
+        .appendTo('.layout_popup .scroll_wrapper');
+      $('.layout_popup').removeClass('_hidden');
+      $('body').addClass('_popup_mode');
+    });
+
+    var calendarWrapper = document.querySelector('input[name="date"]');
+    flatpickr(calendarWrapper, {
+      "locale": Russian,
+      dateFormat: "d.m.Y",
+      disableMobile: "true",
+    });
+
+    var selectClinic = document.querySelector('.input_clinic_wrapper');
+    var selectClinicCurrent = selectClinic.querySelector('.current_select');
+    var selectClinicLabels = selectClinic.querySelectorAll('.clinic_item_label');
+
+    // Toggle menu
+    selectClinicCurrent.addEventListener('click', () => {
+      if ('active' === selectClinic.getAttribute('data-state')) {
+        selectClinic.setAttribute('data-state', '');
+      } else {
+        selectClinic.setAttribute('data-state', 'active');
+      }
+    });
+
+    // Close when click to option
+    for (var i = 0; i < selectClinicLabels.length; i++) {
+      selectClinicLabels[i].addEventListener('click', (e) => {
+        selectClinicCurrent.textContent = e.target.textContent;
+        selectClinic.setAttribute('data-state', '');
+      });
+    }
+
+    $('.reception_form_wrapper').on('click', function(e){
+      if ($(e.target).closest('.input_clinic_wrapper').length === 0) {
+        selectClinic.setAttribute('data-state', '');
+      }
+    });
+
+    //------- popup review form -------
+
+    $('.review_popup_button').on('click', function(e){
+      closeDropdownMenu();
+      $('.review_form_container')
+        .find('.review_form_wrapper')
+        .appendTo('.layout_popup .scroll_wrapper');
+      $('.layout_popup').removeClass('_hidden');
       $('body').addClass('_popup_mode');
     });
 

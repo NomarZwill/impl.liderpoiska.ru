@@ -281,70 +281,78 @@
     height: 100vh;
     overflow-y: scroll;
     background: rgba(255, 249, 240, 0.6);
+    z-index: 100;
 
     .recall_form_wrapper{
       padding: 0 0 0 0;
-    }
+    
+      form{
+        width: 390px;
+        padding: 32px 40px 40px 40px;
 
-    form{
-      width: 390px;
-      padding: 32px 40px 40px 40px;
+        &:after{
+          content: none;
+        }
 
-      &:after{
-        content: none;
-      }
+        h3{
+          padding: 0 0 0 0;
+          text-align: start;
+          color: $headerBlack;
+        }
 
-      h3{
-        padding: 0 0 0 0;
-        text-align: start;
-        color: $headerBlack;
-      }
+        .close_icon{
+          cursor: pointer;
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          display: block;
+          width: 32px;
+          height: 32px;
+          background: url(/img/close_icon.svg);
 
-      .close_icon{
-        cursor: pointer;
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        display: block;
-        width: 32px;
-        height: 32px;
-        background: url(/img/close_icon.svg);
-
-        &:hover{
-          background: url(/img/close_icon_active.svg);
+          &:hover{
+            background: url(/img/close_icon_active.svg);
+          }
         }
       }
-    }
-    .form_fields_wrapper{
-      flex-flow: row wrap;
+      .form_fields_wrapper{
+        flex-flow: row wrap;
+      }
+
+      .input_wrapper{
+        width: 100%;
+      }
+
+      input{
+        width: 100%;
+        margin: 0 0 16px 0;
+      }
+
+      input[name="phone"]{
+        margin: 0 0 0 0;
+      }
+
+      .form_fields_wrapper{
+        padding: 16px 0 16px 0;
+      }
+
+      .submit_wrapper{
+        display: flex;
+        flex-flow: column nowrap;
+      }
+
+      button._button{
+        width: 100%;
+        margin: 0 0 16px 0;
+        padding: 0 0 0 0;
+      }
     }
 
-    .input_wrapper{
-      width: 100%;
-    }
-
-    input{
-      width: 100%;
-      margin: 0 0 16px 0;
-    }
-
-    input[name="phone"]{
-      margin: 0 0 0 0;
-    }
-
-    .form_fields_wrapper{
-      padding: 16px 0 16px 0;
-    }
-
-    .submit_wrapper{
-      display: flex;
-      flex-flow: column nowrap;
-    }
-
-    button._button{
-      width: 100%;
-      margin: 0 0 16px 0;
-      padding: 0 0 0 0;
+    .review_form_wrapper{
+      
+      form{
+        background: #ffffff;
+      }
     }
   }
 
@@ -564,6 +572,8 @@
     }
 
     .layout_popup{
+      align-items: flex-start;
+      padding: 54px 0 54px 0;
 
       form{
         width: 288px;

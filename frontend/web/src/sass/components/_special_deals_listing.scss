@@ -21,13 +21,21 @@
     width: 100%;
     padding: 0 0 16px 0;
   }
+  
+  .deal_item{
+    overflow: hidden;
+  }
 
   .deal_img{
     position: absolute;
     right: 0;
-    width: 50%;
-    height: 154px;
-    background-repeat: no-repeat !important;
+    width: 500px;
+    
+    img{
+      display: block;
+      width: 500px;
+      height: 200px;
+    }
   }
   
   .deal_text{
@@ -36,14 +44,14 @@
     justify-content: center;
     min-height: 154px;
     height: auto;
-    padding: 0 41% 0 24px;
-    background: linear-gradient(110deg, $baseColor 62%, rgba(255, 255, 255, 0.0) calc(62% + 1px));
+    padding: 0 31% 0 24px;
+    background: linear-gradient(110deg, $baseColor 71%, rgba(255, 255, 255, 0.0) calc(71% + 1px));
   }
 
   .deal_item_wrapper:nth-of-type(even){
 
     .deal_text{
-      background: linear-gradient(110deg, #FBEDD8 62%, transparent calc(62% + 1px));
+      background: linear-gradient(110deg, #FBEDD8 71%, rgba(255, 255, 255, 0.0) calc(71% + 1px));
     }
   }
 
@@ -97,18 +105,22 @@
     .deal_text{
       min-height: 142px;
       padding: 0 30% 0 12px;
-      background: linear-gradient(110deg, $baseColor 70%, rgba(255, 255, 255, 0.0) calc(70% + 1px));
+      background: linear-gradient(110deg, $baseColor 75%, rgba(255, 255, 255, 0.0) calc(75% + 1px));
     }
 
     .deal_item_wrapper:nth-of-type(even){
 
       .deal_text{
-        background: linear-gradient(110deg, #FBEDD8 70%, transparent calc(70% + 1px));
+        background: linear-gradient(110deg, #FBEDD8 75%,  rgba(255, 255, 255, 0.0) calc(75% + 1px));
       }
     }
     .deal_img{
-      width: 250px;
-      height: 142px;
+      width: 328px;
+
+      img{
+        width: auto;
+        height: 142px;
+      }
     }
   }
 }

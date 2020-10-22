@@ -109,6 +109,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 auto 48px auto;
     padding: 32px 0 32px 48px;
     background: $lightBG;
     border-radius: 8px;
@@ -141,14 +142,11 @@
 
   }
 
- 
-
   .content_block.prices_wrapper{
     position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    margin: 48px auto 0;
+    // display: flex;
+    // flex-flow: column nowrap;
+    // align-items: center;
     padding: 24px 32px 24px 32px;
     border: 1px solid #DADEE1;
     border-radius: 8px;
@@ -171,32 +169,52 @@
     }
   }
 
-  .price_item_wrapper{
+  .service_price_wrapper{
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
-    width: 100%;
+    padding: 12px 0 12px 4px;
+  }
 
-    .price_name{
-      padding: 12px 0 12px 0;
+  .service_price_name{
+    max-width: 704px;
+
+    p{
+      position: relative;
+      display: inline;
+      background-color: #ffffff;
       line-height: 26px;
       letter-spacing: 0.01em;
     }
+  }
 
-    .line{
-      flex-grow: 1;
-      height: 30px;
-      margin: 0 4px 0 4px;
-      border-bottom: 1px dotted $secondaryTextColor;
+  .dot_tail{
+    position: absolute;
+    bottom: 20px;
+    left: 4px;
+    width: 945px;
+    border-bottom: 1px dotted $textColor;
+  }
+
+  .service_price_points{
+    flex-grow: 1;
+    height: 15px;
+  }
+
+  .service_price_value{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 3px 0;
+    background: #ffffff;
+    font-weight: 500;
+
+    &:before{
+      content: "";
+      width: 5px;
+      height: 100%;
+      background: #ffffff;
     }
-
-    .price_value{
-      padding: 13px 0 13px 0;
-      white-space: nowrap;
-      font-weight: 500;
-      line-height: 24px;
-      letter-spacing: 0.01em;
-    }
-
   }
 
   .content_block.doctors_container{
@@ -385,7 +403,6 @@
     h4{
       padding: 0 0 24px 0;
     }
-
   }
 
   .content_note._dashes{
@@ -774,6 +791,7 @@
     }
 
     .content_block.subservice_wrapper{
+      margin: 0 auto 40px auto;
       padding: 16px 0 24px 40px;
     }
 
@@ -795,12 +813,19 @@
     }
 
     .content_block.prices_wrapper{
-      margin: 40px auto 0;
       padding: 24px 16px 32px 16px;
 
       .show_all{
         padding: 24px 16px 32px 16px;
       }
+    }
+
+    .dot_tail{
+      width: 697px;
+    }
+
+    .service_price_name{
+      max-width: 480px;
     }
 
     .content_block.doctors_container{
@@ -925,7 +950,6 @@
       padding: 32px 16px 40px 16px;
     }
 
-
     .breadcrumbs{
       display: none;
     }
@@ -958,7 +982,7 @@
     .content_block.subservice_wrapper{
       flex-flow: column nowrap;
       width: calc(100% - 32px);
-      margin: 0 16px 0 16px;
+      margin: 0 16px 32px 16px;
       padding: 16px 12px 24px 12px;
 
       .collapse_wrapper{
@@ -989,7 +1013,7 @@
     }
 
     .content_block.prices_wrapper{
-      margin: 32px 16px 32px 16px;
+      margin: 0 16px 32px 16px;
       padding: 16px 12px 24px 12px;
       width: calc(100% - 32px);
 
@@ -999,26 +1023,60 @@
 
     }
     
-    .price_item_wrapper{
+    // .price_item_wrapper{
+    //   flex-flow: column nowrap;
+    //   border-bottom: 1px solid #DADEE1;
+
+    //   .price_name{
+    //     padding: 12px 0 4px 0;
+    //   }
+
+    //   .price_value{
+    //     padding: 0 0 12px 0;
+    //   }
+
+    //   .line{
+    //     display: none;
+    //   }
+
+    //   &:last-of-type{
+    //     border-bottom: 1px solid transparent; // не работает, разобраться
+    //   }
+    // }
+
+    .service_price_wrapper{
+      display: flex;
       flex-flow: column nowrap;
+      padding: 12px 0 12px 0;
       border-bottom: 1px solid #DADEE1;
 
-      .price_name{
-        padding: 12px 0 4px 0;
-      }
+    }
+    
+    .service_price_wrapper:nth-last-of-type(2){
+      border-bottom: none;
+    }
 
-      .price_value{
-        padding: 0 0 12px 0;
-      }
+    .dot_tail,
+    .service_price_points{
+      display: none;
+    }
 
-      .line{
-        display: none;
-      }
-
-      &:last-of-type{
-        border-bottom: 1px solid transparent; // не работает, разобраться
+    .service_price_name{
+      max-width: none;
+  
+      p{
+        display: block;
+        line-height: 20px;
       }
     }
+
+    .service_price_value{
+      padding: 4px 0 0 0;
+
+      &:before{
+        content: none;
+      }
+    }  
 
     .content_block.doctors_container{
       padding: 0 0 32px 16px;

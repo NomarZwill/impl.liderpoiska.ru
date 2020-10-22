@@ -11,6 +11,7 @@ use backend\models\Servises;
 use backend\models\Prices;
 use backend\models\ServiceAndPrices;
 use backend\models\Reviews;
+use backend\models\Faq;
 use common\models\api\Maps;
 
 
@@ -143,7 +144,6 @@ class OtherController extends MainController
         'singleYearReviews' => $reviews,
       )),
     ]);
-
   }
 
   public function actionAjaxGetMoreReviews(){
@@ -162,17 +162,42 @@ class OtherController extends MainController
       )),
       'isListEnd' => $isListEnd
     ]);
-
   }
 
   public function actionFaq(){
+    $faq = Faq::find()
+      ->limit(7)
+      ->all();
 
-    return 'actionFaq';
+    $doctors = Doctors::find()
+      ->joinWith('medicalSpecialties')
+      ->all();  
+
+    return $this->render('faqPage.twig', array(
+      'faq' => $faq,
+      'doctors' => $doctors,
+    ));  
+  }
+
+  public function actionAjaxGetMoreFaq(){
+    $previousFaqCount = $_GET['previousFaqCount'];
+    $faq = Faq::find()
+      ->offset($previousFaqCount)
+      ->limit(5)
+      ->all();
+    $isListEnd = (count($faq) < 5) ? true : false;
+
+    return json_encode([
+      'listing' => $this->renderPartial('/components/faq.twig', array(
+        'faq' => $faq,
+      )),
+      'isListEnd' => $isListEnd
+    ]);
   }
 
   public function actionLicenses(){
 
-    return 'actionLicenses';
+    return $this->render('licenses.twig'); 
   }
 
   public function actionWarranty(){

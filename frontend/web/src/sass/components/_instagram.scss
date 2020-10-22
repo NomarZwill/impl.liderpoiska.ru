@@ -111,14 +111,14 @@
     .revolver_navigation_wrapper{
       display: flex;
       height: auto;
-      padding: 16px 0 0 0;
     }
 
     .instagram_gallery{
       width: 288px;
+      padding: 16px 0 0 0;
 
       .swiper-wrapper{
-        height: auto;
+        height: 288px;
         padding: 0 0 16px 0;
         flex-flow: row nowrap;
       }
@@ -126,6 +126,10 @@
       .swiper-slide{
         flex-shrink: 0;
       }
+    }
+
+    .instagram_item{
+      margin: 0 0 0 0;
     }
   }
 }

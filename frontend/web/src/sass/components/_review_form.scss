@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   padding: 0 0 48px 0;
-
+  
   form{
+    position: relative;
     width: 1016px;
     padding: 24px 48px 40px 48px;
     background: #FFF9F0;
@@ -13,6 +14,10 @@
   h2{
     padding: 0 0 12px 0;
     color: $headerBlack;
+  }
+
+  .close_icon_mobile{
+    display: none;
   }
 
   form > p{
@@ -106,7 +111,7 @@
   }
 
   @include for-pad{
-    padding: 0 16px 40px 16px;
+    padding: 160px 16px 40px 16px;
 
     form{
       width: 736px;
@@ -148,8 +153,6 @@
         margin: 0 0 8px 0;
         padding: 12px 0 12px 0;
       }
-  
     }
-
   }
 }

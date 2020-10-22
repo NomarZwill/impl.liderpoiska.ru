@@ -1,0 +1,153 @@
+[data-page-type="faq_form"]{
+  display: flex;
+  justify-content: center;
+  padding: 48px 0 48px 0;
+
+  form{
+    width: 1016px;
+    padding: 24px 48px 40px 48px;
+    background: $lightBG;
+    border-radius: 8px;
+  }
+
+  h2{
+    padding: 0 0 12px 0;
+    color: $headerBlack;
+  }
+
+  form > p{
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .form_fields_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    padding: 16px 0 24px 0;
+  }
+
+  input,
+  textarea{
+    transition: 0.3s; 
+    background: #ffffff;
+    border: 1px solid #DADEE1;
+    box-shadow: inset 0px 2px 2px rgba(118, 125, 134, 0.1);
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  input{
+    width: 295px;
+    padding: 19px 8px 7px 8px;
+    margin: 0 16px 16px 0;
+  }
+
+  input[name="phone"]{
+    margin: 0 0 16px 0;
+  }
+
+  textarea{
+    width: 100%;
+    min-height: 160px;
+    padding: 14px 8px 14px 8px;
+    resize: none;
+  }
+
+  .submit_wrapper{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    ._button{
+      padding: 12px 76px 12px 76px;
+      margin: 0 16px 0 0;
+    }
+    
+    p,
+    a{
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .inut_wrapper{
+    position: relative;
+
+    span{
+      position: absolute;
+      bottom: 32px;
+      left: 8px;
+      opacity: 0.6;
+      visibility: hidden;
+      transition: 0.3s;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    input:placeholder-shown ~ span {
+      visibility: visible;
+    }
+
+    input:placeholder-shown:focus ~ span,
+    input:not(:placeholder-shown) ~ span {
+      bottom: 46px;
+      opacity: 1;
+      visibility: visible;
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }
+
+  @include for-pad{
+    padding: 40px 16px 40px 16px;
+
+    form{
+      width: 736px;
+      padding: 24px 24px 32px 24px;
+    }
+
+    input[name="name"]{
+      margin: 0 83px 16px 0;
+    }
+  }
+
+  @include for-mobile{
+    padding: 32px 0 32px 0;
+
+    form{
+      width: 100%;
+      padding: 16px 16px 24px 16px;
+    }
+
+    h2{
+      padding: 0 0 8px 0;
+    }
+
+    .form_fields_wrapper{
+      padding: 16px 0 16px 0;
+    }
+
+    .inut_wrapper{
+      width: 100%;
+    }
+  
+    input{
+      width: 100%;
+      margin: 0 0 16px 0;
+    }
+
+    .submit_wrapper{
+      flex-flow: column nowrap;
+
+      ._button{
+        width: 100%;
+        margin: 0 0 8px 0;
+        padding: 12px 0 12px 0;
+      }
+    }
+  }
+}

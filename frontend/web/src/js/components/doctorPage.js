@@ -22,7 +22,6 @@ export default class DoctorPage{
       //   el: '.swiper-pagination',
       //   type: 'bullets',
       // }
-
     });
 
     var specialitiesWrapper  = new Swiper('.specialities_wrapper', {
@@ -41,7 +40,6 @@ export default class DoctorPage{
       //   el: '.swiper-pagination',
       //   type: 'bullets',
       // }
-
     });
 
     $('.content_block.doctor_lizcenz .lizcenz_item').on('click', function(e) {
@@ -82,53 +80,10 @@ export default class DoctorPage{
       //   el: '.swiper-pagination',
       //   type: 'bullets',
       // }
-
     });
 
     var $popupGalleries =  $('.popup_gallery_wrapper');
     var popupSwipers = [];
-    
-    $popupGalleries.each(function(i){
-
-      var thumbs = new Swiper($($popupGalleries[i]).find('.popup_gallery_thumbs'), {
-        init: false,
-        slidesPerView: 'auto',
-        spaceBetween: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        // navigation: {
-        //   nextEl: '.swiper-button-next',
-        //   prevEl: '.swiper-button-prev'
-        // },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
-  
-      });
-
-      var bigSlides = new Swiper($($popupGalleries[i]).find('.popup_gallery'), {
-        init: false,
-        slidesPerView: 1,
-        spaceBetween: 24,
-        thumbs: {
-          swiper: thumbs,
-          slideThumbActiveClass: 'swiper-slide-thumb-active',
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
-  
-      });
-
-      popupSwipers.push(bigSlides, thumbs);
-    });
 
     $('.doctor_work_example .doctor_work_image').on('click', function(e){
       var currentID = $(this).data('gallery-id');
@@ -153,9 +108,52 @@ export default class DoctorPage{
       });
 
       $('.popup_filter_bg').addClass('_active');
+      var thumbs = new Swiper($currentPopupGallery.find('.popup_gallery_thumbs'), {
+        // init: false,
+        slidesPerView: 'auto',
+        spaceBetween: 4,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        on: {
+          init: function(){
+            console.log('swiper');
+          }
 
-      popupSwipers[id * 2 - 1].init();
-      popupSwipers[id * 2 - 2].init();
+        }
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev'
+        // },
+        // pagination: {
+        //   el: '.swiper-pagination',
+        //   type: 'bullets',
+        // }
+      });
+
+      var bigSlides = new Swiper($currentPopupGallery.find('.popup_gallery'), {
+        // init: false,
+        slidesPerView: 1,
+        spaceBetween: 24,
+        thumbs: {
+          swiper: thumbs,
+          slideThumbActiveClass: 'swiper-slide-thumb-active',
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        // pagination: {
+        //   el: '.swiper-pagination',
+        //   type: 'bullets',
+        // }
+      });
+
+      popupSwipers.push({bigSlides, thumbs});
+      console.log(popupSwipers);
+
+      // popupSwipers[id * 2 - 1].init();
+      // popupSwipers[id * 2 - 2].init();
 
     };
 
@@ -174,8 +172,6 @@ export default class DoctorPage{
     $('.popup_gallery_wrapper .swiper-button-next._diagonal_navigation').on('click', function(e){
       var oldID = $(this).closest('.popup_gallery_wrapper').data('gallery-id');
       var newID = oldID + 1;
-
-      console.log($(`[data-gallery-id=${newID}].popup_gallery_wrapper`).length );
 
       if( $(`[data-gallery-id=${newID}].popup_gallery_wrapper`).length > 0){
 

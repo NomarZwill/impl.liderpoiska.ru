@@ -1,0 +1,71 @@
+<div data-page-type="faq_page">
+
+  <div class="content_block faq_title">
+
+    <div class="breadcrumbs_wrapper">
+      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
+    </div>
+
+    <h1>Вопросы и ответы</h1>
+
+    <a class="_button _button_light _link_black" href="#faq_form">Задать вопрос</a>
+
+  </div>
+
+  <div class="content_block doctors_container">
+
+    <div class="doctors_title">
+
+      <h2 class="_index_subtitle">На вопросы отвечают</h2>
+
+    </div>
+
+    <div class="swiper-container doctors_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for doctor in doctors %}
+    
+          <div class="swiper-slide doctor_item_wrapper">       
+  
+            {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="revolver_navigation_wrapper">
+
+        <div class="swiper-button-prev revolver_navigation"></div>
+        {# <div class="swiper-pagination revolver_pagination"></div> #}
+        <div class="swiper-button-next revolver_navigation"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="content_block faq_container" data-type="faq">
+
+    <a name="faq"></a>
+
+    <h2>Вопросы пациентов</h2>
+    
+    {{this.render('/components/faq.twig', {'faq': faq}) | raw}}
+
+    <button class="more_faq_button _button _button_light">Показать еще</button>
+    
+  </div>
+  
+  <div class="content_block review_form_wrapper" data-page-type="faq_form">
+
+    <a name="faq_form"></a>
+
+    {{this.render('/components/faq_form.twig') | raw}}
+
+  </div>
+  
+</div>

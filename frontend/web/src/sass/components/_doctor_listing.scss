@@ -173,7 +173,7 @@
   }
 
   .doctor_item_wrapper:nth-of-type(4n){
-    margin: 0 0 0 0;
+    margin: 0 0 24px 0;
   }
 
   ._button._button_light.more_doctors{
@@ -244,7 +244,7 @@
     }
 
     .doctors_wrapper{
-      padding: 24px 0 0 0;
+      padding: 0 0 0 0;
     }
 
     .card_content_wrapper,
@@ -275,7 +275,7 @@
     }
 
     .doctor_item_wrapper:nth-of-type(3n){
-      margin: 0 0 0 0;
+      margin: 0 0 24px 0;
     }
 
   }

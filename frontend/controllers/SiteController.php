@@ -78,12 +78,11 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $deals = Deals::find()->asArray()->all();
-        $reviews = Reviews::find()->asArray()->all();  
-        $clinics = Clinics::find()->asArray()->all();
+        $deals = Deals::find()->all();
+        $reviews = Reviews::find()->all();  
+        $clinics = Clinics::find()->all();
         $doctors = Doctors::find()
             ->joinWith('medicalSpecialties')
-            ->asArray()
             ->all();  
 
         // Yii::$app->params['servises'] = Servises::find()->asArray()->all();
@@ -105,7 +104,6 @@ class SiteController extends MainController
             'doctors' => $doctors,
             'reviews' => $reviews,
             'clinics' => $clinics,
-            // 'servises' => $servises,
         ));
     }
 

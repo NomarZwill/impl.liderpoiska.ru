@@ -1,0 +1,104 @@
+<div class="reception_form_wrapper" data-type="reception_form">
+
+  <form action="">
+
+    <div class="close_icon"></div>
+
+    <h2>Записаться на приём</h2>
+
+    <div class="form_fields_wrapper">
+      
+      <div class="input_wrapper input_clinic_wrapper">
+
+        {% for clinic in clinics %}
+
+          {% if loop.first %}
+
+            <p class="current_select" data-state="" data-default="{{clinic.card_title}}">{{clinic.card_title}}</p>
+
+          {% endif %}
+
+        {% endfor %}
+
+        <div class="clinics_list">
+
+          {% for clinic in clinics %}
+
+            {% if loop.first %}
+
+              <input 
+                id="clinic_id_{{clinic.clinic_id}}"
+                class="clinic_item_input" 
+                type="radio" 
+                name="clinic"
+                data-clinic-id="{{clinic.clinic_id}}" 
+                checked
+              />
+
+              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">{{clinic.card_title}}</label>
+
+            {% else %}
+
+              <input 
+                id="clinic_id_{{clinic.clinic_id}}"
+                class="clinic_item_input" 
+                type="radio" 
+                name="clinic"
+                data-clinic-id="{{clinic.clinic_id}}" 
+              />
+
+              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">{{clinic.card_title}}</label>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+        
+      </div>
+
+      <div class="calendar_wrapper"></div>
+
+      <label class="input_wrapper">
+        <input type="text" name="date" placeholder="&nbsp;">
+        <span>Дата приёма</span><span class="hide_if_focus_span"> (необязательно)</span>
+        
+      </label>
+
+      <label class="input_wrapper">
+        <input type="text" name="name" placeholder="&nbsp;">
+        <span>Как вас зовут</span>
+      </label>
+
+      <label class="input_wrapper">
+        <input type="text" name="phone" placeholder="&nbsp;">
+        <span>Номер телефона</span>
+      </label>
+
+      <label class="input_wrapper">
+        <input type="text" name="email" placeholder="&nbsp;">
+        <span>Электронная почта (необязательно)</span>
+      </label>
+
+    </div>
+
+    <div class="submit_wrapper">
+
+      <button class="_button">Отправить</button>
+  
+      <p>
+        Нажимая кнопку «Отправить», я даю согласие на 
+        обработку моих персональных данных 
+        в&nbsp;соответствии c <a class="_menu_link" href="/agreement/">Политикой 
+        конфиденциальности</a>
+      </p>
+  
+    </div>
+
+    <div class="close_icon_mobile">
+      <span>Закрыть</span>
+    </div>
+
+  </form>
+
+</div>

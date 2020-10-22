@@ -388,6 +388,9 @@
 
     & > p{
       padding: 16px 0 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.02em;
     }
   }
 
@@ -553,6 +556,12 @@
     color: $headerBlack;
   }
 
+  .clinic_ratings{
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 0 0;
+  }
+
   .clinic_contacts{
     position: absolute;
     bottom: 88px;
@@ -687,6 +696,17 @@
       }
     }
 
+    .clinic_ratings{
+
+    }
+
+    .ratings_container{
+      padding: 0 0 24px 0;
+
+      .revolver_navigation_wrapper{
+        margin: 8px auto 0 auto;
+      }
+    }
   }
 
   @include for-pad{
@@ -879,8 +899,8 @@
         left: 278px;
 
         &:before{
-          width: 736px;
-          left: -278px;
+          width: 598px;
+          left: -230px;
         }
       }
     }
@@ -906,9 +926,9 @@
         width: 680px;
       }
 
-      & > p{
-        padding: 8px 0 0 0;
-      }
+      // & > p{
+      //   padding: 8px 0 0 0;
+      // }
     }
     
     .review_text{
@@ -944,7 +964,7 @@
     }
 
     .clinic_contacts{
-      bottom: 64px;
+      bottom: 28px;
       left: 48px;
     }
 
@@ -1092,6 +1112,7 @@
     
     .clinic_description_title{
       width: auto;
+      margin: 0 0 0 0;
       padding: 0 0 16px 0;
     }
     
@@ -1197,6 +1218,13 @@
           content: none;
         }
       }
+
+      .diagonal_navigation .swiper-button-next._diagonal_navigation,
+      .diagonal_navigation .swiper-button-prev._diagonal_navigation{
+        width: 26px;
+        height: 8px;
+        background: url(/img/arrow_diagonal_nav_mobile.svg);
+      }
     }
     
     .review_item_wrapper{
@@ -1208,6 +1236,7 @@
 
       & > p{
         padding: 16px 0 8px 0;
+
       }
     }
 
@@ -1279,16 +1308,24 @@
       left: auto;
       width: 100%;
       height: auto;
-      padding: 24px 16px 16px 16px;
+      padding: 24px 16px 8px 16px;
       background: transparent;
       overflow-y: auto;
       box-shadow: none;
       border-radius: 0;
     }
 
+    .ratings_container{
+      padding: 0 0 16px 0;
+
+      .revolver_navigation_wrapper{
+        margin: 4px auto 0 auto;
+      }
+    }
+
     .clinic_on_map{
       height: 320px;
-      padding: 16px 0 0 0;
+      padding: 0 0 0 0;
     }
   }
 }

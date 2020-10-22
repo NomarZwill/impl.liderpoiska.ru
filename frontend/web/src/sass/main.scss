@@ -5,7 +5,8 @@
 @import '../../node_modules/swiper/components/pagination/pagination.scss';
 @import '../../node_modules/swiper/components/navigation/navigation.scss';
 @import '../../node_modules/swiper/components/thumbs/thumbs.scss';
-// @import '//vendor/twentytwenty-master/scss/twentytwenty.scss';
+@import '../../node_modules/flatpickr/dist/flatpickr.min.css';
+@import '../../node_modules/zurb-twentytwenty/css/twentytwenty.css';
 
 @font-face {
   font-family: 'Rubik';
@@ -334,15 +335,30 @@ h5{
   letter-spacing: 0.02em;
 }
 
+.swiper-container.doctors_wrapper,
+.doctors_wrapper{
+
+  .swiper-slide.doctor_item_wrapper{
+    height: auto;
+  }
+}
+
 .revolver_navigation_wrapper{
   position: relative;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
   width: 280px;
   height: 16px;
   margin: 0 auto;
+
+  @include for-mobile{
+    width: 158px;
+    height: 12px;
+  }
 }
+
 
 .swiper-button-next.revolver_navigation,
 .swiper-button-prev.revolver_navigation{
@@ -356,10 +372,17 @@ h5{
   &:hover{
     background: url(/img/arrow_revolver_hover.svg);
     background-size: contain;
+    background-repeat: no-repeat;
   }
 
   &:after{
     content: none;
+  }
+
+  @include for-mobile{
+    width: 24px;
+    height: 7px;
+    background-repeat: no-repeat;
   }
 }
 

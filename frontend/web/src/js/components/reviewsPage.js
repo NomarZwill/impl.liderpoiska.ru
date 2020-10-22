@@ -57,8 +57,8 @@ export default class ReviewsPage{
     $('.reviews_wrapper').on('click', function(e){
       var $target = $(e.target);
       if ($target.hasClass('more_reviews_button')) {
-            console.log(this.dataset.activeYear);
-            console.log($('.reviews_wrapper .review_item_wrapper').length);
+            // console.log(this.dataset.activeYear);
+            // console.log($('.reviews_wrapper .review_item_wrapper').length);
 
         var data = {
           'activeYear' : this.dataset.activeYear,
@@ -71,7 +71,7 @@ export default class ReviewsPage{
           data: data,
           success: function(response) {
             response = $.parseJSON(response);
-            console.log(response);
+            // console.log(response);
             $('.more_reviews_button').remove();
             $('.reviews_wrapper').append(response.listing);
             normalizeReviewHeight();

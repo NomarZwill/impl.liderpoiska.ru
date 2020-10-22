@@ -64,7 +64,7 @@
 
   .content_block.partners_gifts_container{
     width: 1016px;
-    padding: 16px 0 48px 0;
+    padding: 16px 0 16px 0;
 
     h2{
       text-align: center;
@@ -125,7 +125,7 @@
 
     .content_block.partners_gifts_container{
       width: 768px;
-      padding: 16px 16px 40px 16px;
+      padding: 16px 16px 24px 16px;
     }
 
     .partners_gifts_wrapper{
@@ -193,7 +193,7 @@
       flex-flow: column nowrap;
       align-items: center;
       width: 100%;
-      padding: 40px 16px 40px 16px;
+      padding: 40px 16px 24px 16px;
   
       h2{
         text-align: center;
@@ -202,6 +202,7 @@
 
       ._button._button_light{
         width: 223px;
+        margin: 0 0 16px 0;
         padding: 13px 0 13px 0;
       }
     }

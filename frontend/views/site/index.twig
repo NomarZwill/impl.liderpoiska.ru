@@ -16,7 +16,7 @@
 
       </div>
 
-      <button class="_button popup_button">Записаться&nbsp;на&nbsp;приём</button>
+      <button class="reception_button _button popup_button">Записаться&nbsp;на&nbsp;приём</button>
 
     </div>
 
@@ -430,7 +430,9 @@
 
       <h3 class="clinic_name"></h3>
 
-      <div class="clinic_ratings"></div>
+      <div class="clinic_ratings">
+        {{this.render('/components/ratings.twig') | raw}}
+      </div>
       
       <div class="clinic_contacts">
         <p>

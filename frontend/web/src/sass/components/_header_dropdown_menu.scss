@@ -306,7 +306,9 @@
     }
 
     .category_link._link_black{
-      display: none;
+      position: static;
+      display: block;
+      padding: 16px 0 16px 0;
     }
 
     .item_wrapper{

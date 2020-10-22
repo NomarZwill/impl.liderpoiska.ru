@@ -17,6 +17,9 @@ import About from './components/about';
 import Partners from './components/partners';
 import Prices from './components/prices';
 import ReviewsPage from './components/reviewsPage';
+import FaqPage from './components/faqPage';
+import Licenses from './components/licenses';
+import Form from './components/form';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
@@ -74,8 +77,17 @@ window.$ = $;
 			if ($('[data-page-type="prices"]').length > 0) {
 	    	var prices = new Prices();
 			}
+
 			if ($('[data-page-type="reviews_page"]').length > 0) {
 	    	var reviewsPage = new ReviewsPage();
+			}
+
+			if ($('[data-page-type="faq_page"]').length > 0) {
+	    	var faqPage = new FaqPage();
+			}
+
+			if ($('[data-page-type="licenses"]').length > 0) {
+	    	var licenses = new Licenses();
 			}
 
 			if ($('[data-spec-filter]').length > 0) {
@@ -83,7 +95,7 @@ window.$ = $;
 			}
 
 			if ($('.content_block.doctor_reviews').length > 0) {
-	    	var fullReviewPopup = new FullReviewPopup(300, 300, 300);
+	    	var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-type="faq"]').length > 0) {
@@ -108,6 +120,12 @@ window.$ = $;
 					var clinicOnMap = new YaMapClinicContacts();	
 				}
 			}
-			
+
+			var form = [];
+
+			$('form').each(function(){
+	    	form.push(new Form($(this)))
+			});
+						
   	});
 })($);

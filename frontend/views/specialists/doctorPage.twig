@@ -23,7 +23,7 @@
       
               {% for spec in doc.medicalSpecialties%}
         
-                <a class="swiper-slide _menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title}}</a>
+                <a class="swiper-slide _menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title | raw}}</a>
         
               {% endfor %}
       
@@ -72,7 +72,7 @@
   
           </div>
       
-          <button class="_button">Записаться на приём</button>
+          <button class="reception_button _button">Записаться на приём</button>
   
         </div>
     
@@ -253,9 +253,7 @@
           <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
         </form>
   
-        <form action="/">
-          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
-        </form>
+        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
 
       </div>
 
@@ -551,16 +549,16 @@
   var play;
   
   function onYouTubePlayerAPIReady() {
-      play = new YT.Player('video_item', {
-        videoId: 'Sn7CC9Z51so',
-        width: '808',
-        height: '455',
-      });
-      $('.play_button').on('click', function() {
-        play.playVideo();
-        $(this).closest('.play_button_wrapper').addClass('_hidden');
-      });
-      // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
+    play = new YT.Player('video_item', {
+      videoId: 'Sn7CC9Z51so',
+      width: '808',
+      height: '455',
+    });
+    $('.play_button').on('click', function() {
+      play.playVideo();
+      $(this).closest('.play_button_wrapper').addClass('_hidden');
+    });
+    // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
   }
 
 </script>

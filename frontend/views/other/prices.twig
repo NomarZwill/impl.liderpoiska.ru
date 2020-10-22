@@ -88,7 +88,7 @@
       </div>
 
       <div class="button_wrapper">
-        <button class="_button">Записаться на приём</button>
+        <button class="reception_button _button">Записаться на приём</button>
       </div>
 
     </div>
@@ -110,7 +110,7 @@
 
       </div>
 
-      <button class="_button">Записаться на приём</button>
+      <button class="reception_button _button">Записаться на приём</button>
 
     </div>
 
@@ -152,7 +152,7 @@
           {% endfor %}
 
           <div class="button_wrapper">
-            <button class="_button">Записаться на приём</button>
+            <button class="reception_button _button">Записаться на приём</button>
           </div>
 
         </div>
@@ -184,6 +184,7 @@
           {% for price in firstLevelService.prices %}
           
           <div class="service_price_wrapper">
+          
             <span class="dot_tail"></span>
             <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
             <div class="service_price_points"></div>
@@ -194,7 +195,7 @@
           {% endfor %}
           
           <div class="button_wrapper">
-            <button class="_button">Записаться на приём</button>
+            <button class="reception_button _button">Записаться на приём</button>
           </div>
           
         </div>

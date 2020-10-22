@@ -25,7 +25,7 @@ export default class Ratings{
 
       on: {
         init: function () {
-          console.log('swiper initialized');
+          // console.log('swiper initialized');
         },
       },
 

@@ -4,12 +4,14 @@
     
     <div class="breadcrumbs_wrapper">
 
-      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
-      <a class="breadcrumbs _menu_link" href="/specialists/">Стоматологи</a>
+      <div class="breadcrumbs_wrapper">
+        <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
+        <a class="breadcrumbs _menu_link" href="/specialists/">Стоматологи</a>
+      </div>
 
     </div>
 
-    <h1>{{medicalSpecialties[0].specialty_title}}</h1>
+    <h1>{{activeSpec.specialty_title}}</h1>
 
     <p>
       Далеко не все из нас могут похвастаться идеальной улыбкой, 
@@ -28,9 +30,9 @@
 
       {% for medicalSpeciality in medicalSpecialtiesAll %}
 
-        {% if medicalSpeciality.specialty_id == medicalSpecialties[0].specialty_id %}
+        {% if medicalSpeciality.specialty_id == activeSpec.specialty_id %}
 
-          <span>{{medicalSpeciality.menu_title}}</span>
+          <span>{{medicalSpeciality.menu_title | raw}}</span>
 
         {% endif %}
 
@@ -48,12 +50,12 @@
 
       {% for medicalSpeciality in medicalSpecialtiesAll %}
 
-        {% if medicalSpeciality.specialty_id == medicalSpecialties[0].specialty_id %}
+        {% if medicalSpeciality.specialty_id == activeSpec.specialty_id %}
 
 
         <a href="/speciality/{{medicalSpeciality.alias}}">
           <div class="medical_speciality _active" data-id="{{medicalSpeciality.specialty_id}}">
-            <span>{{medicalSpeciality.menu_title}}</span>
+            <span>{{medicalSpeciality.menu_title | raw}}</span>
           </div>
         </a>
 
@@ -61,7 +63,7 @@
 
         <a href="/speciality/{{medicalSpeciality.alias}}">
           <div class="medical_speciality" data-id="{{medicalSpeciality.specialty_id}}">
-            <span>{{medicalSpeciality.menu_title}}</span>
+            <span>{{medicalSpeciality.menu_title | raw}}</span>
           </div>
         </a>
 
@@ -76,7 +78,7 @@
 
       <div class="swiper-wrapper">
 
-        {{this.render('/components/doctorListing.twig', {'doctors': medicalSpecialties[0].doctors}) | raw}}
+        {{this.render('/components/doctorListing.twig', {'doctors': doctors}) | raw}}
 
       </div>
 
@@ -90,7 +92,7 @@
       
     </div>
 
-    <!-- <button class="_button _button_light more_doctors">Показать еще</button> -->
+    <button class="_button _button_light more_doctors">Показать еще</button>
     
   </div>
 
@@ -171,7 +173,12 @@
 
   <div class="content_block recall_wrapper" data-page-type="recall_form">
 
-    {{this.render('/components/recall_form.twig') | raw}}
+    {{this.render('/components/recall_form.twig', 
+      {
+        'title': '<h2>Бесплатная консультация</h2>', 
+        'title_description': 'Задайте вопросы по телефону +7&nbsp;(495)&nbsp;150-27-16 или оставьте заявку, мы перезвоним в&nbsp;течение рабочего дня.',
+        'submit_button_title': 'Записаться'
+      }) | raw}}
 
   </div>
 
@@ -227,9 +234,7 @@
           <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
         </form>
   
-        <form action="/">
-          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
-        </form>
+        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
 
       </div>
 
