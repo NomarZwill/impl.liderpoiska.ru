@@ -18,12 +18,11 @@ export default class DoctorsListing{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     $('.clinics_cotnainer .cities').on('click', function (e) {

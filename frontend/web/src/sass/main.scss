@@ -390,6 +390,56 @@ h5{
   transform: rotate(180deg);
 }
 
+.swiper-pagination.revolver_pagination{
+  width: 110px !important;
+
+  .swiper-pagination-bullet{
+    top: -3px;
+  }
+
+  .swiper-pagination-bullet.swiper-pagination-bullet-active.swiper-pagination-bullet-active-main,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-next,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-prev,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev{
+    top: auto;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+
+    @include for-mobile{
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+    }
+  
+  }
+
+
+  .swiper-pagination-bullet.swiper-pagination-bullet-active.swiper-pagination-bullet-active-main{
+    background: $headerBlack;
+  }
+
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-next,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-prev{
+    background: none;
+    border: 1px solid $headerBlack;
+    opacity: 0.8;
+  }
+  
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next,
+  .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev{
+    background: none;
+    border: 1px solid $headerBlack;
+    opacity: 0.6;
+  }
+
+  @include for-mobile{
+    width: 92px !important;
+  }
+
+}
+
 .medical_specialties_wrapper{
   display: flex;
   flex-flow: row wrap;

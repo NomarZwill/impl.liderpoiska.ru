@@ -126,7 +126,8 @@
       z-index: 10;
     }
 
-    .revolver_navigation_wrapper{
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
       display: none;
     }
   }
@@ -329,10 +330,9 @@
 
   .doctor_work_wrapper{
     width: 100%;
-    
-    .revolver_navigation_wrapper{
-      height: auto;
-      padding: 40px 0 0 0;
+
+    .swiper-wrapper{
+      padding: 0 0 40px 0;
     }
   }
   
@@ -608,13 +608,13 @@
     }
 
     .specialities_wrapper{
-      width: auto;
       padding:0 16px 16px 16px;
     }
 
     .clinics_wrapper{
       left: auto;
-      padding: 16px 16px 48px 16px;
+      margin: 0 0 48px 0;
+      padding: 16px 16px 0 16px;
 
       &:before,
       &:after{
@@ -628,6 +628,10 @@
       .revolver_navigation_wrapper{
         display: flex;
         margin: 16px auto 0 auto;
+      }
+
+      .revolver_pagination{
+        display: block;
       }
     }
     .clinic_item{
@@ -691,6 +695,13 @@
       }
     }
 
+    .doctor_work_wrapper{
+  
+      .swiper-wrapper{
+        padding: 0 0 24px 0;
+      }
+    }
+
     .content_block.doctor_work_example{
       padding: 32px 0 32px 0;
 
@@ -715,7 +726,11 @@
     }
 
     .content_block.doctor_reviews{
-      padding: 32px 16px 40px 16px;
+      padding: 32px 0 40px 0;
+
+      h2{
+        padding: 0 16px 0 16px;
+      }
     }
 
     .reviews_wrapper{

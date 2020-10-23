@@ -373,6 +373,11 @@
     .swiper-wrapper{
       padding: 0 0 24px 0;
     }
+
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
+      display: none;
+    }
   }
 
   .service_video_title{
@@ -440,7 +445,7 @@
   }
 
   .photo_gallery_wrapper {
-    padding: 0 0 0 40px;
+    padding: 0 40px 0 40px;
 
     .swiper-wrapper{
       padding: 0 0 24px 0;
@@ -602,8 +607,13 @@
     }
   }
 
-  .content_block.recall_wrapper{
+  .content_block.recall_wrapper[data-page-type="recall_form"]{
     padding: 24px 0 0 0;
+
+    form{
+      background: $lightBG;
+      border-radius: 8px;
+    }
   }
 
   .content_block.doctor_reviews{
@@ -736,10 +746,18 @@
       .swiper-wrapper{
         padding: 0 0 24px 0;
       }
+
+      .revolver_navigation_wrapper{
+        display: flex;
+      }
+
+      .revolver_pagination{
+        display: block;
+      }
     }
 
     .photo_gallery_wrapper{
-      padding: 0 0 0 16px;
+      padding: 0 16px 0 16px;
 
       .swiper-wrapper{
         padding: 0 0 24px 0;
@@ -1179,7 +1197,7 @@
     }
     
     .photo_gallery_wrapper{
-      padding: 0 0 0 16px;
+      padding: 0 16px 0 16px;
 
       .swiper-wrapper{
         padding: 0 0 16px 0;

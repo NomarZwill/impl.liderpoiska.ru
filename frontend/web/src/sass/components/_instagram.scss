@@ -110,7 +110,6 @@
 
     .revolver_navigation_wrapper{
       display: flex;
-      height: auto;
     }
 
     .instagram_gallery{
@@ -130,6 +129,11 @@
 
     .instagram_item{
       margin: 0 0 0 0;
+
+      &:nth-of-type(4n){
+        margin: 0 0 0 0;
+      }
     }
+
   }
 }

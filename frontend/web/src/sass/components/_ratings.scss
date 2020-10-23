@@ -42,5 +42,20 @@
     color: $headerBlack;
   }
 
+  .revolver_navigation_wrapper,
+  .revolver_pagination{
+    display: none;
+  }
+
+  @include for-notdesc{
+
+    .revolver_navigation_wrapper{
+      display: flex;
+    }
+
+    .revolver_pagination{
+      display: block;
+    }
+  }
 
 }

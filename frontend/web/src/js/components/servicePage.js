@@ -56,11 +56,11 @@ export default class ServicePage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var videoWrapper  = new Swiper('.service_video_wrapper', {
@@ -70,11 +70,11 @@ export default class ServicePage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var photoWrapper  = new Swiper('.photo_gallery_wrapper', {
@@ -84,11 +84,11 @@ export default class ServicePage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var reviewWrapper  = new Swiper('.reviews_wrapper', {
@@ -98,11 +98,11 @@ export default class ServicePage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     

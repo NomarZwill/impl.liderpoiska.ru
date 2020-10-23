@@ -6,7 +6,6 @@ export default class Contacts{
 
   constructor(){
     Swiper.use([Navigation, Pagination]);
-    // this.init();
     var self = this;
     this.swipers = [];
     
@@ -36,18 +35,9 @@ export default class Contacts{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
       });
 
       self.swipers.push(galleryContainer);
     });
-  }
-
-  
-  init(){
-    
   }
 }

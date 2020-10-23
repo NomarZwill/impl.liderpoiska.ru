@@ -36,44 +36,35 @@ export default class ClinicContacts{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
     });
 
 
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      // centeredSlides: true,
-      // initialSlide: 3,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      // centeredSlides: true,
-      // initialSlide: 2,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
-
-
-  
   }
 }

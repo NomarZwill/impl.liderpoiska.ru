@@ -15,5 +15,7 @@ export default class Form {
 		this.bind();
   }
 
-  bind() {}
+  bind() {
+		
+	}
 }

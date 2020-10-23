@@ -99,8 +99,8 @@
                 <div class="deal_img" style="background: url(/img/{{deal.deals_image_front}});" data-deal-alias="{{deal.alias}}"></div>
 
                 <div class="deal_text">
-                  <h4>{{deal.deals_title}}</h4>
-                  <p>{{deal.deals_index_description}}</p>
+                  <h4>{{deal.deals_title | raw}}</h4>
+                  <p>{{deal.deals_index_description | raw}}</p>
                 </div>
 
               </div>
@@ -113,12 +113,11 @@
 
       </div>
 
+      <div class="swiper-pagination revolver_pagination"></div>
+      
       <div class="revolver_navigation_wrapper">
-
         <div class="swiper-button-prev revolver_navigation"></div>
-        {# <div class="swiper-pagination revolver_pagination"></div> #}
         <div class="swiper-button-next revolver_navigation"></div>
-
       </div>
 
     </div>
@@ -229,11 +228,12 @@
             {% endfor %}
     
           </div>
+
+          <div class="swiper-pagination revolver_pagination"></div>
     
           <div class="revolver_navigation_wrapper">
 
             <div class="swiper-button-prev revolver_navigation"></div>
-            {# <div class="swiper-pagination revolver_pagination"></div> #}
             <div class="swiper-button-next revolver_navigation"></div>
 
           </div>
@@ -390,12 +390,11 @@
 
       </div>
 
+      <div class="swiper-pagination revolver_pagination"></div>
+
       <div class="revolver_navigation_wrapper">
-
         <div class="swiper-button-prev revolver_navigation"></div>
-        {# <div class="swiper-pagination revolver_pagination"></div> #}
         <div class="swiper-button-next revolver_navigation"></div>
-
       </div>
 
     </div>

@@ -42,9 +42,9 @@ export default class MedSpecFilter{
     var specID = self.$container.find('.medical_speciality._active').data('id');
     var currentCardCount = null;
     var data = null;
+    var pageYPos = null;
 
-    $buttonMore.on('click', function(e){
-      // console.log(this);
+    var getMoreCard = function(){
       currentCardCount = $(this).siblings('.doctors_wrapper').find('.doctor_item_wrapper').length;
       data = {
         'spec_id': specID,
@@ -52,26 +52,41 @@ export default class MedSpecFilter{
         'cardLimit': self.getLoadingCardLimit()
       }
 
+      // console.log(specID);
+      // console.log(currentCardCount);
+      // console.log(self.getLoadingCardLimit());
+
       $.ajax({
         type: 'get',
         url: '/specialists/ajax-more-card',
         data: data,
         success: function(response) {
           response = $.parseJSON(response);
+          pageYPos = window.pageYOffset;
+          if (specID === 0) {
+            self.$container.siblings('.doctors_wrapper').append(response.listing);
+          } else {
+            self.$container.siblings('.doctors_wrapper').find('.swiper-wrapper').append(response.listing);
+          }
+          window.scrollTo(0, pageYPos);
           // console.log(response.isListEnd);
-          // console.log(response.doctors);
-          self.$container.siblings('.doctors_wrapper').find('.swiper-wrapper').append(response.listing);
-          console.log(response.isListEnd);
           if (response.isListEnd) {
             $buttonMore.addClass('_hidden');
+          } else {
+            $('.doctors_wrapper .doctor_item_wrapper').last().remove();
           }
         },
         error: function(response) {
 
         }
       });
-    });
+    }
+
+    $buttonMore.on('click', getMoreCard);
+
+    getMoreCard();
   }
+
 
   isTooManyCard(){
     if (this.$container.siblings('.doctors_wrapper').find('.doctor_item_wrapper').length < 20) {
@@ -81,8 +96,6 @@ export default class MedSpecFilter{
     }
   }
 
-  
-
   getLoadingCardLimit(){
     var screenWidth = Math.max(
       document.body.scrollWidth, document.documentElement.scrollWidth,
@@ -90,12 +103,24 @@ export default class MedSpecFilter{
       document.body.clientWidth, document.documentElement.clientWidth
     );
 
-    if (screenWidth > 1440) {
-      return 8;
-    } else if (screenWidth >= 768) {
-      return 6;
+    if ($('.doctors_wrapper .swiper-wrapper').length === 0) {
+
+      if (screenWidth > 1440) {
+        return 21;
+      } else if (screenWidth >= 768) {
+        return 13;
+      } else {
+        return 5;
+      }
     } else {
-      return 4;
+
+      if (screenWidth > 1440) {
+        return 9;
+      } else if (screenWidth >= 768) {
+        return 7;
+      } else {
+        return 1000; // изменить, если вдруг импл станет совсем огромным.
+      }
     }
   }
 

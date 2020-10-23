@@ -15,17 +15,17 @@ class SpecialistsController extends MainController
   public function actionIndex(){
     $clinics = Clinics::find()->all();
     $medicalSpecialties = MedicalSpecialties::find()->all(); 
-    $doctors = Doctors::find()
-      ->joinWith('medicalSpecialties')
-      ->limit(20)
-      ->all();
+    // $doctors = Doctors::find()
+    //   ->joinWith('medicalSpecialties')
+    //   ->limit(20)
+    //   ->all();
 
     // print_r($doctors);
     // exit;
       
     return $this->render('index.twig', array(
       'clinics' => $clinics,
-      'doctors' => $doctors,
+      // 'doctors' => $doctors,
       'medicalSpecialties' => $medicalSpecialties,
     ));
   }
@@ -44,12 +44,6 @@ class SpecialistsController extends MainController
     }
   }
 
-  // public function actionAjaxMedSpecFilter(){
-  //   $filterSetting = $_GET['spec_id'];
-
-  //   return $this->getFilteredMedSpecList($filterSetting, 20, 0);
-  // }
-
   public function actionAjaxMoreCard(){
     $spec_id = $_GET['spec_id'];
     $cardCount = $_GET['currentCardCount'];
@@ -65,7 +59,6 @@ class SpecialistsController extends MainController
         ->joinWith('medicalSpecialties')
         ->offset($offset)
         ->limit($limit)
-        ->asArray()
         ->all();
 
       $isListEnd = (count($doctors) < $limit) ? true : false;
@@ -83,7 +76,6 @@ class SpecialistsController extends MainController
         ->where(['doctors_med_spec.specialty_id' => $spec_id])
         ->offset($offset)
         ->limit($limit)
-        ->asArray()
         ->all();
 
         $isListEnd = (count($doctors) < $limit) ? true : false;

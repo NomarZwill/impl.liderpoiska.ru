@@ -65,7 +65,6 @@ export default class Main{
 
       $('.layout_popup .scroll_wrapper').empty();
       $('body').removeClass('_popup_mode');
-      console.log('closeLayoutPopup');
     }
 
     $('.service_dropdown_menu_container').on('click', function(e){
@@ -109,7 +108,6 @@ export default class Main{
     function updateCategoryBlockHeight(){
       $('[data-page-type="header_dropdown_menu"] .listing_first_level.level_container').each(function(){
         if (!$(this).hasClass('_hidden')) {
-          // console.log(this.offsetHeight);
           if (this.offsetHeight > $categoryWrapper[0].offsetHeight) {
             $categoryWrapper[0].style.cssText = 'height: ' + this.offsetHeight + 'px;';
           } else {

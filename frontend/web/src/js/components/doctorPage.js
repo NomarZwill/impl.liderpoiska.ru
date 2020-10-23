@@ -18,10 +18,11 @@ export default class DoctorPage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var specialitiesWrapper  = new Swiper('.specialities_wrapper', {
@@ -32,14 +33,16 @@ export default class DoctorPage{
     var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     $('.content_block.doctor_lizcenz .lizcenz_item').on('click', function(e) {
@@ -76,10 +79,11 @@ export default class DoctorPage{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var $popupGalleries =  $('.popup_gallery_wrapper');
@@ -187,16 +191,15 @@ export default class DoctorPage{
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      // centeredSlides: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
   }
 }

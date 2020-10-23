@@ -28,16 +28,12 @@ export default class Licenses{
         resize: function(){
           licenses_wrapper.update();
         }
-      } 
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
-
-
-    // window.addEventListener('resize', switchMobileMode, { passive: true });
-    // switchMobileMode();
-
   }
 }

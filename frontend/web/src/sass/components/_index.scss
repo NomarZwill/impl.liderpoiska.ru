@@ -497,7 +497,8 @@
       padding: 16px 0 24px 16px;
     }
 
-    .revolver_navigation_wrapper{
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
       display: none;
     }
 
@@ -863,7 +864,7 @@
     }
     
     .content_block.doctors_container{
-      padding: 40px 0 0 16px;
+      padding: 40px 0 40px 16px;
     }
 
     .doctors_title{
@@ -879,7 +880,7 @@
     }
 
     .doctors_wrapper{
-      padding: 0 0 40px 0;
+      padding: 0 0 0 0;
       
       .swiper-wrapper{
         padding: 4px 0 24px 0;
@@ -947,7 +948,7 @@
     }
 
     .clinics_wrapper{
-      padding: 8px 16px 40px 16px;
+      padding: 8px 16px 0 16px;
   
       .swiper-wrapper{
         // height: 184px;
@@ -958,9 +959,17 @@
         display: flex;
       }
 
+      .revolver_pagination{
+        display: block;
+      }
+
       &.geneva_clinics{
         padding: 24px 16px 80px 16px;
       }
+    }
+    
+    .clinic_info{
+      padding: 40px 0 0 0;
     }
 
     .clinic_contacts{
@@ -1287,6 +1296,10 @@
 
       .revolver_navigation_wrapper{
         display: flex;
+      }
+
+      .revolver_pagination{
+        display: block;
       }
     }
 

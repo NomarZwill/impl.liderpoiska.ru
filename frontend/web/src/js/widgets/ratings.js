@@ -18,17 +18,11 @@ export default class Ratings{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
-      on: {
-        init: function () {
-          // console.log('swiper initialized');
-        },
-      },
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
   }
 

@@ -34,6 +34,7 @@
   .reviews_wrapper{
     width: 100%;
     height: 100%;
+    padding: 0 40px 0 40px;
 
     .revolver_navigation_wrapper{
       height: auto;
@@ -112,10 +113,14 @@
         padding: 16px 0 24px 0;
       }
     }
+
+    .reviews_wrapper{
+      padding: 0 24px 0 24px;
+    }
   }
 
   @include for-mobile{
-      padding: 48px 16px 40px 16px;
+      padding: 48px 0 40px 0;
       background: url(/img/wave_bg.png);
   
     .reviews_title{
@@ -154,6 +159,19 @@
     .big_quotes{
       top: 24px;
       left: 12px;
+    }
+
+    .reviews_wrapper{
+      padding: 0 16px 0 16px;
+
+      .swiper-wrapper{
+        padding: 0 0 24px 0;
+      }
+
+      .revolver_navigation_wrapper{
+        height: 12px;
+        padding: 0 0 0 0;
+      }
     }
   }
 }

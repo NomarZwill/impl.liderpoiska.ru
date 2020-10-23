@@ -33,10 +33,11 @@ export default class Partners{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           },
-          // pagination: {
-          //   el: '.swiper-pagination',
-          //   type: 'bullets',
-          // }
+          pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true,
+            clickable: true,
+          }
         });
 
         $logoNavigation.removeClass('_hidden');

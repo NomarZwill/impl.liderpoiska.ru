@@ -30,10 +30,11 @@ export default class MedSpecialities{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           },
-          // pagination: {
-          //   el: '.swiper-pagination',
-          //   type: 'bullets',
-          // }
+          pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true,
+            clickable: true,
+          }
         });
 
       } else if (getScrollWidth() >= 768 && doctorsWrapper !== null) {
@@ -43,7 +44,8 @@ export default class MedSpecialities{
     };
 
     window.addEventListener('resize', switchMobileMode, { passive: true });
-    switchMobileMode();
+    setTimeout(switchMobileMode, 1000);
+    // switchMobileMode();
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
@@ -52,10 +54,11 @@ export default class MedSpecialities{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
   }
 }

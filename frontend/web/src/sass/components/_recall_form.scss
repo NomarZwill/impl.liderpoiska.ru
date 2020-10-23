@@ -1,10 +1,11 @@
 [data-page-type="recall_form"]{
+  position: relative;
   padding: 70px 104px 0 104px;
 
   form{
     position: relative;
     padding: 24px 264px 40px 48px;
-    background: $lightBG;
+    background: #ffffff;
 
     &:after{
       content: '';
@@ -106,6 +107,28 @@
     letter-spacing: 0.02em;
   }
 
+  .recall_form_successful_send{
+    width: 390px;
+    padding: 48px 40px 48px 40px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    text-align: center;
+
+    h3{
+      color: $headerBlack;
+    }
+
+    p{
+      line-height: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .close_icon,
+    .close_icon_mobile{
+      display: block;
+    }
+  }
+
   @include for-notdesc{
 
     .submit_wrapper{
@@ -195,6 +218,11 @@
     button._button{
       width: 100%;
       height: 40px;
+    }
+
+    .recall_form_successful_send{
+      width: 288px;
+      padding: 40px 12px 32px 12px;
     }
   }
 

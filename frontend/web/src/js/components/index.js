@@ -18,10 +18,11 @@ export default class Index{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
 
@@ -51,11 +52,6 @@ export default class Index{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
     });
 
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
@@ -67,11 +63,11 @@ export default class Index{
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {
@@ -100,11 +96,6 @@ export default class Index{
           }
         }
       },
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
     });
 
     var clinicsWrapper  = new Swiper('.moscow_clinics', {
@@ -116,11 +107,11 @@ export default class Index{
         prevEl: '.swiper-button-prev'
       },
       
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      // }
-
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
     });
 
     clinicsWrapper.on('resize', function(){

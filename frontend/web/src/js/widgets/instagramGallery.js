@@ -32,11 +32,11 @@ export default class InstagramGallery{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
+        pagination: {
+          el: '.swiper-pagination',
+          dynamicBullets: true,
+          clickable: true,
+          }
         });
         $instagramNavigation.removeClass('_hidden');
 
