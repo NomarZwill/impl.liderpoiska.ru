@@ -39,5 +39,13 @@ export default class Contacts{
 
       self.swipers.push(galleryContainer);
     });
+
+    $('.map_popup_container .close').on('click', function(e) {
+      if (!$(this).closest('.map_popup_container').hasClass('_hidden')) {
+        $(this).closest('.map_popup_container').addClass('_hidden');
+      } else {
+        $(this).closest('.map_popup_container').removeClass('_hidden');
+      }
+    });
   }
 }

@@ -575,22 +575,25 @@
 
       <h3>Несколько фото с примерами из хирургической стоматологии</h3>
   
-      <div class="swiper-container photo_gallery_wrapper">
+      <div class="swiper-container before_after_gallery_wrapper">
   
         <div class="swiper-wrapper">
   
-          {# {% for i in 1..10 %} #}
+          {% for i in 1..10 %}
       
-            <div id="container1" class="swiper-slide">
-              <!-- The before image is first -->
+            <div id="before_after_container{{i}}" class="swiper-slide before_after_item_wrapper">
+
               <img src="/img/test_img/ortodontiya-do02.jpg" />
-              <!-- The after image is last -->
+
               <img src="/img/test_img/ortodontiya-posle02.jpg" />
+
             </div>
   
-          {# {% endfor %} #}
+          {% endfor %}
   
         </div>
+
+        <div class="swiper-pagination revolver_pagination"></div>
   
         <div class="revolver_navigation_wrapper">
   
@@ -837,13 +840,42 @@
   </div>
 
 
-  <div class="content_block rating_container">
+  <div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}">
 
     <p>Оцените качество страницы:</p>
 
-    <div class="stars_wrapper"></div>
+    <div class="stars_wrapper" data-votes="{{currentService.service_page_votes}}" data-rating="{{currentService.service_page_rating}}">
 
-    <p class="votes_stars_value">110 голосов, 4,8 из 5</p>
+      <div class="stars_full">
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+      </div>
+
+      <div class="stars_empty">
+
+        <input class="star" id="star5" type="radio" data-name="rating" name="rating" value="5" required="">
+        <label class="star_label" for="star5" data-value="5"></label>
+
+        <input class="star" id="star4" type="radio" data-name="rating" name="rating" value="4" required="">
+        <label class="star_label" for="star4" data-value="4"></label>
+
+        <input class="star" id="star3" type="radio" data-name="rating" name="rating" value="3" required="">
+        <label class="star_label" for="star3" data-value="3"></label>
+
+        <input class="star" id="star2" type="radio" data-name="rating" name="rating" value="2" required="">
+        <label class="star_label" for="star2" data-value="2"></label>
+
+        <input class="star" id="star1" type="radio" data-name="rating" name="rating" value="1" required="">
+        <label class="star_label" for="star1" data-value="1"></label>
+
+      </div>
+    
+    </div>
+
+    <p class="votes_stars_value">{{currentService.service_page_votes}} голосов, {{currentService.service_page_rating}} из 5</p>
 
   </div>
 
@@ -913,16 +945,4 @@
       });
       // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
   };
-</script>
-
-<script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
-<script src="/node_modules/zurb-twentytwenty/js/jquery.event.move.js" type="text/javascript"></script>
-<script src="/node_modules/zurb-twentytwenty/js/jquery.twentytwenty.js" type="text/javascript"></script>
-
-<script>
-  window.$ = $;
-  $(document).ready(function() {
-    console.log(1);
-    $("#container1").twentytwenty();
-  });
 </script>

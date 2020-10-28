@@ -14,7 +14,7 @@ use backend\models\Faq;
 class DentController extends MainController
 {
 
-   public function actionIndex(){
+   public function actionIndex() {
       // $servises = Servises::find()->all();
 
       // foreach ($servises as $serviсe) {
@@ -35,7 +35,7 @@ class DentController extends MainController
       ));  
    }
 
-   public function actionFirstLevel($firstLevel){
+   public function actionFirstLevel($firstLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $firstLevel])
          ->all();
@@ -69,7 +69,7 @@ class DentController extends MainController
       )); 
    }
 
-   public function actionSecondLevel($firstLevel, $secondLevel){
+   public function actionSecondLevel($firstLevel, $secondLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $secondLevel])
          ->all();
@@ -108,7 +108,7 @@ class DentController extends MainController
       )); 
    }
 
-   public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel){
+   public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $thirdLevel])
          ->all();
@@ -152,7 +152,7 @@ class DentController extends MainController
       )); 
    }
 
-   public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel){
+   public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $fourthLevel])
          ->all();
@@ -187,4 +187,21 @@ class DentController extends MainController
          'faq' => $faq
       )); 
    }
+
+   public function actionAjaxSaveNewVote() {
+      $vote = $_GET['vote'];
+      $serviceID = $_GET['service_id'];
+      $servise = Servises::find()
+         ->where(['servise_id' => $serviceID])
+         ->one();
+
+      $servise->service_page_rating = (double)(($servise->service_page_rating) * ($servise->service_page_votes) + $vote) / (($servise->service_page_votes) + 1);
+      $servise->service_page_votes = $servise->service_page_votes + 1;
+      $servise->save();
+
+      return json_encode([
+         'votes' => $servise->service_page_votes,
+         'rating' => $servise->service_page_rating,
+      ]);
+   } 
 }

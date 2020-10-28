@@ -557,7 +557,7 @@
     color: $headerBlack;
   }
 
-  .clinic_ratings{
+  .clinic_ratings_wrapper{
     display: flex;
     justify-content: center;
     padding: 24px 0 0 0;
@@ -695,10 +695,6 @@
       .swiper-wrapper{
         width: 100%;
       }
-    }
-
-    .clinic_ratings{
-
     }
 
     .ratings_container{

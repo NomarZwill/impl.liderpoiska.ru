@@ -12,7 +12,7 @@ $this->title = 'My Yii Application';
 
     </div>
 
-    <div class="body-content">
+    <!-- <div class="body-content">
 
         <div class="row">
 
@@ -33,6 +33,6 @@ $this->title = 'My Yii Application';
 
         </div>
 
-    </div>
+    </div> -->
 
 </div>

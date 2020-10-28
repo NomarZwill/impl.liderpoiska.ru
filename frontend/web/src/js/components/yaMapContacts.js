@@ -39,104 +39,105 @@ export default class YaMapContacts{
       myMap.controls.add(geolocationControl);
 
       var objectCoordinates = [$("#map").attr("data-mapDotX"), $("#map").attr("data-mapDotY")];
-      var myBalloonLayout = ymaps.templateLayoutFactory.createClass(
-				`<div class="balloon_layout _item_on_map">
-          <div class="close"></div>
-          $[[options.contentLayout]]
-          <div class="close _mobile_button">Закрыть</div>
-      </div>`,
-        {
-          build: function() {
-            this.constructor.superclass.build.call(this);
+      // var myBalloonLayout = ymaps.templateLayoutFactory.createClass(
+			// 	`<div class="balloon_layout _item_on_map">
+      //     <div class="close"></div>
+      //     $[[options.contentLayout]]
+      //     <div class="close _mobile_button">Закрыть</div>
+      // </div>`,
+      //   {
+      //     build: function() {
+      //       this.constructor.superclass.build.call(this);
   
-            this._$element = $('.balloon_layout', this.getParentElement());
+      //       this._$element = $('.balloon_layout', this.getParentElement());
   
-            this._$element.find('.close').on('click', $.proxy(this.onCloseClick, this));
+      //       this._$element.find('.close').on('click', $.proxy(this.onCloseClick, this));
   
-          },
+      //     },
   
-          clear: function () {
-            this._$element.find('.close').off('click');
+      //     clear: function () {
+      //       this._$element.find('.close').off('click');
   
-            this.constructor.superclass.clear.call(this);
-          },
+      //       this.constructor.superclass.clear.call(this);
+      //     },
   
-          onCloseClick: function (e) {
-            e.preventDefault();
+      //     onCloseClick: function (e) {
+      //       e.preventDefault();
   
-            this.events.fire('userclose');
-          },
+      //       this.events.fire('userclose');
+      //     },
   
-          getShape: function () {
-            if(!this._isElement(this._$element)) {
-              return myBalloonLayout.superclass.getShape.call(this);
-            }
+      //     getShape: function () {
+      //       if(!this._isElement(this._$element)) {
+      //         return myBalloonLayout.superclass.getShape.call(this);
+      //       }
   
-            var position = this._$element.position();
+      //       var position = this._$element.position();
   
-            return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
-              [position.left, position.top], [
-                position.left + this._$element[0].offsetWidth,
-                position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
-              ]
-            ]));
-          },
+      //       return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+      //         [position.left, position.top], [
+      //           position.left + this._$element[0].offsetWidth,
+      //           position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+      //         ]
+      //       ]));
+      //     },
   
-          _isElement: function (element) {
-            return element && element[0] && element.find('.arrow')[0];
-          }
-      });
+      //     _isElement: function (element) {
+      //       return element && element[0] && element.find('.arrow')[0];
+      //     }
+      // });
       
-      var myBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-       `<div class="balloon_inner" data-id={{properties.id}}>
+      // var myBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+      //  `<div class="balloon_inner" data-id={{properties.id}}>
 
-          <div class="balloon_inner_header">
+      //     <div class="balloon_inner_header">
 
-            <h4>{{properties.organization}}</h4>
+      //       <h4>{{properties.organization}}</h4>
 
-          </div>
+      //     </div>
 
-          <div class="balloon_inner_body">
+      //     <div class="balloon_inner_body">
 
-            <p>
-              <span class="title">Адрес:</span><br>
-              <span class="address_content">{{properties.address | raw}}</span><br>
-            </p>
+      //       <p>
+      //         <span class="title">Адрес:</span><br>
+      //         <span class="address_content">{{properties.address | raw}}</span><br>
+      //       </p>
 
-            <p>
-              <span class="title">Телефоны:</span><br>
-              <span class="phone_content">{{properties.phone | raw}}</span><br>
-            </p>
+      //       <p>
+      //         <span class="title">Телефоны:</span><br>
+      //         <span class="phone_content">{{properties.phone | raw}}</span><br>
+      //       </p>
             
-            <p>
-              <span class="title">Время работы:</span><br>
-              <span class="work_hours_content">{{properties.workHours | raw}}</span>
-            </p>
+      //       <p>
+      //         <span class="title">Время работы:</span><br>
+      //         <span class="work_hours_content">{{properties.workHours | raw}}</span>
+      //       </p>
             
-          </div>
+      //     </div>
 
-          <div class="balloon_inner_footer">
+      //     <div class="balloon_inner_footer">
 
-            <button class="popup_button _button">Записаться на приём</button>
-            <a class="_button _button_light" href="/contacts/{{properties.alias}}">О клинике</a>
+      //       <button class="popup_button _button">Записаться на приём</button>
+      //       <a class="_button _button_light" href="/contacts/{{properties.alias}}">О клинике</a>
 
-          </div>
+      //     </div>
 
-				</div>`
-      );
+			// 	</div>`
+      // );
 
       var objectManager = new ymaps.ObjectManager(
 				{
-					geoObjectBalloonLayout: myBalloonLayout, 
-					geoObjectBalloonContentLayout: myBalloonContentLayout,
-					geoObjectHideIconOnBalloonOpen: false,
-					geoObjectBalloonOffset: [-172, -190],
+					// geoObjectBalloonLayout: myBalloonLayout, 
+					// geoObjectBalloonContentLayout: myBalloonContentLayout,
+					// geoObjectHideIconOnBalloonOpen: false,
+					// geoObjectBalloonOffset: [-172, -190],
           // geoObjectIconColor: "green",
           geoObjectIconLayout: 'default#image',
           geoObjectIconImageHref: '/img/map_location_pin.svg',
           geoObjectIconImageSize: [40, 50],
-          geoObjectBalloonPane: 'outerBalloon',
-          geoObjectBalloonShadowPane: 'outerBalloon'
+          // geoObjectBalloonPane: 'outerBalloon',
+          // geoObjectBalloonShadowPane: 'outerBalloon',
+          // geoObjectBalloonAutoPan: false,
 				}
       );
       
@@ -155,7 +156,6 @@ export default class YaMapContacts{
           serverData = json['geoObjects'];
 					
 					objectManager.add(serverData);  
-					// console.log(`objectManager length: ${objectManager.objects.getLength()}`);
           objectManager.objects.setObjectOptions(1, {iconImageHref: '/img/map_location_pin_active.svg'});
           activeObjectID = 1;
           setActivePinInfo(activeObjectID);
@@ -177,9 +177,14 @@ export default class YaMapContacts{
         );
 
         activeObjectID = e.get('objectId');
-        // console.log(activeObjectID);
         setActivePinInfo(activeObjectID);
-        // myMap.setCenter(objectManager.objects._objectsById[activeObjectID].geometry.coordinates);
+        myMap.setCenter(objectManager.objects._objectsById[activeObjectID].geometry.coordinates);
+        $('.map_popup_container').removeClass('_hidden');
+        if ($('.city.moscow._active').length !== 0) {
+          myMap.setBounds(getLocationBounds('moscow'));
+        } else {
+          myMap.setBounds(getLocationBounds('geneva'));
+        }
       });
         
       $('.content_block.clinic_on_map_container .cities').on('click', function(e) {
@@ -230,7 +235,12 @@ export default class YaMapContacts{
 
     function setActivePinInfo(clinicID) {
       var $currentClinicInfo = $(`.clinic_info_wrapper[data-id="${clinicID}"]`);
-      var $mapInfoPane = $('.side_pane_wrapper');
+
+      if (getScrollWidth() > 1440) {
+        var $mapInfoPane = $('.side_pane_wrapper');
+      } else {
+        var $mapInfoPane = $('.map_popup_container');
+      }
 
       $mapInfoPane.find('h3').html($currentClinicInfo.data('name'));
       $mapInfoPane.find('.address_content').html($currentClinicInfo.data('address'));
@@ -238,5 +248,13 @@ export default class YaMapContacts{
       $mapInfoPane.find('.work_hours_content').html($currentClinicInfo.data('work-hours'));
       $mapInfoPane.find('.button_container ._button_light').prop('href', `/contacts/${$currentClinicInfo.data('alias')}`);
     }
+
+    function getScrollWidth() {
+      return Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
+        document.body.offsetWidth, document.documentElement.offsetWidth,
+        document.body.clientWidth, document.documentElement.clientWidth
+      );
+    };
   }
 }

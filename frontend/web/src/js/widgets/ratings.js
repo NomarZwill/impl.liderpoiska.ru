@@ -9,7 +9,6 @@ export default class Ratings{
     this.init();
   }
 
-  
   init(){
     var ratingsContainer  = new Swiper('.ratings_container', {
       slidesPerView: 'auto',
@@ -24,6 +23,14 @@ export default class Ratings{
         clickable: true,
       }
     });
+
+    // настройка закрашивания звёзд
+    var currentRatingString = null;
+    $('.ratings_container .stars').each(function(i, obj){
+      currentRatingString = ($(obj).data('rating') * 20 - 1) + 'px';
+      $(obj).css('width', currentRatingString);
+    });
+
   }
 
 }

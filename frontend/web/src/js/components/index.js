@@ -129,8 +129,8 @@ export default class Index{
     $('.clinic_info .address_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('address'));
     $('.clinic_info .phone_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('phone'));
     $('.clinic_info .work_hours_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-hours'));
-
-
+    updateClinicRating($($('.moscow_clinics .clinic_card_wrapper')[0]));
+    
     $('.clinics_cotnainer .cities').on('click', function (e) {
       var $target = $(e.target);
 
@@ -150,6 +150,7 @@ export default class Index{
         $('.clinic_info .address_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('address'));
         $('.clinic_info .phone_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('phone'));
         $('.clinic_info .work_hours_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-hours'));    
+        updateClinicRating($($('.moscow_clinics .clinic_card_wrapper')[0]));
 
       } else if ($target.hasClass('geneva')){
         $('.geneva_clinics').removeClass('_hidden');
@@ -162,9 +163,51 @@ export default class Index{
         $('.clinic_info .address_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('address'));
         $('.clinic_info .phone_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('phone'));
         $('.clinic_info .work_hours_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('opening-hours'));
-    
+        updateClinicRating($($('.geneva_clinics .clinic_card_wrapper')[0]));
       }
     });
+
+    var $activeClinicRatingWrapper = $('.clinic_info .clinic_ratings_wrapper');
+
+    function updateClinicRating($target) {
+      var data = {
+        'clinic_id': $target.data('id'),
+      }
+
+      $.ajax({
+        type: 'get',
+        url: '/ajax-clinic-rating/',
+        data: data,
+        success: function(response) {
+          response = $.parseJSON(response);
+          // console.log(response.rating);
+          $activeClinicRatingWrapper.html(response.rating);
+          var ratingsContainer  = new Swiper('.ratings_container', {
+            slidesPerView: 'auto',
+            spaceBetween: 24,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              dynamicBullets: true,
+              clickable: true,
+            }
+          });
+      
+          // настройка закрашивания звёзд
+          var currentRatingString = null;
+          $('.ratings_container .stars').each(function(i, obj){
+            currentRatingString = ($(obj).data('rating') * 20 - 1) + 'px';
+            $(obj).css('width', currentRatingString);
+          });
+        },
+        error: function(response) {
+
+        }
+      });
+    }
 
     $('.clinics_cotnainer .clinics_wrapper').on('click', function (e) {
       var $target = $(e.target).closest('.clinic_card_wrapper');
@@ -178,6 +221,8 @@ export default class Index{
         $('.clinic_info .address_content').html($target.data('address'));
         $('.clinic_info .phone_content').html($target.data('phone'));
         $('.clinic_info .work_hours_content').html($target.data('opening-hours'));
+
+        updateClinicRating($target);
       }
     });
   }

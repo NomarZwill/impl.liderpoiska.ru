@@ -1,0 +1,147 @@
+[data-page-type="404"]{
+
+  .content_block.title_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    padding: 24px 0 56px 0;
+  }
+
+  h1{
+    padding: 16px 0 0 0;
+    text-align: center;
+  }
+
+  .content_block.error_image_wrapper{
+    display: flex;
+    justify-content: center;
+  }
+
+  .content_block.servises_container{
+    height: 330px;
+    padding: 48px 0 48px 0;
+
+    p{
+      line-height: 26px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+    }
+
+  }
+
+  .servises_wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 24px 0 0 0;
+  }
+
+  .services_item{
+    display: flex;
+    align-items: center;
+    width: 272px;
+
+    &:nth-of-type(-n + 4){
+      padding: 0 0 40px 0;
+    }
+  }
+
+  .services_item a._menu_link{
+    margin: 0 0 0 8px;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #782F40;
+  }
+
+  .services_item_img{
+    width: 80px;
+    height: 80px;
+  }
+
+  @include for-notdesc{
+
+    h1{
+      padding: 8px 0 0 0;
+    }
+  
+    .services_item a._menu_link{
+      margin: 0 0 0 8px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  @include for-pad{
+
+    .content_block.title_container{
+      padding: 24px 0 48px 0;
+    }
+
+    .content_block.servises_container{
+      width: 768px;
+      height: auto;
+      padding: 48px 16px 40px 16px;
+    }
+
+    .servises_wrapper{
+      justify-content: flex-start;
+      padding: 16px 0 0 0;
+    }
+
+    .services_item{
+      width: 232px;
+      
+      &:nth-of-type(n){
+        margin: 0 20px 0 0;
+        padding: 0 0 8px 0;
+      }
+  
+      &:nth-of-type(3n){
+        margin: 0 0 0 0;
+      }
+      &:nth-of-type(n + 7){
+        padding: 0 0 0 0;
+      }
+    }
+  }
+
+  @include for-mobile{
+
+    .content_block.title_container{
+      padding: 24px 0 24px 0;
+    }
+
+    .content_block.error_image_wrapper{
+
+      img{
+        width: 145px;
+        height: auto;
+      }
+    }
+
+    .content_block.servises_container{
+      height: auto;
+      padding: 32px 0 32px 0;
+    }
+
+    .servises_wrapper{
+      align-items: flex-start;
+      width: 320px;
+      margin: 0 auto;
+      padding: 16px 16px 0 16px;
+    }
+
+    .services_item{
+      flex-flow: column nowrap;
+      width: 136px;
+    }
+
+    .services_item:nth-of-type(-n + 6){
+      padding: 0 0 16px 0;
+    }
+  }
+  
+}

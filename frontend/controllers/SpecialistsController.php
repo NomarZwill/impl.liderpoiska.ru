@@ -15,23 +15,20 @@ class SpecialistsController extends MainController
   public function actionIndex(){
     $clinics = Clinics::find()->all();
     $medicalSpecialties = MedicalSpecialties::find()->all(); 
-    // $doctors = Doctors::find()
-    //   ->joinWith('medicalSpecialties')
-    //   ->limit(20)
-    //   ->all();
-
     // print_r($doctors);
     // exit;
       
     return $this->render('index.twig', array(
       'clinics' => $clinics,
-      // 'doctors' => $doctors,
       'medicalSpecialties' => $medicalSpecialties,
     ));
   }
 
   public function actionSpecialistCard($doctor){
-    $doc = Doctors::find()->joinWith('medicalSpecialties')->where(['doctors.alias' => $doctor])->one();
+    $doc = Doctors::find()
+      ->joinWith('medicalSpecialties')
+      ->where(['doctors.alias' => $doctor])
+      ->one();
     // print_r($doc['medicalSpecialties']);
     // exit;
 
@@ -57,6 +54,7 @@ class SpecialistsController extends MainController
     if ($spec_id === '0') {
       $doctors = Doctors::find()
         ->joinWith('medicalSpecialties')
+        ->distinct('id')
         ->offset($offset)
         ->limit($limit)
         ->all();
@@ -74,6 +72,7 @@ class SpecialistsController extends MainController
       $doctors = Doctors::find()
         ->joinWith('medicalSpecialties')
         ->where(['doctors_med_spec.specialty_id' => $spec_id])
+        ->distinct('id')
         ->offset($offset)
         ->limit($limit)
         ->all();

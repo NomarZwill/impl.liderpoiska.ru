@@ -372,6 +372,7 @@
 
             <div
               class="swiper-slide clinic_card_wrapper"
+              data-id="{{clinic.clinic_id | raw}}"
               data-title="{{clinic.clinic_title | raw}}"
               data-map="{{clinic.clinic_map}}"
               data-address="{{clinic.clinic_address | raw}}"
@@ -407,6 +408,7 @@
 
           <div
             class="clinic_card_wrapper"
+            data-id="{{clinic.clinic_id | raw}}"
             data-title="{{clinic.clinic_title | raw}}"
             data-map="{{clinic.clinic_map}}"
             data-address="{{clinic.clinic_address | raw}}"
@@ -429,8 +431,7 @@
 
       <h3 class="clinic_name"></h3>
 
-      <div class="clinic_ratings">
-        {{this.render('/components/ratings.twig') | raw}}
+      <div class="clinic_ratings_wrapper">
       </div>
       
       <div class="clinic_contacts">

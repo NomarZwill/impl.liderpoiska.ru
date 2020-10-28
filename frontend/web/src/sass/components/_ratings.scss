@@ -30,9 +30,9 @@
   .stars{
     width: 104px;
     height: 17px;
-    // margin: 0 8px 0 4px;
+    margin: 0 8px 0 0;
     background: url(/img/clinic-stars.svg) no-repeat;
-    background-size: contain;
+    background-size: cover;
   }
 
   .rating_value{

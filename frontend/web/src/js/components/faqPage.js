@@ -71,5 +71,9 @@ export default class FaqPage{
         });
       }
     });
+
+    $('[data-page-type="faq_form"] .close_icon_mobile').on('click', function(e) {
+      $(this).closest('.faq_form_successful_send').addClass('_hidden');
+    });
   }
 }

@@ -18,6 +18,7 @@ use backend\models\Deals;
 use backend\models\Doctors;
 use backend\models\Reviews;
 use backend\models\Clinics;
+use backend\models\Ratings;
 
 /**
  * Site controller
@@ -61,14 +62,19 @@ class SiteController extends MainController
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+            //'error' => [
+            //    'class' => 'yii\web\ErrorAction',
+            //],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionError(){
+
+        return $this->render('404.twig');
     }
 
     /**
@@ -80,7 +86,9 @@ class SiteController extends MainController
     {
         $deals = Deals::find()->all();
         $reviews = Reviews::find()->all();  
-        $clinics = Clinics::find()->all();
+        $clinics = Clinics::find()
+        ->joinWith('ratings')
+        ->all();
         $doctors = Doctors::find()
             ->joinWith('medicalSpecialties')
             ->all();  
@@ -106,6 +114,17 @@ class SiteController extends MainController
             'clinics' => $clinics,
         ));
     }
+
+    public function actionAjaxClinicRating(){
+        $clinic_id = $_GET['clinic_id'];
+        $rating = Ratings::find()->where(['clinic_id' => $clinic_id])->all();
+    
+        return json_encode([
+            'rating' => $this->renderPartial('/components/ratings.twig', array(
+              'clinicRatings' => $rating,
+            )),
+          ]);
+      }
 
     /**
      * Logs in a user.

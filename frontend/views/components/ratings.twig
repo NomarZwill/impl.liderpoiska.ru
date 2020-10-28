@@ -2,101 +2,29 @@
 
   <div class="swiper-wrapper">
 
+    {% for rating in clinicRatings %}
+
     <div class="swiper-slide rating_item_wrapper ">
   
-      <div class="logo_img"></div>
+      <div class="logo_img">
+        <a href="{{rating.link_to_agregator}}">
+          <img src="{{rating.icon}}" alt="">
+        </a>
+      </div>
   
       <p>Рейтинг</p>
   
       <div class="rating_value_wrapper">
   
-        <div class="stars"></div>
+        <div class="stars" data-rating="{{rating.average_rating}}"></div>
   
-        <div class="rating_value">4,8 из 5</div>
-  
-      </div>
-  
-    </div>
-  
-    <div class="rating_item_wrapper swiper-slide">
-  
-      <div class="logo_img"></div>
-  
-      <p>Рейтинг</p>
-  
-      <div class="rating_value_wrapper">
-  
-        <div class="stars"></div>
-  
-        <div class="rating_value">4,8 из 5</div>
+        <div class="rating_value">{{rating.average_rating}} из 5</div>
   
       </div>
   
     </div>
   
-    <div class="rating_item_wrapper swiper-slide">
-  
-      <div class="logo_img"></div>
-  
-      <p>Рейтинг</p>
-  
-      <div class="rating_value_wrapper">
-  
-        <div class="stars"></div>
-  
-        <div class="rating_value">4,8 из 5</div>
-  
-      </div>
-  
-    </div>
-  
-    <div class="rating_item_wrapper swiper-slide">
-  
-      <div class="logo_img"></div>
-  
-      <p>Рейтинг</p>
-  
-      <div class="rating_value_wrapper">
-  
-        <div class="stars"></div>
-  
-        <div class="rating_value">4,8 из 5</div>
-  
-      </div>
-  
-    </div>
-  
-    <div class="rating_item_wrapper swiper-slide">
-  
-      <div class="logo_img"></div>
-  
-      <p>Рейтинг</p>
-  
-      <div class="rating_value_wrapper">
-  
-        <div class="stars"></div>
-  
-        <div class="rating_value">4,8 из 5</div>
-  
-      </div>
-  
-    </div>
-
-    <div class="rating_item_wrapper swiper-slide">
-  
-      <div class="logo_img"></div>
-  
-      <p>Рейтинг</p>
-  
-      <div class="rating_value_wrapper">
-  
-        <div class="stars"></div>
-  
-        <div class="rating_value">4,8 из 5</div>
-  
-      </div>
-  
-    </div>
+    {% endfor %}
 
   </div>
 

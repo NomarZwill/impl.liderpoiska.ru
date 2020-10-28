@@ -52,6 +52,41 @@
     <div class="map">
       <div id="map" data-mapDotX="" data-mapDotY="" data-name="name" data-address="address" data-balloon="" data-hint=""></div>
     </div>
+
+    <div class="map_popup_container">
+
+      <div class="close"></div>
+      
+      <h3></h3>
+  
+      <div class="clinic_contacts">
+
+        <p>
+          <span class="title">Адрес:</span><br>
+          <span class="address_content"></span>
+        </p>
+        <p>
+          <span class="title">Телефоны:</span><br>
+          <span class="phone_content"></span><br>
+        </p>
+        <p>
+          <span class="title">Время работы:</span><br>
+          <span class="work_hours_content"></span>
+        </p>
+
+      </div>
+
+      <div class="button_container">
+
+        <button class="reception_button popup_button _button">Записаться на приём</button>
+        <a class="_button _button_light _menu_link_no_borders_black" href="/contacts/{{clinic.alias}}">О клинике</a>
+
+      </div>
+
+      <div class="close _mobile_button">Закрыть</div>
+
+    </div>
+
   </div>
 
   <div class="content_block clinic_info_container">
@@ -160,7 +195,7 @@
 
         </div>
 
-        {{this.render('/components/ratings.twig', {}) | raw}}
+        {{this.render('/components/ratings.twig', {'clinicRatings': clinic.ratings}) | raw}}
 
         <div class="button_container">
 

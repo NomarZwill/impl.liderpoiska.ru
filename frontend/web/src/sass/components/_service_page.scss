@@ -452,6 +452,107 @@
     }
   }
 
+  .before_after_gallery_wrapper{
+    padding: 0 40px 0 40px;
+
+    .swiper-wrapper{
+      padding: 0 0 24px 0;
+    }
+  }
+
+  .before_after_item_wrapper{
+    width: 496px;
+    height: auto;
+
+    img{
+      width: 496px;
+      height: auto;
+    }
+  }
+
+  .twentytwenty-handle{
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: rgba(255, 249, 240, 0.4);
+
+    &:before,
+    &:after{
+      width: 2px;
+      background: #FFF9F0;
+      opacity: 0.4;
+    }
+
+    &:before{
+      bottom: 57%;
+    }
+
+    &:after{
+      top: 55%;
+    }
+    
+    .twentytwenty-left-arrow,
+    .twentytwenty-right-arrow{
+      border: none;
+      border-left: 2px solid #782F40;
+      border-bottom: 2px solid #782F40;
+      width: 12px;
+      height: 12px;
+      margin: 0 0 0 0;
+      opacity: 1;
+    }
+    
+    .twentytwenty-left-arrow{
+      transform: rotate(45deg);
+      top: 15px;
+      left: 8px;
+    }
+    .twentytwenty-right-arrow{
+      transform: rotate(-135deg);
+      top: 15px;
+      left: auto;
+      right: 8px;
+    }
+  }
+
+  .twentytwenty-overlay{
+
+    &:hover{
+      background: none;
+    }
+
+    .twentytwenty-before-label,
+    .twentytwenty-after-label{
+      opacity: 1;
+
+      &:before{
+        top: auto;
+        bottom: 12px;
+        background: none;
+        margin: 0 0 0 0;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    .twentytwenty-before-label{
+
+      &:before{
+        left: calc(25% - 43px);
+      }
+    }
+
+    .twentytwenty-after-label{
+
+      &:before{
+        left: auto;
+        right: calc(25% - 43px);
+      }
+    }
+
+  }
+
   .photo_example_image{
     width: 496px;
     height: 336px;
@@ -688,12 +789,87 @@
     }
   }
 
+  .stars_empty,
+  .stars_full{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    width: 100%;
+    
+    img{
+      cursor: pointer;
+      margin: 0 4px 0 4px;
+    }
+  }
+  
+  .stars_empty{
+
+    label{
+      cursor: pointer;
+      width: 28px;
+      height: 20px;
+      padding: 0 4px 0 4px;
+      background: url(/img/star-empty.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    
+    input{
+      display: none;
+      // opacity: 0;
+    }
+  }
+
+  .stars_full{
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+
+    label:nth-last-of-type(1){
+      position: absolute;
+      left: -4px;
+    }
+    label:nth-last-of-type(2){
+      position: absolute;
+      left: 24px;
+    }
+    label:nth-last-of-type(3){
+      position: absolute;
+      left: 51px;
+    }
+    label:nth-last-of-type(4){
+      position: absolute;
+      left: 78px;
+    }
+    label:nth-last-of-type(5){
+      position: absolute;
+      left: 105px;
+    }
+  }
+  
   .stars_wrapper{
+    position: relative;
     width: 136px;
-    height: 24px;
-    margin: 0 8px 0 4px;
-    background: url(/img/stars_test.png) no-repeat;
-    background-size: contain;
+    height: 20px;
+    margin: 0 4px 0 4px;
+
+
+    &:hover{
+
+      .stars_full label{
+        opacity: 0;
+      }
+
+      .stars_empty label:hover,
+      .stars_empty label:hover ~ label{
+        background: url(/img/star-full.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
   }
 
   .votes_stars_value{
@@ -869,6 +1045,10 @@
       .content_note{
         margin: 40px auto 0;
       }
+    }
+
+    .content_block.recall_wrapper[data-page-type='recall_form']{
+      padding: 16px 0 0 0;
     }
 
     .content_block.photo_example_wrapper{
@@ -1189,7 +1369,7 @@
     }
 
     .content_block.photo_example_wrapper{
-      padding: 32px 0 32px 0;
+      padding: 32px 0 0 0;
 
       h3{
         padding: 0 0 16px 0;
@@ -1202,6 +1382,26 @@
       .swiper-wrapper{
         padding: 0 0 16px 0;
       }
+    }
+
+    .before_after_gallery_wrapper{
+      padding: 0 16px 0 16px;
+
+      .swiper-wrapper{
+        padding: 0 0 40px 0;
+      }
+    }
+
+    .before_after_item_wrapper{
+      width: 288px;
+  
+      img{
+        width: 288px;
+      }
+    }
+
+    .content_block.recall_wrapper[data-page-type='recall_form']{
+      padding: 8px 0 0 0;
     }
 
     .photo_example_image{

@@ -45,6 +45,7 @@ return [
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>/<fourthLevel:[\w-]+>','route'=>'dent/fourth-level', 'suffix'=>'/'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>','route'=>'dent/third-level', 'suffix'=>'/'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>','route'=>'dent/second-level', 'suffix'=>'/'],
+                ['pattern'=>'/dent/ajax-save-new-vote/','route'=>'dent/ajax-save-new-vote', 'suffix'=>'/'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>','route'=>'dent/first-level', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/ajax-more-card/','route'=>'specialists/ajax-more-card', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/<doctor:[\w-]+>','route'=>'specialists/specialist-card', 'suffix'=>'/'],
@@ -61,6 +62,7 @@ return [
                 ['pattern'=>'/faq/','route'=>'other/faq', 'suffix'=>'/'],
                 ['pattern'=>'/lizcenz/','route'=>'other/licenses', 'suffix'=>'/'],
                 ['pattern'=>'/garantii-na-stomatologicheskie-uslugi/','route'=>'other/warranty', 'suffix'=>'/'],
+                ['pattern'=>'/ajax-clinic-rating/','route'=>'site/ajax-clinic-rating', 'suffix'=>'/'],
 
             ],
         ],

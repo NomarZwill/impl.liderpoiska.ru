@@ -15,6 +15,7 @@ use Yii;
  * @property string $alias
  * @property string $menu_title
  * @property string $content
+ * @property string $image
  * @property string $head_text
  * @property string $service_to_price_list
  * @property string $price_to_service
@@ -27,6 +28,10 @@ use Yii;
  * @property string $review_title
  * @property string $faq_title
  * @property string $medic_title
+ * @property string $service_page_rating
+ * @property int $service_page_votes
+ * @property int $index_id
+ * @property int $servise_listing_id
  * @property int $parent_id
  * @property int $old_id
  */
@@ -46,8 +51,9 @@ class Servises extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['servise_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'content', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
-            [['parent_id', 'old_id'], 'integer'],
+            [['servise_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'content', 'image', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
+            [['service_page_rating'], 'number'],
+            [['service_page_votes', 'index_id', 'servise_listing_id', 'parent_id', 'old_id'], 'integer'],
         ];
     }
 
@@ -77,6 +83,11 @@ class Servises extends \yii\db\ActiveRecord
             'review_title' => 'Название для отзыва',
             'faq_title' => 'Название для FAQ',
             'medic_title' => 'Название для врача',
+            'image' => 'Image',
+            'service_page_rating' => 'Service Page Rating',
+            'service_page_votes' => 'Service Page Votes',
+            'index_id' => 'Index ID',
+            'servise_listing_id' => 'Servise Listing ID',
             'parent_id' => 'Parent ID',
             'old_id' => 'Old ID',
         ];
@@ -107,6 +118,4 @@ class Servises extends \yii\db\ActiveRecord
         return $this->hasMany(Prices::className(), ['prices_id' => 'prices_id'])
             ->viaTable('service_and_prices', ['service_id' => 'servise_id']);
     }
-
-
 }

@@ -131,38 +131,54 @@
   
       <div class="swiper-wrapper">
   
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-0.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert1.jpg">
+          <img src="/img/test_img/pastian_sert1_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-1.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert2.jpg">
+          <img src="/img/test_img/pastian_sert2_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-2.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert3.jpg">
+          <img src="/img/test_img/pastian_sert3_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-3.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert4.jpg">
+          <img src="/img/test_img/pastian_sert4_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-4.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert5.jpg">
+          <img src="/img/test_img/pastian_sert5_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-6.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert6.jpg">
+          <img src="/img/test_img/pastian_sert6_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-7.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert7.jpg">
+          <img src="/img/test_img/pastian_sert7_min.jpg" alt="">
         </div>
 
-        <div class="swiper-slide lizcenz_item">
-          <img src="/img/test_img/image 103-8.png" alt="">
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert8.jpg">
+          <img src="/img/test_img/pastian_sert8_min.jpg" alt="">
         </div>
-  
+
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert9.jpg">
+          <img src="/img/test_img/pastian_sert9_min.jpg" alt="">
+        </div>
+
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert10.jpg">
+          <img src="/img/test_img/pastian_sert10_min.jpg" alt="">
+        </div>
+
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert11.jpg">
+          <img src="/img/test_img/pastian_sert11_min.jpg" alt="">
+        </div>
+
+        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert12.jpg">
+          <img src="/img/test_img/pastian_sert12_min.jpg" alt="">
+        </div>
+
       </div>
 
       <div class="swiper-pagination revolver_pagination"></div>
@@ -458,85 +474,89 @@
       <div class="close_icon"></div>       
       
       <div class="lizcenz_item_wrapper">
-
+        <img src="/" alt="сертификат">
       </div>
 
       <div class="popup_close_button">Закрыть</div>       
 
     </div>
 
-    {% for i in 1..10 %}
+    <div class="popup_gallery_container _hidden">
+
+      {% for i in 1..10 %}
+        
+        <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
+
+          <div class="close_icon"></div>
+
+          <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
+
+          <div class="swiper-container popup_gallery">
+
+            <div class="swiper-wrapper">
+
+              {% for i in 1..10 %}
+
+                <div class="swiper-slide doctor_work_item _popup">
+                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+                </div>
+
+              {% endfor %}
+
+            </div>
+
+            <div class="popup_navigation_wrapper">
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next "></div>
       
-      <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
-
-        <div class="close_icon"></div>
-
-        <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
-
-        <div class="swiper-container popup_gallery">
-
-          <div class="swiper-wrapper">
-
-            {% for i in 1..10 %}
-
-              <div class="swiper-slide doctor_work_item _popup">
-                <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
-              </div>
-
-            {% endfor %}
+            </div>
 
           </div>
 
-          <div class="popup_navigation_wrapper">
+          <div class="swiper-container popup_gallery_thumbs">
 
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next "></div>
-    
-          </div>
+            <div class="swiper-wrapper">
 
-        </div>
+              {% for i in 1..10 %}
 
-        <div class="swiper-container popup_gallery_thumbs">
+                <div class="swiper-slide doctor_work_item _popup">
+                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+                </div>
 
-          <div class="swiper-wrapper">
+              {% endfor %}
 
-            {% for i in 1..10 %}
-
-              <div class="swiper-slide doctor_work_item _popup">
-                <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
-              </div>
-
-            {% endfor %}
+            </div>
 
           </div>
 
-        </div>
-
-        <p>
-          Пациент обратился с жалобой на неудобное использование полного 
-          съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
-          Была проведена костная пластика и установка дентальных 
-          имплантантов, что позволило нам через 7 месяцев забыть о 
-          существовании полных съемных протезов навсегда. Фото сделано на 
-          профилактическом осмотре через 5 лет после имплантации.
-        </p>
-
-        <div class="diagonal_navigation">
-
-          <div class="diagonal_navigation_bg"></div>
-          <div class="swiper-button-prev _diagonal_navigation"></div>
-          <span class="current_slide">01</span>
-          <br>
-          <span class="total_slides">03</span>
-          <div class="swiper-button-next _diagonal_navigation"></div>
+          <p>
+            Пациент обратился с жалобой на неудобное использование полного 
+            съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
+            Была проведена костная пластика и установка дентальных 
+            имплантантов, что позволило нам через 7 месяцев забыть о 
+            существовании полных съемных протезов навсегда. Фото сделано на 
+            профилактическом осмотре через 5 лет после имплантации.
+          </p>
 
         </div>
 
-        <button class="popup_close_button">Закрыть</button> 
+      {% endfor %}
+
+      <div class="diagonal_navigation">
+
+        <div class="diagonal_navigation_bg"></div>
+        <div class="swiper-button-prev _diagonal_navigation"></div>
+        <span class="current_slide">01</span>
+        <br>
+        <span class="total_slides">03</span>
+        <div class="swiper-button-next _diagonal_navigation"></div>
 
       </div>
 
-    {% endfor %}
+      <button class="popup_close_button">Закрыть</button> 
+
+    </div>
 
   </div>
   

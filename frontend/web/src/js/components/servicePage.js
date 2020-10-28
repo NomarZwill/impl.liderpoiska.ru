@@ -77,9 +77,10 @@ export default class ServicePage{
       }
     });
 
-    var photoWrapper  = new Swiper('.photo_gallery_wrapper', {
+    var photoWrapper  = new Swiper('.before_after_gallery_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      allowTouchMove: false,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

@@ -132,7 +132,7 @@
     
     <h3 class="rating_title">Рейтинг клиники</h3>
 
-    {{this.render('/components/ratings.twig', {}) | raw}}
+    {{this.render('/components/ratings.twig', {'clinicRatings': clinic.ratings}) | raw}}
 
     <a name="map"></a>
 

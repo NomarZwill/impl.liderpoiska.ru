@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\Ratings;
 
 /**
  * This is the model class for table "clinics".
@@ -71,5 +72,10 @@ class Clinics extends \yii\db\ActiveRecord
             'bottom_text' => 'Bottom Text',
             'old_id' => 'Old ID',
         ];
+    }
+
+    public function getRatings()
+    {
+        return $this->hasMany(Ratings::className(), ['clinic_id' => 'clinic_id']);
     }
 }

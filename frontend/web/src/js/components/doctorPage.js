@@ -1,12 +1,12 @@
 'use strict';
 
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper, { Navigation, Pagination, Thumbs } from 'swiper';
 
 
 export default class DoctorPage{
 
   constructor(){
-    Swiper.use([Navigation, Pagination]);
+    Swiper.use([Navigation, Pagination, Thumbs]);
     this.init();
   }
 
@@ -46,8 +46,8 @@ export default class DoctorPage{
     });
 
     $('.content_block.doctor_lizcenz .lizcenz_item').on('click', function(e) {
-      var lizcenzItem = $(this).html();
-      $('.popup_filter_bg .lizcenz_item_wrapper').html(lizcenzItem);
+      var lizcenzItem = $(this).data('fullImg');
+      $('.popup_filter_bg .lizcenz_item_wrapper img').attr('src', lizcenzItem);
       $('.popup_filter_bg').addClass('_active');
       $('.popup_filter_bg .popup_lizcenz_wrapper').removeClass('_hidden');
 
@@ -87,22 +87,29 @@ export default class DoctorPage{
     });
 
     var $popupGalleries =  $('.popup_gallery_wrapper');
-    var popupSwipers = [];
+    var $currentPopupGallery = null;
+    var $popupGalleryNavigation = $('.popup_gallery_container .diagonal_navigation');
+    var popupSwiperBig = null;
+    var popupSwiperThumbs = null;
+
+    function isZeroBeforeNeeded(number, $element){
+      if (number < 10) {
+        $element.html('0' + number);
+      } else {
+        $element.html(number);
+      }
+    };
+
+    isZeroBeforeNeeded($popupGalleries.length, $popupGalleryNavigation.find('.total_slides'));
 
     $('.doctor_work_example .doctor_work_image').on('click', function(e){
       var currentID = $(this).data('gallery-id');
       openInnerGallery(currentID);
     });
-
-    $('.doctor_work_example .inner_gallery_button').on('click', function(e){
-      var currentID = $(this).closest('p').siblings('.doctor_work_image').data('gallery-id');
-      openInnerGallery(currentID);
-    });
     
     function openInnerGallery(id){
       $('body').addClass('_popup_mode');
-      var $currentPopupGallery = null;
-
+      $popupGalleries.removeClass('_active');
       $popupGalleries.each(function(i){
 
         if ($($popupGalleries[i]).data('gallery-id') == id){
@@ -111,81 +118,68 @@ export default class DoctorPage{
         }
       });
 
+      isZeroBeforeNeeded(id, $popupGalleryNavigation.find('.current_slide'));
+      
       $('.popup_filter_bg').addClass('_active');
-      var thumbs = new Swiper($currentPopupGallery.find('.popup_gallery_thumbs'), {
-        // init: false,
+      $('.popup_filter_bg .popup_gallery_container').removeClass('_hidden');
+      initActivePopupGallery();
+    };
+
+    function initActivePopupGallery(){
+      popupSwiperThumbs = new Swiper($('.popup_gallery_wrapper._active .popup_gallery_thumbs')[0], {
         slidesPerView: 'auto',
         spaceBetween: 4,
         freeMode: true,
         watchSlidesVisibility: true,
         watchSlidesProgress: true,
-        on: {
-          init: function(){
-            console.log('swiper');
-          }
-
-        }
-        // navigation: {
-        //   nextEl: '.swiper-button-next',
-        //   prevEl: '.swiper-button-prev'
-        // },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
       });
 
-      var bigSlides = new Swiper($currentPopupGallery.find('.popup_gallery'), {
-        // init: false,
+      popupSwiperBig = new Swiper($('.popup_gallery_wrapper._active .popup_gallery')[0], {
         slidesPerView: 1,
         spaceBetween: 24,
         thumbs: {
-          swiper: thumbs,
-          slideThumbActiveClass: 'swiper-slide-thumb-active',
+          swiper: popupSwiperThumbs,
         },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   type: 'bullets',
-        // }
       });
-
-      popupSwipers.push({bigSlides, thumbs});
-      console.log(popupSwipers);
-
-      // popupSwipers[id * 2 - 1].init();
-      // popupSwipers[id * 2 - 2].init();
-
-    };
-
-    $('.popup_gallery_wrapper .close_icon').on('click', function(e){
-      $(this).closest('.popup_gallery_wrapper').removeClass('_active');
+    }
+    
+    $('.popup_gallery_wrapper .close_icon')
+    .add('.popup_filter_bg .popup_gallery_container .popup_close_button')
+    .on('click', function(e){
       $(this).closest('.popup_filter_bg').removeClass('_active');
+      $(this).closest('.popup_gallery_container').find('.popup_gallery_wrapper._active').removeClass('_active');
+      $('.popup_filter_bg .popup_gallery_container').addClass('_hidden');
       $('body').removeClass('_popup_mode');
     });
 
-    $('.popup_filter_bg .popup_gallery_wrapper').find('.popup_close_button').on('click', function(e){
-      $(this).closest('.popup_gallery_wrapper').removeClass('_hidden');
-      $('.popup_filter_bg').removeClass('_active');
-      $('body').removeClass('_popup_mode');
-    });
+    $popupGalleryNavigation.on('click', function(e){
 
-    $('.popup_gallery_wrapper .swiper-button-next._diagonal_navigation').on('click', function(e){
-      var oldID = $(this).closest('.popup_gallery_wrapper').data('gallery-id');
-      var newID = oldID + 1;
+      if ($(e.target).hasClass('swiper-button-next')) {
+        var $newPopupGallery = $currentPopupGallery.next('.popup_gallery_wrapper');
+        if ($newPopupGallery.length !== 0) {
+          getNewGallery();
+        };
 
-      if( $(`[data-gallery-id=${newID}].popup_gallery_wrapper`).length > 0){
+      } else if ($(e.target).hasClass('swiper-button-prev')) {
+        var $newPopupGallery = $currentPopupGallery.prev('.popup_gallery_wrapper');
+        if ($newPopupGallery.length !== 0) {
+          getNewGallery();
+        };      
+      };
 
-        $(this).closest('.popup_gallery_wrapper').removeClass('_active');
-        $(this).closest('.popup_gallery_wrapper').siblings(`[data-gallery-id=${newID}]`).addClass('_active');
-  
-        popupSwipers[newID * 2 - 1].init();
-        popupSwipers[newID * 2 - 2].init();
+      function getNewGallery(){
+        $currentPopupGallery.removeClass('_active');
+        popupSwiperBig.destroy();
+        popupSwiperThumbs.destroy();
+        $newPopupGallery.addClass('_active');
+        $currentPopupGallery = $newPopupGallery;
+        isZeroBeforeNeeded($currentPopupGallery.data('gallery-id'), $popupGalleryNavigation.find('.current_slide'));
+        initActivePopupGallery();
       }
-
     });
 
     var reviewsWrapper  = new Swiper('.reviews_wrapper', {

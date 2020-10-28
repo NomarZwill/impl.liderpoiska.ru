@@ -24,6 +24,7 @@ import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
 import Ratings from './widgets/ratings';
+import PageRating from './widgets/pageRating';
 import InstagramGallery from './widgets/instagramGallery';
 
 window.$ = $;
@@ -104,6 +105,10 @@ window.$ = $;
 
 			if ($('[data-type="ratings"]').length > 0) {
 	    	var ratings = new Ratings();
+			}
+
+			if ($('[data-type="page_rating"]').length > 0) {
+	    	var pageRating = new PageRating();
 			}
 
 			if ($('[data-type="instagram_block"]').length > 0) {

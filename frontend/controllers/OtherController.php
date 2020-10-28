@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use frontend\controllers\MainController;
 use backend\models\Clinics;
+use backend\models\Ratings;
 use backend\models\Doctors;
 use backend\models\Deals;
 use backend\models\Servises;
@@ -29,7 +30,9 @@ class OtherController extends MainController
   }
 
   public function actionContacts(){
-    $clinics = Clinics::find()->asArray()->all();
+    $clinics = Clinics::find()
+      ->joinWith('ratings')
+      ->all();
 
     // $clinics = Clinics::find()->one();
 
@@ -38,17 +41,22 @@ class OtherController extends MainController
     //   $clinic->save();
     // }
 
-    // print_r(json_encode($maps));
+    // print_r($clinics);
     // print_r(html_entity_decode($clinics->clinic_opening_hours, ENT_HTML5));
     // exit;
     
     return $this->render('contacts.twig', array(
-      'clinics' => $clinics
+      'clinics' => $clinics,
     ));
   }
 
   public function actionClinicContacts($clinic){
-    $currentClinic = Clinics::find()->where(['clinics.alias' => $clinic])->asArray()->one();
+    $currentClinic = Clinics::find()
+      ->joinWith('ratings')
+      ->where(['clinics.alias' => $clinic])
+      ->asArray()
+      ->one();
+      
     $doctors = Doctors::find()
             ->joinWith('medicalSpecialties')
             ->asArray()

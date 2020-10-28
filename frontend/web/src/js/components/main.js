@@ -58,9 +58,13 @@ export default class Main{
       } else if($('.layout_popup .review_form_wrapper').length !== 0) {
         $('.layout_popup .review_form_wrapper')
         .appendTo('.review_form_container');
-      }  else if ('.layout_popup .recall_form_wrapper'.length !== 0) {
+      }  else if ($('.layout_popup .recall_form_wrapper').length !== 0) {
         $('.layout_popup .recall_form_wrapper')
         .appendTo('.popup_button_wrapper.recall_form_popup .recall_form_container');
+      } else if ($('.popup_filter_bg').length !== 0) {
+        $('.popup_filter_bg ._active').removeClass('_active');
+        $('.popup_filter_bg .popup_gallery_container').addClass('_hidden');
+        $('.popup_lizcenz_wrapper').addClass('_hidden');
       }
 
       $('.layout_popup .scroll_wrapper').empty();
@@ -99,6 +103,8 @@ export default class Main{
        && $(e.target).closest('.reception_button').length === 0
        && $(e.target).closest('.review_item_wrapper .read_more').length === 0
        && $(e.target).closest('.doctor_work_wrapper').length === 0
+       && $(e.target).closest('.popup_gallery_container').length === 0
+       && $(e.target).closest('.lizcenz_wrapper ').length === 0
        && $(e.target).closest('.review_popup_button').length === 0) {
         closeDropdownMenu();
         closeLayoutPopup();

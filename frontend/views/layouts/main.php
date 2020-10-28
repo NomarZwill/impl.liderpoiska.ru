@@ -277,10 +277,31 @@ AppAsset::register($this);
             <?= $this->render('../components/review_form.twig') ?>
         </div>
     </div>
-    
+
 </footer>
 
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="/node_modules/zurb-twentytwenty/js/jquery.event.move.js" type="text/javascript"></script>
+<script src="/node_modules/zurb-twentytwenty/js/jquery.twentytwenty.js" type="text/javascript"></script>
+
+<script>
+    // для слайдера "до"/"после" на странице услуги
+    $(document).ready(function() {
+        var currentID = null;
+        if ($('[data-page-type="service_page"]').length !== 0) {
+            $('[data-page-type="service_page"] .before_after_item_wrapper').each(function(i, obj) {
+                currentID = '#before_after_container' + (i + 1);
+                $(currentID).twentytwenty({
+                    before_label: 'До',
+                    after_label: 'После',
+                });
+            });
+        };
+
+    });
+</script>
