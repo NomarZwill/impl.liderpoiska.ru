@@ -1,4 +1,4 @@
-<form action="">
+<form action="" data-type="faq">
 
   <h2>Задайте вопрос</h2>
 
@@ -6,28 +6,30 @@
 
   <div class="form_fields_wrapper">
 
-    <label class="inut_wrapper">
-      <input type="text" name="name" placeholder="&nbsp;">
+    <label class="input_wrapper">
+      <input type="text" name="name" placeholder="&nbsp;" data-required>
       <span>Как вас зовут</span>
     </label>
 
-    <label class="inut_wrapper">
-      <input type="text" name="email" placeholder="&nbsp;">
+    <label class="input_wrapper">
+      <input type="text" name="email" placeholder="&nbsp;" data-required>
       <span>Эл. почта (не будет опубликована)</span>
     </label>
 
-    <label class="inut_wrapper">
-      <input type="text" name="phone" placeholder="&nbsp;">
+    <label class="input_wrapper">
+      <input type="text" name="phone" placeholder="&nbsp;" data-required>
       <span>Номер телефона</span>
     </label>
 
-    <textarea name="question"></textarea>
+    <label class="input_wrapper textarea_wrapper">
+      <textarea name="question" data-required></textarea>
+    </label>
 
   </div>
 
   <div class="submit_wrapper">
 
-    <button class="_button">Отправить</button>
+    <button class="_button" type="submit">Отправить</button>
 
     <p>
       Нажимая кнопку «Отправить», я даю согласие на 

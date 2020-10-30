@@ -13,6 +13,9 @@
                     ['label' => 'Спецпредложения', 'icon' => 'circle-o', 'url' => ['/deals']],
                     ['label' => 'Отзывы', 'icon' => 'circle-o', 'url' => ['/reviews']],
                     ['label' => 'FAQ', 'icon' => 'circle-o', 'url' => ['/faq']],
+                    ['label' => 'Драфты', 'icon' => 'circle-o', 'url' => ['/hc-draft/']],
+                    ['label' => 'Теги', 'icon' => 'circle-o', 'url' => ['/hc-tag/']],
+                    ['label' => 'Блоки', 'icon' => 'circle-o', 'url' => ['/hc-block/']],
                 ],
             ]
         ) ?>

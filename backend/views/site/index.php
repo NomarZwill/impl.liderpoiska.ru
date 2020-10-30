@@ -2,15 +2,15 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Панель администратора';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
+    <!-- <div class="jumbotron">
 
         <h1>Панель администратора</h1>
 
-    </div>
+    </div> -->
 
     <!-- <div class="body-content">
 

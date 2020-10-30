@@ -1,6 +1,6 @@
 <div class="reception_form_wrapper" data-type="reception_form">
 
-  <form action="">
+  <form action="" data-type="reception">
 
     <div class="close_icon"></div>
 
@@ -31,6 +31,7 @@
                 class="clinic_item_input" 
                 type="radio" 
                 name="clinic"
+                value="{{clinic.clinic_id}}"
                 data-clinic-id="{{clinic.clinic_id}}" 
                 checked
               />
@@ -66,12 +67,12 @@
       </label>
 
       <label class="input_wrapper">
-        <input type="text" name="name" placeholder="&nbsp;">
+        <input type="text" name="name" placeholder="&nbsp;" data-required>
         <span>Как вас зовут</span>
       </label>
 
       <label class="input_wrapper">
-        <input type="text" name="phone" placeholder="&nbsp;">
+        <input type="text" name="phone" placeholder="&nbsp;" data-required>
         <span>Номер телефона</span>
       </label>
 
@@ -84,7 +85,7 @@
 
     <div class="submit_wrapper">
 
-      <button class="_button">Отправить</button>
+      <button class="_button" type="submit">Отправить</button>
   
       <p>
         Нажимая кнопку «Отправить», я даю согласие на 

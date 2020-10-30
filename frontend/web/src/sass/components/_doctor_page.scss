@@ -104,12 +104,17 @@
     padding: 24px 32px 24px 16px;
     overflow: hidden;
 
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
+      display: none;
+    }
+
     &:before{
       content: '';
       position: absolute;
       width: 30px;
-      height: 100%;
-      top: 0;
+      height: calc(100% - 48px);
+      top: 24px;
       left: 0;
       background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0, rgba(255, 255, 255, 0) 25%);
       z-index: 10;
@@ -119,21 +124,16 @@
       content: '';
       position: absolute;
       width: 30px;
-      height: 100%;
-      top: 0;
+      height: calc(100% - 48px);
+      top: 24px;
       right: 0;
       background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 75%);
       z-index: 10;
     }
-
-    .revolver_navigation_wrapper,
-    .revolver_pagination{
-      display: none;
-    }
   }
 
   .clinic_item{
-    cursor: pointer;
+    // cursor: pointer;
     width: 256px;
     // margin: 0 16px 0 0;
     padding: 12px 16px 24px 16px;
@@ -216,7 +216,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding: 24px 0 0 0;
+    padding: 24px 24px 0 24px;
 
     .revolver_navigation_wrapper{
       margin: 16px auto 0 auto;
@@ -330,6 +330,7 @@
 
   .doctor_work_wrapper{
     width: 100%;
+    padding: 0 24px 0 24px;
 
     .swiper-wrapper{
       padding: 0 0 40px 0;
@@ -461,6 +462,11 @@
       width: 100%;
     }
 
+    .clinic_item:hover{
+      box-shadow: 0px 5px 20px rgba(15, 4, 61, 0.1);
+      transform: translateY(0);
+    }
+
     .inner_gallery_button{
       color: $headerBlack;
       border-bottom: 1px dashed rgba(51, 54, 56, 0.4);
@@ -498,6 +504,7 @@
     
     .clinics_wrapper{
       width: 100%;
+      margin: 0 0 0 16px;
       padding: 24px 0 24px 0;
     }
     
@@ -507,7 +514,7 @@
     
     .doctor_preview_wrapper{
       width: 568px;
-      margin: 0 0 0 168px;
+      margin: 0 0 0 184px;
       padding: 0 0 0 0;
       
       h2{
@@ -613,16 +620,17 @@
 
     .clinics_wrapper{
       left: auto;
-      margin: 0 0 48px 0;
+      margin: 0 0 16px 0;
       padding: 16px 16px 0 16px;
 
-      &:before,
-      &:after{
-        content: none;
-      }
-
+      
       .swiper-wrapper{
         height: auto;
+
+        &:before,
+        &:after{
+          content: none;
+        }
       }
 
       .revolver_navigation_wrapper{
@@ -684,7 +692,7 @@
     }
 
     .lizcenz_wrapper{
-      padding: 16px 0 0 0;
+      padding: 16px 16px 0 16px;
     }
 
     .content_block.doctor_education{
@@ -696,6 +704,7 @@
     }
 
     .doctor_work_wrapper{
+      padding: 0 16px 0 16px;
   
       .swiper-wrapper{
         padding: 0 0 24px 0;

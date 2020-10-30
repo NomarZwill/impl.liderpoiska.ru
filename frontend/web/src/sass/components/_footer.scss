@@ -355,12 +355,12 @@
         margin: 0 0 16px 0;
       }
 
-      input[name="phone"]{
-        margin: 0 0 0 0;
-      }
+      // input[name="phone"]{
+      //   margin: 0 0 0 0;
+      // }
 
       .form_fields_wrapper{
-        padding: 16px 0 16px 0;
+        padding: 16px 0 0 0;
       }
 
       .submit_wrapper{
@@ -610,6 +610,12 @@
           content: none;
         }
       }
+      
+      .recall_form_wrapper form{
+        width: 288px;
+      }
     }
+
+
   }
 }

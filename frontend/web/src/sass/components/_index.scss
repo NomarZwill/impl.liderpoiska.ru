@@ -131,8 +131,8 @@
     position: relative;
     display: inline-block;
     margin: 0 auto;
-    
-    form{
+
+    ._button_to_all{
       position: absolute;
       top: 2px;
       right: -448px;
@@ -273,11 +273,17 @@
       letter-spacing: 0.01em;
     }
 
-    form{
+    ._button_to_all{
       position: absolute;
       bottom: 30px;
       right: 0;
     }
+
+    // form{
+    //   position: absolute;
+    //   bottom: 30px;
+    //   right: 0;
+    // }
   }
 
   ._index_subtitle{
@@ -638,7 +644,7 @@
 
     .deals_title{
 
-      form{
+      ._button_to_all{
         position: static;
       }
     }
@@ -671,6 +677,11 @@
     .doctors_title{
       width: 100%;
       padding: 0 16px 24px 0;
+
+      ._button_to_all{
+        position: static;
+        margin: 8px 0 0 0;
+      }
     }
 
     .reviews_cotnainer_bg{
@@ -884,7 +895,7 @@
     } 
 
     .content_block.reviews_cotnainer{
-      height: 435px;
+      height: 570px;
     }
 
     .reviews_wrapper{
@@ -931,7 +942,7 @@
     .review_text{
 
       &._compact{
-        max-height: 140px;
+        max-height: 280px;
       }
     }
 
@@ -1084,6 +1095,10 @@
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
+
+      ._button_to_all{
+        margin: 0 0 16px 0;
+      }
     }
 
     .deals_wrapper{

@@ -70,11 +70,11 @@ export default class DoctorPage{
 
     var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
       slidesPerView: 'auto',
-      initialSlide: 3,
+      // initialSlide: 3,
       spaceBetween: 24,
       observer: true,
       observeParents: true,
-      centeredSlides: true,
+      // centeredSlides: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use \common\html_constructor\models\HcDraft;
 
 /**
  * This is the model class for table "doctors".
@@ -106,5 +107,15 @@ class Doctors extends \yii\db\ActiveRecord
     public function getMedicalSpecialties(){
         return $this->hasMany(MedicalSpecialties::className(), ['specialty_id' => 'specialty_id'])
             ->viaTable('doctors_med_spec', ['doctor_id' => 'doctor_id']);
+    }
+
+    public function getdoctorsHcDraft(){
+        return $this->hasMany(HcDraft::className(), ['id' => 'hc_draft_id'])
+            ->viaTable('doctors_hc_draft', ['hc_draft_id' => 'doctor_id']);
+    }
+
+    public function getDoctorsAndClinics(){
+        return $this->hasMany(Clinics::className(), ['clinic_id' => 'clinic_id'])
+            ->viaTable('doctors_and_clinics', ['doctor_id' => 'doctor_id']);
     }
 }

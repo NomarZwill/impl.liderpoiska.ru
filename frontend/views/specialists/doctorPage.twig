@@ -1,5 +1,7 @@
 <div data-page-type="doctor_page">
 
+  {{draft | raw}}
+
   <div class="content_block doctor_preview">
 
     <div class="doctor_preview_bg">
@@ -21,7 +23,7 @@
 
             <div class="swiper-wrapper">
       
-              {% for spec in doc.medicalSpecialties%}
+              {% for spec in doc.medicalSpecialties %}
         
                 <a class="swiper-slide _menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title | raw}}</a>
         
@@ -36,31 +38,19 @@
           <div class="swiper-container clinics_wrapper">
   
             <div class="swiper-wrapper">
-        
-              <div class="swiper-slide clinic_item">
 
-                <a class="clinic_name _link_black" href="/contacts/">Центр Эстетической Стоматологии</a>
-                <p class="clinic_address">Проспект Вернадского, д. 11/19<br><span class="metro">м. Университет</span></p>
-                <a class="clinic_phone" href="tel:8(495)6004745">Тел.: 8 (495) 600 47 45</a>
+              {% for clinic in doc.doctorsAndClinics %}
+        
+                <div class="swiper-slide clinic_item">
+
+                <a class="clinic_name _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title | raw}}</a>
+                <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
+                <a class="clinic_phone" href="{{clinic.main_phone}}">{{clinic.main_phone | raw}}</a>
 
               </div>
         
-              <div class="swiper-slide clinic_item">
-
-                <a class="clinic_name _link_black" href="/contacts/">Центр Эстетической Стоматологии</a>
-                <p class="clinic_address">Проспект Вернадского, д. 11/19<br><span class="metro">м. Университет</span></p>
-                <a class="clinic_phone" href="tel:8(495)6004745">Тел.: 8 (495) 600 47 45</a>
-
-              </div>
-        
-              <div class="swiper-slide clinic_item">
-
-                <a class="clinic_name _link_black" href="/contacts/">Центр Эстетической Стоматологии</a>
-                <p class="clinic_address">Проспект Вернадского, д. 11/19<br><span class="metro">м. Университет</span></p>
-                <a class="clinic_phone" href="tel:8(495)6004745">Тел.: 8 (495) 600 47 45</a>
-
-              </div>
-        
+              {% endfor %}
+  
             </div>
 
             <div class="swiper-pagination revolver_pagination"></div>
@@ -207,7 +197,6 @@
 
     </div>
 
-
   </div>
 
   <div class="content_block doctor_work_example">
@@ -224,7 +213,7 @@
     
           <div class="swiper-slide doctor_work_item">
 
-            <div class="doctor_work_image" style="background: url('/img/test_img/image 65.png'); background-size: contain;" data-gallery-id="{{i}}">
+            <div class="doctor_work_image" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-size: cover;" data-gallery-id="{{i}}">
 
               <div class="bg_filter">
                 <button class="_button _button_light">Смотреть фотографии</button>
@@ -265,9 +254,7 @@
 
       <div class="button_wrapper">
 
-        <form action="/reviews/">
-          <button class="_button _button_light _button_to_all"><span>Все отзывы</span> →</button>
-        </form>
+        <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
   
         <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
 
@@ -498,7 +485,7 @@
               {% for i in 1..10 %}
 
                 <div class="swiper-slide doctor_work_item _popup">
-                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
                 </div>
 
               {% endfor %}
@@ -521,7 +508,7 @@
               {% for i in 1..10 %}
 
                 <div class="swiper-slide doctor_work_item _popup">
-                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/image 65.png'); background-repeat: no-repeat; background-size: contain;"></div>
+                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
                 </div>
 
               {% endfor %}

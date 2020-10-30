@@ -38,12 +38,12 @@
   .form_fields_wrapper{
     display: flex;
     flex-flow: row nowrap;
-    padding: 16px 0 24px 0;
+    padding: 16px 0 8px 0;
   }
 
   input{
     width: 288px;
-    margin: 0 24px 0 0;
+    margin: 0 24px 16px 0;
     padding: 18px 8px 8px 8px;
     background: #ffffff;
     border: 1px solid #DADEE1;
@@ -163,7 +163,7 @@
 
     input{
       width: 206px;
-      margin: 0 16px 0 0;
+      margin: 0 16px 16px 0;
     }
   }
 

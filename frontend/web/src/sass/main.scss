@@ -641,10 +641,44 @@ h5{
   }
 }
 
+form{
+
+  input:focus{
+    border: 1px solid #782F40;
+  }
+
+  textarea._invalid,
+  input._invalid{
+    border: 1px solid #DF0C0C;
+  }
+
+  .form_input_error{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: #DF0C0C;
+  }
+
+  ._button.disabled{
+    cursor: not-allowed;
+  }
+}
+
+.mobile_text{
+  display: none;
+}
+
 @include for-pad{
 
   .content_note{
     width: 736px;
+  }
+
+  .mobile_text{
+    display: none;
   }
 }
 
@@ -717,6 +751,14 @@ h5{
       height: 32px;
       background-size: contain;
     }
+  }
+
+  .not_mobile_text{
+    display: none;
+  }
+
+  .mobile_text{
+    display: inline;
   }
 
   // .play_button{

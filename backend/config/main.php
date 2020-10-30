@@ -43,7 +43,34 @@ return [
             'showScriptName' => false,
             'rules' => [
                 //'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-                ['pattern'=>'/update','route'=>'site/index'],
+                [
+                    'pattern'=>'/update',
+                    'route'=>'site/index'
+                ],
+                [
+                    'pattern' => '<controller>/<id:\d+>/<action>',
+                    'route' => '<controller>/<action>',
+                    'suffix' => '/'
+                ],
+                [
+                    'pattern' => 'hc-file/<id:\d+>/resort/<sort:\d+>',
+                    'route' => 'hc-file/resort',
+                    'suffix' => '/'
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'hc-blocks',
+                    'suffix' => '/',
+                    'except' => ['delete', 'create', 'update'],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'hc-draft-blocks',
+                    'suffix' => '/',
+                    'extraPatterns' => [
+                        'POST sort' => 'sort',
+                    ]
+                ],
             ],
             
         ],

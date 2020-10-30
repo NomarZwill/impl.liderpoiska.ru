@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "doctors_and_clinics".
  *
+ * @property int $id
  * @property int $doctor_id
  * @property int $clinic_id
  */
@@ -37,6 +38,7 @@ class DoctorsAndClinics extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'doctor_id' => 'Doctor ID',
             'clinic_id' => 'Clinic ID',
         ];

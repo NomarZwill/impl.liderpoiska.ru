@@ -29,7 +29,7 @@
   .form_fields_wrapper{
     display: flex;
     flex-flow: row wrap;
-    padding: 16px 0 24px 0;
+    padding: 16px 0 8px 0;
   }
 
   input,
@@ -57,9 +57,14 @@
     width: 104px;
   }
 
+  .textarea_wrapper{
+    width: 100%;
+  }
+
   textarea{
     width: 100%;
     min-height: 160px;
+    margin: 0 0 16px 0;
     padding: 14px 8px 14px 8px;
     resize: none;
   }
@@ -82,7 +87,7 @@
     }
   }
 
-  .inut_wrapper{
+  .input_wrapper{
     position: relative;
 
     span{
@@ -174,7 +179,7 @@
       padding: 16px 0 16px 0;
     }
 
-    .inut_wrapper{
+    .input_wrapper{
       width: 100%;
     }
   

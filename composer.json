@@ -19,8 +19,16 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-twig": "^2.4",
-        "kartik-v/yii2-widget-select2": "dev-master",
-        "dmstr/yii2-adminlte-asset": "^2.6"
+        "kartik-v/yii2-widget-select2": "^2.2",
+        "dmstr/yii2-adminlte-asset": "^2.6",
+        "himiklab/yii2-sortable-grid-view-widget": "^1.0",
+        "mustache/mustache": "^2.13",
+        "himiklab/yii2-easy-thumbnail-image-helper": "^1.1",
+        "trntv/yii2-aceeditor": "^2.1",
+        "2amigos/yii2-tinymce-widget": "^1.1",
+        "kartik-v/yii2-widget-datetimepicker": "^1.4",
+        "kartik-v/yii2-widget-datepicker": "^1.4",
+        "kartik-v/yii2-widget-fileinput": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
