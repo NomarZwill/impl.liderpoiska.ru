@@ -5,9 +5,11 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Clinics;
 use backend\models\ClinicsSearch;
+use backend\models\ImageGalleries;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ClinicsController implements the CRUD actions for Clinics model.
@@ -67,7 +69,7 @@ class ClinicsController extends Controller
         $model = new Clinics();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->clinic_id]);
+            return $this->redirect(['update', 'id' => $model->clinic_id]);
         }
 
         return $this->render('create', [
@@ -86,13 +88,34 @@ class ClinicsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->clinic_id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->cinic_gallery_images = UploadedFile::getInstances($model, 'cinic_gallery_images');
+            $uploadFlag = $model->uploadImages();
+            if($uploadFlag){
+                $model->save();
+            }
+
+            return $this->redirect(['update', 'id' => $model->clinic_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDeleteGalleryImage($event_id, $image_id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $image = ImageGalleries::findOne($image_id);
+        $path = $image->filepath;
+
+        if (unlink($path)) {
+          $image->delete();
+          return ['success' => 'Удалено'];
+        }
+        return ['error' => 'Ошибка загрузки'];
     }
 
     /**

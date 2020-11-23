@@ -18,7 +18,7 @@ class DealsSearch extends Deals
     {
         return [
             [['deals_id', 'old_id'], 'integer'],
-            [['deals_title', 'deals_long_title', 'deals_description', 'deals_index_description', 'deals_index_image', 'alias', 'deals_image_front', 'deals_image_back', 'deals_content'], 'safe'],
+            [['deals_title', 'deals_long_title', 'deals_description', 'deals_index_description', 'alias', 'deals_image_front', 'deals_image_back', 'deals_content'], 'safe'],
         ];
     }
 
@@ -66,7 +66,6 @@ class DealsSearch extends Deals
             ->andFilterWhere(['like', 'deals_long_title', $this->deals_long_title])
             ->andFilterWhere(['like', 'deals_description', $this->deals_description])
             ->andFilterWhere(['like', 'deals_index_description', $this->deals_index_description])
-            ->andFilterWhere(['like', 'deals_index_image', $this->deals_index_image])
             ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'deals_image_front', $this->deals_image_front])
             ->andFilterWhere(['like', 'deals_image_back', $this->deals_image_back])

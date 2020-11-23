@@ -25,8 +25,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'alias') ?>
 
-    <?php // echo $form->field($model, 'menu_title') ?>
-
     <?php // echo $form->field($model, 'card_title') ?>
 
     <?php // echo $form->field($model, 'content') ?>

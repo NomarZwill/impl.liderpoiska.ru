@@ -70,11 +70,10 @@ export default class DoctorPage{
 
     var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
       slidesPerView: 'auto',
-      // initialSlide: 3,
       spaceBetween: 24,
       observer: true,
       observeParents: true,
-      // centeredSlides: true,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -88,6 +87,7 @@ export default class DoctorPage{
 
     var $popupGalleries =  $('.popup_gallery_wrapper');
     var $currentPopupGallery = null;
+    var $popupGalleryContainer = $('.popup_gallery_container');
     var $popupGalleryNavigation = $('.popup_gallery_container .diagonal_navigation');
     var popupSwiperBig = null;
     var popupSwiperThumbs = null;
@@ -102,23 +102,30 @@ export default class DoctorPage{
 
     isZeroBeforeNeeded($popupGalleries.length, $popupGalleryNavigation.find('.total_slides'));
 
-    $('.doctor_work_example .doctor_work_image').on('click', function(e){
-      var currentID = $(this).data('gallery-id');
-      openInnerGallery(currentID);
+    function setIDToGalleries(){
+      $popupGalleries.each(function(i, obj){
+        obj.dataset.galleryId = i + 1;
+      });
+    };
+
+    setIDToGalleries();
+
+    $('.doctor_work_example .doctor_work_image')
+    .add('.doctor_work_example .inner_gallery_button')
+    .on('click', function(e){
+      var $currentGallery = $(this).closest('.doctor_work_item ').find('.popup_gallery_wrapper');
+      openInnerGallery($currentGallery);
     });
     
-    function openInnerGallery(id){
+    function openInnerGallery($currentGallery){
       $('body').addClass('_popup_mode');
-      $popupGalleries.removeClass('_active');
-      $popupGalleries.each(function(i){
+      // $popupGalleries.removeClass('_active');
 
-        if ($($popupGalleries[i]).data('gallery-id') == id){
-          $currentPopupGallery = $($popupGalleries[i]);
-          $currentPopupGallery.addClass('_active');
-        }
-      });
+      $currentPopupGallery = $currentGallery.clone(true);
+      $popupGalleryContainer.prepend($currentPopupGallery);
+      $currentPopupGallery.addClass('_active');
 
-      isZeroBeforeNeeded(id, $popupGalleryNavigation.find('.current_slide'));
+      isZeroBeforeNeeded($currentPopupGallery.data('gallery-id'), $popupGalleryNavigation.find('.current_slide'));
       
       $('.popup_filter_bg').addClass('_active');
       $('.popup_filter_bg .popup_gallery_container').removeClass('_hidden');
@@ -158,25 +165,30 @@ export default class DoctorPage{
 
     $popupGalleryNavigation.on('click', function(e){
 
-      if ($(e.target).hasClass('swiper-button-next')) {
-        var $newPopupGallery = $currentPopupGallery.next('.popup_gallery_wrapper');
-        if ($newPopupGallery.length !== 0) {
+      var currentID = $currentPopupGallery.data('gallery-id');
+
+      if ($(e.target).hasClass('popup_button_next')) {
+
+        if (currentID < $popupGalleries.length) {
+          var $newPopupGallery = $($popupGalleries[currentID]);
           getNewGallery();
         };
 
-      } else if ($(e.target).hasClass('swiper-button-prev')) {
-        var $newPopupGallery = $currentPopupGallery.prev('.popup_gallery_wrapper');
-        if ($newPopupGallery.length !== 0) {
+      } else if ($(e.target).hasClass('popup_button_prev')) {
+
+        if (currentID > 1) {
+          var $newPopupGallery = $($popupGalleries[currentID - 2]);
           getNewGallery();
-        };      
+        };
       };
 
       function getNewGallery(){
-        $currentPopupGallery.removeClass('_active');
         popupSwiperBig.destroy();
         popupSwiperThumbs.destroy();
-        $newPopupGallery.addClass('_active');
-        $currentPopupGallery = $newPopupGallery;
+        $currentPopupGallery.remove();
+        $currentPopupGallery = $newPopupGallery.clone(true);
+        $popupGalleryContainer.prepend($currentPopupGallery);
+        $currentPopupGallery.addClass('_active');
         isZeroBeforeNeeded($currentPopupGallery.data('gallery-id'), $popupGalleryNavigation.find('.current_slide'));
         initActivePopupGallery();
       }

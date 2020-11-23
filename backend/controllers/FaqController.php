@@ -67,7 +67,7 @@ class FaqController extends Controller
         $model = new Faq();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->faq_id]);
+            return $this->redirect(['update', 'id' => $model->faq_id]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class FaqController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->faq_id]);
+            return $this->redirect(['update', 'id' => $model->faq_id]);
         }
 
         return $this->render('update', [

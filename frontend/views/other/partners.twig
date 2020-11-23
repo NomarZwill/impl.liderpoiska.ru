@@ -142,7 +142,21 @@
 
     <div class="partners_gifts_wrapper">
 
+    {% for gift in gifts %}
+
       <div class="partners_gifts_item">
+
+        <img src="/images/uploaded/partnersDeals/{{ gift.id }}/{{ gift.partner_image}}" alt="">
+        
+        <p>
+          {{gift.deal_text}}
+        </p>
+
+      </div>
+
+    {% endfor %}
+
+      {# <div class="partners_gifts_item">
 
         <img src="/img/partners-logo/vtb24_logo.png" alt="">
         
@@ -200,7 +214,7 @@
         <img src="/img/partners-logo/conquest_logo.png" alt="">
 
         <p>
-          Дисконтная карта часовых салонов «Concuest» в подарок.
+          Дисконтная карта часовых салонов «Conquest» в подарок.
         </p>
 
       </div>
@@ -234,7 +248,7 @@
           10% скидка для всех пациентов Центра Эстетической Стоматологии. 
         </p>
 
-      </div>
+      </div> #}
 
     </div>
 

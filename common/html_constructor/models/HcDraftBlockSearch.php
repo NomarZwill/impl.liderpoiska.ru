@@ -48,6 +48,7 @@ class HcDraftBlockSearch extends HcDraftBlock
 
 		$dataProvider = new ActiveDataProvider([
 				'query' => $query,
+				'pagination' => false
 			]);
 
 		$this->load($params);

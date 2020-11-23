@@ -114,10 +114,9 @@ AppAsset::register($this);
 
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/about/">О компании</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/specialists/">Стоматологи</a></div>
-        <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Клиники</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/price/">Цены</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/partners/">Партнёры</a></div>
-        <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Контакты</a></div>
+        <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Контакты клиник</a></div>
         
         <div class="mobile_mini_footer">
 
@@ -295,13 +294,13 @@ AppAsset::register($this);
         var currentID = null;
         if ($('[data-page-type="service_page"]').length !== 0) {
             $('[data-page-type="service_page"] .before_after_item_wrapper').each(function(i, obj) {
-                currentID = '#before_after_container' + (i + 1);
-                $(currentID).twentytwenty({
+                currentID = 'before_after_container' + (i + 1);
+                $(obj).attr('id', currentID)
+                $(('#' + currentID)).twentytwenty({
                     before_label: 'До',
                     after_label: 'После',
                 });
             });
         };
-
     });
 </script>

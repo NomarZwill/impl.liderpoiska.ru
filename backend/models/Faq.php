@@ -17,6 +17,8 @@ use Yii;
  */
 class Faq extends \yii\db\ActiveRecord
 {
+
+    public $faq_service_rel;
     /**
      * {@inheritdoc}
      */
@@ -31,9 +33,10 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['faq_title', 'faq_query', 'faq_answer', 'alias', 'old_id'], 'required'],
-            [['faq_title', 'faq_query', 'keywords', 'faq_answer', 'alias'], 'string'],
-            [['old_id'], 'integer'],
+            [['faq_title', 'faq_query', 'faq_answer'], 'required'],
+            [['patient_name', 'patient_mail', 'patient_phone', 'faq_title', 'faq_query', 'keywords', 'faq_answer', 'alias'], 'string'],
+            [['faq_sort', 'doctor_for_answer_id', 'old_id'], 'integer'],
+            [['faq_service_rel'], 'safe'],
         ];
     }
 
@@ -44,6 +47,12 @@ class Faq extends \yii\db\ActiveRecord
     {
         return [
             'faq_id' => 'ID',
+            'patient_name' => 'Имя пациента',
+            'patient_mail' => 'Почта пациента',
+            'patient_phone' => 'Телефон пациента',
+            'faq_sort' => 'Сортировка на странице Вопрос-ответ',
+            'doctor_for_answer_id' => 'Отвечающий доктор',
+            'faq_service_rel' => 'Связанные услуги',
             'faq_title' => 'Заголовок',
             'faq_query' => 'Вопрос',
             'keywords' => 'Ключевые слова',
@@ -51,5 +60,40 @@ class Faq extends \yii\db\ActiveRecord
             'alias' => 'Alias',
             'old_id' => 'Old ID',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes){
+
+        if (!empty($this->faq_service_rel)) {
+
+            // удаление стёртых значений из таблицы faq_services_rel
+            foreach (FaqServicesRel::find()->where(['faq_id' => $this->faq_id])->all() as $item) {
+                if (array_search($item->service_id, $this->faq_service_rel) === false) {
+                    $item->delete();
+                    // echo $item->service_id . ' deleted, ';
+                }
+            }
+            
+            // добавление вновь выбранных значений в таблицу faq_services_rel
+            foreach ($this->faq_service_rel as $service) {
+                $faqService = new FaqServicesRel();
+                $faqService->faq_id = $this->faq_id;
+                $faqService->service_id = $service;
+                if (!FaqServicesRel::find()->where(['faq_id' => $this->faq_id, 'service_id' => $service])->exists()) {
+                    $faqService->save();
+                    // echo $faqService->service_id . ' saved, ';
+                }
+            }
+        } else {
+
+            foreach (FaqServicesRel::find()->where(['faq_id' => $this->faq_id])->all() as $item) {
+                $item->delete();
+                // echo $item->service_id . ' deleted, ';
+            }
+        }
+        // print_r($this->faq_service_rel);
+        // exit;
+
+        parent::afterSave($insert, $changedAttributes);
     }
 }

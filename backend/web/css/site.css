@@ -118,3 +118,18 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.form-group.field-doctors-doctor_service_sort{
+    overflow: auto;
+}
+
+.navbar.navbar-static-top .btn.btn-default.btn-flat{
+    background: none;
+    border: none;
+}
+
+.giiant-crud.hc-draft-update .sticky-inner-wrapper.tools-panel .form_group:first-of-type {
+    display: none;
+}
+

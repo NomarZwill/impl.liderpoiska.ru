@@ -102,6 +102,9 @@
         data-address="{{clinic.clinic_address}}"
         data-phones="{{clinic.clinic_phone}}"
         data-work-hours="{{clinic.clinic_opening_hours}}"
+        data-work-hours-weekdays="{{clinic.clinic_opening_weekdays}}"
+        data-work-hours-sat="{{clinic.clinic_opening_sat}}"
+        data-work-hours-sun="{{clinic.clinic_opening_sun}}"
         data-alias="{{clinic.alias}}">
 
 
@@ -109,16 +112,15 @@
 
           <div class="swiper-wrapper">
 
-            {% for i in 1..5 %}
+            {% for image in clinic.imageGalleries %}
 
               <div class="swiper-slide">
 
-                <img src="/img/about_photo_test.png" alt="">
+                <img src="/{{image.filepath}}" alt="">
 
               </div>
 
             {% endfor %}
-
 
           </div>
 
@@ -149,15 +151,15 @@
               <tbody>
                 <tr>
                   <td>Будни:</td>
-                  <td>9:00—20:30</td>
+                  <td>{{clinic.clinic_opening_weekdays | raw}}</td>
                 </tr>
                 <tr>
                   <td>Суббота:</td>
-                  <td>9:00—18:00</td>
+                  <td>{{clinic.clinic_opening_sat | raw}}</td>
                 </tr>
                 <tr>
                   <td>Воскресенье:</td>
-                  <td>10:00—17:00</td>
+                  <td>{{clinic.clinic_opening_sun | raw}}</td>
                 </tr>
               </tbody>
             </table>
@@ -167,31 +169,30 @@
           <div class="clinic_phones info_item">
             <span class="info_item_title">Телефоны:</span><br>
             <p>
-              +7 (495) 930-22-56<br>
-              +7 (495) 930-49-20
+              {{clinic.clinic_phone | raw}}
             </p>
           </div>
 
           <div class="clinic_whats_app info_item">
             <span class="info_item_title">Whatsapp:</span><br>
             <p>
-              +7 (925) 041-67-51
+              {{clinic.clinic_whatsapp | raw}}
             </p>
-          </div>
-
-          <div class="clinic_e-mail info_item">
-            <span class="info_item_title">Эл/почта:</span><br>
-            <a class="_menu_link" href="mailto:ces_un@mail.ru">ces_un@mail.ru</a>
           </div>
 
           {% if clinic.clinic_id == 5 %}
 
             <div class="clinic_e-mail info_item">
               <span class="info_item_title">Сайт:</span><br>
-              <a class="_menu_link" href="http://{{clinic.clinic_site}}">{{clinic.clinic_site}}</a>
+              <a  class="_link_black" href="http://{{clinic.clinic_site}}">{{clinic.clinic_site}}</a>
             </div>
 
           {% endif %}
+          
+          <div class="clinic_e-mail info_item">
+            <span class="info_item_title">Эл/почта:</span><br>
+            {{clinic.clinic_mail | raw}}
+          </div>
 
         </div>
 

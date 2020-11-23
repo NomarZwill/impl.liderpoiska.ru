@@ -77,10 +77,26 @@ export default class ServicePage{
       }
     });
 
+    var photoGalleryWrapper  = new Swiper('.photo_gallery_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
+    });
+
     var photoWrapper  = new Swiper('.before_after_gallery_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
       allowTouchMove: false,
+      watchOverflow: true,
+      slideClass: 'twentytwenty-wrapper',
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

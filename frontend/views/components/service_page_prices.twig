@@ -1,0 +1,22 @@
+<div class="content_block prices_wrapper">
+
+  <a name="{{paragraph.alias}}"></a>
+
+  <h2>{{ text_h2 }}</h2>
+
+  {% for price in servisesWithPrices.prices %}
+
+    <div class="service_price_wrapper">
+      <span class="dot_tail"></span>
+      <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+      <div class="service_price_points"></div>
+      <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+    </div>
+
+  {% endfor %}
+
+  <div class="show_all _hidden">
+    <button class="read_more">Показать все цены</button>
+  </div>
+    
+</div>

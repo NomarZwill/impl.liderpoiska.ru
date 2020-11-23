@@ -32,31 +32,22 @@
     <div class="page_menu_wrapper">
 
       <h4>Содержание</h4>
-      
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#prices">Цены на услуги</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#doctors">Специалисты отделения</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#description">Особенности проведения</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#when_say">Когда обращаться</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#reviews">Отзывы пациентов</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#faq">Вопросы и ответы</a>
-      </div>
+
+      {% for heading in headings %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#{{heading.alias}}">{{heading.heading}}</a>
+        </div>
+
+      {% endfor %}
         
     </div>
 
   </div>
 
-  {% if childrenService|length > 0 %}
+  {{draft | raw}}
+
+  {# {% if childrenService|length > 0 %}
 
     <div class="content_block subservice_wrapper">
 
@@ -99,9 +90,9 @@
 
     </div>
 
-  {% endif %}
+  {% endif %} #}
       
-  <div class="content_block prices_wrapper">
+  {# <div class="content_block prices_wrapper">
 
     <a name="prices"></a>
 
@@ -118,55 +109,13 @@
 
     {% endfor %}
 
-    {# <div class="price_item_wrapper">
-      <p class="price_name">Костная пластика челюстно-лицевой области</p>
-      <div class="line"></div>
-      <p class="price_value">8 332 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Костная пластика челюстно-лицевой области с применением аутогенных костных блоков</p>
-      <div class="line"></div>
-      <p class="price_value">69 969 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Прием (осмотр, консультация) врача-стоматолога хирурга</p>
-      <div class="line"></div>
-      <p class="price_value">1 500 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Вскрытие и дренирование одонтогенного абсцесса</p>
-      <div class="line"></div>
-      <p class="price_value">851 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Лечение перикоронита (промывание, рассечение и/или иссечение капюшона)</p>
-      <div class="line"></div>
-      <p class="price_value">1 588 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Костная пластика челюстно-лицевой области</p>
-      <div class="line"></div>
-      <p class="price_value">8 332 руб.</p>
-    </div>
-
-    <div class="price_item_wrapper">
-      <p class="price_name">Костная пластика челюстно-лицевой области с применением аутогенных костных блоков</p>
-      <div class="line"></div>
-      <p class="price_value">69 969 руб.</p>
-    </div> #}
-
     <div class="show_all _hidden">
       <button class="read_more">Показать все цены</button>
     </div>
     
-  </div>
+  </div> #}
 
-  <div class="content_block doctors_container">
+  {# <div class="content_block doctors_container">
 
     <a name="doctors"></a>
     
@@ -205,9 +154,9 @@
 
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block description_wrapper">
+  {# <div class="content_block description_wrapper">
 
     <a name="description"></a>
 
@@ -262,9 +211,9 @@
 
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block service_video_container">
+  {# <div class="content_block service_video_container">
     
     <div class="service_video_title">
 
@@ -276,7 +225,7 @@
 
       <div class="swiper-wrapper">
 
-        {# {% for i in 1..10 %}
+        {% for i in 1..10 %}
     
           <div class="swiper-slide service_video_item_wrapper">
   
@@ -286,7 +235,7 @@
   
           </div>
   
-        {% endfor %} #}
+        {% endfor %}
 
           <div class="swiper-slide service_video_item_container">
   
@@ -366,9 +315,9 @@
 
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block when_say_container">
+  {# <div class="content_block when_say_container">
 
     <a name="when_say"></a>
 
@@ -389,9 +338,9 @@
 
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block photo_example_wrapper">
+  {# <div class="content_block photo_example_wrapper">
 
     <h3>Несколько фото с примерами из хирургической стоматологии</h3>
 
@@ -424,11 +373,11 @@
   
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block service_advantages_wrapper">
+  {# <div class="content_block service_advantages_wrapper"> #}
 
-    <div class="director_word_container">
+    {# <div class="director_word_container">
 
       <div class="director_word_wrapper">
 
@@ -459,9 +408,9 @@
 
       </div>
 
-    </div>
+    </div> #}
 
-    <div class="adwises_container">
+    {# <div class="adwises_container">
 
       <h3>Когда необходимо обратиться в стоматологию-хирургию?</h3>
 
@@ -516,9 +465,9 @@
       </p>
 
       
-    </div>
+    </div> #}
 
-    <div class="content_note analysis_container">
+    {# <div class="content_note analysis_container">
 
       <h4>Акриловые протезы: плюсы и минусы</h4>
 
@@ -569,9 +518,9 @@
 
       </div>
 
-    </div>
+    </div> #}
 
-    <div class="content_block photo_example_wrapper">
+    {# <div class="content_block photo_example_wrapper">
 
       <h3>Несколько фото с примерами из хирургической стоматологии</h3>
   
@@ -604,12 +553,12 @@
     
       </div>
   
-    </div>
+    </div> #}
 
     
-  </div>
+  {# </div> #}
   
-  <div class="content_block recall_wrapper" data-page-type="recall_form">
+  {# <div class="content_block recall_wrapper" data-page-type="recall_form">
 
     {{this.render('/components/recall_form.twig', 
       {
@@ -618,9 +567,9 @@
         'submit_button_title': 'Записаться'
       }) | raw}}
 
-  </div>
+  </div> #}
 
-  <div class="content_block doctor_reviews" data-type="reviews_block">
+  {# <div class="content_block doctor_reviews" data-type="reviews_block">
 
     <a name="reviews"></a>
 
@@ -641,162 +590,28 @@
     <div class="swiper-container reviews_wrapper">
 
       <div class="swiper-wrapper">
-    
-        <div class="swiper-slide review_item_wrapper">       
 
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
+        {% for review in currentService.reviews %}
 
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
+          <div class="swiper-slide review_item_wrapper">       
 
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
+            <div class="big_quotes"></div>
+            <hr>
+            <div class="review_text" data-id="{{review.review_id}}">
+
+              {{review.review_text | raw}}
+
+              <div class="show_all _hidden">
+                <button class="read_more">Показать полностью</button>
+              </div>
+
             </div>
+
+            <p><span>{{review.author}}</span> | <span>{{review.date|date("d.m.Y")}}</span></p>
 
           </div>
 
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-        
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
+        {% endfor %}
 
       </div>
 
@@ -809,9 +624,9 @@
 
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block faq_container" data-type="faq">
+  {# <div class="content_block faq_container" data-type="faq">
 
     <a name="faq"></a>
 
@@ -819,9 +634,9 @@
     
     {{this.render('/components/faq.twig', {'faq': faq}) | raw}}
     
-  </div>
+  </div> #}
   
-  <div class="content_block checkup_container">
+  {# <div class="content_block checkup_container">
     
     <h4>Статью проверил эксперт</h4>
 
@@ -835,10 +650,9 @@
       </p>
     </div>
 
-  </div>
+  </div> #}
 
-
-  <div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}">
+  {# <div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}">
 
     <p>Оцените качество страницы:</p>
 
@@ -875,7 +689,7 @@
 
     <p class="votes_stars_value">{{currentService.service_page_votes}} голосов, {{currentService.service_page_rating}} из 5</p>
 
-  </div>
+  </div> #}
 
 </div>
 
@@ -912,35 +726,20 @@
   var player = [];
   
   function onYouTubePlayerAPIReady() {
-      player[0] = new YT.Player('video_item_0', {
-        videoId: 'Sn7CC9Z51so',
+
+    $('.service_video_item_wrapper').each(function(i, obj) {
+      var currentVideoId = $(obj).find('.servise_video').attr('id');
+      player[i] = new YT.Player(currentVideoId, {
+        videoId: currentVideoId,
         width: '496',
         height: '286',
       });
-      $('#video_item_0').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
-        player[0].playVideo();
+      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+        player[i].playVideo();
         $(this).closest('.play_button_wrapper').addClass('_hidden');
       });
 
-      player[1] = new YT.Player('video_item_1', {
-        videoId: 'Sn7CC9Z51so',
-        width: '496',
-        height: '286',
-      });
-      $('#video_item_1').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
-        player[1].playVideo();
-        $(this).closest('.play_button_wrapper').addClass('_hidden');
-      });
-
-      player[2] = new YT.Player('video_item_2', {
-        videoId: 'Sn7CC9Z51so',
-        width: '496',
-        height: '286',
-      });
-      $('#video_item_2').siblings('.play_button_wrapper').find('.play_button').on('click', function() {
-        player[2].playVideo();
-        $(this).closest('.play_button_wrapper').addClass('_hidden');
-      });
+    });
       // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
   };
 </script>

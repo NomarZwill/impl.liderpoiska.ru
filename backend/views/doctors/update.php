@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Doctors */
 
-$this->title = 'Обновить врача: ' . $model->doctor_id;
+$this->title = 'Обновить врача: ' . $model->doctor_title;
 $this->params['breadcrumbs'][] = ['label' => 'Врачи', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->doctor_id, 'url' => ['view', 'id' => $model->doctor_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->doctor_title, 'url' => ['view', 'id' => $model->doctor_id]];
 $this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="doctors-update">

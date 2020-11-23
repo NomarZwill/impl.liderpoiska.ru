@@ -1,0 +1,44 @@
+{% if childrenService|length > 0 %}
+
+  <div class="content_block subservice_wrapper">
+
+    <div class="service_image_wrapper">
+
+      {% if currentService.image != "" %}
+
+        <img src="/img/{{currentService.image}}" alt="">
+
+      {% elseif mainParent.image != "" %}
+
+        <img src="/img/{{mainParent.image}}" alt="">
+
+      {% endif %}`
+
+    </div>
+
+    <div class="subservice_listing">
+
+      {% for serviseFirst in childrenService %}
+
+        <div class="subservice_listing_item item_wrapper">
+
+          <a class="_link_black" href="/dent/{{mainParent.alias}}/{{parent.alias}}/{{currentService.alias}}/{{serviseFirst.alias}}">
+
+            <span>{{serviseFirst.menu_title}}</span>
+            
+          </a>
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+    <div class="collapse_wrapper">
+      <span class="close_block read_more">Свернуть</span>
+      <span class="open_block read_more _hidden">Развернуть</span>
+    </div>
+
+  </div>
+
+{% endif %}

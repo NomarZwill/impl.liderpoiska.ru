@@ -49,17 +49,14 @@
             <a href="/contacts/{{clinic.alias}}">
 
               <div
-                  class="swiper-slide clinic_card_wrapper"
-                  data-title="{{clinic.clinic_title | raw}}"
-                  data-map="{{clinic.clinic_map}}"
-                  data-address="{{clinic.clinic_address | raw}}"
-                  data-phone="{{clinic.clinic_phone | raw}}"
-                  data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
-                >
+                  class="swiper-slide clinic_card_wrapper">
 
                   <a class="clinic_title _link">{{clinic.card_title}}</a>
-                  <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
-                  <a class="clinic_phone" href="tel:{{clinic.main_phone | raw}}">Тел.: {{clinic.main_phone | raw}}</a>
+                  <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+                  <div class="clinic_phone">
+                    Тел.: {{clinic.clinic_phone | raw}}
+                  </div>
+                  
 
               </div>
 
@@ -86,18 +83,13 @@
       
         {% if clinic.clinic_id == 5 %}
 
-          <div
-            class="clinic_card_wrapper"
-            data-title="{{clinic.clinic_title | raw}}"
-            data-map="{{clinic.clinic_map}}"
-            data-address="{{clinic.clinic_address | raw}}"
-            data-phone="{{clinic.clinic_phone | raw}}"
-            data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
-          >
+          <div class="clinic_card_wrapper">
 
-            <p class="clinic_title">{{clinic.clinic_title}}</p>
-            <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
-            <a class="clinic_phone" href="tel:{{clinic.main_phone | raw}}">Тел.: {{clinic.main_phone | raw}}</a>
+            <p class="clinic_title _link">{{clinic.card_title}}</p>
+            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+            <div class="clinic_phone">
+              Тел.: {{clinic.clinic_phone | raw}}
+            </div>
 
           </div>
 

@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Servises */
 
-$this->title = 'Обновить услугу: ' . $model->servise_id;
+$this->title = 'Обновить услугу: ' . $model->menu_title;
 $this->params['breadcrumbs'][] = ['label' => 'Услуги', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->servise_id, 'url' => ['view', 'id' => $model->servise_id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Обновить ' . $model->menu_title;
 ?>
 <div class="servises-update">
 

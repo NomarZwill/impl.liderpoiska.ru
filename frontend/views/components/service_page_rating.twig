@@ -1,0 +1,38 @@
+<div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}">
+
+    <p>Оцените качество страницы:</p>
+
+    <div class="stars_wrapper" data-votes="{{currentService.service_page_votes}}" data-rating="{{currentService.service_page_rating}}">
+
+      <div class="stars_full">
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+        <label><img src="/img/star-full.svg" alt="star"></label>
+      </div>
+
+      <div class="stars_empty">
+
+        <input class="star" id="star5" type="radio" data-name="rating" name="rating" value="5" required="">
+        <label class="star_label" for="star5" data-value="5"></label>
+
+        <input class="star" id="star4" type="radio" data-name="rating" name="rating" value="4" required="">
+        <label class="star_label" for="star4" data-value="4"></label>
+
+        <input class="star" id="star3" type="radio" data-name="rating" name="rating" value="3" required="">
+        <label class="star_label" for="star3" data-value="3"></label>
+
+        <input class="star" id="star2" type="radio" data-name="rating" name="rating" value="2" required="">
+        <label class="star_label" for="star2" data-value="2"></label>
+
+        <input class="star" id="star1" type="radio" data-name="rating" name="rating" value="1" required="">
+        <label class="star_label" for="star1" data-value="1"></label>
+
+      </div>
+    
+    </div>
+
+    <p class="votes_stars_value">{{currentService.service_page_votes}} голосов, {{currentService.service_page_rating}} из 5</p>
+
+  </div>

@@ -5,7 +5,7 @@
 
     <div class="card_image_wrapper">
 
-      <img src="{{doctor.doctor_image}}" alt="">
+      <img src="/images/uploaded/doctors/{{doctor.doctor_id}}/{{doctor.doctor_image}}" alt="">
 
       <div class="card_image_frame"></div>
 
@@ -34,7 +34,9 @@
         {% endfor %}
 
       </p>
-      <p class="work_experience">Опыт работы — </p>
+      <p class="work_experience">
+      Опыт работы — {{doctor.doctor_experience}}
+      </p>
 
     </div>
 

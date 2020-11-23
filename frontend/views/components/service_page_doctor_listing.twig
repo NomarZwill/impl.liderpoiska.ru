@@ -1,0 +1,40 @@
+<div class="content_block doctors_container">
+
+    <a name="{{paragraph.alias}}"></a>
+    
+    <div class="doctors_title">
+
+      <h2>{{ text_header }}</h2>
+
+      <form action="/specialists/">
+        <button class="_button _button_light _button_to_all"><span>Все стоматолог-хирурги</span> →</button>
+      </form>
+
+    </div>
+
+    <div class="swiper-container doctors_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for doctor in doctors %}
+    
+          <div class="swiper-slide doctor_item_wrapper">       
+  
+            {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
+  
+          </div>
+  
+        {% endfor %}
+
+      </div>
+
+      <div class="swiper-pagination revolver_pagination"></div>
+
+      <div class="revolver_navigation_wrapper">
+        <div class="swiper-button-prev revolver_navigation"></div>
+        <div class="swiper-button-next revolver_navigation"></div>
+      </div>
+
+    </div>
+
+  </div>

@@ -83,7 +83,7 @@
   }
 
   .geneva_clinics{
-    padding: 24px 0 48px 0;
+    padding: 24px 0 16px 0;
     overflow: visible;
   }
 
@@ -320,6 +320,10 @@
     .moscow_clinics{
       overflow: hidden;
       width: 100%;
+    }
+
+    .geneva_clinics{
+      padding: 24px 0 28px 0;
     }
 
     .cities{

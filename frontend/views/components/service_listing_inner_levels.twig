@@ -12,7 +12,7 @@
 
     {% for serviseSecond in servises %}
 
-      {% if serviseSecond.parent_id == serviseFirst.old_id  %}
+      {% if serviseSecond.parent_id == serviseFirst.servise_id  %}
 
         <div class="listing_second_level_item item_wrapper" data-servise-id={{serviseSecond.servise_id}}>
 
@@ -28,7 +28,7 @@
 
             {% for serviseThird in servises %}
 
-              {% if serviseThird.parent_id == serviseSecond.old_id  %}
+              {% if serviseThird.parent_id == serviseSecond.servise_id  %}
 
                 <div class="listing_third_level_item item_wrapper" data-servise-id={{serviseThird.servise_id}}>
 

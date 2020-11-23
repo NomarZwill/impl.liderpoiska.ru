@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Prices */
 
-$this->title = 'Обновить цену: ' . $model->prices_id;
+$this->title = 'Обновить цену: ' . substr($model->prices_name, 0, 50) . '...';
 $this->params['breadcrumbs'][] = ['label' => 'Цены', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->prices_id, 'url' => ['view', 'id' => $model->prices_id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = "Обновить $model->prices_name";
 ?>
 <div class="prices-update">
 

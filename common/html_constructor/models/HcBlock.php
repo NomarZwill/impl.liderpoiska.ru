@@ -130,9 +130,9 @@ class HcBlock extends \yii\db\ActiveRecord
     }
 
     /** @param HcDraftBlock $hcDraftBlock */
-    public function render($hcDraftBlock)
+    public function render($hcDraftBlock, $extraData = [])
     {
-        $data = [];
+        $data = $extraData;
         try {
             $dataFromInputs = Json::decode($hcDraftBlock->content);
             $inputs = Json::decode($this->inputs);

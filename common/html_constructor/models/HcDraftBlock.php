@@ -95,9 +95,9 @@ class HcDraftBlock extends BaseHcObject
         return $this->hasOne(\common\html_constructor\models\HcDraft::class, ['id' => 'hc_draft_id']);
     }
 
-    public function getHtml()
+    public function getHtml($extraData = [])
     {
-        return $this->hcBlock->render($this);
+        return $this->hcBlock->render($this, $extraData);
     }
 
     public function getParagraph()

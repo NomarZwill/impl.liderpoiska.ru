@@ -42,6 +42,7 @@ export default class ClinicContacts{
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

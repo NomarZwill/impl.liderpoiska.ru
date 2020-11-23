@@ -43,4 +43,15 @@ class DoctorsAndClinics extends \yii\db\ActiveRecord
             'clinic_id' => 'Clinic ID',
         ];
     }
+
+    public function getDoctorClinicIDs($doctorID){
+        $doctorClinicIDList = [];
+        $doctorClinicList = DoctorsAndClinics::find()->where(['doctor_id' => $doctorID])->all();
+
+        foreach ($doctorClinicList as $item) {
+            $doctorClinicIDList[] = $item->clinic_id;
+        }
+        return $doctorClinicIDList;
+            
+    }
 }

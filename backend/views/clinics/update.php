@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Clinics */
 
-$this->title = 'Обновить клинику: ' . $model->clinic_id;
+$this->title = 'Обновить клинику : ' . $model->card_title;
 $this->params['breadcrumbs'][] = ['label' => 'Клиники', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->clinic_id, 'url' => ['view', 'id' => $model->clinic_id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = "Обновить $model->card_title";
 ?>
 <div class="clinics-update">
 

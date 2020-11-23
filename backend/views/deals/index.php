@@ -49,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
 
-            //'deals_index_image:ntext',
             //'alias:ntext',
             //'deals_image_front:ntext',
             //'deals_image_back:ntext',

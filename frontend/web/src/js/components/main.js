@@ -104,7 +104,8 @@ export default class Main{
        && $(e.target).closest('.review_item_wrapper .read_more').length === 0
        && $(e.target).closest('.doctor_work_wrapper').length === 0
        && $(e.target).closest('.popup_gallery_container').length === 0
-       && $(e.target).closest('.lizcenz_wrapper ').length === 0
+       && $(e.target).closest('.lizcenz_wrapper').length === 0
+       && $(e.target).closest('.popup_lizcenz_wrapper').length === 0
        && $(e.target).closest('.review_popup_button').length === 0) {
         closeDropdownMenu();
         closeLayoutPopup();

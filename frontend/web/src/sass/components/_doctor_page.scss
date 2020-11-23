@@ -340,6 +340,7 @@
   .doctor_work_item.swiper-slide{
     position: relative;
     flex-shrink: 1;
+    width: auto;
 
     p{
       text-align: center;
@@ -758,4 +759,25 @@
     width: 360px;
     height: auto;
   }
+}
+
+.popup_button_next._diagonal_navigation,
+.popup_button_prev._diagonal_navigation{
+  cursor: pointer;
+  position: absolute;
+  width: 28px;
+  height: 14px;
+  background: url(/img/arrow_diagonal_nav_black.svg);
+
+}
+
+.popup_button_prev._diagonal_navigation{
+  top: 3px;
+  left: 11px;
+  transform: rotate(180deg);
+}
+
+.popup_button_next._diagonal_navigation{
+  top: 28px;
+  right: -14px;
 }

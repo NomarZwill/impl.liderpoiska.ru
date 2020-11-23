@@ -7,7 +7,6 @@ use yii\helpers\Html;
 
 $this->title = 'Обновить спецпредложение: ' . $model->deals_id;
 $this->params['breadcrumbs'][] = ['label' => 'Спецпредложения', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->deals_id, 'url' => ['view', 'id' => $model->deals_id]];
 $this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="deals-update">
@@ -16,6 +15,7 @@ $this->params['breadcrumbs'][] = 'Обновить';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'actionFlag' => 'update'
     ]) ?>
 
 </div>

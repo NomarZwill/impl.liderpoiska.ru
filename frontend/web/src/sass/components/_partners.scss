@@ -43,6 +43,10 @@
       flex-flow: row wrap;
       flex-shrink: 1;
     }
+
+    .revolver_navigation_wrapper{
+      display: none;
+    }
   }
 
   .partners_logo_item{
@@ -177,6 +181,10 @@
 
       .swiper-wrapper{
         flex-flow: row nowrap;
+      }
+
+      .revolver_navigation_wrapper{
+        display: flex;
       }
     }
 

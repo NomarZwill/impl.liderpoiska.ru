@@ -10,7 +10,7 @@
 
     </div>
 
-    <h1>{{clinic.clinic_title}}</h1>
+    <h1>{{clinic.h1_title}}</h1>
 
   </div>
 
@@ -22,7 +22,9 @@
       data-name="{{clinic.clinic_title}}"
       data-address="{{clinic.clinic_address}}"
       data-phones="{{clinic.clinic_phone}}"
-      data-work-hours="{{clinic.clinic_opening_hours}}"
+      data-work-hours-weekdays="{{clinic.clinic_opening_weekdays}}"
+      data-work-hours-sat="{{clinic.clinic_opening_sat}}"
+      data-work-hours-sun="{{clinic.clinic_opening_sun}}"
       data-alias="{{clinic.alias}}">
 
 
@@ -30,11 +32,11 @@
 
         <div class="swiper-wrapper">
 
-          {% for i in 1..5 %}
+          {% for image in clinic.imageGalleries %}
 
             <div class="swiper-slide">
 
-              <img src="/img/about_photo_test.png" alt="">
+              <img src="/{{image.filepath}}" alt="">
 
             </div>
 
@@ -71,15 +73,15 @@
             <tbody>
               <tr>
                 <td>Будни:</td>
-                <td>9:00—20:30</td>
+                <td>{{clinic.clinic_opening_weekdays}}</td>
               </tr>
               <tr>
                 <td>Суббота:</td>
-                <td>9:00—18:00</td>
+                <td>{{clinic.clinic_opening_sat}}</td>
               </tr>
               <tr>
                 <td>Воскресенье:</td>
-                <td>10:00—17:00</td>
+                <td>{{clinic.clinic_opening_sun}}</td>
               </tr>
             </tbody>
           </table>
@@ -89,21 +91,20 @@
         <div class="clinic_phones info_item">
           <span class="info_item_title">Телефоны:</span><br>
           <p>
-            +7 (495) 930-22-56<br>
-            +7 (495) 930-49-20
+            {{clinic.clinic_phone | raw}}
           </p>
         </div>
 
         <div class="clinic_whats_app info_item">
           <span class="info_item_title">Whatsapp:</span><br>
           <p>
-            +7 (925) 041-67-51
+            {{clinic.clinic_whatsapp | raw}}
           </p>
         </div>
 
         <div class="clinic_e-mail info_item">
           <span class="info_item_title">Эл/почта:</span><br>
-          <a class="_link_black" href="mailto:ces_un@mail.ru">ces_un@mail.ru</a>
+          {{clinic.clinic_mail | raw}}
         </div>
       </div>
 
@@ -157,13 +158,15 @@
 
       <div class="swiper-wrapper">
 
-        {% for doctor in doctors %}
-    
+        {% for allDataItem in allData %}
+
+      
           <div class="swiper-slide doctor_item_wrapper">       
   
-            {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
+            {{this.render('/components/doctor_card.twig', {'doctor': allDataItem.doctors[0], 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
   
           </div>
+    
   
         {% endfor %}
 
@@ -180,196 +183,66 @@
 
   </div>
 
-  <div class="content_block doctor_reviews" data-type="reviews_block">
+  {% if clinic.reviews|length > 0 %} 
 
-    <a name="reviews"></a>
+    <div class="content_block doctor_reviews" data-type="reviews_block">
 
-    <div class="reviews_title">
+      <a name="reviews"></a>
+
+      <div class="reviews_title">
+      
+        <h2 class="_index_subtitle">Отзывы пациентов</h2>
+
+        <div class="button_wrapper">
+
+          <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
     
-      <h2 class="_index_subtitle">Отзывы пациентов</h2>
+          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
 
-      <div class="button_wrapper">
-
-        <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
-  
-        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+        </div>
 
       </div>
 
-    </div>
+      <div class="swiper-container reviews_wrapper" data-type="reviews_block">
 
-    <div class="swiper-container reviews_wrapper">
+        <div class="swiper-wrapper">
 
-      <div class="swiper-wrapper">
-    
-        <div class="swiper-slide review_item_wrapper">       
+          {% for review in clinic.reviews %}
 
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
+          <div class="swiper-slide review_item_wrapper">       
 
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
+            <div class="big_quotes"></div>
+            <hr>
+            <div class="review_text">
 
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
+              {{review.review_text | raw}}
+
+              <div class="show_all _hidden">
+                <button class="read_more">Показать полностью</button>
+              </div>
+
             </div>
+
+            <p class="signature"><span>{{review.author}}</span> | <span>{{review.date}}</p>
 
           </div>
 
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
+          {% endfor %}
 
         </div>
 
-        <div class="swiper-slide review_item_wrapper">       
+        <div class="swiper-pagination revolver_pagination"></div>
 
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
+        <div class="revolver_navigation_wrapper">
+          <div class="swiper-button-prev revolver_navigation"></div>
+          <div class="swiper-button-next revolver_navigation"></div>
         </div>
         
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
       </div>
 
-      <div class="swiper-pagination revolver_pagination"></div>
-
-      <div class="revolver_navigation_wrapper">
-        <div class="swiper-button-prev revolver_navigation"></div>
-        <div class="swiper-button-next revolver_navigation"></div>
-      </div>
-      
     </div>
 
-  </div>
+  {% endif %}
 
 </div>
 

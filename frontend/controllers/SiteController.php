@@ -84,7 +84,10 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $deals = Deals::find()->all();
+        $deals = Deals::find()
+            ->where(['is_active' => 1])
+            ->orderBy(['deals_sort' => SORT_ASC])
+            ->all();
         $reviews = Reviews::find()->all();  
         $clinics = Clinics::find()
         ->joinWith('ratings')

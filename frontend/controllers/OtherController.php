@@ -13,6 +13,9 @@ use backend\models\Prices;
 use backend\models\ServiceAndPrices;
 use backend\models\Reviews;
 use backend\models\Faq;
+use backend\models\PartnersDeals;
+use backend\models\DoctorsPageSort;
+// use backend\models\ReviewDoctorsRel;
 use common\models\api\Maps;
 
 
@@ -31,18 +34,12 @@ class OtherController extends MainController
 
   public function actionContacts(){
     $clinics = Clinics::find()
+      ->where(['clinics.is_active' => 1])
       ->joinWith('ratings')
+      ->joinWith('imageGalleries')
       ->all();
 
-    // $clinics = Clinics::find()->one();
-
-    // foreach ($clinics as $clinic){
-    //   $clinic->clinic_phone = html_entity_decode($clinic->clinic_phone, ENT_HTML5);
-    //   $clinic->save();
-    // }
-
     // print_r($clinics);
-    // print_r(html_entity_decode($clinics->clinic_opening_hours, ENT_HTML5));
     // exit;
     
     return $this->render('contacts.twig', array(
@@ -51,26 +48,41 @@ class OtherController extends MainController
   }
 
   public function actionClinicContacts($clinic){
+
     $currentClinic = Clinics::find()
-      ->joinWith('ratings')
       ->where(['clinics.alias' => $clinic])
-      ->asArray()
+      ->joinWith('ratings')
+      ->with('reviews')
+      ->joinWith('imageGalleries')
       ->one();
+
+    $allData = DoctorsPageSort::find()
+      ->where(['page_type' => 'clinics', 'page_id' =>  $currentClinic['clinic_id']])
+      ->orderBy(['sort_index' => SORT_ASC])
+      ->joinWith('doctors')
+      ->all();
       
-    $doctors = Doctors::find()
-            ->joinWith('medicalSpecialties')
-            ->asArray()
-            ->all();     
+    //echo '<pre>';
+    //print_r($currentClinic);
+    //print_r($currentClinic->reviews);
+    //exit;
     
     return $this->render('clinicContacts.twig', array(
       'clinic' => $currentClinic,
-      'doctors' => $doctors
+      'allData' => $allData
     ));
   }
 
   public function actionPartners(){
 
-    return $this->render('partners.twig');
+    $gifts = PartnersDeals::find()->where(['is_active' => 1])->all();
+
+    // print_r($gifts);
+    // exit;
+
+    return $this->render('partners.twig', array(
+      'gifts' => $gifts
+    ));
   }
 
   public function actionPrices(){
@@ -109,7 +121,10 @@ class OtherController extends MainController
   }
 
   public function actionSpecialDeals(){
-    $deals = Deals::find()->asArray()->all();
+    $deals = Deals::find()
+      ->where(['is_active' => 1])
+      ->orderBy(['deals_sort' => SORT_ASC])
+      ->all();
 
     return $this->render('specialDealsListing.twig', array(
       'deals' => $deals
@@ -117,7 +132,9 @@ class OtherController extends MainController
    }
 
   public function actionSpecialDeal($deal){
-    $deal = Deals::find()->where(['deals.alias' => $deal])->asArray()->one();
+    $deal = Deals::find()
+      ->where(['deals.alias' => $deal, 'is_active' => 1])
+      ->one();
 
     return $this->render('specialDealPage.twig', array(
       'deal' => $deal
@@ -130,7 +147,19 @@ class OtherController extends MainController
       ->limit(5)
       ->all();
     $yearsList = Reviews::getYearsList();
-    // print_r($yearsList);
+
+
+    // $reviews = Reviews::find()->all();
+
+    // foreach ($reviews as $review) {
+    //   if ($review->doctor_id !== 0) {
+    //     $docReview = new ReviewDoctorsRel();
+    //     $docReview->doctor_id = $review->doctor_id;
+    //     $docReview->review_id = $review->review_id;
+    //     $docReview->save();
+    //   }
+    // }
+    // print_r($reviews);
     // exit;
 
     return $this->render('reviews.twig', array(

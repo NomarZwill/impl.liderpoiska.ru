@@ -42,8 +42,8 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['specialty_title', 'specialty_long_title', 'specialty_description', 'introtext', 'alias', 'menu_title', 'content', 'speciality_review', 'head_text', 'price_title', 'review_title', 'faq_title', 'medic_to_special', 'query_to_service', 'price_to_service', 'keywords'], 'string'],
-            [['old_id'], 'integer'],
+            [['specialty_title', 'h1_title', 'specialty_long_title', 'specialty_description', 'breadcrumbs_title', 'introtext', 'alias', 'menu_title', 'content', 'speciality_review', 'head_text', 'price_title', 'review_title', 'faq_title', 'medic_to_special', 'query_to_service', 'price_to_service', 'keywords', 'spec_title_second', 'first_content_block', 'second_content_block', 'third_content_block', 'last_content_block'], 'string'],
+            [['old_id', 'specialty_sort', 'is_active'], 'integer'],
         ];
     }
 
@@ -53,23 +53,32 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'specialty_id' => 'Specialty ID',
-            'specialty_title' => 'Specialty Title',
-            'specialty_long_title' => 'Specialty Long Title',
-            'specialty_description' => 'Specialty Description',
-            'introtext' => 'Introtext',
+            'specialty_id' => 'ID',
+            'specialty_title' => 'Название',
+            'h1_title' => 'Заголовок h1',
+            'specialty_long_title' => 'Title',
+            'specialty_description' => 'Краткое описание',
+            'breadcrumbs_title' => 'Название в хлебной крошке',
+            'introtext' => 'Вводный текст',
             'alias' => 'Alias',
-            'menu_title' => 'Menu Title',
+            'is_active' => 'Активен',
+            'menu_title' => 'Короткое название для селекторов и карточек врачей',
             'content' => 'Content',
             'speciality_review' => 'Speciality Review',
-            'head_text' => 'Head Text',
+            'head_text' => 'Текст под заголовком',
+            'first_content_block' => 'Текстовый блок повышенного внимания',
+            'second_content_block' => 'Текстовый блок 2',
+            'third_content_block' => 'Текстовый блок 3',
+            'last_content_block' => 'Текстовый блок 4 (после формы обратной связи)',
             'price_title' => 'Price Title',
-            'review_title' => 'Review Title',
+            'review_title' => 'Заголовок для отзывов',
             'faq_title' => 'Faq Title',
+            'spec_title_second' => 'Заголовок для листинга специалистов',
             'medic_to_special' => 'Medic To Special',
             'query_to_service' => 'Query To Service',
             'price_to_service' => 'Price To Service',
-            'keywords' => 'Keywords',
+            'keywords' => 'Ключевые слова',
+            'specialty_sort' => 'Сортировка на страницах специальностей',
             'old_id' => 'Old ID',
         ];
     }
@@ -77,5 +86,21 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
     public function getDoctors(){
         return $this->hasMany(Doctors::className(), ['doctor_id' => 'doctor_id'])
             ->viaTable('doctors_med_spec', ['specialty_id' => 'specialty_id']);
+    }
+
+    public function getReviews(){
+        return $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+            ->viaTable('review_spec_rel', ['specialty_id' => 'specialty_id']);
+    }
+
+    public function getArrayToSelect2() {
+        $array = [];
+        $specs = MedicalSpecialties::find()->all();
+
+        foreach ($specs as $spec) {
+            $array[$spec->specialty_id] = $spec->specialty_title;
+        }
+
+        return $array;
     }
 }

@@ -9,7 +9,8 @@ use backend\models\Prices;
 use backend\models\Doctors;
 use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
-
+use backend\models\DoctorsPageSort;
+use common\html_constructor\models\HcDraft;
 
 class DentController extends MainController
 {
@@ -41,7 +42,7 @@ class DentController extends MainController
          ->all();
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->where(['parent_id' => $currentService[0]['servise_id']])
          ->all();
 
       $servisesWithPrices = Servises::find()
@@ -53,9 +54,21 @@ class DentController extends MainController
          ->joinWith('medicalSpecialties')
          ->all();
 
-      $faq = Faq::find()
-         ->limit(10)
-         ->all();
+      $extraData = [
+         'currentService' => $currentService[0], 
+         'childrenService' => $childrenService, 
+         // 'mainParent' => $mainParent[0],
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'doctors' => $doctors,
+      ];
+
+      $rawDraft = HcDraft::find()
+      ->where(['id' => $currentService[0]->servise_hc_draft_id])
+      ->one();
+
+      $draft = $rawDraft->getHtml($extraData);
+      $headings = $rawDraft->getTableOfContentsArray();
+   
 
       //   print_r($servisesWithPrices);
       //   exit;
@@ -65,17 +78,20 @@ class DentController extends MainController
          'childrenService' => $childrenService,
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
-         'faq' => $faq
+         'draft' => $draft,
+         'headings' => $headings
       )); 
    }
 
    public function actionSecondLevel($firstLevel, $secondLevel) {
       $currentService = Servises::find()
-         ->where(['alias' => $secondLevel])
+         ->where(['servises.alias' => $secondLevel])
+         ->joinWith('reviews')
+         ->joinWith('faq')
          ->all();
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->where(['parent_id' => $currentService[0]['servise_id']])
          ->all();
 
       $servisesWithPrices = Servises::find()
@@ -87,16 +103,36 @@ class DentController extends MainController
          ->where(['alias' => $firstLevel])
          ->all();
 
+
+      $allData = DoctorsPageSort::find()
+         ->where(['page_type' => 'services', 'page_id' =>  $currentService[0]['servise_id']])
+         ->orderBy(['sort_index' => SORT_ASC])
+         ->joinWith('doctors')
+         ->joinWith('servises')
+         ->all();
+
+
       $doctors = Doctors::find()
          ->joinWith('medicalSpecialties')
          ->all();
 
-      $faq = Faq::find()
-         ->limit(10)
-         ->all();
+      $extraData = [
+         'currentService' => $currentService[0], 
+         'childrenService' => $childrenService, 
+         'mainParent' => $mainParent[0],
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'doctors' => $doctors,
+      ];
 
-      //   print_r($servisesWithPrices);
-      //   exit;
+      $rawDraft = HcDraft::find()
+      ->where(['id' => $currentService[0]->servise_hc_draft_id])
+      ->one();
+
+      $draft = $rawDraft->getHtml($extraData);
+      $headings = $rawDraft->getTableOfContentsArray();
+
+      // print_r($allData);
+      // exit;
 
       return $this->render('servicePage.twig', array(
          'currentService' => $currentService[0],
@@ -104,7 +140,8 @@ class DentController extends MainController
          'servisesWithPrices' => $servisesWithPrices[0],
          'mainParent' => $mainParent[0],
          'doctors' => $doctors,
-         'faq' => $faq
+         'draft' => $draft,
+         'headings' => $headings
       )); 
    }
 
@@ -114,7 +151,7 @@ class DentController extends MainController
          ->all();
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['old_id']])
+         ->where(['parent_id' => $currentService[0]['servise_id']])
          ->all();
 
       $servisesWithPrices = Servises::find()
@@ -134,9 +171,20 @@ class DentController extends MainController
          ->joinWith('medicalSpecialties')
          ->all();
 
-      $faq = Faq::find()
-         ->limit(10)
-         ->all();
+      $extraData = [
+         'currentService' => $currentService[0], 
+         'childrenService' => $childrenService, 
+         'mainParent' => $mainParent[0],
+         'servisesWithPrices' => $servisesWithPrices[0],
+         'doctors' => $doctors,
+      ];
+
+      $rawDraft = HcDraft::find()
+      ->where(['id' => $currentService[0]->servise_hc_draft_id])
+      ->one();
+
+      $draft = $rawDraft->getHtml($extraData);
+      $headings = $rawDraft->getTableOfContentsArray();
 
       //   print_r($servisesWithPrices);
       //   exit;
@@ -148,7 +196,8 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'parent' => $parent[0],
          'doctors' => $doctors,
-         'faq' => $faq
+         'draft' => $draft,
+         'headings' => $headings
       )); 
    }
 

@@ -67,7 +67,7 @@ class ServisesController extends Controller
         $model = new Servises();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->servise_id]);
+            return $this->redirect(['update', 'id' => $model->servise_id]);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class ServisesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->servise_id]);
+            return $this->redirect(['update', 'id' => $model->servise_id]);
         }
 
         return $this->render('update', [

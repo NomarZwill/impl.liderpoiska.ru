@@ -1,7 +1,5 @@
 <div data-page-type="doctor_page">
 
-  {{draft | raw}}
-
   <div class="content_block doctor_preview">
 
     <div class="doctor_preview_bg">
@@ -33,7 +31,7 @@
 
           </div>
 
-          <div class="doctor_image" style="background: url({{doc.doctor_image}}); background-size: cover;"></div>
+          <div class="doctor_image" style="background: url(/images/uploaded/doctors/{{doc.doctor_id}}/{{doc.doctor_image}}); background-size: cover;"></div>
   
           <div class="swiper-container clinics_wrapper">
   
@@ -44,9 +42,10 @@
                 <div class="swiper-slide clinic_item">
 
                 <a class="clinic_name _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title | raw}}</a>
-                <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
-                <a class="clinic_phone" href="{{clinic.main_phone}}">{{clinic.main_phone | raw}}</a>
-
+                <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+                <div class="clinic_phone">
+                  Тел.: {{clinic.clinic_phone | raw}}
+                </div>
               </div>
         
               {% endfor %}
@@ -70,7 +69,6 @@
 
     </div>
 
-
   </div>
 
   <div class="content_block doctor_menu">
@@ -89,9 +87,14 @@
       <div class="chapter_link_wrapper">
         <a class="chapter_link _menu_link_dashed_black" href="#work_example">Примеры работ</a>
       </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#reviews">Отзывы</a>
-      </div>
+
+      {% if doc.reviews|length > 0 %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#reviews">Отзывы</a>
+        </div>
+
+      {% endif %}
       
     </div>
     
@@ -120,54 +123,18 @@
     <div class="swiper_container lizcenz_wrapper">
   
       <div class="swiper-wrapper">
-  
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert1.jpg">
-          <img src="/img/test_img/pastian_sert1_min.jpg" alt="">
-        </div>
 
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert2.jpg">
-          <img src="/img/test_img/pastian_sert2_min.jpg" alt="">
-        </div>
+      {% for lizcenz in doc.doctorsGalleries %}
 
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert3.jpg">
-          <img src="/img/test_img/pastian_sert3_min.jpg" alt="">
-        </div>
+        {% if lizcenz.block_type == 'lizcenz' %}
 
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert4.jpg">
-          <img src="/img/test_img/pastian_sert4_min.jpg" alt="">
-        </div>
+          <div class="swiper-slide lizcenz_item" data-full-img="/images/uploaded/doctors/{{doc.doctor_id}}/lizcenz/{{lizcenz.filepath}}">
+            <img src="/images/uploaded/doctors/{{doc.doctor_id}}/lizcenz/{{lizcenz.filepath}}" alt="">
+          </div>
 
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert5.jpg">
-          <img src="/img/test_img/pastian_sert5_min.jpg" alt="">
-        </div>
+        {% endif %}
 
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert6.jpg">
-          <img src="/img/test_img/pastian_sert6_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert7.jpg">
-          <img src="/img/test_img/pastian_sert7_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert8.jpg">
-          <img src="/img/test_img/pastian_sert8_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert9.jpg">
-          <img src="/img/test_img/pastian_sert9_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert10.jpg">
-          <img src="/img/test_img/pastian_sert10_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert11.jpg">
-          <img src="/img/test_img/pastian_sert11_min.jpg" alt="">
-        </div>
-
-        <div class="swiper-slide lizcenz_item" data-full-img="/img/test_img/pastian_sert12.jpg">
-          <img src="/img/test_img/pastian_sert12_min.jpg" alt="">
-        </div>
+      {% endfor %}
 
       </div>
 
@@ -199,7 +166,9 @@
 
   </div>
 
-  <div class="content_block doctor_work_example">
+  {{draft | raw}}
+
+  {# <div class="content_block doctor_work_example">
 
     <a name="work_example"></a>
 
@@ -242,198 +211,70 @@
   
     </div>
 
-  </div>
+  </div> #}
 
-  <div class="content_block doctor_reviews" data-type="reviews_block">
+  {% if doc.reviews|length > 0 %} 
 
-    <a name="reviews"></a>
+    <div class="content_block doctor_reviews" data-type="reviews_block">
 
-    <div class="reviews_title">
+      <a name="reviews"></a>
+
+      <div class="reviews_title">
+      
+        <h2 class="_index_subtitle">Отзывы пациентов о хирургах-ортодонтах</h2>
+
+        <div class="button_wrapper">
+
+          <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
     
-      <h2 class="_index_subtitle">Отзывы пациентов о хирургах-ортодонтах</h2>
+          <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
 
-      <div class="button_wrapper">
-
-        <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
-  
-        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+        </div>
 
       </div>
 
-    </div>
+      <div class="swiper-container reviews_wrapper" data-type="reviews_block">
 
-    <div class="swiper-container reviews_wrapper">
+        <div class="swiper-wrapper">
 
-      <div class="swiper-wrapper">
-    
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-        <div class="swiper-slide review_item_wrapper">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
+          {% for review in doc.reviews %}
         
-        <div class="swiper-slide review_item_wrapper">       
+            <div class="swiper-slide review_item_wrapper">       
+    
+              <div class="big_quotes"></div>
 
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
+              <hr>
 
-            <p>
-              У Андрея Альбертовича я ставлю импланты уже не первый раз, 
-              но конечно на разные зубы. И всегда, когда я к нему приходил, я ни разу не пожалел. 
-              Уровень его профессионализма действительно достоин уважения, как он мне позже рассказал, 
-              он даже на практике у ведущих специалистов в Германии был. В Центре Имплантологии 
-              все на высшем уровне: и врачи, и обслуживание, и сервис. А главное, цены не кусаются.
-            </p>
+              <div class="review_text" data-id="{{review.review_id}}">
 
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
+                {{review.review_text | raw}}
+
+                <div class="show_all _hidden">
+                  <button class="read_more">Читать полностью</button>
+                </div>
+
+              </div>
+
+              <p class="signature"><span>{{review.author}}</span> | <span>{{review.date}}</span></p>
+    
             </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
+      
+          {% endfor %}
+      
         </div>
 
-        <div class="swiper-slide review_item_wrapper">       
+        <div class="swiper-pagination revolver_pagination"></div>
 
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Мне надо было два импланта поставить, а эта процедура недешевая Мне надо было два импланта 
-              поставить, а эта процедура недешевая, да и довольно сложная и болезненная, как мне 
-              рассказывали. Обратился в Центр имплантологии, моим врачом был Пастьян А.А. оказалось все 
-              гораздо проще и быстрее, чем я предполагал. Врач – профессионал с большой буквы. Особой 
-              боли не было, легкий дискомфорт, отдельно порадовала итоговая сумма лечения, вполне 
-              доступно! Хорошо, что именно в вашу стоматологию попал случайно.
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
+        <div class="revolver_navigation_wrapper">
+          <div class="swiper-button-prev revolver_navigation"></div>
+          <div class="swiper-button-next revolver_navigation"></div>
         </div>
 
-        <div class="swiper-slide review_item_wrapper" data-type="reviews_block">       
-
-          <div class="big_quotes"></div>
-          <hr>
-          <div class="review_text">
-
-            <p>
-              Когда встал вопрос об имплантации зубов долго выбирал клинику и 
-              настраивался на посещение имплантолога. Увидел рекламу в интернете 
-              и записался в ЦЭС. Попал в руки суперпрофессионала Пастьяна А.А. 
-              Всем рекомендую!
-            </p>
-
-            <div class="show_all _hidden">
-              <button class="read_more">Показать полностью</button>
-            </div>
-
-          </div>
-
-          <p>Антипова Евгения 28 лет | 10 сентября 2015</p>
-
-        </div>
-
-      </div>
-
-      <div class="swiper-pagination revolver_pagination"></div>
-
-      <div class="revolver_navigation_wrapper">
-        <div class="swiper-button-prev revolver_navigation"></div>
-        <div class="swiper-button-next revolver_navigation"></div>
       </div>
 
     </div>
 
-  </div>
+  {% endif %}
 
 </div>
 
@@ -470,7 +311,7 @@
 
     <div class="popup_gallery_container _hidden">
 
-      {% for i in 1..10 %}
+      {# {% for i in 1..10 %}
         
         <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
 
@@ -528,22 +369,22 @@
 
         </div>
 
-      {% endfor %}
+      {% endfor %}#}
 
       <div class="diagonal_navigation">
 
         <div class="diagonal_navigation_bg"></div>
-        <div class="swiper-button-prev _diagonal_navigation"></div>
+        <div class="popup_button_prev _diagonal_navigation"></div>
         <span class="current_slide">01</span>
         <br>
         <span class="total_slides">03</span>
-        <div class="swiper-button-next _diagonal_navigation"></div>
+        <div class="popup_button_next _diagonal_navigation"></div>
 
       </div>
 
       <button class="popup_close_button">Закрыть</button> 
 
-    </div>
+    </div> 
 
   </div>
   

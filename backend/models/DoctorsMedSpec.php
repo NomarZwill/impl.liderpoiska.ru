@@ -41,4 +41,15 @@ class DoctorsMedSpec extends \yii\db\ActiveRecord
             'specialty_id' => 'Specialty ID',
         ];
     }
+
+    public function getDoctorSpecialtyIDs($doctorID){
+        $doctorSpecIDList = [];
+        $doctorSpecList = DoctorsMedSpec::find()->where(['doctor_id' => $doctorID])->all();
+
+        foreach ($doctorSpecList as $item) {
+            $doctorSpecIDList[] = $item->specialty_id;
+        }
+        return $doctorSpecIDList;
+            
+    }
 }

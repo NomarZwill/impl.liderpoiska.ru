@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use \common\html_constructor\models\HcDraft;
+use \common\components\Transliteration;
 
 /**
  * This is the model class for table "servises".
@@ -37,6 +39,9 @@ use Yii;
  */
 class Servises extends \yii\db\ActiveRecord
 {
+
+    public $servise_listing_sort;
+    public $servise_parent_block_sort;
     /**
      * {@inheritdoc}
      */
@@ -51,9 +56,11 @@ class Servises extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['servise_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'content', 'image', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
+            [['servise_title'], 'required'],
+            [['servise_title', 'h1_title', 'header_menu_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'breadcrumbs_title', 'content', 'image', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
             [['service_page_rating'], 'number'],
-            [['service_page_votes', 'index_id', 'servise_listing_id', 'parent_id', 'old_id'], 'integer'],
+            [['service_page_votes', 'index_id', 'is_active', 'servise_listing_id', 'servise_hc_draft_id', 'parent_id', 'old_id'], 'integer'],
+            [['servise_listing_sort', 'servise_parent_block_sort'], 'safe'],
         ];
     }
 
@@ -65,13 +72,17 @@ class Servises extends \yii\db\ActiveRecord
         return [
             'servise_id' => 'ID',
             'servise_title' => 'Название',
-            'servise_long_title' => 'Длинное название',
+            'h1_title' => 'Заголовок h1',
+            'header_menu_title' => 'Заголовок услуги в меню в хедере',
+            'servise_long_title' => 'Title',
             'servise_description' => 'Описание',
             'introtext' => 'Introtext',
+            'breadcrumbs_title' => 'Название в хлебной крошке',
             'alias' => 'Alias',
+            'is_active' => 'Активен',
             'menu_title' => 'Название для меню',
             'content' => 'Контент',
-            'head_text' => 'Head Text',
+            'head_text' => 'Вводный текст',
             'service_to_price_list' => 'Service To Price List',
             'price_to_service' => 'Price To Service',
             'medic_to_service' => 'Medic To Service',
@@ -88,25 +99,28 @@ class Servises extends \yii\db\ActiveRecord
             'service_page_votes' => 'Service Page Votes',
             'index_id' => 'Index ID',
             'servise_listing_id' => 'Servise Listing ID',
+            'servise_hc_draft_id' => 'servise_hc_draft_id',
             'parent_id' => 'Parent ID',
             'old_id' => 'Old ID',
+            'servise_listing_sort' => 'Позиция в листинге услуг',
+            'servise_parent_block_sort' => 'Позиция на странице родительской услуги',
         ];
     }
 
-    public function setFirstLevelChildCount(array &$allServices){
+    public function setFirstLevelChildCount(array &$allServices) {
 
         foreach ($allServices as $key => $service){
             if ($service['parent_id'] === '0') {
-               $allServices[$key]['first_level_child_count'] = Servises::getFirstLevelChildCount($allServices, $service['old_id']);
+               $allServices[$key]['first_level_child_count'] = Servises::getFirstLevelChildCount($allServices, $service['servise_id']);
             }
          }
     }
 
-    public function getFirstLevelChildCount(array $allServices, string $parentOldID){
+    public function getFirstLevelChildCount(array $allServices, string $parentID) {
         $childCounter = 0;
 
         foreach ($allServices as $service) {
-            if ($service['parent_id'] === $parentOldID) {
+            if ($service['parent_id'] === $parentID) {
                 $childCounter++;
             }
         }
@@ -114,8 +128,57 @@ class Servises extends \yii\db\ActiveRecord
         return $childCounter;
     }
 
-    public function getPrices(){
+    public function getPrices() {
         return $this->hasMany(Prices::className(), ['prices_id' => 'prices_id'])
             ->viaTable('service_and_prices', ['service_id' => 'servise_id']);
+    }
+
+    public function getReviews() {
+        return $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+            ->viaTable('review_service_rel', ['service_id' => 'servise_id']);
+    }
+
+    public function getFaq() {
+        return $this->hasMany(Faq::className(), ['faq_id' => 'faq_id'])
+            ->viaTable('faq_services_rel', ['service_id' => 'servise_id']);
+    }
+
+    public function getArrayToSelect2() {
+        $array = [];
+        $servises = Servises::find()->all();
+
+        foreach ($servises as $servise) {
+            $array[$servise->servise_id] = $servise->menu_title;
+        }
+
+        return $array;
+    }
+
+    public function getServiceParentIDs($serviceID){
+        $serviceParentIDList = [];
+        $serviceParentList = Servises::find()->where(['servise_id' => $serviceID])->all();
+
+        foreach ($serviceParentList as $item) {
+            $serviceParentIDList[] = $item->parent_id;
+        }
+        return $serviceParentIDList;
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (empty($this->alias)) {
+            $this->alias = Transliteration::getTransliteration($this->servise_title);
+            $this->save();
+        }
+        
+        if (empty($this->servise_hc_draft_id)) {
+            $model = new HcDraft;
+            $model->name = $this->servise_title;
+            $model->alias = $this->alias;
+            $model->save();
+            $this->servise_hc_draft_id = $model->id;
+            $this->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 }

@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+use yii\helpers\FileHelper;
+use yii\helpers\Url;
+use backend\models\ImageGalleries;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Clinics */
@@ -16,31 +20,80 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'clinic_long_title')->textInput() ?>
 
+    <?= $form->field($model, 'card_title')->textInput() ?>
+
     <?= $form->field($model, 'clinic_description')->textInput() ?>
-
-    <?= $form->field($model, 'alias')->textInput() ?>
-
-    <?= $form->field($model, 'menu_title')->textInput() ?>
-
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'clinic_address')->textInput() ?>
-
-    <?= $form->field($model, 'clinic_phone')->textInput() ?>
-
-    <?= $form->field($model, 'clinic_opening_hours')->textInput() ?>
-
-    <?= $form->field($model, 'clinic_map')->textInput() ?>
-
-    <?= $form->field($model, 'main_phone')->textInput() ?>
 
     <?= $form->field($model, 'keywords')->textInput() ?>
 
-    <?= $form->field($model, 'review_to_filial')->textInput() ?>
+    <?= $form->field($model, 'h1_title')->textInput() ?>
 
-    <?= $form->field($model, 'review_title')->textInput() ?>
+    <?= $form->field($model, 'breadcrumbs_title')->textInput() ?>
 
-    <?= $form->field($model, 'bottom_text')->textInput() ?>
+    <?php if (empty($isCreate)){ ?>
+
+        <?= $form->field($model, 'alias')->textInput() ?>
+
+    <?php } ?>
+    
+    <?= $form->field($model, 'is_active')->checkbox() ?>
+
+    <?php
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+        $path = 'images/uploaded/clinics/'. $model->clinic_id . '/';
+        if (is_dir($path)) {
+            $images = ImageGalleries::find()->where(['parent_type' => 'clinics', 'parent_id' => $model->clinic_id])->all();
+            foreach ($images as $image) {
+                $initialPreview[] = Html::img(Url::to("@web/$image->filepath"), ['class'=>'file-preview-image']);
+                $initialPreviewConfig[] = ['caption' => '', 'width' => "120px", 'url' => "/clinics/" . $model->clinic_id . "/delete-gallery-image/" . $image->id . '/', 'key' => ''];
+            }
+        }
+        ?>
+
+    <?php if (empty($isCreate)){ ?>
+
+        <?=  $form->field($model, 'cinic_gallery_images[]')->widget(FileInput::classname(), [
+            'options' => [
+                'accept' => 'image/*',
+                'multiple' => true,
+            ],
+            'pluginOptions' => [
+                'initialPreview'=>$initialPreview,
+                'initialPreviewConfig' => $initialPreviewConfig,
+                'overwriteInitial'=>false,
+                ]
+                ])?>
+
+    <?php } ?>
+
+    <?= $form->field($model, 'clinic_address')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_opening_weekdays')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_opening_sat')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_opening_sun')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_phone')->textInput() ?>
+
+    <?= $form->field($model, 'main_phone')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_whatsapp')->textInput() ?>
+
+    <?= $form->field($model, 'clinic_mail')->textInput() ?>
+
+    <!-- <?= $form->field($model, 'clinic_opening_hours')->textInput() ?> -->
+
+    <!-- <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?> -->
+
+    <!-- <?= $form->field($model, 'clinic_map')->textInput() ?> -->
+
+    <!-- <?= $form->field($model, 'review_to_filial')->textInput() ?> -->
+
+    <!-- <?= $form->field($model, 'review_title')->textInput() ?> -->
+
+    <!-- <?= $form->field($model, 'bottom_text')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'old_id')->textInput() ?> -->
 

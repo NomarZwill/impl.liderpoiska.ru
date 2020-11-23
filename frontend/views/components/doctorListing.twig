@@ -1,9 +1,25 @@
-{% for doctor in doctors %}
-  
-  <div class="doctor_item_wrapper swiper-slide" >       
+{% if pageType == 'listing' %}
 
-    {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
+  {% for doctor in doctors %}
+    
+    <div class="doctor_item_wrapper swiper-slide" >       
 
-  </div>
+      {{this.render('/components/doctor_card.twig', {'doctor': doctor}) | raw}}
 
-{% endfor %}
+    </div>
+
+  {% endfor %} 
+
+{% elseif pageType == 'medSpec' %}
+
+  {% for item in allData %}
+    
+    <div class="doctor_item_wrapper swiper-slide" >       
+
+      {{this.render('/components/doctor_card.twig', {'doctor': item.doctors[0]}) | raw}}
+
+    </div>
+
+  {% endfor %} 
+
+{% endif %}

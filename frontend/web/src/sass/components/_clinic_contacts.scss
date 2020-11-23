@@ -3,7 +3,8 @@
   .content_block.title_container{
     width: 100%;
     padding: 24px 0 0 0;
-    background: url(/img/wave_bg.png);
+    background: url(/img/wave_bg.svg);
+    background-size: 420px;
   }
   
   .breadcrumbs_wrapper{
@@ -25,7 +26,8 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    background: url(/img/wave_bg.png);
+    background: url(/img/wave_bg.svg);
+    background-size: 420px;
   }
 
   .clinic_info_wrapper{
@@ -88,6 +90,13 @@
 
   .content_block.doctor_reviews{
     width: 100%;
+  }
+
+  .content_block.doctor_reviews{
+    
+    .review_text._compact {
+      height: 200px;
+  }
   }
 
   @include for-notdesc{

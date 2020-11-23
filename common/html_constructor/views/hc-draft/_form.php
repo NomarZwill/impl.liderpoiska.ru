@@ -128,25 +128,25 @@ Constructor::register($this);
 			[
 				'encodeLabels' => false,
 				'items' => [
-					[
-						'label'   => Yii::t('models', 'HcDraft'),
-						'content' => $this->blocks['main'],
-						'active'  => true,
-					],
-					[
-						'content' => $this->blocks['Media'],
-						'label'   => '<small>Файлы <span class="badge badge-default">' . $model->getFileTargets()->count() . '</span></small>',
-						'active'  => false,
-					],
-					[
-						'content' => $this->blocks['Seo'],
-						'label'   => '<small>SEO<span class="badge badge-default"></span></small>',
-						'active'  => false,
-					],
+					// [
+					// 	'label'   => Yii::t('models', 'HcDraft'),
+					// 	'content' => $this->blocks['main'],
+					// 	'active'  => false,
+					// ],
+					// [
+					// 	'content' => $this->blocks['Media'],
+					// 	'label'   => '<small>Файлы <span class="badge badge-default">' . $model->getFileTargets()->count() . '</span></small>',
+					// 	'active'  => false,
+					// ],
+					// [
+					// 	'content' => $this->blocks['Seo'],
+					// 	'label'   => '<small>SEO<span class="badge badge-default"></span></small>',
+					// 	'active'  => false,
+					// ],
 					[
 						'label'   => 'Конструктор',
 						'content' => $this->blocks['constructor'],
-						'active'  => false,
+						'active'  => true,
 					],
 				]
 			]

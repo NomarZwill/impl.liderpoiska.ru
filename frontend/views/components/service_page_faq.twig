@@ -1,0 +1,9 @@
+  <div class="content_block faq_container" data-type="faq">
+
+    <a name="{{paragraph.alias}}"></a>
+
+    <h2>{{ text_header }}</h2>
+    
+    {{this.render('/components/faq.twig', {'faq': currentService.faq}) | raw}}
+    
+  </div>

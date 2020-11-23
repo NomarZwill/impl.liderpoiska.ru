@@ -1,0 +1,56 @@
+<div class="content_block doctor_reviews" data-type="reviews_block">
+
+    <a name="{{paragraph.alias}}"></a>
+
+    <div class="reviews_title">
+    
+      <h2 class="_index_subtitle">{{ text_header }}</h2>
+
+      <div class="button_wrapper">
+
+        <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
+  
+        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+
+      </div>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for review in currentService.reviews %}
+
+          <div class="swiper-slide review_item_wrapper">       
+
+            <div class="big_quotes"></div>
+            <hr>
+            <div class="review_text" data-id="{{review.review_id}}">
+
+              {{review.review_text | raw}}
+
+              <div class="show_all _hidden">
+                <button class="read_more">Показать полностью</button>
+              </div>
+
+            </div>
+
+            <p><span>{{review.author}}</span> | <span>{{review.date|date("d.m.Y")}}</span></p>
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+      <div class="swiper-pagination revolver_pagination"></div>
+
+      <div class="revolver_navigation_wrapper">
+        <div class="swiper-button-prev revolver_navigation"></div>
+        <div class="swiper-button-next revolver_navigation"></div>
+      </div>
+
+    </div>
+
+  </div>

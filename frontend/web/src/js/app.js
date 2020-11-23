@@ -60,7 +60,8 @@ window.$ = $;
 			}
 
 			if ($('[data-page-type="contacts"]').length > 0) {
-	    	var contacts = new Contacts();
+				var contacts = new Contacts();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="clinic_contacts"]').length > 0) {

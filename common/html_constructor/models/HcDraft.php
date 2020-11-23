@@ -146,12 +146,12 @@ class HcDraft extends BaseHcObject
         return $this->hasMany(\common\html_constructor\models\HcTag::class, ['id' => 'hc_tag_id'])->viaTable('hc_draft_tag', ['hc_draft_id' => 'id']);
     }
 
-    public function getHtml()
+    public function getHtml($extraData = [])
     {
-        if ($this->hasProperty('html') && !empty($this->html)) {
+        if (empty($extraData) && $this->hasProperty('html') && !empty($this->html)) {
             return $this->html;
         }
-        return $this->getBodyHtml();
+        return $this->getBodyHtml($extraData);
     }
 
     public function saveHtml()
@@ -189,10 +189,10 @@ class HcDraft extends BaseHcObject
         return $result;
     }
 
-    public function getBodyHtml()
+    public function getBodyHtml($extraData = [])
     {
-        return array_reduce($this->hcDraftBlocks, function ($acc, $hcDraftBlock) {
-            return $acc . $hcDraftBlock->getHtml();
+        return array_reduce($this->hcDraftBlocks, function ($acc, $hcDraftBlock) use ($extraData){
+            return $acc . $hcDraftBlock->getHtml($extraData);
         }, '');
     }
 

@@ -8,6 +8,7 @@ use backend\models\DealsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * DealsController implements the CRUD actions for Deals model.
@@ -67,8 +68,9 @@ class DealsController extends Controller
     {
         $model = new Deals();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->deals_id]);
+        if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
+
+            return $this->redirect(['update', 'id' => $model->deals_id]);
         }
 
         return $this->render('create', [
@@ -87,13 +89,71 @@ class DealsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->deals_id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (!empty($model->small_image)) {
+                $this->actionDeleteFrontImage($model->deals_id);
+            };
+
+            if (!empty($model->full_image)) {
+                $this->actionDeleteBackImage($model->deals_id);
+            };
+
+            $model->small_image = UploadedFile::getInstances($model, 'small_image');
+            $model->full_image = UploadedFile::getInstances($model, 'full_image');
+
+            $uploadFlag = $model->uploadImage();
+            if($uploadFlag){
+                $model->save();
+            }
+            else{
+                print_r($uploadFlag);
+                exit;
+            }
+            return $this->redirect(['update', 'id' => $model->deals_id]);      
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDeleteBackImage($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+
+        if ($model->deals_image_back !== '') {
+
+            $path = 'images/uploaded/deals/'. $id . '/' . $model->deals_image_back;
+    
+            if (unlink($path)) {
+              $model->deals_image_back = '';
+              $model->save();
+              return ['success' => 'Удалено'];
+            }
+            return ['error' => 'Ошибка загрузки'];
+        }
+    }
+
+    public function actionDeleteFrontImage($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+
+        if ($model->deals_image_front !== '') {
+
+            $path = 'images/uploaded/deals/'. $id . '/' . $model->deals_image_front;
+    
+            if (unlink($path)) {
+              $model->deals_image_front = '';
+              $model->save();
+              return ['success' => 'Удалено'];
+            }
+            return ['error' => 'Ошибка загрузки'];
+        }
     }
 
     /**

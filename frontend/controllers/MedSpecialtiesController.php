@@ -11,9 +11,12 @@ use backend\models\DoctorsMedSpec;
 class MedSpecialtiesController extends MainController
 {
   public function actionSpecialityName($specAlias){
-    $medicalSpecialtiesAll = MedicalSpecialties::find()->all(); 
+    $medicalSpecialtiesAll = MedicalSpecialties::find()
+      ->orderBy(['specialty_sort' => SORT_ASC])
+      ->all(); 
     $activeSpec = MedicalSpecialties::find()
       ->where(['alias' => $specAlias])
+      ->joinWith('reviews')
       ->one();
 
     // print_r($doctors);

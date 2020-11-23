@@ -26,7 +26,7 @@
 
               {% for serviseFirst in servises %}
 
-                {% if serviseFirst.parent_id == serviseMenu.old_id %}
+                {% if serviseFirst.parent_id == serviseMenu.servise_id %}
 
                   {% set currentIndex = currentIndex + 1 %}
               
@@ -55,7 +55,7 @@
 
               {% for serviseFirst in servises %}
 
-                {% if serviseFirst.parent_id == serviseMenu.old_id %}
+                {% if serviseFirst.parent_id == serviseMenu.servise_id %}
 
                   {% set currentIndex = currentIndex + 1 %}
               

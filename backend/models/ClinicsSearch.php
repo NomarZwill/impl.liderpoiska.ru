@@ -18,7 +18,7 @@ class ClinicsSearch extends Clinics
     {
         return [
             [['clinic_id', 'old_id'], 'integer'],
-            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'menu_title', 'card_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_phone', 'clinic_whatsapp', 'clinic_mail', 'clinic_site', 'clinic_coords', 'clinic_opening_hours', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text'], 'safe'],
+            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_phone', 'clinic_whatsapp', 'clinic_mail', 'clinic_site', 'clinic_coords', 'clinic_opening_hours', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text'], 'safe'],
             [['clinic_latitude', 'clinic_longitude'], 'number'],
         ];
     }
@@ -69,7 +69,6 @@ class ClinicsSearch extends Clinics
             ->andFilterWhere(['like', 'clinic_long_title', $this->clinic_long_title])
             ->andFilterWhere(['like', 'clinic_description', $this->clinic_description])
             ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'menu_title', $this->menu_title])
             ->andFilterWhere(['like', 'card_title', $this->card_title])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'clinic_address', $this->clinic_address])

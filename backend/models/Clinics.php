@@ -3,7 +3,9 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\FileHelper;
 use backend\models\Ratings;
+use \common\components\Transliteration;
 
 /**
  * This is the model class for table "clinics".
@@ -13,7 +15,6 @@ use backend\models\Ratings;
  * @property string $clinic_long_title
  * @property string $clinic_description
  * @property string $alias
- * @property string $menu_title
  * @property string $content
  * @property string $clinic_address
  * @property string $clinic_phone
@@ -28,6 +29,8 @@ use backend\models\Ratings;
  */
 class Clinics extends \yii\db\ActiveRecord
 {
+
+    public $cinic_gallery_images;
     /**
      * {@inheritdoc}
      */
@@ -42,9 +45,10 @@ class Clinics extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'old_id'], 'required'],
-            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'menu_title', 'content', 'clinic_address', 'clinic_phone', 'clinic_opening_hours', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text'], 'string'],
-            [['old_id'], 'integer'],
+            [['h1_title'], 'required'],
+            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
+            [['old_id', 'is_active'], 'integer'],
+            [['cinic_gallery_images'], 'safe'],
         ];
     }
 
@@ -56,26 +60,93 @@ class Clinics extends \yii\db\ActiveRecord
         return [
             'clinic_id' => 'ID',
             'clinic_title' => 'Название',
-            'clinic_long_title' => 'Полное название',
+            'clinic_long_title' => 'Title',
             'clinic_description' => 'Описание клиники',
             'alias' => 'Alias',
-            'menu_title' => 'Название для меню',
+            'card_title' => 'Короткое название для карточек клиник',
+            'h1_title' => 'Заголовок h1',
+            'breadcrumbs_title' => 'Название в хлебной крошке',
+            'is_active' => 'Активный',
             'content' => 'Контент',
             'clinic_address' => 'Адрес',
             'clinic_phone' => 'Телефоны',
             'clinic_opening_hours' => 'Часы работы',
+            'clinic_opening_weekdays' => 'Часы работы в будни',
+            'clinic_opening_sat' => 'Часы работы в субботу',
+            'clinic_opening_sun' => 'Часы работы в воскресенье',
             'clinic_map' => 'Карта',
             'main_phone' => 'Основной телефон',
             'keywords' => 'Ключевые слова',
             'review_to_filial' => 'Review To Filial',
             'review_title' => 'Review Title',
             'bottom_text' => 'Bottom Text',
+            'clinic_whatsapp' => 'Whats app',
+            'clinic_mail' => 'Почта',
+            'cinic_gallery_images' => 'Загруженное изображение для галереи',
             'old_id' => 'Old ID',
         ];
     }
 
     public function getRatings()
     {
-        return $this->hasMany(Ratings::className(), ['clinic_id' => 'clinic_id']);
+        return $this->hasMany(Ratings::className(), ['clinic_id' => 'clinic_id'])
+            ->where(['ratings.is_active' => 1]);
+    }
+
+    public function getImageGalleries()
+    {
+        return $this->hasMany(ImageGalleries::className(), ['parent_id' => 'clinic_id'])
+            ->where(['parent_type' => 'clinics']);
+    }
+
+    public function getReviews()
+    {
+        $reviews = $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+            ->viaTable('review_clinic_rel', ['clinic_id' => 'clinic_id'])
+            ->where(['reviews.is_active' => 1]);
+          
+        return $reviews;
+    }
+
+    public function getArrayToSelect2() {
+        $array = [];
+        $clinics = Clinics::find()->all();
+
+        foreach ($clinics as $clinic) {
+            $array[$clinic->clinic_id] = $clinic->card_title;
+        }
+
+        return $array;
+    }
+
+    public function uploadImages()
+    {
+        //if ($this->validate()) {
+        $iter = 1;
+        foreach ($this->cinic_gallery_images as $file) {
+            $path = 'images/uploaded/clinics/'. $this->clinic_id . '/';
+            FileHelper::createDirectory($path);
+            $file->saveAs($path . time() . '_' . $iter . '.' . $file->extension);
+            $gallery = new ImageGalleries();
+            $gallery->parent_type = Clinics::tableName();
+            $gallery->parent_id = $this->clinic_id;
+            $gallery->filepath = $path . time() . '_' . $iter . '.' . $file->extension;
+            $gallery->save();
+            $iter++;     
+        }
+        return true;
+        //} else {
+        //    return false;
+        //}
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (empty($this->alias)) {
+            $this->alias = Transliteration::getTransliteration($this->h1_title);
+            $this->save();
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 }

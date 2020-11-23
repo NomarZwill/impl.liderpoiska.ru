@@ -18,6 +18,8 @@ use Yii;
  */
 class Prices extends \yii\db\ActiveRecord
 {
+
+    public $price_services_rel;
     /**
      * {@inheritdoc}
      */
@@ -32,9 +34,10 @@ class Prices extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['prices_name', 'price', 'alias', 'old_id'], 'required'],
-            [['prices_name', 'price_hide', 'keywords', 'code', 'alias'], 'string'],
-            [['price', 'old_id'], 'integer'],
+            [['prices_name', 'price'], 'required'],
+            [['prices_name', 'keywords', 'prices_description', 'code', 'alias'], 'string'],
+            [['price', 'price_hide', 'is_active', 'old_id'], 'integer'],
+            [['price_services_rel'], 'safe'],
         ];
     }
 
@@ -46,12 +49,48 @@ class Prices extends \yii\db\ActiveRecord
         return [
             'prices_id' => 'ID',
             'prices_name' => 'Название услуги',
-            'price' => 'Цена',
-            'price_hide' => 'Price Hide',
+            'price' => 'Стоимость',
+            'price_hide' => 'Стоимость со скидкой',
             'keywords' => 'Ключевые слова',
+            'prices_description' => 'Описание',
+            'is_active' => 'Активен',
             'code' => 'Код',
             'alias' => 'Alias',
+            'price_services_rel' => 'Выбор услуг',
             'old_id' => 'Old ID',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes){
+
+        if (!empty($this->price_services_rel)) {
+
+            // удаление стёртых значений
+            foreach (ServiceAndPrices::find()->where(['prices_id' => $this->prices_id])->all() as $item) {
+                if (array_search($item->service_id, $this->price_services_rel) === false) {
+                    $item->delete();
+                    // echo $item->service_id . ' deleted, ';
+                }
+            }
+            
+            // добавление вновь выбранных значений
+            foreach ($this->price_services_rel as $service) {
+                $priceService = new ServiceAndPrices();
+                $priceService->prices_id = $this->prices_id;
+                $priceService->service_id = $service;
+                if (!ServiceAndPrices::find()->where(['prices_id' => $this->prices_id, 'service_id' => $service])->exists()) {
+                    $priceService->save();
+                    // echo $priceService->service_id . ' saved, ';
+                }
+            }
+        } else {
+            
+            foreach (ServiceAndPrices::find()->where(['prices_id' => $this->prices_id])->all() as $item) {
+                $item->delete();
+                // echo $item->service_id . ' deleted, ';
+            }
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 }

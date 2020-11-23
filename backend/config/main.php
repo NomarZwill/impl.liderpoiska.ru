@@ -42,10 +42,31 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'medicalSpecialties' => 'medical-specialties',
                 //'<module:gii>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 [
                     'pattern'=>'/update',
                     'route'=>'site/index'
+                ],
+                [
+                    'pattern' => '/doctors/<event_id:\d+>/delete-gallery-lizcenz-image/<image_id:\d+>',
+                    'route' => 'doctors/delete-gallery-lizcenz-image',
+                    'suffix' => '/'
+                ],
+                [
+                    'pattern' => '/clinics/<event_id:\d+>/delete-gallery-image/<image_id:\d+>',
+                    'route' => 'clinics/delete-gallery-image',
+                    'suffix' => '/'
+                ],
+                [
+                    'pattern' => '/licenses-documents-page/<event_id:\d+>/delete-gallery-image/<image_id:\d+>',
+                    'route' => 'licenses-documents-page/delete-gallery-image',
+                    'suffix' => '/'
+                ],
+                [
+                    'pattern' => '/licenses-documents-page/<event_id:\d+>/delete-document/<doc_id:\d+>',
+                    'route' => 'licenses-documents-page/delete-document',
+                    'suffix' => '/'
                 ],
                 [
                     'pattern' => '<controller>/<id:\d+>/<action>',
@@ -71,6 +92,7 @@ return [
                         'POST sort' => 'sort',
                     ]
                 ],
+
             ],
             
         ],

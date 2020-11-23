@@ -25,8 +25,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'deals_index_description') ?>
 
-    <?php // echo $form->field($model, 'deals_index_image') ?>
-
     <?php // echo $form->field($model, 'alias') ?>
 
     <?php // echo $form->field($model, 'deals_image_front') ?>
