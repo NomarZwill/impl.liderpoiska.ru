@@ -99,6 +99,8 @@ class SpecialistsController extends MainController
         ->limit($limit)
         ->all();
 
+      Doctors::modifyExperienceString($doctors);
+
       $isListEnd = (count($doctors) < $limit) ? true : false;
 
       return json_encode([
@@ -119,6 +121,13 @@ class SpecialistsController extends MainController
         ->offset($offset)
         ->limit($limit)
         ->all();
+
+      foreach ($allData as $item) {
+
+        foreach ($item->doctors as $doctor) {
+          $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+        }
+      }
 
         $isListEnd = (count($allData) < $limit) ? true : false;
   

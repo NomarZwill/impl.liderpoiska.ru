@@ -61,6 +61,13 @@ class OtherController extends MainController
       ->orderBy(['sort_index' => SORT_ASC])
       ->joinWith('doctors')
       ->all();
+
+    foreach ($allData as $item) {
+
+      foreach ($item->doctors as $doctor) {
+        $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+      }
+    }
       
     //echo '<pre>';
     //print_r($currentClinic);
@@ -207,8 +214,11 @@ class OtherController extends MainController
       ->all();
 
     $doctors = Doctors::find()
+      ->where(['answers_the_questions' => 1, 'doctors.is_active' => 1])
       ->joinWith('medicalSpecialties')
       ->all();  
+
+    Doctors::modifyExperienceString($doctors);
 
     return $this->render('faqPage.twig', array(
       'faq' => $faq,

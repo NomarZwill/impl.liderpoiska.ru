@@ -54,6 +54,8 @@ class DentController extends MainController
          ->joinWith('medicalSpecialties')
          ->all();
 
+      Doctors::modifyExperienceString($doctors);
+
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
@@ -116,6 +118,8 @@ class DentController extends MainController
          ->joinWith('medicalSpecialties')
          ->all();
 
+      Doctors::modifyExperienceString($doctors);
+
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
@@ -171,6 +175,8 @@ class DentController extends MainController
          ->joinWith('medicalSpecialties')
          ->all();
 
+      Doctors::modifyExperienceString($doctors);
+
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
@@ -218,6 +224,8 @@ class DentController extends MainController
       $doctors = Doctors::find()
          ->joinWith('medicalSpecialties')
          ->all();
+
+      Doctors::modifyExperienceString($doctors);
 
       $faq = Faq::find()
          ->limit(10)

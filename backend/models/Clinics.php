@@ -46,7 +46,7 @@ class Clinics extends \yii\db\ActiveRecord
     {
         return [
             [['h1_title'], 'required'],
-            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
+            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
             [['old_id', 'is_active'], 'integer'],
             [['cinic_gallery_images'], 'safe'],
         ];
@@ -69,6 +69,7 @@ class Clinics extends \yii\db\ActiveRecord
             'is_active' => 'Активный',
             'content' => 'Контент',
             'clinic_address' => 'Адрес',
+            'clinic_address_short' => 'Короткий адрес для карточек',
             'clinic_phone' => 'Телефоны',
             'clinic_opening_hours' => 'Часы работы',
             'clinic_opening_weekdays' => 'Часы работы в будни',

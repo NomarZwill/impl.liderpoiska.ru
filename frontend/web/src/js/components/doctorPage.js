@@ -30,10 +30,25 @@ export default class DoctorPage{
       spaceBetween: 16,
     });
 
-    var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
+    var doctorVideo  = new Swiper('.doctor_video_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
       watchOverflow: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
+    });
+
+    var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      // watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -71,8 +86,8 @@ export default class DoctorPage{
     var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      observer: true,
-      observeParents: true,
+      // observer: true,
+      // observeParents: true,
       watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -113,15 +128,17 @@ export default class DoctorPage{
     $('.doctor_work_example .doctor_work_image')
     .add('.doctor_work_example .inner_gallery_button')
     .on('click', function(e){
-      var $currentGallery = $(this).closest('.doctor_work_item ').find('.popup_gallery_wrapper');
-      openInnerGallery($currentGallery);
+      var $currentGallery = $(this).closest('.doctor_work_item').find('.popup_gallery_wrapper');
+      if ($(this).closest('.inner_gallery_wrapper').length === 0) {
+        openInnerGallery($currentGallery);
+      }
     });
     
     function openInnerGallery($currentGallery){
       $('body').addClass('_popup_mode');
-      // $popupGalleries.removeClass('_active');
 
       $currentPopupGallery = $currentGallery.clone(true);
+      $popupGalleryContainer.find('.inner_gallery_wrapper').remove();
       $popupGalleryContainer.prepend($currentPopupGallery);
       $currentPopupGallery.addClass('_active');
 
@@ -136,9 +153,6 @@ export default class DoctorPage{
       popupSwiperThumbs = new Swiper($('.popup_gallery_wrapper._active .popup_gallery_thumbs')[0], {
         slidesPerView: 'auto',
         spaceBetween: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
       });
 
       popupSwiperBig = new Swiper($('.popup_gallery_wrapper._active .popup_gallery')[0], {

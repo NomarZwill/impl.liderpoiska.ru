@@ -42,9 +42,9 @@
                 <div class="swiper-slide clinic_item">
 
                 <a class="clinic_name _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title | raw}}</a>
-                <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+                <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
                 <div class="clinic_phone">
-                  Тел.: {{clinic.clinic_phone | raw}}
+                  Тел.: {{clinic.main_phone | raw}}
                 </div>
               </div>
         
@@ -100,8 +100,56 @@
     
   </div>
 
-  <div class="content_block doctor_video">
+  <div class="content_block doctor_video_container">
     <a name="video"></a>
+
+    <div class="doctor_video_title">
+
+      <h2>Видео о враче</h2>
+
+    </div>
+
+    <div class="swiper-container doctor_video_wrapper">
+
+      <div class="swiper-wrapper">
+
+      {% for video in doc.doctorsGalleries %}
+
+        {% if video.block_type == 'video' %}
+
+          <div class="swiper-slide doctor_video_item_container">
+
+            <div class="doctor_video_item_wrapper">
+
+              <div id="{{ video.filepath }}" class="doctor_video"></div>
+
+              <div class="play_button_wrapper">
+                <button class="play_button"></button>
+              </div>
+
+            </div>
+
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+      </div>
+
+      <div class="swiper-pagination revolver_pagination"></div>
+
+      <div class="revolver_navigation_wrapper">
+        <div class="swiper-button-prev revolver_navigation"></div>
+        <div class="swiper-button-next revolver_navigation"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  {# <div class="content_block doctor_video">
+    
 
     <h2>Видео о враче</h2>
 
@@ -112,7 +160,7 @@
       </div>
     </div>
 
-  </div>
+  </div> #}
 
   <div class="content_block doctor_lizcenz">
 
@@ -393,19 +441,41 @@
 <script src="//www.youtube.com/player_api"></script>
 
 <script>
-  var play;
+  // var play;
+  
+  // function onYouTubePlayerAPIReady() {
+  //   play = new YT.Player('video_item', {
+  //     videoId: 'Sn7CC9Z51so',
+  //     width: '808',
+  //     height: '455',
+  //   });
+  //   $('.play_button').on('click', function() {
+  //     play.playVideo();
+  //     $(this).closest('.play_button_wrapper').addClass('_hidden');
+  //   });
+  //   // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
+  // }
+
+</script>
+
+<script>
+  var player = [];
   
   function onYouTubePlayerAPIReady() {
-    play = new YT.Player('video_item', {
-      videoId: 'Sn7CC9Z51so',
-      width: '808',
-      height: '455',
-    });
-    $('.play_button').on('click', function() {
-      play.playVideo();
-      $(this).closest('.play_button_wrapper').addClass('_hidden');
-    });
-    // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
-  }
 
+    $('.doctor_video_item_wrapper').each(function(i, obj) {
+      var currentVideoId = $(obj).find('.doctor_video').attr('id');
+      player[i] = new YT.Player(currentVideoId, {
+        videoId: currentVideoId,
+        width: '808',
+        height: '455',
+      });
+      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+        player[i].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+
+    });
+      // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
+  };
 </script>

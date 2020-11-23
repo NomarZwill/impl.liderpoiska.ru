@@ -84,6 +84,11 @@ position: relative;
       padding: 0 0 16px 0;
       text-align: center;
     }
+
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
+      display: none;
+    }
   }
 
   .equipment_item_wrapper{
@@ -516,7 +521,12 @@ position: relative;
       }
 
       .revolver_navigation_wrapper{
+        display: flex;
         margin: 16px auto 0 auto;
+      }
+
+      .revolver_pagination{
+        display: block;
       }
     }
 

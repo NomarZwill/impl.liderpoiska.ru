@@ -69,6 +69,8 @@ use backend\models\ImageGalleries;
 
     <?= $form->field($model, 'clinic_address')->textInput() ?>
 
+    <?= $form->field($model, 'clinic_address_short')->textInput() ?>
+
     <?= $form->field($model, 'clinic_opening_weekdays')->textInput() ?>
 
     <?= $form->field($model, 'clinic_opening_sat')->textInput() ?>

@@ -18,8 +18,19 @@
     }
   }
 
-  h2._custom_header{
+  h2._custom_header,
+  h3._custom_header
+  h4._custom_header{
     padding: 0 0 32px 0;
+  }
+
+  ._custom_service_block{
+    width: 1016px;
+    margin: auto;
+  }
+
+  .big_number_list{
+    padding: 0 0 24px 0;
   }
 
   ._custom_text_block{
@@ -166,9 +177,7 @@
 
   .content_block.prices_wrapper{
     position: relative;
-    // display: flex;
-    // flex-flow: column nowrap;
-    // align-items: center;
+    margin: 0 auto 48px auto;
     padding: 24px 32px 24px 32px;
     border: 1px solid #DADEE1;
     border-radius: 8px;
@@ -241,7 +250,7 @@
 
   .content_block.doctors_container{
     width: 100%;
-    padding: 48px 0 48px 40px;
+    padding: 0 0 48px 40px;
 
     .swiper-slide{
       flex-shrink: 1;
@@ -375,7 +384,7 @@
 
   .content_block.service_video_container{
     width: 100%;
-    padding: 48px 0 48px 0;
+    padding: 0 0 48px 0;
 
     .swiper-slide{
       width: 496px;
@@ -755,7 +764,7 @@
   }
 
   .content_block.recall_wrapper[data-page-type="recall_form"]{
-    padding: 24px 0 0 0;
+    padding: 24px 0 48px 0;
 
     form{
       background: $lightBG;
@@ -765,7 +774,7 @@
 
   .content_block.doctor_reviews{
     width: 100%;
-    padding: 48px 0 0 0;
+    padding: 0 0 48px 0;
   }
 
   .content_block.faq_container{
@@ -1007,6 +1016,10 @@
 
   @include for-pad{
 
+    ._custom_service_block{
+      width: 736px;
+    }
+
     .content_block.title_container{
       background: radial-gradient(circle at 0 55%,#fff9f0 70%,#fbedd8 calc(70% + 1px));
 
@@ -1057,6 +1070,7 @@
     }
 
     .content_block.prices_wrapper{
+      margin: 0 auto 40px auto;
       padding: 24px 16px 32px 16px;
 
       .show_all{
@@ -1073,7 +1087,7 @@
     }
 
     .content_block.doctors_container{
-      padding: 40px 0 40px 16px;
+      padding: 0 0 40px 16px;
     }
 
     .doctors_title{
@@ -1090,7 +1104,7 @@
     }
 
     .content_block.service_video_container{
-      padding: 40px 0 40px 0;
+      padding: 0 0 40px 0;
 
       .content_note{
         margin: 40px auto 0;
@@ -1098,7 +1112,7 @@
     }
 
     .content_block.recall_wrapper[data-page-type='recall_form']{
-      padding: 16px 0 0 0;
+      padding: 16px 0 40px 0;
     }
 
     .content_block.photo_example_wrapper{
@@ -1106,6 +1120,7 @@
     }
 
     .content_block.director_word_container{
+      margin: 0 0 40px 0;
       padding: 32px 0 32px 0;
       background: #FBEDD8;
     }
@@ -1116,6 +1131,7 @@
 
     .content_note{
       width: 736px;
+      margin: 0 auto 40px auto;
     }
 
     .content_block{
@@ -1135,19 +1151,42 @@
     }
 
     .content_block.doctor_reviews{
-      padding: 40px 0 0 0;
+      padding: 0 0 40px 0;
     }
 
     .content_block.faq_container{
-      padding: 64px 0 0 0;
+      padding: 0 0 8px 0;
     }
 
     .item_answer{
       width: 720px;
     }
+
+    .content_block.rating_container{
+      margin: 40px auto 40px auto;
+    }
   }
 
   @include for-mobile{
+
+    ._custom_service_block{
+      width: 100%;
+    }
+
+    h2._custom_header,
+    h3._custom_header
+    h4._custom_header{
+      padding: 0 16px 24px 16px;
+    }
+
+    ._custom_text_block{
+      padding: 0 16px 32px 16px;
+    }
+
+    ._custom_inline_img{
+      width: 100%;
+      margin: 0 0 12px 0;
+    }
 
     .content_note{
       width: calc(100% - 32px);
@@ -1356,6 +1395,10 @@
 
     .big_number_list{
       padding: 0 16px 0 16px;
+
+      ol{
+        padding: 0 0 8px 0;
+      }
     }
 
     .big_number_list ol li{
@@ -1378,7 +1421,7 @@
     }
 
     .content_block.service_video_container{
-      padding: 32px 0 32px 0;
+      padding: 0 0 32px 0;
 
       .content_note{
         width: calc(100% - 32px);
@@ -1461,7 +1504,7 @@
     }
 
     .content_block.recall_wrapper[data-page-type='recall_form']{
-      padding: 8px 0 0 0;
+      padding: 0 0 32px 0;
     }
 
     .photo_example_image{
@@ -1470,6 +1513,7 @@
     }
 
     .content_block.director_word_container{
+      margin: 0 0 32px 0;
       padding: 32px 16px 24px 16px;
       background: #FBEDD8;
     }
@@ -1528,11 +1572,11 @@
     }
     
     .content_block.doctor_reviews{
-      padding: 32px 0 0 0;
+      padding: 0 0 32px 0;
     }
 
     .content_block.faq_container{
-      padding: 32px 16px 0 16px;
+      padding: 0 16px 16px 16px;
 
       h2{
         padding: 0 0 16px 0;

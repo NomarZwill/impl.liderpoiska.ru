@@ -96,6 +96,8 @@ class SiteController extends MainController
             ->joinWith('medicalSpecialties')
             ->all();  
 
+        Doctors::modifyExperienceString($doctors);
+
         // Yii::$app->params['servises'] = Servises::find()->asArray()->all();
 
         // $data = json_decode(file_get_contents('https://www.impl.ru/vyigruzka-dannyix/'), TRUE);
@@ -107,7 +109,7 @@ class SiteController extends MainController
         //     $review->save();
         //      break;
         // }
-        // print_r($servises);
+        // print_r($doctors);
         // exit;
 
         return $this->render('index.twig', array(

@@ -215,6 +215,27 @@ class Doctors extends \yii\db\ActiveRecord
         }
     }
 
+    public function modifyExperienceString(&$doctors){
+        // $modDoctors = null;
+
+        foreach ($doctors as $doctor){
+            $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+        }
+
+        // return $modDoctors;
+    }
+
+    public function num_decline($number){
+        $titles = [ 
+            0 => 'год',
+            1 => 'года',
+            2 => 'лет',
+        ];
+        $cases = [ 2, 0, 1, 1, 1, 2 ];
+        $intnum = abs( intval( strip_tags( $number ) ) );
+    
+        return "$number ". $titles[ ($intnum % 100 > 4 && $intnum % 100 < 20) ? 2 : $cases[min($intnum % 10, 5)] ];
+    }
 
     public function afterSave($insert, $changedAttributes)
     {

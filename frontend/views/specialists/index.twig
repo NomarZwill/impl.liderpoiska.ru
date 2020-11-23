@@ -52,9 +52,9 @@
                   class="swiper-slide clinic_card_wrapper">
 
                   <a class="clinic_title _link">{{clinic.card_title}}</a>
-                  <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+                  <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
                   <div class="clinic_phone">
-                    Тел.: {{clinic.clinic_phone | raw}}
+                    Тел.: {{clinic.main_phone | raw}}
                   </div>
                   
 
@@ -86,9 +86,9 @@
           <div class="clinic_card_wrapper">
 
             <p class="clinic_title _link">{{clinic.card_title}}</p>
-            <p class="clinic_address">{{clinic.clinic_address | raw}}</p>
+            <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
             <div class="clinic_phone">
-              Тел.: {{clinic.clinic_phone | raw}}
+              Тел.: {{clinic.main_phone | raw}}
             </div>
 
           </div>

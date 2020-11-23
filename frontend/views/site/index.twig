@@ -261,7 +261,7 @@
 
       <div class="swiper-wrapper">
 
-        <div class="swiper-slide review_item_wrapper">       
+        {# <div class="swiper-slide review_item_wrapper">       
   
           <div class="big_quotes"></div>
 
@@ -298,7 +298,7 @@
 
             <p class="signature">Антипова Евгения 28 лет | 10 сентября 2015</p>
 
-        </div>
+        </div> #}
 
         {% for review in reviews %}
     
@@ -370,8 +370,8 @@
               data-title="{{clinic.clinic_title | raw}}"
               data-map="{{clinic.clinic_map}}"
               data-address="{{clinic.clinic_address | raw}}"
-              data-phone="{{clinic.clinic_phone | raw}}"
-              data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
+              data-phone="{{clinic.clinic_phone}}"
+              data-opening-hours="{{clinic.clinic_opening_hours}}"
             >
 
               <p class="clinic_title">{{clinic.card_title}}</p>
@@ -406,8 +406,8 @@
             data-title="{{clinic.clinic_title | raw}}"
             data-map="{{clinic.clinic_map}}"
             data-address="{{clinic.clinic_address | raw}}"
-            data-phone="{{clinic.clinic_phone | raw}}"
-            data-opening-hours="{{clinic.clinic_opening_hours | raw}}"
+            data-phone="{{clinic.clinic_phone}}"
+            data-opening-hours="{{clinic.clinic_opening_hours}}"
           >
 
             <p class="clinic_title">{{clinic.clinic_title}}</p>
