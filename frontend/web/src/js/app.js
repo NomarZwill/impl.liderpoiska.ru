@@ -43,11 +43,13 @@ window.$ = $;
 			}
 
 			if ($('[data-page-type="service_page"]').length > 0) {
-	    	var servicePage = new ServicePage();
+				var servicePage = new ServicePage();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="specialists"]').length > 0) {
-	    	var serviceListing = new DoctorsListing();
+				var serviceListing = new DoctorsListing();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="speciality"]').length > 0) {
@@ -56,7 +58,8 @@ window.$ = $;
 			}
 
 			if ($('[data-page-type="doctor_page"]').length > 0) {
-	    	var doctorPage = new DoctorPage();
+				var doctorPage = new DoctorPage();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="contacts"]').length > 0) {
@@ -65,7 +68,8 @@ window.$ = $;
 			}
 
 			if ($('[data-page-type="clinic_contacts"]').length > 0) {
-	    	var clinicContacts = new ClinicContacts();
+				var clinicContacts = new ClinicContacts();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-page-type="about"]').length > 0) {
@@ -97,7 +101,7 @@ window.$ = $;
 			}
 
 			if ($('.content_block.doctor_reviews').length > 0) {
-	    	var fullReviewPopup = new FullReviewPopup(116, 116, 116);
+	    	// var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('[data-type="faq"]').length > 0) {

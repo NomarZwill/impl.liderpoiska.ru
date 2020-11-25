@@ -302,5 +302,6 @@ AppAsset::register($this);
                 });
             });
         };
+        console.log('20/20');
     });
 </script>

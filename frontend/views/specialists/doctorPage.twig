@@ -332,15 +332,16 @@
 
     <div class="review_item_wrapper _hidden">
       
-      <div class="close_icon"></div>       
+      <div class="close_icon"></div>  
+
       <div class="big_quotes"></div>
+      
       <hr>
-      <div class="review_text">
 
-        <p class="main_text"></p>
-        <p class="signature"></p>
+      <div class="review_text"></div>
 
-      </div>
+      <p class="signature"></p>
+
       <div class="popup_close_button">Закрыть</div>       
 
     </div>
@@ -358,66 +359,6 @@
     </div>
 
     <div class="popup_gallery_container _hidden">
-
-      {# {% for i in 1..10 %}
-        
-        <div class="popup_gallery_wrapper" data-gallery-id="{{i}}">
-
-          <div class="close_icon"></div>
-
-          <h4>Исправление искривления зубов системой Инвизилайн за 1 год 3 месяца</h4>
-
-          <div class="swiper-container popup_gallery">
-
-            <div class="swiper-wrapper">
-
-              {% for i in 1..10 %}
-
-                <div class="swiper-slide doctor_work_item _popup">
-                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
-                </div>
-
-              {% endfor %}
-
-            </div>
-
-            <div class="popup_navigation_wrapper">
-
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next "></div>
-      
-            </div>
-
-          </div>
-
-          <div class="swiper-container popup_gallery_thumbs">
-
-            <div class="swiper-wrapper">
-
-              {% for i in 1..10 %}
-
-                <div class="swiper-slide doctor_work_item _popup">
-                  <div class="doctor_work_image _popup" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-repeat: no-repeat; background-size: cover;"></div>
-                </div>
-
-              {% endfor %}
-
-            </div>
-
-          </div>
-
-          <p>
-            Пациент обратился с жалобой на неудобное использование полного 
-            съемного протеза на верхней челюсти, в виду отсутствия всех зубов. 
-            Была проведена костная пластика и установка дентальных 
-            имплантантов, что позволило нам через 7 месяцев забыть о 
-            существовании полных съемных протезов навсегда. Фото сделано на 
-            профилактическом осмотре через 5 лет после имплантации.
-          </p>
-
-        </div>
-
-      {% endfor %}#}
 
       <div class="diagonal_navigation">
 
@@ -441,24 +382,6 @@
 <script src="//www.youtube.com/player_api"></script>
 
 <script>
-  // var play;
-  
-  // function onYouTubePlayerAPIReady() {
-  //   play = new YT.Player('video_item', {
-  //     videoId: 'Sn7CC9Z51so',
-  //     width: '808',
-  //     height: '455',
-  //   });
-  //   $('.play_button').on('click', function() {
-  //     play.playVideo();
-  //     $(this).closest('.play_button_wrapper').addClass('_hidden');
-  //   });
-  //   // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
-  // }
-
-</script>
-
-<script>
   var player = [];
   
   function onYouTubePlayerAPIReady() {
@@ -479,3 +402,5 @@
       // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
   };
 </script>
+
+

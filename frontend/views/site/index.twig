@@ -371,7 +371,9 @@
               data-map="{{clinic.clinic_map}}"
               data-address="{{clinic.clinic_address | raw}}"
               data-phone="{{clinic.clinic_phone}}"
-              data-opening-hours="{{clinic.clinic_opening_hours}}"
+              data-opening-weekdays="{{clinic.clinic_opening_weekdays}}"
+            data-opening-sat="{{clinic.clinic_opening_sat}}"
+            data-opening-sun="{{clinic.clinic_opening_sun}}"
             >
 
               <p class="clinic_title">{{clinic.card_title}}</p>
@@ -407,7 +409,9 @@
             data-map="{{clinic.clinic_map}}"
             data-address="{{clinic.clinic_address | raw}}"
             data-phone="{{clinic.clinic_phone}}"
-            data-opening-hours="{{clinic.clinic_opening_hours}}"
+            data-opening-weekdays="{{clinic.clinic_opening_weekdays}}"
+            data-opening-sat="{{clinic.clinic_opening_sat}}"
+            data-opening-sun="{{clinic.clinic_opening_sun}}"
           >
 
             <p class="clinic_title">{{clinic.clinic_title}}</p>
@@ -439,7 +443,9 @@
         </p>
         <p>
           <span class="title">Время работы:</span><br>
-          <span class="work_hours_content"></span>
+          Понедельник — пятница: <span class="work_hours_content _weekdays"></span><br>
+          Суббота: <span class="work_hours_content _sat"></span><br>
+          Воскресенье: <span class="work_hours_content _sun"></span>
         </p>
       </div>
 
@@ -466,12 +472,9 @@
 
       <hr>
 
-      <div class="review_text">
-  
-        <p class="main_text"></p>
-        <p class="signature"></p>
-  
-      </div>
+      <div class="review_text"></div>
+
+      <p class="signature"></p>
 
       <div class="popup_close_button">Закрыть</div>       
   

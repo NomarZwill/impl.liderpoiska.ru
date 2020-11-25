@@ -128,7 +128,9 @@ export default class Index{
     $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
     $('.clinic_info .address_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('address'));
     $('.clinic_info .phone_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('phone'));
-    $('.clinic_info .work_hours_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-hours'));
+    $('.clinic_info .work_hours_content._weekdays').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-weekdays'));
+    $('.clinic_info .work_hours_content._sat').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-sat'));
+    $('.clinic_info .work_hours_content._sun').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-sun'));
     updateClinicRating($($('.moscow_clinics .clinic_card_wrapper')[0]));
     
     $('.clinics_cotnainer .cities').on('click', function (e) {
@@ -149,7 +151,9 @@ export default class Index{
         $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
         $('.clinic_info .address_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('address'));
         $('.clinic_info .phone_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('phone'));
-        $('.clinic_info .work_hours_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-hours'));    
+        $('.clinic_info .work_hours_content._weekdays').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-weekdays'));
+        $('.clinic_info .work_hours_content._sat').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-sat'));
+        $('.clinic_info .work_hours_content._sun').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-sun'));   
         updateClinicRating($($('.moscow_clinics .clinic_card_wrapper')[0]));
 
       } else if ($target.hasClass('geneva')){
@@ -162,7 +166,9 @@ export default class Index{
         $('.clinic_info .clinic_on_map').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('map'));
         $('.clinic_info .address_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('address'));
         $('.clinic_info .phone_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('phone'));
-        $('.clinic_info .work_hours_content').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('opening-hours'));
+        $('.clinic_info .work_hours_content._weekdays').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('opening-weekdays'));
+        $('.clinic_info .work_hours_content._sat').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('opening-sat'));
+        $('.clinic_info .work_hours_content._sun').html($($('.geneva_clinics .clinic_card_wrapper')[0]).data('opening-sun'));
         updateClinicRating($($('.geneva_clinics .clinic_card_wrapper')[0]));
       }
     });
@@ -220,7 +226,9 @@ export default class Index{
         $('.clinic_info .clinic_on_map').html($target.data('map'));
         $('.clinic_info .address_content').html($target.data('address'));
         $('.clinic_info .phone_content').html($target.data('phone'));
-        $('.clinic_info .work_hours_content').html($target.data('opening-hours'));
+        $('.clinic_info .work_hours_content._weekdays').html($target.data('opening-weekdays'));
+        $('.clinic_info .work_hours_content._sat').html($target.data('opening-sat'));
+        $('.clinic_info .work_hours_content._sun').html($target.data('opening-sun'));
 
         updateClinicRating($target);
       }

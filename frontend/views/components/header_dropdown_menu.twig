@@ -6,17 +6,17 @@
       <button>Назад</button>
     </div>
 
-    {% for serviseMenu in servises %}
+    {% for serviseMenu in servises|sort((a, b) => a.servise_listing_sort <=> b.servise_listing_sort) %}
 
       {% if serviseMenu.parent_id == 0 %}
 
         <div class="category_item_wrapper" data-servise-id={{serviseMenu.servise_id}}>
 
-          <p class="category_name">{{serviseMenu.menu_title | raw}}</p>
+          <p class="category_name">{{serviseMenu.header_menu_title | raw}}</p>
 
           <div class="listing_first_level level_container _hidden" data-first-level-count={{serviseMenu.first_level_child_count}}>
 
-            <a href="/dent/{{serviseMenu.alias}}" class="category_link _link_black">{{serviseMenu.menu_title | raw}}</a>
+            <a href="/dent/{{serviseMenu.alias}}" class="category_link _link_black">{{serviseMenu.header_menu_title | raw}}</a>
 
             {% set totalValue = serviseMenu.first_level_child_count %}
 
@@ -24,7 +24,7 @@
 
               {% set currentIndex = 0 %}
 
-              {% for serviseFirst in servises %}
+              {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                 {% if serviseFirst.parent_id == serviseMenu.servise_id %}
 
@@ -53,7 +53,7 @@
 
               {% set currentIndex = 0 %}
 
-              {% for serviseFirst in servises %}
+              {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                 {% if serviseFirst.parent_id == serviseMenu.servise_id %}
 

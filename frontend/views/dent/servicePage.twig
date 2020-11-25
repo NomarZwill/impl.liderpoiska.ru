@@ -7,11 +7,18 @@
       <div class="breadcrumbs_wrapper">
         <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
         <a class="breadcrumbs _menu_link" href="/dent/">Услуги</a>
+
+        {% for key, value in breadcrumbs %}
+
+          <a class="breadcrumbs _menu_link" href="/dent/{{ key }}">{{ value }}</a>
+
+        {% endfor %}
+
       </div>
 
       <div class="top_img"></div>
 
-      <h1>{{currentService.menu_title}}</h1>
+      <h1>{{currentService.h1_title}}</h1>
 
       <button class="reception_button _button popup_button">Записаться&nbsp;на&nbsp;приём</button>
 
@@ -705,12 +712,9 @@
 
       <hr>
 
-      <div class="review_text">
-  
-        <p class="main_text"></p>
-        <p class="signature"></p>
-  
-      </div>
+      <div class="review_text"></div>
+
+      <p class="signature"></p>
 
       <div class="popup_close_button">Закрыть</div>       
   

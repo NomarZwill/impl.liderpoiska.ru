@@ -40,8 +40,6 @@ use \common\components\Transliteration;
 class Servises extends \yii\db\ActiveRecord
 {
 
-    public $servise_listing_sort;
-    public $servise_parent_block_sort;
     /**
      * {@inheritdoc}
      */
@@ -59,8 +57,7 @@ class Servises extends \yii\db\ActiveRecord
             [['servise_title'], 'required'],
             [['servise_title', 'h1_title', 'header_menu_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'breadcrumbs_title', 'content', 'image', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
             [['service_page_rating'], 'number'],
-            [['service_page_votes', 'index_id', 'is_active', 'servise_listing_id', 'servise_hc_draft_id', 'parent_id', 'old_id'], 'integer'],
-            [['servise_listing_sort', 'servise_parent_block_sort'], 'safe'],
+            [['service_page_votes', 'index_id', 'is_active', 'is_visible_in_menu', 'servise_listing_sort', 'servise_parent_block_sort', 'servise_listing_id', 'servise_hc_draft_id', 'parent_id', 'old_id'], 'integer'],
         ];
     }
 
@@ -80,6 +77,7 @@ class Servises extends \yii\db\ActiveRecord
             'breadcrumbs_title' => 'Название в хлебной крошке',
             'alias' => 'Alias',
             'is_active' => 'Активен',
+            'is_visible_in_menu' => 'Выводить в меню',
             'menu_title' => 'Название для меню',
             'content' => 'Контент',
             'head_text' => 'Вводный текст',
@@ -100,7 +98,7 @@ class Servises extends \yii\db\ActiveRecord
             'index_id' => 'Index ID',
             'servise_listing_id' => 'Servise Listing ID',
             'servise_hc_draft_id' => 'servise_hc_draft_id',
-            'parent_id' => 'Parent ID',
+            'parent_id' => 'Родительская услуга',
             'old_id' => 'Old ID',
             'servise_listing_sort' => 'Позиция в листинге услуг',
             'servise_parent_block_sort' => 'Позиция на странице родительской услуги',
@@ -162,6 +160,19 @@ class Servises extends \yii\db\ActiveRecord
             $serviceParentIDList[] = $item->parent_id;
         }
         return $serviceParentIDList;
+    }
+
+    public function getBreadcrumbs(array $parentServiceAliasArray){
+        $breadcrumbs = [];
+        $aliasTmp = '';
+        foreach ($parentServiceAliasArray as $service) {
+            $aliasTmp = $aliasTmp . $service . '/';
+            $breadcrumbs[$aliasTmp] = Servises::find()
+                ->where(['alias' => $service])
+                ->one()
+                ->header_menu_title;
+        }
+        return $breadcrumbs;
     }
     
     public function afterSave($insert, $changedAttributes)

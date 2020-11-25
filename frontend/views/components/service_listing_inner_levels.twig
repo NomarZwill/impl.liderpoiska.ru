@@ -2,7 +2,7 @@
 
   <a class="_link_black" href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}">
 
-    <span>{{serviseFirst.menu_title}}</span> 
+    <span>{{serviseFirst.header_menu_title}}</span> 
     
   </a>
 
@@ -10,7 +10,7 @@
 
   <div class="listing_second_level level_wrapper">
 
-    {% for serviseSecond in servises %}
+    {% for serviseSecond in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
       {% if serviseSecond.parent_id == serviseFirst.servise_id  %}
 
@@ -18,7 +18,7 @@
 
           <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}"  class="_link_black">
     
-            <span>{{serviseSecond.menu_title}}</span>
+            <span>{{serviseSecond.header_menu_title}}</span>
 
           </a>
 
@@ -26,7 +26,7 @@
 
           <div class="listing_third_level level_wrapper">
 
-            {% for serviseThird in servises %}
+            {% for serviseThird in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
               {% if serviseThird.parent_id == serviseSecond.servise_id  %}
 
@@ -34,7 +34,7 @@
 
                   <a href="/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}"  class="_link_black">
     
-                    <span>{{serviseThird.menu_title}}</span>
+                    <span>{{serviseThird.header_menu_title}}</span>
 
                   </a>
                   

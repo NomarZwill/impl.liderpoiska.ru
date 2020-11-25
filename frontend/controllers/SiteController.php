@@ -90,9 +90,11 @@ class SiteController extends MainController
             ->all();
         $reviews = Reviews::find()->all();  
         $clinics = Clinics::find()
-        ->joinWith('ratings')
-        ->all();
+            ->where(['clinics.is_active' => 1])
+            ->joinWith('ratings')
+            ->all();
         $doctors = Doctors::find()
+            ->where(['doctors.is_active' => 1, 'visible_on_home_page' => 1])
             ->joinWith('medicalSpecialties')
             ->all();  
 
@@ -122,7 +124,9 @@ class SiteController extends MainController
 
     public function actionAjaxClinicRating(){
         $clinic_id = $_GET['clinic_id'];
-        $rating = Ratings::find()->where(['clinic_id' => $clinic_id])->all();
+        $rating = Ratings::find()
+            ->where(['clinic_id' => $clinic_id, 'is_active' => 1])
+            ->all();
     
         return json_encode([
             'rating' => $this->renderPartial('/components/ratings.twig', array(

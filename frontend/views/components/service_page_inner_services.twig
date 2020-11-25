@@ -18,13 +18,13 @@
 
     <div class="subservice_listing">
 
-      {% for serviseFirst in childrenService %}
+      {% for serviseFirst in childrenService|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
         <div class="subservice_listing_item item_wrapper">
 
           <a class="_link_black" href="/dent/{{mainParent.alias}}/{{parent.alias}}/{{currentService.alias}}/{{serviseFirst.alias}}">
 
-            <span>{{serviseFirst.menu_title}}</span>
+            <span>{{serviseFirst.header_menu_title}}</span>
             
           </a>
 

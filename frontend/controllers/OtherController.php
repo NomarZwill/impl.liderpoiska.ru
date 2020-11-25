@@ -94,10 +94,13 @@ class OtherController extends MainController
 
   public function actionPrices(){
 
-    $firstLevelParents = Servises::find()->where(['servises.parent_id' => 0])->asArray()->all();
+    $firstLevelParents = Servises::find()
+      ->where(['servises.parent_id' => 0/*, 'is_active' => 1*/])
+      ->asArray()
+      ->all();
 
     $firstLevelServices = Servises::find()
-    ->where(['servises.parent_id' => 0])
+    ->where(['servises.parent_id' => 0/*, 'is_active' => 1*/])
     ->joinWith('prices')
     ->asArray()
     ->all();   

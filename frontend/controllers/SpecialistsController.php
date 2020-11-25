@@ -13,7 +13,7 @@ use backend\models\DoctorsPageSort;
 use common\html_constructor\models\HcDraft;
 
 // use backend\models\DoctorsAndClinics;
-use backend\models\Servises;
+// use backend\models\Servises;
 // use backend\models\DoctorsServicesRel;
 // use backend\models\Faq;
 // use backend\models\FaqServicesRel;
@@ -29,17 +29,9 @@ class SpecialistsController extends MainController
       ->all(); 
 
     // $servises = Servises::find()->all();
-    // $i = 1;
     // foreach ($servises as $servise) {
-    //   if ($servise->parent_id !== 0) {
-    //     $parentService = Servises::find()->where(['old_id' => $servise->parent_id])->one();
-    //     echo "Цикл " . $i . ", старый parent_id = " . $servise->parent_id . ", новый parent_id = " . $parentService->servise_id . "<br>";
-    //     $servise->parent_id = $parentService->servise_id;
+    //     $servise->header_menu_title = $servise->menu_title;
     //     $servise->save();
-    //   } else {
-    //     echo "Цикл " . $i . ", категория, parent_id = 0" . "<br>";
-    //   }
-    //   $i++;
     // }
     // exit;
 

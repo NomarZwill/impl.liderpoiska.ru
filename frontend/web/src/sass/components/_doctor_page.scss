@@ -179,7 +179,6 @@
   .doctor_video_wrapper {
     width: 100%;
     padding: 0 24px 0 24px;
-    overflow: hidden;
 
     .revolver_navigation_wrapper{
       margin: 16px auto 0 auto;
@@ -215,6 +214,7 @@
 
   .doctor_video_item_wrapper{
     position: relative;
+    width: 808px;
     
     iframe{
       border-radius: 8px;
@@ -571,6 +571,7 @@
     }
 
     .doctor_video_item_wrapper{
+      width: 736px;
 
       iframe{
         width: 736px;
@@ -705,6 +706,7 @@
     }
 
     .doctor_video_item_wrapper{
+      width: 288px;
 
       iframe{
         width: 288px;

@@ -11,7 +11,10 @@ use backend\models\Clinics;
 class MainController extends Controller{
 
   public function beforeAction($action){
-    $servises = Servises::find()->asArray()->all();
+    $servises = Servises::find()
+      ->where([/*'is_active' => 1, 'is_visible_in_menu' => 1*/])
+      ->asArray()
+      ->all();
     Servises::setFirstLevelChildCount($servises);
     $clinics = Clinics::find()->all();
 

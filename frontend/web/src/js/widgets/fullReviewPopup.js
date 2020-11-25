@@ -39,8 +39,11 @@ export default class FullReviewPopup{
 
       $review.find('.read_more').on('click', function(e){
         var reviewText = $reviewText.html(); 
+        var signature = $review.find('.signature').html(); 
+        console.log(signature);
 
         $('.popup_filter_bg .review_text').html(reviewText);
+        $('.popup_filter_bg .signature').html(signature);
         $('.popup_filter_bg').addClass('_active');
         $('.popup_filter_bg .review_item_wrapper').removeClass('_hidden');
 

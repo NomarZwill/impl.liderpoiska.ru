@@ -40,6 +40,15 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    padding: 40px 0 0 0;
+
+    ._index_subtitle{
+      padding: 0 16px 24px 16px;
+    }
+  }
+
+  .medical_specialties_wrapper{
+    padding: 0 0 0 0;
   }
 
   .doctors_wrapper{
@@ -200,6 +209,10 @@
 
     .content_block.doctors_container{
       padding: 0 0 0 0;
+
+      ._index_subtitle{
+        padding: 0 16px 16px 16px;
+      }
     }
 
     .breadcrumbs_wrapper{

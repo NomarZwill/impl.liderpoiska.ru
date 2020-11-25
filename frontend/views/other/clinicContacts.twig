@@ -73,15 +73,15 @@
             <tbody>
               <tr>
                 <td>Будни:</td>
-                <td>{{clinic.clinic_opening_weekdays}}</td>
+                <td>{{clinic.clinic_opening_weekdays | raw}}</td>
               </tr>
               <tr>
                 <td>Суббота:</td>
-                <td>{{clinic.clinic_opening_sat}}</td>
+                <td>{{clinic.clinic_opening_sat | raw}}</td>
               </tr>
               <tr>
                 <td>Воскресенье:</td>
-                <td>{{clinic.clinic_opening_sun}}</td>
+                <td>{{clinic.clinic_opening_sun | raw}}</td>
               </tr>
             </tbody>
           </table>
@@ -258,12 +258,9 @@
 
       <hr>
 
-      <div class="review_text">
-  
-        <p class="main_text"></p>
-        <p class="signature"></p>
-  
-      </div>
+      <div class="review_text"></div>
+
+      <p class="signature"></p>
 
       <div class="popup_close_button">Закрыть</div>       
   

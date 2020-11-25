@@ -11,7 +11,7 @@
     .top_img{
       position: absolute;
       bottom: 0px;
-      right: 104px;
+      right: 0;
       width: 400px;
       height: 288px;
       background: url(/img/service_title_img.png);
@@ -32,9 +32,25 @@
   .big_number_list{
     padding: 0 0 24px 0;
   }
+  ._custom_text_block,
+  ._custom_service_block,
+  ._custom_text_image_block,
+  .content_note{
+    A:link{
+      border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+    }
+    
+    A:visited{
+      color: $textColor;
+    }
+    
+    A:hover{
+      color: $baseColor;
+      border-bottom: 1px solid rgba(120, 47, 64, 1);
+    }
+  }
 
   ._custom_text_block{
-    display: flex;
     padding: 0 0 32px 0;
 
     p{
@@ -43,12 +59,26 @@
     }
   }
 
+  ._custom_text_image_block{
+    overflow: hidden;
+
+    ul li{
+      left: 8px;
+
+      &:before{
+        content: "—";
+        position: relative;
+        left: -8px;
+      }
+    }
+  }
+
   ._custom_inline_img{
     // display: block;
     // width: 100%;
     // height: auto;
-    float: left;
-    margin: 0 24px 12px 0;
+    // float: left;
+    // margin: 0 24px 12px 0;
   }
   
   .title_wrapper{
@@ -78,6 +108,7 @@
   }
 
   h1{
+    width: 700px;
     padding: 16px 0 24px 0;
   }
 
@@ -110,6 +141,7 @@
     h4{
       position: relative;
       padding: 0 0 16px 0;
+      text-align: start;
 
       &:before{
         content: '';
@@ -332,7 +364,9 @@
     li{
       position: relative;
       margin: 0 0 0 48px;
-      padding: 24px 0 0 0;
+      padding: 24px 0 24px 0;
+      line-height: 26px;
+      letter-spacing: 0.01em;
 
       &:before{
         content: counter(num);
@@ -360,7 +394,7 @@
       }
 
       p{
-        padding: 0 0 24px 0;
+        padding: 0 0 0 0;
         line-height: 26px;
         letter-spacing: 0.01em;
       }
@@ -474,6 +508,8 @@
       position: relative;
       margin: 0 0 0 29px;
       padding: 0 0 8px 0;
+      line-height: 24px;
+      letter-spacing: 0.01em;
 
       &:before{
         content: "— ";
@@ -498,11 +534,20 @@
     }
   }
 
-  .photo_gallery_wrapper {
+  .photo_gallery_wrapper{
     padding: 0 40px 0 40px;
 
     .swiper-wrapper{
       padding: 0 0 24px 0;
+    }
+  }
+
+  .photo_example_item{
+
+    img{
+      display: block;
+      width: 492px;
+      height: auto;
     }
   }
 
@@ -656,10 +701,12 @@
   }
 
   .director_word_signature_wrapper{
+    width: 100%;
     position: relative;
-    padding: 16px 280px 0 0;
+    padding: 16px 0 0 0;
 
     p{
+      width: 424px;
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.02em;
@@ -775,6 +822,10 @@
   .content_block.doctor_reviews{
     width: 100%;
     padding: 0 0 48px 0;
+  }
+
+  .review_text._compact{
+    height: 200px;
   }
 
   .content_block.faq_container{
@@ -1414,10 +1465,6 @@
         left: -32px;
         width: calc(100% + 32px);
       }
-
-      // hr{
-      //   width: 100%;
-      // }
     }
 
     .content_block.service_video_container{
@@ -1531,6 +1578,10 @@
 
     .director_word_signature_wrapper{
       padding: 16px 0 0 0;
+
+      p{
+        width: auto;
+      }
     }
 
     .director_word_signature{

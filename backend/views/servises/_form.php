@@ -26,27 +26,6 @@ use backend\models\Servises;
 
     <?= $form->field($model, 'header_menu_title')->textInput() ?>
 
-    <?= $form->field($model, 'servise_parent_block_sort')->textInput() ?>
-
-    <?= $form->field($model, 'servise_listing_sort')->textInput() ?>
-
-    <?php if (empty($isCreate)){ ?>
-
-        <?= $form->field($model, 'alias')->textInput() ?>
-
-    <?php } ?>
-
-    <?= $form->field($model, 'head_text')->textarea(['rows' => 4]) ?>
-
-    <?php if (empty($isCreate)){ ?>
-
-        <div class="form_draft_link_wrapper">
-            <a class="form_draft_link" href="/hc-draft/<?= $model->servise_hc_draft_id ?>/update/">Перейти к конструктору блоков</a>
-        </div>
-
-    <?php } ?>
-
-
     <?php
         $allServisesData = Servises::getArrayToSelect2();
         $allServisesData[0] = 'Основной раздел, родительская услуга отсутствует';
@@ -65,8 +44,35 @@ use backend\models\Servises;
         ],
     ]);?>
 
+    <?php if ($model->parent_id === 0){ ?>
+
+        <?= $form->field($model, 'servise_listing_sort')->textInput() ?>
+
+    <?php } else { ?>
+
+        <?= $form->field($model, 'servise_parent_block_sort')->textInput() ?>
+
+    <?php } ?>
+
+    <?php if (empty($isCreate)){ ?>
+
+        <?= $form->field($model, 'alias')->textInput() ?>
+
+    <?php } ?>
+
+    <?= $form->field($model, 'head_text')->textarea(['rows' => 4]) ?>
+
+    <?php if (empty($isCreate)){ ?>
+
+        <div class="form_draft_link_wrapper">
+            <a class="form_draft_link" href="/hc-draft/<?= $model->servise_hc_draft_id ?>/update/">Перейти к конструктору блоков</a>
+        </div>
+
+    <?php } ?>
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
+
+    <?= $form->field($model, 'is_visible_in_menu')->checkbox() ?>
 
     <!-- <?= $form->field($model, 'introtext')->textInput() ?> -->
 

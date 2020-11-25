@@ -11,6 +11,24 @@ export default class DoctorPage{
   }
 
   init(){
+    var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      // observer: true,
+      // observeParents: true,
+      watchOverflow: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
+    });
+
+
     var clinicsWrapper  = new Swiper('.clinics_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 16,
@@ -42,13 +60,13 @@ export default class DoctorPage{
         el: '.swiper-pagination',
         dynamicBullets: true,
         clickable: true,
-      }
+      },
     });
 
     var lizcenzWrapper  = new Swiper('.lizcenz_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      // watchOverflow: true,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -82,23 +100,6 @@ export default class DoctorPage{
         $(this).closest('.doctor_education_content').removeClass('_compact');
       });
     }
-
-    var doctorWorkWrapper  = new Swiper('.doctor_work_wrapper', {
-      slidesPerView: 'auto',
-      spaceBetween: 24,
-      // observer: true,
-      // observeParents: true,
-      watchOverflow: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true,
-        clickable: true,
-      }
-    });
 
     var $popupGalleries =  $('.popup_gallery_wrapper');
     var $currentPopupGallery = null;

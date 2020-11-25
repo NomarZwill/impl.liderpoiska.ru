@@ -105,7 +105,12 @@ export default class ServicePage{
         el: '.swiper-pagination',
         dynamicBullets: true,
         clickable: true,
-      }
+      },
+      on: {
+        init: function () {
+          console.log('swiper initialized');
+        },
+      },
     });
 
     var reviewWrapper  = new Swiper('.reviews_wrapper', {

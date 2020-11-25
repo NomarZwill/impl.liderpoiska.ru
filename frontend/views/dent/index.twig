@@ -16,7 +16,7 @@
 
     <div class="content_block listing_wrapper">
 
-      {% for serviseMenu in servises %}
+      {% for serviseMenu in servises|sort((a, b) => a.servise_listing_sort <=> b.servise_listing_sort) %}
 
         {% if serviseMenu.parent_id == 0  %}
 
@@ -29,7 +29,7 @@
               <h4 class="service_menu_item">
   
                 <a href="/dent/{{serviseMenu.alias}}" class="_menu_link">
-                  {{serviseMenu.menu_title | raw}}
+                  {{serviseMenu.header_menu_title | raw}}
                 </a>
   
               </h4>
@@ -44,7 +44,7 @@
 
                 {% set currentIndex = 0 %}
 
-                {% for serviseFirst in servises %}
+                {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                   {% if serviseFirst.parent_id == serviseMenu.servise_id %}
 
@@ -73,7 +73,7 @@
 
                 {% set currentIndex = 0 %}
               
-                {% for serviseFirst in servises %}
+                {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                   {% if serviseFirst.parent_id == serviseMenu.servise_id  %}
 
@@ -102,7 +102,7 @@
 
                 {% set currentIndex = 0 %}
 
-                {% for serviseFirst in servises %}
+                {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                   {% if serviseFirst.parent_id == serviseMenu.servise_id  %}
 
@@ -131,7 +131,7 @@
 
                 {% set currentIndex = 0 %}
 
-                {% for serviseFirst in servises %}
+                {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                   {% if serviseFirst.parent_id == serviseMenu.servise_id  %}
 
@@ -160,7 +160,7 @@
 
                 {% set currentIndex = 0 %}
 
-                {% for serviseFirst in servises %}
+                {% for serviseFirst in servises|sort((a, b) => a.servise_parent_block_sort <=> b.servise_parent_block_sort) %}
 
                   {% if serviseFirst.parent_id == serviseMenu.servise_id  %}
 

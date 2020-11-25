@@ -245,7 +245,9 @@ export default class YaMapContacts{
       $mapInfoPane.find('h3').html($currentClinicInfo.data('name'));
       $mapInfoPane.find('.address_content').html($currentClinicInfo.data('address'));
       $mapInfoPane.find('.phone_content').html($currentClinicInfo.data('phones'));
-      $mapInfoPane.find('.work_hours_content').html($currentClinicInfo.data('work-hours'));
+      $mapInfoPane.find('.work_hours_content._weekdays').html($currentClinicInfo.data('work-hours-weekdays'));
+      $mapInfoPane.find('.work_hours_content._sat').html($currentClinicInfo.data('work-hours-sat'));
+      $mapInfoPane.find('.work_hours_content._sun').html($currentClinicInfo.data('work-hours-sun'));
       $mapInfoPane.find('.button_container ._button_light').prop('href', `/contacts/${$currentClinicInfo.data('alias')}`);
     }
 
