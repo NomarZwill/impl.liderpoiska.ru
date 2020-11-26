@@ -96,6 +96,27 @@
     .close_icon{
       display: none;
     }
+
+    .close_icon_mobile span{
+      cursor: pointer;
+      position: relative;
+      border-bottom: 1px dashed rgba(120, 47, 64, 0.4);
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: $headerBlack;
+  
+      &:before{
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -28px;
+        width: 24px;
+        height: 24px;
+        background: url(/img/close_icon_black.svg);
+        background-size: contain;
+      }
+  
+    }
   }
 
   @include for-pad{

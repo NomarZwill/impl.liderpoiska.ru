@@ -57,6 +57,16 @@ export default class MedSpecFilter{
     $buttonMore.on('click', getMoreCard);
 
     getMoreCard();
+
+    $('.doctors_wrapper').on('click', function(e) {
+      if ($(this).closest('.reception_button')) {
+        $('.reception_form_container')
+        .find('.reception_form_wrapper')
+        .appendTo('.layout_popup .scroll_wrapper');
+        $('.layout_popup').removeClass('_hidden');
+        $('body').addClass('_popup_mode');
+      }
+    });
   }
 
 
@@ -95,5 +105,4 @@ export default class MedSpecFilter{
       }
     }
   }
-
 }

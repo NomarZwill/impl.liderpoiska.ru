@@ -176,6 +176,7 @@ class OtherController extends MainController
       'yearsList' => $yearsList,
       'activeYear' => date('Y'),
       'singleYearReviews' => $reviews,
+      'csrf' => Yii::$app->request->getCsrfToken(),
     ));  
   }
 
@@ -226,6 +227,7 @@ class OtherController extends MainController
     return $this->render('faqPage.twig', array(
       'faq' => $faq,
       'doctors' => $doctors,
+      'csrf' => Yii::$app->request->getCsrfToken(),
     ));  
   }
 

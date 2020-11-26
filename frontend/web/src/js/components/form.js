@@ -115,6 +115,14 @@ export default class Form {
 		// this.$form.find('input').removeClass('form_input_valid form_input_filled');
 	}
 
+	success(data, formType) {
+		if (this.$form.siblings('._in_content_block').length === 0) {
+			this.$form.addClass('_hidden');
+		}
+		this.$form.siblings('[data-success]').find('[data-success-name]').text(data.name);
+		this.$form.siblings('[data-success]').removeClass('_hidden');
+	}
+
 	sendIfValid(e) {
 		e.preventDefault();
 		if (!this.checkFields()) return;
@@ -134,20 +142,34 @@ export default class Form {
 			console.log(pair[0]+ ', ' + pair[1]);
 	}
 
+		// fetch(this.to,{
+		// method: 'POST',
+		// body: formData
+		// })
+		// .then(status)
+		// .then(json)
+		// .then(data => {
+		// this.success(data, formType);
+		// this.reset();
+		// this.disabled = false;
+		// })
+		// .catch(() => {
+		// this.error();
+		// this.disabled = false;
+		// });
+
 		fetch(this.to,{
 		method: 'POST',
 		body: formData
 		})
-		.then(status)
-		.then(json)
-		.then(data => {
-		this.success(data, formType);
-		this.reset();
-		this.disabled = false;
+		.then((response) => {
+			return response.json();
 		})
-		.catch(() => {
-		this.error();
-		this.disabled = false;
+		.then((data) => {
+			this.success(data, formType);
+			this.reset();
+			this.disabled = false;
+			console.log(data);
 		});
 }
 }

@@ -1,5 +1,5 @@
-<form action="" data-type="recall">
-
+<form action="/form/recall/" data-type="recall">
+  <input type="hidden" name="_csrf-frontend" value="{{csrf}}" />
   <div class="close_icon"></div>
 
   {{title | raw}}
@@ -19,6 +19,8 @@
       <input type="text" name="phone" placeholder="&nbsp;" data-required>
       <span>Номер телефона</span>
     </label>
+
+   
 
   </div>
 
@@ -41,13 +43,13 @@
 
 </form>
 
-<div class="recall_form_successful_send _hidden">
+<div class="recall_form_successful_send {{in_content_block}} _hidden" data-success>
 
   <div class="close_icon"></div>
 
   <h3>Заявка отправлена</h3>
 
-  <p>Елена, спасибо за проявленный интерес. В течение 15 минут наш менеджер перезвонит вам.</p>
+  <p><span data-success-name></span>, спасибо за проявленный интерес. В течение 15 минут наш менеджер перезвонит вам.</p>
 
   <div class="close_icon_mobile">
     <span>Закрыть</span>

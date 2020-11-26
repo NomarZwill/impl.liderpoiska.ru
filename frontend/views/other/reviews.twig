@@ -42,7 +42,10 @@
 
     <a name="review_form"></a>
 
-    {{this.render('/components/review_form.twig') | raw}}
+    {{this.render('/components/review_form.twig', {
+      'csrf': csrf,
+      'in_content_block': '_in_content_block'
+    }) | raw}}
 
   </div>
   

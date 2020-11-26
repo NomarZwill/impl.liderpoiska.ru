@@ -1,4 +1,6 @@
-<form action="" data-type="faq">
+<form action="/form/faq/" data-type="faq">
+
+  <input type="hidden" name="_csrf-frontend" value="{{csrf}}" />
 
   <h2>Задайте вопрос</h2>
 
@@ -42,11 +44,11 @@
 
 </form>
 
-<div class="faq_form_successful_send _hidden">
+<div class="faq_form_successful_send {{ in_content_block }} _hidden" data-success>
 
   <h2>Вопрос успешно отправлен</h2>
 
-  <p>Елена, мы передадим ваш вопрос специалисту и дадим на&nbsp;него ответ в&nbsp;ближайшее время.</p>
+  <p><span data-success-name></span>, мы передадим ваш вопрос специалисту и дадим на&nbsp;него ответ в&nbsp;ближайшее время.</p>
 
   <div class="close_icon_mobile">
     <span>Закрыть</span>

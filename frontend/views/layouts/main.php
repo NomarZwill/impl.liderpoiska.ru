@@ -75,7 +75,9 @@ AppAsset::register($this);
                     [
                         'title' => '<h3>Заказать звонок</h3>',
                         'title_description' => 'Оставьте ваши данные, и мы перезвоним в течение 15 минут.',
-                        'submit_button_title' => 'Отправить'
+                        'submit_button_title' => 'Отправить',
+                        'csrf' => Yii::$app->request->getCsrfToken(),
+                        'in_content_block' => ''
                     ]) ?>
 
                 </div>
@@ -268,12 +270,18 @@ AppAsset::register($this);
 
     <div class="reception_form_container _hidden">
         <?= $this->render(
-            '../components/reception_form.twig', ['clinics' => Yii::$app->params['clinics']]) ?>
+            '../components/reception_form.twig', [
+                'clinics' => Yii::$app->params['clinics'],
+                'csrf' => Yii::$app->request->getCsrfToken(),
+            ]) ?>
     </div>
 
     <div class="review_form_container _hidden">
         <div class="review_form_wrapper" data-page-type="review_form">
-            <?= $this->render('../components/review_form.twig') ?>
+            <?= $this->render('../components/review_form.twig', [
+                'in_content_block' => '',
+                'csrf' => Yii::$app->request->getCsrfToken(),
+            ]) ?>
         </div>
     </div>
 

@@ -777,15 +777,48 @@
 
 .popup_lizcenz_wrapper{
   position: absolute;
-  margin: 70px 0 70px 0;
+  margin: 48px 0 48px 0;
   padding: 48px 48px 48px 48px;
   background: #ffffff;
+  border-radius: 8px;
 
   img{
     width: 360px;
     height: auto;
   }
+
+  @include for-notdesc{
+    position: relative;
+    top: 16px;
+    margin: auto 0 auto 0;
+  }
+
+  @include for-mobile{
+    padding: 48px 16px 16px 16px;
+
+    img{
+      width: 100%;
+    }
+  }
 }
+
+.popup_filter_bg{
+    
+  div.review_item_wrapper{
+
+    @include for-notdesc{
+      position: relative;
+      top: 16px;
+      margin: auto 0 auto 0;
+    }
+  
+    @include for-mobile{
+  
+    }
+  }
+}
+
+
 
 .popup_button_next._diagonal_navigation,
 .popup_button_prev._diagonal_navigation{

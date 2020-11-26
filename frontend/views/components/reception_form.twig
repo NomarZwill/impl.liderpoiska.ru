@@ -1,6 +1,8 @@
 <div class="reception_form_wrapper" data-type="reception_form">
 
-  <form action="" data-type="reception">
+  <form action="/form/reception/" data-type="reception">
+
+    <input type="hidden" name="_csrf-frontend" value="{{csrf}}" />
 
     <div class="close_icon"></div>
 
@@ -102,13 +104,13 @@
 
   </form>
 
-  <div class="reception_form_successful_send _hidden">
+  <div class="reception_form_successful_send _hidden" data-success>
 
     <div class="close_icon"></div>
 
     <h3>Заявка отправлена</h3>
 
-    <p>Елена, спасибо за проявленный интерес. Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
+    <p><span data-success-name></span>, спасибо за проявленный интерес. Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
 
     <div class="close_icon_mobile">
       <span>Закрыть</span>

@@ -24,7 +24,8 @@ class MedSpecialtiesController extends MainController
       
     return $this->render('index.twig', array(
       'activeSpec' => $activeSpec,
-      'medicalSpecialtiesAll' => $medicalSpecialtiesAll
+      'medicalSpecialtiesAll' => $medicalSpecialtiesAll,
+      'csrf' => Yii::$app->request->getCsrfToken()
     ));
   }
 }

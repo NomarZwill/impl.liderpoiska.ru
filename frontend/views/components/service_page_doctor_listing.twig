@@ -20,7 +20,7 @@
     
           <div class="swiper-slide doctor_item_wrapper">       
   
-            {{this.render('/components/doctor_card.twig', {'doctor': doctor, 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
+            {{this.render('/components/doctor_card.twig', {'doctor': doctor.doctors[0], 'doctorsMedSpec' : doctorsAndMedSpec[doctor.doctor_id]}) | raw}}
   
           </div>
   

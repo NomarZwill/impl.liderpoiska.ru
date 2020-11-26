@@ -63,7 +63,10 @@
 
     <a name="faq_form"></a>
 
-    {{this.render('/components/faq_form.twig') | raw}}
+    {{this.render('/components/faq_form.twig', {
+      'csrf': csrf,
+      'in_content_block': '_in_content_block'
+    }) | raw}}
 
   </div>
   

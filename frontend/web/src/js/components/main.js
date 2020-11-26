@@ -55,12 +55,21 @@ export default class Main{
         .appendTo('.reception_form_container');
         $('.reception_form_wrapper .current_select').html($('.reception_form_wrapper .current_select').data('default'));
         $('.reception_form_wrapper .clinic_item_input')[0].checked = true;
+        $('.reception_form_wrapper form').removeClass('_hidden');
+        $('.reception_form_wrapper .reception_form_successful_send').addClass('_hidden');
+
       } else if($('.layout_popup .review_form_wrapper').length !== 0) {
         $('.layout_popup .review_form_wrapper')
         .appendTo('.review_form_container');
+        $('.review_form_wrapper form').removeClass('_hidden');
+        $('.review_form_wrapper .review_form_successful_send').addClass('_hidden');
+
       }  else if ($('.layout_popup .recall_form_wrapper').length !== 0) {
+        $('.layout_popup .recall_form_wrapper [data-success]').addClass('_hidden');
+        $('.layout_popup .recall_form_wrapper form').removeClass('_hidden');
         $('.layout_popup .recall_form_wrapper')
         .appendTo('.popup_button_wrapper.recall_form_popup .recall_form_container');
+
       } else if ($('.popup_filter_bg').length !== 0) {
         $('.popup_filter_bg ._active').removeClass('_active');
         $('.popup_filter_bg .popup_gallery_container').addClass('_hidden');
@@ -181,8 +190,16 @@ export default class Main{
     .add('.reception_form_wrapper .close_icon_mobile')
     .add('.review_form_wrapper .close_icon')
     .add('.review_form_wrapper .close_icon_mobile')
+    .add('.recall_form_successful_send .close_icon')
+    .add('.recall_form_successful_send .close_icon_mobile')
     .on('click', function(e){
       closeLayoutPopup();
+    });
+
+    $('.content_block.recall_wrapper .recall_form_successful_send .close_icon')
+    .add('.content_block.recall_wrapper .recall_form_successful_send .close_icon_mobile') 
+    .on('click', function(e){
+      $(this).closest('.recall_form_successful_send').addClass('_hidden');
     });
 
     $('.recall_form_popup')
@@ -198,7 +215,6 @@ export default class Main{
     });
 
     //------- popup reception form -------
-
     $('.reception_button').on('click', function(e){
       closeDropdownMenu();
       $('.reception_form_container')
@@ -243,6 +259,12 @@ export default class Main{
     });
 
     //------- popup review form -------
+
+    $('.content_block.review_form_wrapper .review_form_successful_send._in_content_block .close_icon')
+    .add('.content_block.review_form_wrapper .review_form_successful_send._in_content_block .close_icon_mobile') 
+    .on('click', function(e){
+      $(this).closest('.review_form_successful_send').addClass('_hidden');
+    });
 
     $('.review_popup_button').on('click', function(e){
       closeDropdownMenu();

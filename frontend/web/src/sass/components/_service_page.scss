@@ -53,6 +53,10 @@
   ._custom_text_block{
     padding: 0 0 32px 0;
 
+    b,strong{
+      font-weight: bold;
+    }
+
     p{
       line-height: 24px;
       letter-spacing: 0.01em;
@@ -74,6 +78,7 @@
   }
 
   ._custom_inline_img{
+    padding: 0 24px 0 0;
     // display: block;
     // width: 100%;
     // height: auto;
@@ -278,6 +283,28 @@
       height: 100%;
       background: #ffffff;
     }
+
+    &._crossed_out{
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
+
+  .service_discount_price_value{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 3px 0;
+    background: #ffffff;
+    font-weight: 500;
+    color: $baseColor;
+
+    &:before{
+      content: "";
+      width: 5px;
+      height: 100%;
+      background: #ffffff;
+    }
   }
 
   .content_block.doctors_container{
@@ -285,6 +312,7 @@
     padding: 0 0 48px 40px;
 
     .swiper-slide{
+      width: auto;
       flex-shrink: 1;
     }
 
@@ -538,6 +566,7 @@
     padding: 0 40px 0 40px;
 
     .swiper-wrapper{
+      align-items: center;
       padding: 0 0 24px 0;
     }
   }
@@ -1235,8 +1264,7 @@
     }
 
     ._custom_inline_img{
-      width: 100%;
-      margin: 0 0 12px 0;
+      max-width: 100%;
     }
 
     .content_note{
@@ -1416,6 +1444,10 @@
         content: none;
       }
     }  
+
+    .service_discount_price_value{
+      padding: 4px 8px 0 0;
+    }
 
     .content_block.doctors_container{
       padding: 0 0 32px 16px;

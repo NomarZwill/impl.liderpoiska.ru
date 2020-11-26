@@ -66,19 +66,12 @@ class DentController extends MainController
          }
       }
 
-      // $doctors = Doctors::find()
-      //    ->where(['doctors.is_active' => 1])
-      //    ->joinWith('medicalSpecialties')
-      //    ->all();
-
-      // Doctors::modifyExperienceString($doctors);
-
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
-         // 'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
       $rawDraft = HcDraft::find()
@@ -97,7 +90,7 @@ class DentController extends MainController
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
          'draft' => $draft,
-         'headings' => $headings
+         'headings' => $headings,
       )); 
    }
 
@@ -128,12 +121,18 @@ class DentController extends MainController
          ->joinWith('servises')
          ->all();
 
-      $doctors = Doctors::find()
-         ->where(['doctors.is_active' => 1])
-         ->joinWith('medicalSpecialties')
-         ->all();
+      $doctors = DoctorsPageSort::find()
+      ->where(['page_type' => 'services', 'page_id' => $currentService[0]['servise_id']])
+      ->orderBy(['sort_index' => SORT_ASC])
+      ->joinWith('doctors')
+      ->all();
 
-      Doctors::modifyExperienceString($doctors);
+      foreach ($doctors as $item) {
+
+         foreach ($item->doctors as $doctor) {
+            $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+         }
+      }
 
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel]);
 
@@ -143,6 +142,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
       $rawDraft = HcDraft::find()
@@ -189,12 +189,18 @@ class DentController extends MainController
          ->where(['alias' => $secondLevel/*, 'is_active' => 1*/])
          ->all();
 
-      $doctors = Doctors::find()
-         ->where(['doctors.is_active' => 1])
-         ->joinWith('medicalSpecialties')
-         ->all();
+      $doctors = DoctorsPageSort::find()
+      ->where(['page_type' => 'services', 'page_id' => $currentService[0]['servise_id']])
+      ->orderBy(['sort_index' => SORT_ASC])
+      ->joinWith('doctors')
+      ->all();
 
-      Doctors::modifyExperienceString($doctors);
+      foreach ($doctors as $item) {
+
+         foreach ($item->doctors as $doctor) {
+            $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+         }
+      }
 
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel, $secondLevel]);
 
@@ -204,6 +210,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
       $rawDraft = HcDraft::find()
@@ -243,12 +250,18 @@ class DentController extends MainController
          ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
          ->all();
 
-      $doctors = Doctors::find()
-         ->where(['doctors.is_active' => 1])
-         ->joinWith('medicalSpecialties')
-         ->all();
+      $doctors = DoctorsPageSort::find()
+      ->where(['page_type' => 'services', 'page_id' => $currentService[0]['servise_id']])
+      ->orderBy(['sort_index' => SORT_ASC])
+      ->joinWith('doctors')
+      ->all();
 
-      Doctors::modifyExperienceString($doctors);
+      foreach ($doctors as $item) {
+
+         foreach ($item->doctors as $doctor) {
+            $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
+         }
+      }
    
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel, $secondLevel, $thirdLevel]);
 
@@ -257,6 +270,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
       $rawDraft = HcDraft::find()

@@ -63,7 +63,6 @@ return [
                 ['pattern'=>'/lizcenz/','route'=>'other/licenses', 'suffix'=>'/'],
                 ['pattern'=>'/garantii-na-stomatologicheskie-uslugi/','route'=>'other/warranty', 'suffix'=>'/'],
                 ['pattern'=>'/ajax-clinic-rating/','route'=>'site/ajax-clinic-rating', 'suffix'=>'/'],
-
             ],
         ],
     ],

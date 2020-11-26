@@ -87,7 +87,9 @@ export default class DoctorPage{
       $('body').addClass('_popup_mode');
     });
 
-    $('.popup_filter_bg .popup_lizcenz_wrapper').find('.close_icon').on('click', function(e){
+    $('.popup_filter_bg .popup_lizcenz_wrapper .close_icon')
+    .add('.popup_filter_bg .popup_lizcenz_wrapper .popup_close_button')
+    .on('click', function(e){
       $(this).closest('.popup_lizcenz_wrapper').addClass('_hidden');
       $('.popup_filter_bg').removeClass('_active');
       $('body').removeClass('_popup_mode');

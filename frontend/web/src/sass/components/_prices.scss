@@ -169,6 +169,28 @@
       height: 100%;
       background: #ffffff;
     }
+
+    &._crossed_out{
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+  }
+
+  .service_discount_price_value{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 3px 0;
+    background: #ffffff;
+    font-weight: 500;
+    color: $baseColor;
+
+    &:before{
+      content: "";
+      width: 5px;
+      height: 100%;
+      background: #ffffff;
+    }
   }
 
   .content_block{
@@ -365,7 +387,7 @@
 
     .service_price_wrapper{
       display: flex;
-      flex-flow: column nowrap;
+      flex-flow: row wrap;
       padding: 12px 0 12px 0;
       border-bottom: 1px solid #DADEE1;
 
@@ -396,6 +418,10 @@
         content: none;
       }
     }  
+
+    .service_discount_price_value{
+      padding: 4px 8px 0 0;
+    }
 
     .button_wrapper{
       padding: 4px 0 0 0;
