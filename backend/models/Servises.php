@@ -126,6 +126,14 @@ class Servises extends \yii\db\ActiveRecord
         return $childCounter;
     }
 
+    public function getSeo(){
+        return $seo = [
+            'title' => $this->servise_long_title,
+            'desc' => $this->servise_description,
+            'kw' => $this->keywords,
+        ];
+    }
+
     public function getPrices() {
         return $this->hasMany(Prices::className(), ['prices_id' => 'prices_id'])
             ->viaTable('service_and_prices', ['service_id' => 'servise_id']);

@@ -19,6 +19,8 @@ class MedSpecialtiesController extends MainController
       ->joinWith('reviews')
       ->one();
 
+    $this->setSeo($activeSpec->getSeo());
+
     // print_r($doctors);
     // exit;
       
@@ -27,5 +29,14 @@ class MedSpecialtiesController extends MainController
       'medicalSpecialtiesAll' => $medicalSpecialtiesAll,
       'csrf' => Yii::$app->request->getCsrfToken()
     ));
+  }
+
+  public function setSeo($seo){
+
+    if (!empty($seo)) {
+       $this->view->title = $seo['title'];
+       $this->view->params['desc'] = $seo['desc'];
+       $this->view->params['kw'] = $seo['kw'];
+    }
   }
 }

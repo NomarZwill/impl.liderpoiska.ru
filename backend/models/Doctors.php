@@ -135,6 +135,14 @@ class Doctors extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getSeo(){
+        return $seo = [
+            'title' => $this->doctor_long_title,
+            'desc' => $this->doctor_description,
+            'kw' => $this->keywords,
+        ];
+    }
+
     public function getMedicalSpecialties(){
         return $this->hasMany(MedicalSpecialties::className(), ['specialty_id' => 'specialty_id'])
             ->viaTable('doctors_med_spec', ['doctor_id' => 'doctor_id']);

@@ -16,9 +16,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'specialty_long_title')->textInput() ?>
     
-    <?= $form->field($model, 'introtext')->textarea(['rows' => 4]) ?>
+    <?= $form->field($model, 'specialty_description')->textarea(['rows' => 4]) ?>
 
     <?= $form->field($model, 'keywords')->textInput() ?>
+
+    <?= $form->field($model, 'introtext')->textarea(['rows' => 4]) ?>
 
     <?= $form->field($model, 'h1_title')->textInput() ?>
 
@@ -52,8 +54,6 @@ use yii\widgets\ActiveForm;
 
     <!-- <?= $form->field($model, 'specialty_title')->textarea(['rows' => 6]) ?> -->
     
-    <!-- <?= $form->field($model, 'specialty_description')->textarea(['rows' => 6]) ?> -->
-
     <!-- <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?> -->
 
     <!-- <?= $form->field($model, 'speciality_review')->textarea(['rows' => 6]) ?> -->

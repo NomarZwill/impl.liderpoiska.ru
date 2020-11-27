@@ -27,6 +27,8 @@ class DentController extends MainController
       // print_r($reviews[1]['review_text']);
       // exit;
 
+      $this->setSeo([]);
+
       $servises = Servises::find()
          // ->where(['is_active' => 1])
          ->asArray()
@@ -43,6 +45,8 @@ class DentController extends MainController
       $currentService = Servises::find()
          ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
          ->all();
+
+      $this->setSeo($currentService[0]->getSeo());
 
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -100,6 +104,8 @@ class DentController extends MainController
          ->joinWith('reviews')
          ->joinWith('faq')
          ->all();
+
+      $this->setSeo($currentService[0]->getSeo());
 
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -172,6 +178,8 @@ class DentController extends MainController
          ->where(['alias' => $thirdLevel/*, 'is_active' => 1*/])
          ->all();
 
+      $this->setSeo($currentService[0]->getSeo());
+
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
          ->all();
@@ -240,6 +248,8 @@ class DentController extends MainController
       $currentService = Servises::find()
          ->where(['alias' => $fourthLevel/*, 'is_active' => 1*/])
          ->all();
+
+      $this->setSeo($currentService[0]->getSeo());
 
       $servisesWithPrices = Servises::find()
          ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -313,4 +323,17 @@ class DentController extends MainController
          'rating' => $servise->service_page_rating,
       ]);
    } 
+
+   public function setSeo($seo){
+
+      if (!empty($seo)) {
+         $this->view->title = $seo['title'];
+         $this->view->params['desc'] = $seo['desc'];
+         $this->view->params['kw'] = $seo['kw'];
+      } else {
+         $this->view->title = 'Стоматологическиe услуги в Москве в Центре Эстетической Стоматологии';
+         $this->view->params['desc'] = 'Оказание стоматологических услуг в клинике ЦЭС в Москве';
+         $this->view->params['kw'] = '';
+      }
+  }
 }

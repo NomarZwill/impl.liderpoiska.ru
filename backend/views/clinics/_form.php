@@ -20,11 +20,11 @@ use backend\models\ImageGalleries;
 
     <?= $form->field($model, 'clinic_long_title')->textInput() ?>
 
-    <?= $form->field($model, 'card_title')->textInput() ?>
-
     <?= $form->field($model, 'clinic_description')->textInput() ?>
-
+    
     <?= $form->field($model, 'keywords')->textInput() ?>
+    
+    <?= $form->field($model, 'card_title')->textInput() ?>
 
     <?= $form->field($model, 'h1_title')->textInput() ?>
 

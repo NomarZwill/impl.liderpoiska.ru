@@ -18,7 +18,7 @@ class LicensesDocumentsPageSearch extends LicensesDocumentsPage
     {
         return [
             [['id'], 'integer'],
-            [['licenses', 'documents'], 'safe'],
+            [['documents'], 'safe'],
         ];
     }
 
@@ -61,8 +61,7 @@ class LicensesDocumentsPageSearch extends LicensesDocumentsPage
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'licenses', $this->licenses])
-            ->andFilterWhere(['like', 'documents', $this->documents]);
+        $query->andFilterWhere(['like', 'documents', $this->documents]);
 
         return $dataProvider;
     }

@@ -449,8 +449,7 @@
     padding: 0 0 48px 0;
 
     .swiper-slide{
-      width: 496px;
-      flex-shrink: 1;
+      width: auto;
     }
 
     .content_note{
@@ -517,6 +516,7 @@
 
   .service_video_item_wrapper{
     position: relative;
+    width: 496px;
   }
 
   .content_block.when_say_container{
@@ -590,12 +590,16 @@
 
   .before_after_item_wrapper{
     width: 496px;
-    height: auto;
+    height: 352px !important;
 
     img{
       width: 496px;
       height: auto;
     }
+  }
+
+  .twentytwenty-wrapper.twentytwenty-horizontal{
+    width: auto;
   }
 
   .twentytwenty-handle{

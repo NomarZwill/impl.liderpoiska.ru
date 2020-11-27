@@ -9,7 +9,6 @@ use yii\helpers\FileHelper;
  * This is the model class for table "licenses_documents_page".
  *
  * @property int $id
- * @property string $licenses
  * @property string $documents
  */
 class LicensesDocumentsPage extends \yii\db\ActiveRecord
@@ -31,7 +30,7 @@ class LicensesDocumentsPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['licenses', 'documents'], 'string'],
+            [['documents'], 'string'],
             [['licenses_gallery_images', 'documents_list'], 'safe'],
         ];
     }
@@ -43,7 +42,6 @@ class LicensesDocumentsPage extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'licenses' => 'Лицензии',
             'documents' => 'Документы',
             'licenses_gallery_images' => 'Лицензии для загрузки',
             'documents_list' => 'Документы для загрузки',
@@ -90,5 +88,11 @@ class LicensesDocumentsPage extends \yii\db\ActiveRecord
         //} else {
         //    return false;
         //}
+    }
+
+    public function getLicenses()
+    {
+        return $this->hasMany(LicensePageGalleries::className(), ['parent_id' => 'id'])
+            ->where(['gallery_type' => 'licenses']);
     }
 }

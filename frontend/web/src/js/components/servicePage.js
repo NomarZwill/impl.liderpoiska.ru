@@ -67,6 +67,7 @@ export default class ServicePage{
     var videoWrapper  = new Swiper('.service_video_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      // centeredSlides: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -92,12 +93,14 @@ export default class ServicePage{
       }
     });
 
+      
+
     var photoWrapper  = new Swiper('.before_after_gallery_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
       allowTouchMove: false,
       watchOverflow: true,
-      slideClass: 'twentytwenty-wrapper',
+      slideClass: 'twenty-swiper-container',
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -114,6 +117,18 @@ export default class ServicePage{
       },
     });
 
+    $(window).on("load", function() {
+      $('[data-page-type="service_page"] .before_after_item_wrapper').each(function(i, obj) {
+        let currentID = 'before_after_container' + (i + 1);
+        $(obj).attr('id', currentID)
+        $(('#' + currentID)).twentytwenty({
+            before_label: 'До',
+            after_label: 'После',
+        });
+        console.log('2020swiper');
+      });
+    });
+
     var reviewWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
@@ -127,6 +142,8 @@ export default class ServicePage{
         clickable: true,
       }
     });
+
+    
 
     
   }

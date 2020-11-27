@@ -55,7 +55,7 @@ class Deals extends \yii\db\ActiveRecord
             'deals_id' => 'ID',
             'deals_title' => 'Название',
             'deals_long_title' => 'Title',
-            'deals_description' => '',
+            'deals_description' => 'Description',
             'deals_index_description' => 'Описание в карточке (главная и листинг)',
             'keywords' => 'Ключевые слова',
             'h1_title' => 'Заголовок h1',
@@ -69,6 +69,14 @@ class Deals extends \yii\db\ActiveRecord
             'small_image' => 'Загруженное изображение превью',
             'deals_sort' => 'Позиция на страницах',
             'old_id' => 'Old ID',
+        ];
+    }
+
+    public function getSeo(){
+        return $seo = [
+            'title' => $this->deals_long_title,
+            'desc' => $this->deals_description,
+            'kw' => $this->keywords,
         ];
     }
 

@@ -72,8 +72,6 @@ use backend\models\LicensePageGalleries;
 
 <?php } ?>
 
-    <!-- <?= $form->field($model, 'licenses')->textarea(['rows' => 6]) ?> -->
-
     <!-- <?= $form->field($model, 'documents')->textarea(['rows' => 6]) ?> -->
 
     <div class="form-group">

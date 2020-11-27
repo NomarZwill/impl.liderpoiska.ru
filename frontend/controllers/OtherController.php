@@ -15,7 +15,7 @@ use backend\models\Reviews;
 use backend\models\Faq;
 use backend\models\PartnersDeals;
 use backend\models\DoctorsPageSort;
-// use backend\models\ReviewDoctorsRel;
+use backend\models\LicensesDocumentsPage;
 use common\models\api\Maps;
 
 
@@ -39,6 +39,12 @@ class OtherController extends MainController
       ->joinWith('imageGalleries')
       ->all();
 
+    $this->setSeo([
+      'title' => 'Филиалы ЦЭС',
+      'desc' => 'Адреса и телефоны всех филиалов ГК ЦЭС здесь: подробная информация о всех стоматологических клиниках в ЦЭС в Москве',
+      'kw' => '',
+    ]);
+
     // print_r($clinics);
     // exit;
     
@@ -55,6 +61,8 @@ class OtherController extends MainController
       ->with('reviews')
       ->joinWith('imageGalleries')
       ->one();
+
+    $this->setSeo($currentClinic->getSeo());
 
     $allData = DoctorsPageSort::find()
       ->where(['page_type' => 'clinics', 'page_id' =>  $currentClinic['clinic_id']])
@@ -82,6 +90,12 @@ class OtherController extends MainController
 
   public function actionPartners(){
 
+    $this->setSeo([
+      'title' => 'Партнеры ЦЭС',
+      'desc' => 'Партнеры ГК ЦЭС в Москве. Предложения от партнеров, скидки',
+      'kw' => '',
+    ]);
+
     $gifts = PartnersDeals::find()->where(['is_active' => 1])->all();
 
     // print_r($gifts);
@@ -93,6 +107,12 @@ class OtherController extends MainController
   }
 
   public function actionPrices(){
+
+    $this->setSeo([
+      'title' => 'Цены на стоматологические услуги ЦЭС',
+      'desc' => 'Прейскурант цен на стоматологические услуги в Москве. Цены на лечение зубов в клинике «Центр эстетической стоматологии».',
+      'kw' => '',
+    ]);
 
     $firstLevelParents = Servises::find()
       ->where(['servises.parent_id' => 0/*, 'is_active' => 1*/])
@@ -127,10 +147,23 @@ class OtherController extends MainController
 
   public function actionAbout(){
 
+    $this->setSeo([
+      'title' => 'О компании ЦЭС',
+      'desc' => 'Подробная информация про Центр Эстетической стоматологии в Москве. Вступительное слово главного врача',
+      'kw' => '',
+    ]);
+
     return $this->render('about.twig');  
   }
 
   public function actionSpecialDeals(){
+
+    $this->setSeo([
+      'title' => 'Спецпредложения от стоматологии ЦЭС',
+      'desc' => 'Все спецпредложения и акции от ГК ЦЭС в Москве. Интересные предложения, выгодные условия и скидки',
+      'kw' => '',
+    ]);
+
     $deals = Deals::find()
       ->where(['is_active' => 1])
       ->orderBy(['deals_sort' => SORT_ASC])
@@ -139,12 +172,14 @@ class OtherController extends MainController
     return $this->render('specialDealsListing.twig', array(
       'deals' => $deals
     ));  
-   }
+  }
 
   public function actionSpecialDeal($deal){
     $deal = Deals::find()
       ->where(['deals.alias' => $deal, 'is_active' => 1])
       ->one();
+
+    $this->setSeo($deal->getSeo());
 
     return $this->render('specialDealPage.twig', array(
       'deal' => $deal
@@ -152,6 +187,13 @@ class OtherController extends MainController
   }
   
   public function actionReviews(){
+
+    $this->setSeo([
+      'title' => 'Отзывы о стоматологах Москвы',
+      'desc' => 'Отзывы клиентов Центра эстетической стоматологии в Москве: честные отзывы за долгое время работы',
+      'kw' => '',
+    ]);
+
     $reviews = Reviews::find()
       ->where(['year' => date('Y')])
       ->limit(5)
@@ -213,6 +255,13 @@ class OtherController extends MainController
   }
 
   public function actionFaq(){
+
+    $this->setSeo([
+      'title' => 'Вопросы и ответы из стоматологии',
+      'desc' => 'Вопросы врачам ГК ЦЭС. Подробные ответы специалистов по интересующим вопросам из стоматологии',
+      'kw' => '',
+    ]);
+
     $faq = Faq::find()
       ->limit(7)
       ->all();
@@ -249,11 +298,41 @@ class OtherController extends MainController
 
   public function actionLicenses(){
 
-    return $this->render('licenses.twig'); 
+    $pageMedia = LicensesDocumentsPage::find()
+      ->where(['licenses_documents_page.id'=> 1])
+      ->joinWith('licenses')
+      ->one();
+
+    // echo '<pre>';
+    // print_r($pageMedia->licenses);
+    // exit;
+
+    $this->setSeo([
+      'title' => 'Лицензии и реквизиты ЦЭС',
+      'desc' => 'Лицензии и реквизиты ГК ЦЭС. Фото',
+      'kw' => '',
+    ]);
+
+    return $this->render('licenses.twig', array(
+      'pageMedia' => $pageMedia,
+    )); 
   }
 
   public function actionWarranty(){
 
     return 'actionWarranty';
+  }
+
+  public function setSeo($seo){
+
+    if (!empty($seo)) {
+       $this->view->title = $seo['title'];
+       $this->view->params['desc'] = $seo['desc'];
+       $this->view->params['kw'] = $seo['kw'];
+    } else {
+       $this->view->title = 'Стоматологическиe услуги в Москве в Центре Эстетической Стоматологии';
+       $this->view->params['desc'] = 'Оказание стоматологических услуг в клинике ЦЭС в Москве';
+       $this->view->params['kw'] = '';
+    }
   }
 }

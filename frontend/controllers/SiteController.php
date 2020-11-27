@@ -74,6 +74,12 @@ class SiteController extends MainController
 
     public function actionError(){
 
+        $this->setSeo([
+            'title' => 'Страница не найдена!',
+            'desc' => '',
+            'kw' => '',
+        ]);
+
         return $this->render('404.twig');
     }
 
@@ -84,6 +90,12 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
+        $this->setSeo([
+            'title' => 'Эстетическая стоматология в центре Москвы. Центр Эстетической Стоматологии',
+            'desc' => 'Центр Эстетической Стоматологии - профессиональная частная клиника в Москве. Все направления в стоматологии. Лучшие врачи. Доступные цены',
+            'kw' => '',
+        ]);
+
         $deals = Deals::find()
             ->where(['is_active' => 1])
             ->orderBy(['deals_sort' => SORT_ASC])
@@ -133,7 +145,16 @@ class SiteController extends MainController
               'clinicRatings' => $rating,
             )),
           ]);
-      }
+    }
+
+    public function setSeo($seo){
+
+        if (!empty($seo)) {
+           $this->view->title = $seo['title'];
+           $this->view->params['desc'] = $seo['desc'];
+           $this->view->params['kw'] = $seo['kw'];
+        }
+    }
 
     /**
      * Logs in a user.

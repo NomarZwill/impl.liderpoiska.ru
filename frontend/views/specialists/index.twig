@@ -46,21 +46,17 @@
         
           {% if clinic.clinic_id != 5 %}
 
-            <a href="/contacts/{{clinic.alias}}">
+            <div
+                class="swiper-slide clinic_card_wrapper">
 
-              <div
-                  class="swiper-slide clinic_card_wrapper">
+                <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
+                <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
+                <div class="clinic_phone">
+                  Тел.: {{clinic.main_phone | raw}}
+                </div>
+                
 
-                  <a class="clinic_title _link">{{clinic.card_title}}</a>
-                  <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
-                  <div class="clinic_phone">
-                    Тел.: {{clinic.main_phone | raw}}
-                  </div>
-                  
-
-              </div>
-
-            </a>
+            </div>
 
           {% endif %}
 
@@ -85,7 +81,7 @@
 
           <div class="clinic_card_wrapper">
 
-            <p class="clinic_title _link">{{clinic.card_title}}</p>
+            <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
             <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
             <div class="clinic_phone">
               Тел.: {{clinic.main_phone | raw}}

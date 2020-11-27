@@ -124,10 +124,12 @@
   
       <div class="swiper-wrapper">
 
-        {% for i in range(0, 10) %}
+
+
+        {% for item in pageMedia.licenses %}
   
-        <a class="swiper-slide lizcenz_item" href="/img/licenses/111.jpeg">
-          <img src="/img/licenses/111_min.jpeg" alt="">
+        <a class="swiper-slide lizcenz_item" href="/{{item.filepath}}">
+          <img src="/{{item.filepath}}" alt="">
         </a>
 
         {% endfor %}

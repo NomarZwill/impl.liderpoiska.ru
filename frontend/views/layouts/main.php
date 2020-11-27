@@ -19,8 +19,10 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $this->title ?></title>
+    <?php if (!empty($this->params['desc'])) echo "<meta name='description' content='" . $this->params['desc'] . "'>";?>
+    <?php if (!empty($this->params['kw'])) echo "<meta name='keywords' content='" . $this->params['kw'] . "'>";?>
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -295,21 +297,3 @@ AppAsset::register($this);
 <script src="/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
 <script src="/node_modules/zurb-twentytwenty/js/jquery.event.move.js" type="text/javascript"></script>
 <script src="/node_modules/zurb-twentytwenty/js/jquery.twentytwenty.js" type="text/javascript"></script>
-
-<script>
-    // для слайдера "до"/"после" на странице услуги
-    $(document).ready(function() {
-        var currentID = null;
-        if ($('[data-page-type="service_page"]').length !== 0) {
-            $('[data-page-type="service_page"] .before_after_item_wrapper').each(function(i, obj) {
-                currentID = 'before_after_container' + (i + 1);
-                $(obj).attr('id', currentID)
-                $(('#' + currentID)).twentytwenty({
-                    before_label: 'До',
-                    after_label: 'После',
-                });
-            });
-        };
-        console.log('20/20');
-    });
-</script>

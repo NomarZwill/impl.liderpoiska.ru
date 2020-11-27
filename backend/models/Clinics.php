@@ -61,7 +61,7 @@ class Clinics extends \yii\db\ActiveRecord
             'clinic_id' => 'ID',
             'clinic_title' => 'Название',
             'clinic_long_title' => 'Title',
-            'clinic_description' => 'Описание клиники',
+            'clinic_description' => 'Описание',
             'alias' => 'Alias',
             'card_title' => 'Короткое название для карточек клиник',
             'h1_title' => 'Заголовок h1',
@@ -85,6 +85,14 @@ class Clinics extends \yii\db\ActiveRecord
             'clinic_mail' => 'Почта',
             'cinic_gallery_images' => 'Загруженное изображение для галереи',
             'old_id' => 'Old ID',
+        ];
+    }
+
+    public function getSeo(){
+        return $seo = [
+            'title' => $this->clinic_long_title,
+            'desc' => $this->clinic_description,
+            'kw' => $this->keywords,
         ];
     }
 

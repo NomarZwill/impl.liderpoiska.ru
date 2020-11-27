@@ -18,10 +18,12 @@ use yii\helpers\Url;
     <?= $form->field($model, 'deals_title')->textInput() ?>
 
     <?= $form->field($model, 'deals_long_title')->textInput() ?>
-    
-    <?= $form->field($model, 'deals_index_description')->textarea(['rows' => 4]) ?>
 
+    <?= $form->field($model, 'deals_description')->textInput() ?>
+    
     <?= $form->field($model, 'keywords')->textInput() ?>
+
+    <?= $form->field($model, 'deals_index_description')->textarea(['rows' => 4]) ?>
 
     <?= $form->field($model, 'h1_title')->textInput() ?>
 
@@ -83,8 +85,6 @@ use yii\helpers\Url;
     <?php } ?>
 
     <?= $form->field($model, 'deals_sort')->textInput() ?>
-
-    <!-- <?= $form->field($model, 'deals_description')->textInput() ?> -->
 
     <!-- <?= $form->field($model, 'old_id')->textInput() ?> -->
 

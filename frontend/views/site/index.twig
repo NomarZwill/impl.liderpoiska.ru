@@ -376,7 +376,7 @@
             data-opening-sun="{{clinic.clinic_opening_sun}}"
             >
 
-              <p class="clinic_title">{{clinic.card_title}}</p>
+              <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
               <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
 
             </div>
@@ -414,7 +414,7 @@
             data-opening-sun="{{clinic.clinic_opening_sun}}"
           >
 
-            <p class="clinic_title">{{clinic.clinic_title}}</p>
+            <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
             <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
 
           </div>

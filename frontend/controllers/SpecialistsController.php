@@ -22,6 +22,8 @@ class SpecialistsController extends MainController
 {
 
   public function actionIndex(){
+    $this->setSeo([]);
+
     $clinics = Clinics::find()->all();
     $medicalSpecialties = MedicalSpecialties::find()
       ->where(['is_active' => 1])
@@ -52,6 +54,8 @@ class SpecialistsController extends MainController
       ->joinWith('reviews')
       ->where(['doctors.alias' => $doctor])
       ->one();
+
+    $this->setSeo($doc->getSeo());
 
     $draft = HcDraft::find()
     ->where(['id' => $doc->doctor_hc_draft_id])
@@ -132,4 +136,17 @@ class SpecialistsController extends MainController
       ]);
     }
   }
+
+  public function setSeo($seo){
+
+    if (!empty($seo)) {
+       $this->view->title = $seo['title'];
+       $this->view->params['desc'] = $seo['desc'];
+       $this->view->params['kw'] = $seo['kw'];
+    } else {
+       $this->view->title = 'Врачи стоматологи ЦЭС в Москве';
+       $this->view->params['desc'] = 'Все филиалы и главные врачи стоматологии ЦЭС в Москве. Подробная информация';
+       $this->view->params['kw'] = '';
+    }
+}
 }

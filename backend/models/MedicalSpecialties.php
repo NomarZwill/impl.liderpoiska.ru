@@ -57,7 +57,7 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
             'specialty_title' => 'Название',
             'h1_title' => 'Заголовок h1',
             'specialty_long_title' => 'Title',
-            'specialty_description' => 'Краткое описание',
+            'specialty_description' => 'Описание',
             'breadcrumbs_title' => 'Название в хлебной крошке',
             'introtext' => 'Вводный текст',
             'alias' => 'Alias',
@@ -80,6 +80,14 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
             'keywords' => 'Ключевые слова',
             'specialty_sort' => 'Сортировка на страницах специальностей',
             'old_id' => 'Old ID',
+        ];
+    }
+
+    public function getSeo(){
+        return $seo = [
+            'title' => $this->specialty_long_title,
+            'desc' => $this->specialty_description,
+            'kw' => $this->keywords,
         ];
     }
 
