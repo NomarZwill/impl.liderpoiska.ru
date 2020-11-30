@@ -26,15 +26,15 @@ export default class ServicePage{
       $('html,body').animate({scrollTop:$('.service_description p').offset().top}, 400);
     });
 
-    if ($('.subservice_listing_item').length > 5) {
-      $('.prices_wrapper .show_all').removeClass('_hidden');
-      $('.prices_wrapper').addClass('_compact');
-    }
+    // if ($('.subservice_listing_item').length > 5) {
+    //   $('.prices_wrapper .show_all').removeClass('_hidden');
+    //   $('.prices_wrapper').addClass('_compact');
+    // }
 
-    $('.prices_wrapper .read_more').on('click', function(e){
-      $('.prices_wrapper .show_all').addClass('_hidden');
-      $('.prices_wrapper').removeClass('_compact');
-    });
+    // $('.prices_wrapper .read_more').on('click', function(e){
+    //   $('.prices_wrapper .show_all').addClass('_hidden');
+    //   $('.prices_wrapper').removeClass('_compact');
+    // });
 
     $('.subservice_wrapper .collapse_wrapper').on('click', function(e){
 
@@ -67,7 +67,7 @@ export default class ServicePage{
     var videoWrapper  = new Swiper('.service_video_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
-      // centeredSlides: true,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -82,6 +82,7 @@ export default class ServicePage{
     var photoGalleryWrapper  = new Swiper('.photo_gallery_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -132,6 +133,7 @@ export default class ServicePage{
     var reviewWrapper  = new Swiper('.reviews_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'

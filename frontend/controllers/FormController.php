@@ -17,6 +17,19 @@ class FormController extends Controller
         'phone' => isset($_POST['phone']) ? $_POST['phone'] : '',
       ];
 
+      $msg = $this->renderPartial('/emails/callback.twig', array(
+        'mailInfo' => $mailInfo,
+      ));
+
+      $message = Yii::$app->mailer->compose()
+        ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
+        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setSubject('Заказ обратного звонка')
+        ->setCharset('utf-8')
+        ->setHtmlBody($msg);
+
+      $message->send();
+
       return json_encode([
         'error' => 0,
         'name' => isset($_POST['name']) ? $_POST['name'] : '',
@@ -42,6 +55,19 @@ class FormController extends Controller
         'email' => isset($_POST['email']) ? $_POST['email'] : '',
       ];
 
+      $msg = $this->renderPartial('/emails/reception.twig', array(
+        'mailInfo' => $mailInfo,
+      ));
+
+      $message = Yii::$app->mailer->compose()
+        ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
+        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setSubject('Запись на приём')
+        ->setCharset('utf-8')
+        ->setHtmlBody($msg);
+
+      $message->send();
+
       return json_encode([
         'error' => 0,
         'name' => isset($_POST['name']) ? $_POST['name'] : '',
@@ -61,9 +87,22 @@ class FormController extends Controller
 
       $mailInfo = [
         'name' => isset($_POST['name']) ? $_POST['name'] : '',
-        'age' => isset($_POST['phone']) ? $_POST['phone'] : '',
+        'age' => isset($_POST['age']) ? $_POST['age'] : '',
         'review' => isset($_POST['review']) ? $_POST['review'] : '',
       ];
+
+      $msg = $this->renderPartial('/emails/review.twig', array(
+        'mailInfo' => $mailInfo,
+      ));
+
+      $message = Yii::$app->mailer->compose()
+        ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
+        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setSubject('Отзыв с сайта')
+        ->setCharset('utf-8')
+        ->setHtmlBody($msg);
+
+      $message->send();
 
       return json_encode([
         'error' => 0,
@@ -88,6 +127,19 @@ class FormController extends Controller
         'phone' => isset($_POST['phone']) ? $_POST['phone'] : '',
         'email' => isset($_POST['email']) ? $_POST['email'] : '',
       ];
+
+      $msg = $this->renderPartial('/emails/faq.twig', array(
+        'mailInfo' => $mailInfo,
+      ));
+
+      $message = Yii::$app->mailer->compose()
+        ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
+        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setSubject('Вопрос с сайта')
+        ->setCharset('utf-8')
+        ->setHtmlBody($msg);
+
+      $message->send();
 
       return json_encode([
         'error' => 0,

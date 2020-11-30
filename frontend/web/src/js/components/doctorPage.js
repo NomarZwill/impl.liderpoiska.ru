@@ -32,6 +32,7 @@ export default class DoctorPage{
     var clinicsWrapper  = new Swiper('.clinics_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 16,
+      watchOverflow: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -127,6 +128,21 @@ export default class DoctorPage{
     };
 
     setIDToGalleries();
+
+    function declOfNum(number, titles) {  
+      var cases = [2, 0, 1, 1, 1, 2];  
+      return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+    }
+  
+    function setTotalSlidesOverThumbs(){
+      $popupGalleries.each(function(i, obj){
+        var itemCount = $(obj).find('.popup_gallery .swiper-slide.doctor_work_item._popup').length;
+        var itemString = itemCount + ' ' + declOfNum(itemCount, ['фотография', 'фотографии', 'фотографий']);
+        $(obj).closest('.doctor_work_item').find('.inner_gallery_button').html(itemString);
+      });
+    }
+
+    setTotalSlidesOverThumbs();
 
     $('.doctor_work_example .doctor_work_image')
     .add('.doctor_work_example .inner_gallery_button')

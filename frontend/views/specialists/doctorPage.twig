@@ -75,18 +75,37 @@
 
     <div class="chapter_link_container">
       
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#video">Видео</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#lizcenz">Сертификаты</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#education">Образование</a>
-      </div>
-      <div class="chapter_link_wrapper">
-        <a class="chapter_link _menu_link_dashed_black" href="#work_example">Примеры работ</a>
-      </div>
+      {% if doc.doctorsVideos|length > 0 %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#video">Видео</a>
+        </div>
+
+      {% endif %}
+
+      {% if doc.doctorsLizenzes|length > 0 %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#lizcenz">Сертификаты</a>
+        </div>
+
+      {% endif %}
+
+      {% if doc.doctor_education|length > 0 %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#education">Образование</a>
+        </div>
+
+      {% endif %}
+
+      {% if draft|length > 0 %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#work_example">Примеры работ</a>
+        </div>
+
+      {% endif %}
 
       {% if doc.reviews|length > 0 %}
 
@@ -99,6 +118,8 @@
     </div>
     
   </div>
+
+  {% if doc.doctorsVideos|length > 0 %}
 
   <div class="content_block doctor_video_container">
     <a name="video"></a>
@@ -113,7 +134,7 @@
 
       <div class="swiper-wrapper">
 
-      {% for video in doc.doctorsGalleries %}
+      {% for video in doc.doctorsVideos %}
 
         {% if video.block_type == 'video' %}
 
@@ -148,19 +169,9 @@
 
   </div>
 
-  {# <div class="content_block doctor_video">
-    
+  {% endif %}
 
-    <h2>Видео о враче</h2>
-
-    <div class="video_item_wrapper">
-      <div id="video_item"></div>
-      <div class="play_button_wrapper">
-        <button class="play_button"></button>
-      </div>
-    </div>
-
-  </div> #}
+  {% if doc.doctorsLizenzes|length > 0 %}
 
   <div class="content_block doctor_lizcenz">
 
@@ -172,12 +183,12 @@
   
       <div class="swiper-wrapper">
 
-      {% for lizcenz in doc.doctorsGalleries %}
+      {% for lizcenz in doc.doctorsLizenzes %}
 
         {% if lizcenz.block_type == 'lizcenz' %}
 
           <div class="swiper-slide lizcenz_item" data-full-img="/images/uploaded/doctors/{{doc.doctor_id}}/lizcenz/{{lizcenz.filepath}}">
-            <img src="/images/uploaded/doctors/{{doc.doctor_id}}/lizcenz/{{lizcenz.filepath}}" alt="">
+            <img src="/images/uploaded/doctors/{{doc.doctor_id}}/lizcenz/thumbnail_{{lizcenz.filepath}}" alt="">
           </div>
 
         {% endif %}
@@ -197,6 +208,10 @@
 
   </div>
 
+  {% endif %}
+
+  {% if doc.doctor_education|length > 0 %}
+
   <div class="content_block doctor_education">
 
     <a name="education"></a>
@@ -214,52 +229,9 @@
 
   </div>
 
+  {% endif %}
+
   {{draft | raw}}
-
-  {# <div class="content_block doctor_work_example">
-
-    <a name="work_example"></a>
-
-    <h2>Примеры работы</h2>
-
-    <div class="swiper-container doctor_work_wrapper">
-
-      <div class="swiper-wrapper">
-
-        {% for i in 1..10 %}
-    
-          <div class="swiper-slide doctor_work_item">
-
-            <div class="doctor_work_image" style="background: url('/img/test_img/professionalnaya-gigiena-4.jpg'); background-size: cover;" data-gallery-id="{{i}}">
-
-              <div class="bg_filter">
-                <button class="_button _button_light">Смотреть фотографии</button>
-              </div>
-
-            </div>
-
-            <p>
-              <span>Детское протезирование после травмы</span> 
-              <br>
-              <button class="inner_gallery_button">2 фотографии</button>
-            </p>
-
-          </div>
-
-        {% endfor %}
-
-      </div>
-
-      <div class="swiper-pagination revolver_pagination"></div>
-
-      <div class="revolver_navigation_wrapper">
-        <div class="swiper-button-prev revolver_navigation"></div>
-        <div class="swiper-button-next revolver_navigation"></div>
-      </div>
-  
-    </div>
-
-  </div> #}
 
   {% if doc.reviews|length > 0 %} 
 

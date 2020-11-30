@@ -12,6 +12,22 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            //'viewPath' => '@common/mail',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'impl-stom@yandex.ru',
+                'password' => 'gireveqbrlrwpofm',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
+            'messageConfig' => [
+                'charset' => 'UTF-8',
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

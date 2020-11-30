@@ -24,6 +24,18 @@ AppAsset::register($this);
     <?php if (!empty($this->params['kw'])) echo "<meta name='keywords' content='" . $this->params['kw'] . "'>";?>
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
+
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '693345340845343'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=693345340845343&ev=PageView&noscript=1"/></noscript>
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -53,8 +65,8 @@ AppAsset::register($this);
         <div class="contacts_container">
     
             <div class="phones">
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
             </div>
     
             <div class="work_hours">
@@ -125,8 +137,8 @@ AppAsset::register($this);
         <div class="mobile_mini_footer">
 
             <div class="phones">
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
             </div>
 
             <div class="work_hours">
@@ -166,8 +178,8 @@ AppAsset::register($this);
             <div class="contacts_wrapper">
 
                 <div class="phones">
-                    <a href="tel:4951502716">+7 (495) 150-27-16</a>
                     <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                    <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 </div>
         
                 <div class="work_hours">
@@ -241,8 +253,8 @@ AppAsset::register($this);
             </a>
 
             <div class="phones">
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
             </div>
     
             <div class="work_hours">
@@ -288,6 +300,42 @@ AppAsset::register($this);
     </div>
 
 </footer>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter24588914 = new Ya.Metrika({id:24588914,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78425286-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 <?php $this->endBody() ?>
 </body>

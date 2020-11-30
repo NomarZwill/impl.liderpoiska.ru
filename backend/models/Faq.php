@@ -62,6 +62,11 @@ class Faq extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getDoctor(){
+        return $this->hasOne(Doctors::className(), ['doctor_id' => 'doctor_for_answer_id'])
+            ->joinWith('medicalSpecialties');
+    }
+
     public function afterSave($insert, $changedAttributes){
 
         if (!empty($this->faq_service_rel)) {

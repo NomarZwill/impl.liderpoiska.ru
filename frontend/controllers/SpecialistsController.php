@@ -13,7 +13,7 @@ use backend\models\DoctorsPageSort;
 use common\html_constructor\models\HcDraft;
 
 // use backend\models\DoctorsAndClinics;
-// use backend\models\Servises;
+use backend\models\Servises;
 // use backend\models\DoctorsServicesRel;
 // use backend\models\Faq;
 // use backend\models\FaqServicesRel;
@@ -32,8 +32,19 @@ class SpecialistsController extends MainController
 
     // $servises = Servises::find()->all();
     // foreach ($servises as $servise) {
-    //     $servise->header_menu_title = $servise->menu_title;
-    //     $servise->save();
+    //   $meds = explode('||', $servise->medic_to_service);
+    //   foreach ($meds as $med) {
+    //     if ($med === '41') {
+    //       // echo $servise->servise_id;
+    //       // echo '<br>';
+    //       $tmp = new DoctorsServicesRel();
+    //       $tmp->doctor_id = 8;
+    //       $tmp->service_id = $servise->servise_id;
+    //       $tmp->save();
+
+    //     }
+    //   }
+        // $servise->save();
     // }
     // exit;
 
@@ -50,7 +61,9 @@ class SpecialistsController extends MainController
     $doc = Doctors::find()
       ->joinWith('medicalSpecialties')
       ->joinWith('doctorsAndClinics')
-      ->joinWith('doctorsGalleries')
+      // ->joinWith('doctorsGalleries')
+      ->with('doctorsVideos')
+      ->with('doctorsLizenzes')
       ->joinWith('reviews')
       ->where(['doctors.alias' => $doctor])
       ->one();

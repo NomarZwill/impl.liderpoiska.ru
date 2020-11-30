@@ -16,13 +16,28 @@
 
     <div class="signature_wrapper">
 
-      <div class="signature_image"></div>
+      <div class="signature_image" style="background: url(/images/uploaded/doctors/{{item.doctor.doctor_id}}/{{item.doctor.doctor_image}}); background-size: cover;">
+      </div>
 
       <div class="signature_text">
 
-        <a class="_link_black" href="/">Пастьян Андрей Альбертович</a>
+        <a class="_link_black" href="/specialists/{{item.doctor.alias}}">{{item.doctor.doctor_title}}</a>
+        <p>
+          {% for spec in item.doctor.medicalSpecialties %}
 
-        <p>хирург-имплантолог, стоматолог-хирург</p>
+            {% if loop.last %}
+
+              <span>{{spec.menu_title | raw}}</span>
+
+            {% else %}
+
+              <span>{{spec.menu_title | raw}}, </span>
+
+            {% endif %}
+
+          {% endfor %}
+        </p>
+        
 
       </div>
 

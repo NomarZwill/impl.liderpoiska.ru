@@ -116,14 +116,8 @@ class SiteController extends MainController
 
         // $data = json_decode(file_get_contents('https://www.impl.ru/vyigruzka-dannyix/'), TRUE);
 
-        // foreach ($data['reviews'] as $key => $value) {
-        //     $review = Reviews::find()->where(['reviews.old_id' => $value['id']])->one();
-        //     print_r($value['id']);
-        //     $review->date = $value['publishedon'];
-        //     $review->save();
-        //      break;
+        // foreach ($data['doctors'] as $key => $value) {
         // }
-        // print_r($doctors);
         // exit;
 
         return $this->render('index.twig', array(

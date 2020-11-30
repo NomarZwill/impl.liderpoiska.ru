@@ -130,8 +130,9 @@ class DoctorsController extends Controller
 
         $image = DoctorsPageGalleries::findOne($image_id);
         $path = 'images/uploaded/doctors/'. $event_id . '/lizcenz/' . $image->filepath;
+        $thumbPath = 'images/uploaded/doctors/'. $event_id . '/lizcenz/' . 'thumbnail_' . $image->filepath;
 
-        if (unlink($path)) {
+        if (unlink($path) && unlink($thumbPath)) {
           $image->delete();
           return ['success' => 'Удалено'];
         }

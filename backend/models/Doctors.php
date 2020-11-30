@@ -4,6 +4,10 @@ namespace backend\models;
 
 use Yii;
 use yii\helpers\FileHelper;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 use \common\html_constructor\models\HcDraft;
 use \common\components\Transliteration;
 
@@ -187,6 +191,18 @@ class Doctors extends \yii\db\ActiveRecord
             
     }
 
+    public function getDoctorsVideos(){
+        $videos = $this->hasMany(DoctorsPageGalleries::className(), ['doctor_id' => 'doctor_id'])
+            ->where(['block_type' => 'video']);
+        return $videos;
+    }
+
+    public function getDoctorsLizenzes(){
+        $lizenzes = $this->hasMany(DoctorsPageGalleries::className(), ['doctor_id' => 'doctor_id'])
+            ->where(['block_type' => 'lizcenz']);
+        return $lizenzes;
+    }
+
     public function uploadImage()
     {
         if ($this->validate()) {
@@ -207,11 +223,19 @@ class Doctors extends \yii\db\ActiveRecord
                 foreach ($this->doctor_lizcenz_gallery as $file) {
                     $path = 'images/uploaded/doctors/'. $this->doctor_id . '/lizcenz/';
                     FileHelper::createDirectory($path);
-                    $file->saveAs($path . time() . '_' . $iter . '.' . $file->extension);
+                    $file_name = time() . '_' . $iter . '.' . $file->extension;
+                    $file->saveAs($path . $file_name);
+
+                    $alias_front = Yii::getAlias('@frontend/web');
+                    Image::getImagine()
+                        ->open($alias_front . '/' . $path . $file_name)
+                        ->thumbnail(new Box(192, 270))
+                        ->save($alias_front . '/' . $path . 'thumbnail_' . $file_name , ['quality' => 90]);
+
                     $gallery = new DoctorsPageGalleries();
                     $gallery->doctor_id = $this->doctor_id;
                     $gallery->block_type = 'lizcenz';
-                    $gallery->filepath = time() . '_' . $iter . '.' . $file->extension;
+                    $gallery->filepath = $file_name;
                     $gallery->save();
                     $iter++;     
                 }
@@ -359,7 +383,7 @@ class Doctors extends \yii\db\ActiveRecord
             }
     
             // обработка данных о сортировке на страницах специальностей
-            if (!empty($this->doctor_spec_sort)) {
+            if (!empty($this->doctor_spec_sort) && !empty($this->doctor_spec_rel)) {
     
                 if (count($this->doctor_spec_rel) > 1) {
     
@@ -401,7 +425,7 @@ class Doctors extends \yii\db\ActiveRecord
                             $doctorSpecSort->doctor_id = $this->doctor_id;
                             $doctorSpecSort->page_type = 'medSpeciality';
                             $doctorSpecSort->page_id = $key;
-                            $doctorSpecSort->sort_index = $value[0];
+                            $doctorSpecSort->sort_index = isset($value[0]) ? $value[0] : 0;
                             $doctorSpecSort->save();
                         }
                     }
@@ -418,7 +442,11 @@ class Doctors extends \yii\db\ActiveRecord
             }
     
             // обработка данных о сортировке на страницах услуг
-            if (!empty($this->doctor_service_sort)) {
+            if (!empty($this->doctor_service_sort) && !empty($this->doctor_service_rel)) {
+
+                // echo '<pre>';
+                // print_r($this->doctor_service_rel);
+                // exit;
     
                 if (count($this->doctor_service_rel) > 1) {
     
@@ -456,11 +484,14 @@ class Doctors extends \yii\db\ActiveRecord
                                 $currentSortItem->save();
                             }
                         } else {
+                            // echo '<pre>';
+                            // print_r($this->doctor_service_sort);
+                            // exit;
                             $doctorServiceSort = new DoctorsPageSort();
                             $doctorServiceSort->doctor_id = $this->doctor_id;
                             $doctorServiceSort->page_type = 'services';
                             $doctorServiceSort->page_id = $key;
-                            $doctorServiceSort->sort_index = $value[0];
+                            $doctorServiceSort->sort_index = isset($value[0]) ? $value[0] : 0;
                             $doctorServiceSort->save();
                         }
                     }
@@ -476,7 +507,7 @@ class Doctors extends \yii\db\ActiveRecord
             }
     
             // обработка данных о сортировке на страницах клиник
-            if (!empty($this->doctor_clinic_sort)) {
+            if (!empty($this->doctor_clinic_sort) && !empty($this->doctor_clinic_rel)) {
     
                 if (count($this->doctor_clinic_rel) > 1) {
     
@@ -518,7 +549,7 @@ class Doctors extends \yii\db\ActiveRecord
                             $doctorClinicSort->doctor_id = $this->doctor_id;
                             $doctorClinicSort->page_type = 'clinics';
                             $doctorClinicSort->page_id = $key;
-                            $doctorClinicSort->sort_index = $value[0];
+                            $doctorClinicSort->sort_index = isset($value[0]) ? $value[0] : 0;
                             $doctorClinicSort->save();
                         }
                     }

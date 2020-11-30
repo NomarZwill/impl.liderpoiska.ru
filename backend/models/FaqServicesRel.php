@@ -53,4 +53,9 @@ class FaqServicesRel extends \yii\db\ActiveRecord
         }
         return $faqServiceIDList;
     }
+
+    public function getFaq() {
+        return $this->hasMany(Faq::className(), ['faq_id' => 'faq_id'])
+            ->joinWith('doctor');
+    }
 }

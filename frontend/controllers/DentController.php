@@ -9,6 +9,7 @@ use backend\models\Prices;
 use backend\models\Doctors;
 use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
+use backend\models\FaqServicesRel;
 use backend\models\DoctorsPageSort;
 use common\html_constructor\models\HcDraft;
 
@@ -70,11 +71,17 @@ class DentController extends MainController
          }
       }
 
+      $faq = FaqServicesRel::find()
+         ->where(['service_id' => $currentService[0]['servise_id']])
+         ->joinWith('faq')
+         ->all();
+
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
@@ -85,7 +92,8 @@ class DentController extends MainController
       $draft = $rawDraft->getHtml($extraData);
       $headings = $rawDraft->getTableOfContentsArray();
    
-      //   print_r($servisesWithPrices);
+      //   echo '<pre>';
+      //   print_r($faq[0]->faq[0]->doctor);
       //   exit;
 
       return $this->render('servicePage.twig', array(
@@ -140,6 +148,11 @@ class DentController extends MainController
          }
       }
 
+      $faq = FaqServicesRel::find()
+         ->where(['service_id' => $currentService[0]['servise_id']])
+         ->joinWith('faq')
+         ->all();
+
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel]);
 
       $extraData = [
@@ -148,6 +161,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
@@ -210,6 +224,11 @@ class DentController extends MainController
          }
       }
 
+      $faq = FaqServicesRel::find()
+         ->where(['service_id' => $currentService[0]['servise_id']])
+         ->joinWith('faq')
+         ->all();
+
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel, $secondLevel]);
 
       $extraData = [
@@ -218,6 +237,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
@@ -272,6 +292,11 @@ class DentController extends MainController
             $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
          }
       }
+
+      $faq = FaqServicesRel::find()
+         ->where(['service_id' => $currentService[0]['servise_id']])
+         ->joinWith('faq')
+         ->all();
    
       $breadcrumbs = Servises::getBreadcrumbs([$firstLevel, $secondLevel, $thirdLevel]);
 
@@ -280,6 +305,7 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
+         'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
