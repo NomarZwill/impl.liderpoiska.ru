@@ -46,6 +46,7 @@
     "slick-carousel": "^1.8.1",
     "sortablejs": "^1.10.0",
     "swiper": "^6.1.1",
+    "youtube-player": "^5.5.2",
     "zurb-twentytwenty": "^0.1.1"
   }
 }

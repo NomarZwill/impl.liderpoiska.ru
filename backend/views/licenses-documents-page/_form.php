@@ -23,7 +23,7 @@ use backend\models\LicensePageGalleries;
         if (is_dir($path)) {
             $images = LicensePageGalleries::find()->where(['gallery_type' => 'licenses', 'parent_id' => $model->id])->all();
             foreach ($images as $image) {
-                $licensesInitialPreview[] = Html::img(Url::to("@web/$image->filepath"), ['class'=>'file-preview-image']);
+                $licensesInitialPreview[] = Html::img(Url::to("@web/images/uploaded/licensesDocumentsPage/licenses/$image->filepath"), ['class'=>'file-preview-image']);
                 $licensesInitialPreviewConfig[] = ['caption' => '', 'width' => "120px", 'url' => "/licenses-documents-page/" . $model->id . "/delete-gallery-image/" . $image->id . '/', 'key' => ''];
             }
         }

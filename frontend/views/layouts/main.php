@@ -16,6 +16,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <link rel="icon" type="image/png" href="/img/favicon.ico" />
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +51,7 @@ AppAsset::register($this);
 
                 <div class="logo_img"></div>
                 <div class="logo_name">
-                    <p>Центр Эстетической Стоматологии</p>
+                    <p>Центр Стоматологической Имплантологии</p>
                 </div>
 
             </div>
@@ -58,8 +59,13 @@ AppAsset::register($this);
         </a>
     
         <div class="clinics_on_the_map">
+
             <a class="_menu_link_dashed" href="/contacts/">Филиалы на карте</a>
-            <div class="clinics_mob_icon"></div>
+
+            <a href="/contacts/">
+                <img class="clinics_mob_icon" src="/img/location-pin-mobile.svg" alt="">
+            </a>
+
         </div>
     
         <div class="contacts_container">
@@ -209,8 +215,8 @@ AppAsset::register($this);
             <div class="to_patients_item"><a class="_menu_link" href="/partners/">Партнёры</a></div>
             <div class="to_patients_item"><a class="_menu_link" href="/price/">Цены</a></div>
             <div class="to_patients_item"><a class="_menu_link" href="/contacts/">Контакты</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/">Гарантии</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/">Лечение по ДМС</a></div>
+            <div class="to_patients_item"><a class="_menu_link" href="/garantii-na-stomatologicheskie-uslugi/">Гарантии</a></div>
+            <div class="to_patients_item"><a class="_menu_link" href="/faq/">Вопросы и ответы</a></div>
         </div>
 
         <div class="servises_wrapper">
@@ -221,21 +227,20 @@ AppAsset::register($this);
 
             <div class="servises">
                 
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Терапия</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Ортопедия</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Хирургия</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Имплантация зубов</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Ортодонтия</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Эстетическая реставрация <br> зубов</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Отбеливание зубов</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Пародонтология</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Эндодонтия</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Профессиональная гигиена <br> полости рта</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Анестезиология</span></a></div>
-                <div class="servises_item"><a class="_menu_link" href="/contacts/"><span>Диагностика</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/terapiya/"><span>Терапия</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/ortoped/"><span>Ортопедия</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/hirurg/"><span>Хирургия</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/impl/"><span>Имплантация зубов</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/ortodont/"><span>Ортодонтия</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/restavraciya-zubov/"><span>Эстетическая реставрация <br> зубов</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/withe/"><span>Отбеливание зубов</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/paradot/"><span>Пародонтология</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/endodotiya/"><span>Эндодонтия</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/gigi-prof/"><span>Профессиональная гигиена <br> полости рта</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/anestez/"><span>Анестезиология</span></a></div>
+                <div class="servises_item"><a class="_menu_link" href="/dent/diagnost/"><span>Диагностика</span></a></div>
 
             </div>
-
 
         </div>
 
@@ -246,7 +251,7 @@ AppAsset::register($this);
 
                     <div class="logo_img"></div>
                     <div class="logo_name">
-                        <p>Центр Эстетической Стоматологии<br>© 2002 — 2020</p>
+                        <p>Центр Стоматологической Имплантологии<br>© 2020</p>
                     </div>
 
                 </div>
@@ -302,30 +307,20 @@ AppAsset::register($this);
 </footer>
 
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter24588914 = new Ya.Metrika({id:24588914,
-                        webvisor:true,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true});
-            } catch(e) { }
-        });
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
+   ym(24588914, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
 </script>
+<noscript><div><img src="https://mc.yandex.ru/watch/24588914" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

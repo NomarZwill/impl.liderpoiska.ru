@@ -140,13 +140,19 @@ class Servises extends \yii\db\ActiveRecord
     }
 
     public function getReviews() {
-        return $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
-            ->viaTable('review_service_rel', ['service_id' => 'servise_id']);
+        $reviews = $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+            ->viaTable('review_service_rel', ['service_id' => 'servise_id'])
+            ->where(['reviews.is_active' => 1])
+            ->orderBy(['reviews.date' => SORT_DESC]);
+
+        return $reviews;
     }
 
     public function getFaq() {
-        return $this->hasMany(Faq::className(), ['faq_id' => 'faq_id'])
+        $faq = $this->hasMany(Faq::className(), ['faq_id' => 'faq_id'])
             ->viaTable('faq_services_rel', ['service_id' => 'servise_id']);
+
+        return $faq;
     }
 
     public function getArrayToSelect2() {
@@ -181,6 +187,22 @@ class Servises extends \yii\db\ActiveRecord
                 ->header_menu_title;
         }
         return $breadcrumbs;
+    }
+
+    public function getCurrentService($currentService, $serviceParentAlias){
+
+        foreach ($currentService as $service){
+
+            $parent = Servises::find()
+            ->where(['servise_id' => $service->parent_id])
+            ->all();
+
+            if (count($parent) === 1 && $parent[0]->alias === $serviceParentAlias) {
+                return $service;
+            } 
+        }
+
+        return false;
     }
     
     public function afterSave($insert, $changedAttributes)

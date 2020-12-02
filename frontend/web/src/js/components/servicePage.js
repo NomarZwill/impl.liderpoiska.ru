@@ -1,6 +1,7 @@
 'use strict';
 
 import Swiper, { Navigation, Pagination } from 'swiper';
+import YouTubePlayer from 'youtube-player';
 
 export default class ServicePage{
   constructor(){
@@ -26,16 +27,6 @@ export default class ServicePage{
       $('html,body').animate({scrollTop:$('.service_description p').offset().top}, 400);
     });
 
-    // if ($('.subservice_listing_item').length > 5) {
-    //   $('.prices_wrapper .show_all').removeClass('_hidden');
-    //   $('.prices_wrapper').addClass('_compact');
-    // }
-
-    // $('.prices_wrapper .read_more').on('click', function(e){
-    //   $('.prices_wrapper .show_all').addClass('_hidden');
-    //   $('.prices_wrapper').removeClass('_compact');
-    // });
-
     $('.subservice_wrapper .collapse_wrapper').on('click', function(e){
 
       if ($(e.target).hasClass('close_block')){
@@ -47,6 +38,21 @@ export default class ServicePage{
         $('.subservice_wrapper .open_block').addClass('_hidden');
         $('.subservice_wrapper .subservice_listing').removeClass('_compact');
       }
+    });
+
+    var player = [];
+  
+    $('.service_video_item_wrapper').each(function(i, obj) {
+      var currentVideoId = $(obj).find('.servise_video').attr('id');
+      player[i] = YouTubePlayer(currentVideoId, {
+        videoId: currentVideoId,
+        width: '496',
+        height: '286',
+      });
+      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+        player[i].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
     });
 
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
@@ -79,6 +85,7 @@ export default class ServicePage{
       }
     });
 
+
     var photoGalleryWrapper  = new Swiper('.photo_gallery_wrapper', {
       slidesPerView: 'auto',
       spaceBetween: 24,
@@ -93,8 +100,6 @@ export default class ServicePage{
         clickable: true,
       }
     });
-
-      
 
     var photoWrapper  = new Swiper('.before_after_gallery_wrapper', {
       slidesPerView: 'auto',
@@ -144,9 +149,5 @@ export default class ServicePage{
         clickable: true,
       }
     });
-
-    
-
-    
   }
 }

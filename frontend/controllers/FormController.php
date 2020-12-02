@@ -23,7 +23,13 @@ class FormController extends Controller
 
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
-        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setTo([
+          'artm@liderpoiska.ru', 
+          'martynov@liderpoiska.ru', 
+          'knyazkova@liderpoiska.ru', 
+          'ces_un@mail.ru',
+          'mh@liderpoiska.ru',
+          ])
         ->setSubject('Заказ обратного звонка')
         ->setCharset('utf-8')
         ->setHtmlBody($msg);
@@ -61,7 +67,13 @@ class FormController extends Controller
 
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
-        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setTo([
+          'artm@liderpoiska.ru', 
+          'martynov@liderpoiska.ru', 
+          'knyazkova@liderpoiska.ru', 
+          'ces_un@mail.ru',
+          'mh@liderpoiska.ru',
+          ])
         ->setSubject('Запись на приём')
         ->setCharset('utf-8')
         ->setHtmlBody($msg);
@@ -97,7 +109,13 @@ class FormController extends Controller
 
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
-        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setTo([
+          'artm@liderpoiska.ru', 
+          'martynov@liderpoiska.ru', 
+          'knyazkova@liderpoiska.ru', 
+          'ces_un@mail.ru',
+          'mh@liderpoiska.ru',
+          ])
         ->setSubject('Отзыв с сайта')
         ->setCharset('utf-8')
         ->setHtmlBody($msg);
@@ -134,7 +152,13 @@ class FormController extends Controller
 
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
-        ->setTo(['artm@liderpoiska.ru', 'martynov@liderpoiska.ru', 'knyazkova@liderpoiska.ru'])
+        ->setTo([
+          'artm@liderpoiska.ru', 
+          'martynov@liderpoiska.ru', 
+          'knyazkova@liderpoiska.ru', 
+          'ces_un@mail.ru',
+          'mh@liderpoiska.ru',
+          ])
         ->setSubject('Вопрос с сайта')
         ->setCharset('utf-8')
         ->setHtmlBody($msg);

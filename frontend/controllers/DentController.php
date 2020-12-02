@@ -45,9 +45,15 @@ class DentController extends MainController
    public function actionFirstLevel($firstLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
+         ->with('reviews')
+         ->with('faq')
          ->all();
 
-      $this->setSeo($currentService[0]->getSeo());
+      if (!empty($currentService[0])){
+         $this->setSeo($currentService[0]->getSeo());
+      } else {
+         throw new \yii\web\NotFoundHttpException();
+      }
 
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -71,6 +77,8 @@ class DentController extends MainController
          }
       }
 
+      $currentUrl = '/dent/' . $firstLevel . '/';
+
       $faq = FaqServicesRel::find()
          ->where(['service_id' => $currentService[0]['servise_id']])
          ->joinWith('faq')
@@ -80,6 +88,7 @@ class DentController extends MainController
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
          'servisesWithPrices' => $servisesWithPrices[0],
+         'currentUrl' => $currentUrl,
          'doctors' => $doctors,
          'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
@@ -109,11 +118,15 @@ class DentController extends MainController
    public function actionSecondLevel($firstLevel, $secondLevel) {
       $currentService = Servises::find()
          ->where(['servises.alias' => $secondLevel/*, 'is_active' => 1*/])
-         ->joinWith('reviews')
-         ->joinWith('faq')
+         ->with('reviews')
+         ->with('faq')
          ->all();
 
-      $this->setSeo($currentService[0]->getSeo());
+      if (!empty($currentService[0])){
+         $this->setSeo($currentService[0]->getSeo());
+      } else {
+         throw new \yii\web\NotFoundHttpException();
+      }
 
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -148,6 +161,8 @@ class DentController extends MainController
          }
       }
 
+      $currentUrl = '/dent/' . $firstLevel . '/' . $secondLevel . '/';
+
       $faq = FaqServicesRel::find()
          ->where(['service_id' => $currentService[0]['servise_id']])
          ->joinWith('faq')
@@ -160,6 +175,7 @@ class DentController extends MainController
          'childrenService' => $childrenService, 
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
+         'currentUrl' => $currentUrl,
          'doctors' => $doctors,
          'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
@@ -190,9 +206,24 @@ class DentController extends MainController
    public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $thirdLevel/*, 'is_active' => 1*/])
+         ->with('reviews')
+         ->with('faq')
          ->all();
 
-      $this->setSeo($currentService[0]->getSeo());
+      if (count($currentService) > 1){
+         $tmp = Servises::getCurrentService($currentService, $secondLevel);
+         if (!empty($tmp)){
+            $currentService[0] = $tmp;
+         }
+         // print_r($tmp);
+         // exit;
+      }
+
+      if (!empty($currentService[0])){
+         $this->setSeo($currentService[0]->getSeo());
+      } else {
+         throw new \yii\web\NotFoundHttpException();
+      }
 
       $childrenService = Servises::find()
          ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -224,6 +255,8 @@ class DentController extends MainController
          }
       }
 
+      $currentUrl = '/dent/' . $firstLevel . '/' . $secondLevel . '/' . $thirdLevel . '/';
+
       $faq = FaqServicesRel::find()
          ->where(['service_id' => $currentService[0]['servise_id']])
          ->joinWith('faq')
@@ -236,6 +269,7 @@ class DentController extends MainController
          'childrenService' => $childrenService, 
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
+         'currentUrl' => $currentUrl,
          'doctors' => $doctors,
          'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
@@ -267,9 +301,26 @@ class DentController extends MainController
    public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel) {
       $currentService = Servises::find()
          ->where(['alias' => $fourthLevel/*, 'is_active' => 1*/])
+         ->with('reviews')
+         ->with('faq')
          ->all();
 
-      $this->setSeo($currentService[0]->getSeo());
+      if (count($currentService) > 1){
+         $tmp = Servises::getCurrentService($currentService, $thirdLevel);
+         if (!empty($tmp)){
+            $currentService[0] = $tmp;
+         }
+         // echo $secondLevel;
+         // echo '<pre>';
+         // print_r($tmp);
+         // exit;
+      }
+
+      if (!empty($currentService[0])){
+         $this->setSeo($currentService[0]->getSeo());
+      } else {
+         throw new \yii\web\NotFoundHttpException();
+      }
 
       $servisesWithPrices = Servises::find()
          ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
@@ -293,6 +344,8 @@ class DentController extends MainController
          }
       }
 
+      $currentUrl = '/dent/' . $firstLevel . '/' . $secondLevel . '/' . $thirdLevel . '/' . $fourthLevel . '/';
+
       $faq = FaqServicesRel::find()
          ->where(['service_id' => $currentService[0]['servise_id']])
          ->joinWith('faq')
@@ -304,6 +357,7 @@ class DentController extends MainController
          'currentService' => $currentService[0], 
          'mainParent' => $mainParent[0],
          'servisesWithPrices' => $servisesWithPrices[0],
+         'currentUrl' => $currentUrl,
          'doctors' => $doctors,
          'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()

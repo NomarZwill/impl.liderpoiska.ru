@@ -37,6 +37,7 @@ class OtherController extends MainController
       ->where(['clinics.is_active' => 1])
       ->joinWith('ratings')
       ->joinWith('imageGalleries')
+      ->orderBy(['clinic_sort' => SORT_ASC])
       ->all();
 
     $this->setSeo([
@@ -62,7 +63,11 @@ class OtherController extends MainController
       ->joinWith('imageGalleries')
       ->one();
 
-    $this->setSeo($currentClinic->getSeo());
+    if (!empty($currentClinic)){
+      $this->setSeo($currentClinic->getSeo());
+    } else {
+      throw new \yii\web\NotFoundHttpException();
+    }
 
     $allData = DoctorsPageSort::find()
       ->where(['page_type' => 'clinics', 'page_id' =>  $currentClinic['clinic_id']])
@@ -115,12 +120,12 @@ class OtherController extends MainController
     ]);
 
     $firstLevelParents = Servises::find()
-      ->where(['servises.parent_id' => 0/*, 'is_active' => 1*/])
+      ->where(['servises.parent_id' => 0, 'servises.is_active' => 1])
       ->asArray()
       ->all();
 
     $firstLevelServices = Servises::find()
-    ->where(['servises.parent_id' => 0/*, 'is_active' => 1*/])
+    ->where(['servises.parent_id' => 0, 'servises.is_active' => 1])
     ->joinWith('prices')
     ->asArray()
     ->all();   
@@ -179,7 +184,11 @@ class OtherController extends MainController
       ->where(['deals.alias' => $deal, 'is_active' => 1])
       ->one();
 
-    $this->setSeo($deal->getSeo());
+    if (!empty($deal)){
+      $this->setSeo($deal->getSeo());
+    } else {
+      throw new \yii\web\NotFoundHttpException();
+    }
 
     return $this->render('specialDealPage.twig', array(
       'deal' => $deal
@@ -197,6 +206,7 @@ class OtherController extends MainController
     $reviews = Reviews::find()
       ->where(['year' => date('Y')])
       ->limit(5)
+      ->orderBy(['date' => SORT_DESC])
       ->all();
     $yearsList = Reviews::getYearsList();
 
@@ -227,6 +237,7 @@ class OtherController extends MainController
     $reviews = Reviews::find()
       ->where(['year' => $activeYear])
       ->limit(5)
+      ->orderBy(['date' => SORT_DESC])
       ->all();
 
     return json_encode([
@@ -243,6 +254,7 @@ class OtherController extends MainController
       ->where(['year' => $activeYear])
       ->offset($previousReviewCount)
       ->limit(5)
+      ->orderBy(['date' => SORT_DESC])
       ->all();
     $isListEnd = (count($reviews) < 5) ? true : false;
 
@@ -255,6 +267,14 @@ class OtherController extends MainController
   }
 
   public function actionFaq(){
+
+    // $tmp = Servises::find()->all();
+
+    // foreach ($tmp as $item) {
+    //     echo $item->alias . ' ';
+    // }
+
+    // exit;
 
     $this->setSeo([
       'title' => 'Вопросы и ответы из стоматологии',
@@ -320,7 +340,9 @@ class OtherController extends MainController
 
   public function actionWarranty(){
 
-    return 'actionWarranty';
+    return $this->render('warranty.twig', array(
+      // 'pageMedia' => $pageMedia,
+    ));
   }
 
   public function setSeo($seo){

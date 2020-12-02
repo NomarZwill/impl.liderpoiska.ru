@@ -23,7 +23,7 @@
       
               {% for spec in doc.medicalSpecialties %}
         
-                <a class="swiper-slide _menu_link" href="/speciality/{{spec.alias}}">{{spec.menu_title | raw}}</a>
+                <a class="swiper-slide _menu_link" href="/specialty/{{spec.alias}}/">{{spec.menu_title | raw}}</a>
         
               {% endfor %}
       
@@ -41,7 +41,7 @@
         
                 <div class="swiper-slide clinic_item">
 
-                <a class="clinic_name _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title | raw}}</a>
+                <a class="clinic_name _link_black" href="/contacts/{{clinic.alias}}/">{{clinic.card_title | raw}}</a>
                 <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
                 <div class="clinic_phone">
                   Тел.: {{clinic.main_phone | raw}}

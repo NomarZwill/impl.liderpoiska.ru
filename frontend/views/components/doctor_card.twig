@@ -1,7 +1,7 @@
 
 <div class="card_content_wrapper" data-id="{{doctor.doctor_id}}"  data-spec-id>
 
-  <a href="/specialists/{{doctor.alias}}">
+  <a href="/specialists/{{doctor.alias}}/">
 
     <div class="card_image_wrapper">
 
@@ -15,7 +15,7 @@
 
     <div class="card_content">
 
-      <a href="/specialists/{{doctor.alias}}">
+      <a href="/specialists/{{doctor.alias}}/">
 
         <h5>{{doctor.doctor_title}}</h5>
 
@@ -26,9 +26,9 @@
         {% for medSpec in doctor.medicalSpecialties %}
 
           {% if loop.last %}
-            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}</a>
+            <a class="_menu_link_no_borders" href="/specialty/{{medSpec.alias}}/" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}</a>
           {% else %}
-            <a class="_menu_link_no_borders" href="/speciality/{{medSpec.alias}}" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}, </a>
+            <a class="_menu_link_no_borders" href="/specialty/{{medSpec.alias}}/" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}, </a>
           {% endif %}
 
         {% endfor %}

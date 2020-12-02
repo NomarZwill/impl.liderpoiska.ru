@@ -1,6 +1,6 @@
 .content_block.advantages_container{
   width: 100%;
-  padding: 40px 0 0 0;
+  padding: 80px 0 0 0;
 
   &:before,
   &:after{
@@ -29,7 +29,7 @@
   flex-flow: row wrap;
   justify-content: center;
   width: 1224px;
-  height: 568px;
+  // height: 568px;
   margin: 0 auto;
   padding: 0 0 120px 0;
 }
@@ -175,7 +175,7 @@
   
   .advantages_wrapper{
     width: 768px;
-    height: auto;
+    // height: auto;
     padding: 0 16px 40px 16px;
   }
 
@@ -218,7 +218,7 @@
   .advantages_wrapper{
     justify-content: flex-start;
     width: 100%;
-    height: auto;
+    // height: auto;
     padding: 0 16px 32px 16px;
   }
   

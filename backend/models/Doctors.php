@@ -163,7 +163,12 @@ class Doctors extends \yii\db\ActiveRecord
     }
 
     public function getReviews(){
-        return $this->hasMany(Reviews::className(), ['doctor_id' => 'doctor_id']);
+        $reviews = $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+            ->viaTable('review_doctors_rel', ['doctor_id' => 'doctor_id'])
+            ->where(['reviews.is_active' => 1])
+            ->orderBy(['reviews.date' => SORT_DESC]);
+
+        return $reviews;
     }
 
     public function getArrayToSelect2($answersTheQuestions = false) {

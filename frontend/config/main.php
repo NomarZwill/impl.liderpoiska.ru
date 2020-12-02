@@ -58,6 +58,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
+                ['pattern'=>'sitemap','route'=>'sitemap/index', 'suffix'=>'.xml'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>/<fourthLevel:[\w-]+>','route'=>'dent/fourth-level', 'suffix'=>'/'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>/<thirdLevel:[\w-]+>','route'=>'dent/third-level', 'suffix'=>'/'],
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>/<secondLevel:[\w-]+>','route'=>'dent/second-level', 'suffix'=>'/'],
@@ -65,7 +66,7 @@ return [
                 ['pattern'=>'/dent/<firstLevel:[\w-]+>','route'=>'dent/first-level', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/ajax-more-card/','route'=>'specialists/ajax-more-card', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/<doctor:[\w-]+>','route'=>'specialists/specialist-card', 'suffix'=>'/'],
-                ['pattern'=>'/speciality/<specAlias:[\w-]+>','route'=>'med-specialties/speciality-name', 'suffix'=>'/'],
+                ['pattern'=>'/specialty/<specAlias:[\w-]+>','route'=>'med-specialties/speciality-name', 'suffix'=>'/'],
                 ['pattern'=>'/agreement/','route'=>'other/agreement', 'suffix'=>'/'],
                 ['pattern'=>'/contacts/<clinic:[\w-]+>','route'=>'other/clinic-contacts', 'suffix'=>'/'],
                 ['pattern'=>'/contacts/','route'=>'other/contacts', 'suffix'=>'/'],

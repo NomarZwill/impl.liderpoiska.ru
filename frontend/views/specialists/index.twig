@@ -49,7 +49,7 @@
             <div
                 class="swiper-slide clinic_card_wrapper">
 
-                <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
+                <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}/">{{clinic.card_title}}</a>
                 <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
                 <div class="clinic_phone">
                   Тел.: {{clinic.main_phone | raw}}
@@ -81,7 +81,7 @@
 
           <div class="clinic_card_wrapper">
 
-            <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}">{{clinic.card_title}}</a>
+            <a class="clinic_title _link_black" href="/contacts/{{clinic.alias}}/">{{clinic.card_title}}</a>
             <p class="clinic_address">{{clinic.clinic_address_short | raw}}</p>
             <div class="clinic_phone">
               Тел.: {{clinic.main_phone | raw}}
@@ -119,7 +119,7 @@
 
       {% for medicalSpeciality in medicalSpecialties %}
 
-        <a href="/speciality/{{medicalSpeciality.alias}}">
+        <a href="/specialty/{{medicalSpeciality.alias}}/">
           <div class="medical_speciality" data-id="{{medicalSpeciality.specialty_id}}">
             <span>{{medicalSpeciality.menu_title | raw}}</span>
           </div>

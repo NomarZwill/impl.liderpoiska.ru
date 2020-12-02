@@ -4,6 +4,10 @@ namespace backend\models;
 
 use Yii;
 use yii\helpers\FileHelper;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 
 /**
  * This is the model class for table "licenses_documents_page".
@@ -55,11 +59,19 @@ class LicensesDocumentsPage extends \yii\db\ActiveRecord
         foreach ($this->licenses_gallery_images as $file) {
             $path = 'images/uploaded/licensesDocumentsPage/licenses/';
             FileHelper::createDirectory($path);
-            $file->saveAs($path . time() . '_' . $iter . '.' . $file->extension);
+            $file_name = time() . '_' . $iter . '.' . $file->extension;
+            $file->saveAs($path . $file_name);
+
+            $alias_front = Yii::getAlias('@frontend/web');
+            Image::getImagine()
+                ->open($alias_front . '/' . $path . $file_name)
+                ->thumbnail(new Box(192, 270))
+                ->save($alias_front . '/' . $path . 'thumbnail_' . $file_name , ['quality' => 90]);
+
             $gallery = new LicensePageGalleries();
             $gallery->gallery_type = 'licenses';
             $gallery->parent_id = $this->id;
-            $gallery->filepath = $path . time() . '_' . $iter . '.' . $file->extension;
+            $gallery->filepath = $file_name;
             $gallery->save();
             $iter++;     
         }

@@ -22,7 +22,7 @@
 
         <div class="subservice_listing_item item_wrapper">
 
-          <a class="_link_black" href="/dent/{{mainParent.alias}}/{{parent.alias}}/{{currentService.alias}}/{{serviseFirst.alias}}">
+          <a class="_link_black" href="{{currentUrl}}{{serviseFirst.alias}}/">
 
             <span>{{serviseFirst.header_menu_title}}</span>
             
@@ -38,6 +38,8 @@
       <span class="close_block read_more">Свернуть</span>
       <span class="open_block read_more _hidden">Развернуть</span>
     </div>
+
+    {# <div class="_hidden">{{currentUrl}}</div> #}
 
   </div>
 

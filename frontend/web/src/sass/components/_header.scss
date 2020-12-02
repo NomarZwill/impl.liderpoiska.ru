@@ -100,14 +100,14 @@
 
   .clinics_on_the_map{
     position: relative;
-    padding: 0 0 16px 48px;
+    padding: 0 0 16px 64px;
     flex-grow: 1;
 
     &:before{
       content: '';
       position: absolute;
       top: 1px;
-      left: 30px;
+      left: 46px;
       width: 16px;
       height: 16px;
       background: url(/img/location-pin.svg);
@@ -287,11 +287,11 @@
     }
 
     .clinics_on_the_map{
-      padding: 16px 0 0 32px;
+      padding: 16px 0 0 48px;
 
       &:before{
         top: 18px;
-        left: 16px;
+        left: 32px;
       }
     }
 
@@ -495,7 +495,7 @@
       flex-grow: 0;
     }
 
-    .clinics_on_the_map a{
+    .clinics_on_the_map a:first-of-type{
       display: none;
     }
 

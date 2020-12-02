@@ -100,11 +100,16 @@ class SiteController extends MainController
             ->where(['is_active' => 1])
             ->orderBy(['deals_sort' => SORT_ASC])
             ->all();
-        $reviews = Reviews::find()->all();  
+
+        $reviews = Reviews::find()
+            ->orderBy(['date' => SORT_DESC])
+            ->all();  
+
         $clinics = Clinics::find()
             ->where(['clinics.is_active' => 1])
             ->joinWith('ratings')
             ->all();
+
         $doctors = Doctors::find()
             ->where(['doctors.is_active' => 1, 'visible_on_home_page' => 1])
             ->joinWith('medicalSpecialties')

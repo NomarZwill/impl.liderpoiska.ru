@@ -16,30 +16,46 @@
 
     <div class="signature_wrapper">
 
-      <div class="signature_image" style="background: url(/images/uploaded/doctors/{{item.doctor.doctor_id}}/{{item.doctor.doctor_image}}); background-size: cover;">
-      </div>
+      {% if item.doctor.doctor_id == 0 %}
 
-      <div class="signature_text">
+        <div class="signature_image" style="background: url(/images/uploaded/doctors/2/1605253296.jpg); background-size: cover;">
+        </div>
 
-        <a class="_link_black" href="/specialists/{{item.doctor.alias}}">{{item.doctor.doctor_title}}</a>
-        <p>
-          {% for spec in item.doctor.medicalSpecialties %}
+        <div class="signature_text">
 
-            {% if loop.last %}
+          <a class="_link_black" href="/specialists/pastyan-andrey/">Пастьян Андрей Альбертович</a>
+          <p><span>хирург-имплантолог, </span><span>стоматолог-хирург</span></p>
+          
+        </div>
 
-              <span>{{spec.menu_title | raw}}</span>
+      {% else %}
 
-            {% else %}
+        <div class="signature_image" style="background: url(/images/uploaded/doctors/{{item.doctor.doctor_id}}/{{item.doctor.doctor_image}}); background-size: cover;">
+        </div>
 
-              <span>{{spec.menu_title | raw}}, </span>
+        <div class="signature_text">
 
-            {% endif %}
+          <a class="_link_black" href="/specialists/{{item.doctor.alias}}">{{item.doctor.doctor_title}}</a>
+          <p>
+            {% for spec in item.doctor.medicalSpecialties %}
 
-          {% endfor %}
-        </p>
-        
+              {% if loop.last %}
 
-      </div>
+                <span>{{spec.menu_title | raw}}</span>
+
+              {% else %}
+
+                <span>{{spec.menu_title | raw}}, </span>
+
+              {% endif %}
+
+            {% endfor %}
+          </p>
+          
+
+        </div>
+
+      {% endif %}
 
     </div>
 

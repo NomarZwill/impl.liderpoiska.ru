@@ -19,7 +19,11 @@ class MedSpecialtiesController extends MainController
       ->joinWith('reviews')
       ->one();
 
-    $this->setSeo($activeSpec->getSeo());
+    if (!empty($activeSpec)){
+      $this->setSeo($activeSpec->getSeo());
+    } else {
+      throw new \yii\web\NotFoundHttpException();
+    }
 
     // print_r($doctors);
     // exit;

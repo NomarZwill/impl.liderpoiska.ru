@@ -47,7 +47,7 @@ class Clinics extends \yii\db\ActiveRecord
         return [
             [['h1_title'], 'required'],
             [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
-            [['old_id', 'is_active'], 'integer'],
+            [['old_id', 'is_active', 'clinic_sort'], 'integer'],
             [['cinic_gallery_images'], 'safe'],
         ];
     }
@@ -67,6 +67,7 @@ class Clinics extends \yii\db\ActiveRecord
             'h1_title' => 'Заголовок h1',
             'breadcrumbs_title' => 'Название в хлебной крошке',
             'is_active' => 'Активный',
+            'clinic_sort' => 'Сортировка в листинге клиник',
             'content' => 'Контент',
             'clinic_address' => 'Адрес',
             'clinic_address_short' => 'Короткий адрес для карточек',
@@ -112,7 +113,8 @@ class Clinics extends \yii\db\ActiveRecord
     {
         $reviews = $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
             ->viaTable('review_clinic_rel', ['clinic_id' => 'clinic_id'])
-            ->where(['reviews.is_active' => 1]);
+            ->where(['reviews.is_active' => 1])
+            ->orderBy(['reviews.date' => SORT_DESC]);
           
         return $reviews;
     }

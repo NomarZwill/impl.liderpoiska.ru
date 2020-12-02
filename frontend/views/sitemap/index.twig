@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+    <url>
+        <loc>{{host}}</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/about/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/partners/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/price/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/reviews/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/faq/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/lizcenz/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/agreement/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/garantii-na-stomatologicheskie-uslugi/</loc>
+    </url>
+
+    <url>
+        <loc>{{host}}/specialnoe/</loc>
+    </url>
+
+    {% for deal in deals %}
+
+        <url>
+            <loc>{{host}}/specialnoe/{{deal.alias}}/</loc>
+        </url>
+
+    {% endfor %}
+
+     <url>
+        <loc>{{host}}/contacts/</loc>
+    </url>
+
+    {% for clinic in clinics %}
+
+        <url>
+            <loc>{{host}}/contacts/{{clinic.alias}}/</loc>
+        </url>
+
+    {% endfor %}
+
+    {% for speciality in specialities %}
+
+        <url>
+            <loc>{{host}}/specialty/{{speciality.alias}}/</loc>
+        </url>
+
+    {% endfor %}
+
+    <url>
+        <loc>{{host}}/specialists/</loc>
+    </url>
+
+    {% for doctor in doctors %}
+
+        <url>
+            <loc>{{host}}/specialists/{{doctor.alias}}/</loc>
+        </url>
+
+    {% endfor %}
+
+    {% for serviseMenu in services %}
+
+        {% if serviseMenu.parent_id == 0 %}
+
+            <url>
+                <loc>{{host}}/dent/{{serviseMenu.alias}}/</loc>
+            </url>
+
+                {% for serviseFirst in services %}
+
+                    {% if serviseFirst.parent_id == serviseMenu.servise_id %}
+
+                        <url>
+                            <loc>{{host}}/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/</loc>
+                        </url>
+
+                        {% for serviseSecond in services %}
+
+                            {% if serviseSecond.parent_id == serviseFirst.servise_id  %}
+
+                                <url>
+                                    <loc>{{host}}/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/</loc>
+                                </url>
+
+                                {% for serviseThird in services %}
+
+                                    {% if serviseThird.parent_id == serviseSecond.servise_id  %}
+
+                                        <url>
+                                            <loc>{{host}}/dent/{{serviseMenu.alias}}/{{serviseFirst.alias}}/{{serviseSecond.alias}}/{{serviseThird.alias}}/</loc>
+                                        </url>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                        {% endfor %}
+                    
+
+                    {% endif %}
+
+                {% endfor %}
+                
+        {% endif %}
+
+    {% endfor %}
+
+    
+</urlset>

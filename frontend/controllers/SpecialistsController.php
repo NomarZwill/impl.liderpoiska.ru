@@ -64,11 +64,15 @@ class SpecialistsController extends MainController
       // ->joinWith('doctorsGalleries')
       ->with('doctorsVideos')
       ->with('doctorsLizenzes')
-      ->joinWith('reviews')
+      ->with('reviews')
       ->where(['doctors.alias' => $doctor])
       ->one();
 
-    $this->setSeo($doc->getSeo());
+    if (!empty($doc)){
+      $this->setSeo($doc->getSeo());
+    } else {
+      throw new \yii\web\NotFoundHttpException();
+    }
 
     $draft = HcDraft::find()
     ->where(['id' => $doc->doctor_hc_draft_id])

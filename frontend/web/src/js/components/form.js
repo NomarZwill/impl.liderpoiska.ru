@@ -119,6 +119,20 @@ export default class Form {
 		if (this.$form.siblings('._in_content_block').length === 0) {
 			this.$form.addClass('_hidden');
 		}
+		switch (formType) {
+			case 'recall':
+				ym(24588914, 'reachGoal', 'requestcall');
+				break;
+			case 'reception':
+				ym(24588914, 'reachGoal', 'reception');
+				break;
+			case 'review':
+				ym(24588914, 'reachGoal', 'z_otziv');
+				break;
+			case 'faq':
+				ym(24588914, 'reachGoal', 'question');
+				break;
+		} 
 		this.$form.siblings('[data-success]').find('[data-success-name]').text(data.name);
 		this.$form.siblings('[data-success]').removeClass('_hidden');
 	}

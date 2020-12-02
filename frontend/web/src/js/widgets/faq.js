@@ -13,17 +13,18 @@ export default class Faq{
 
     function setFaqInteractive(){
       var $answerBlock = $(this).closest('.faq_item_wrapper').find('.item_answer');
+      var $arrow = $(this).find('.arrow');
 
       if (!$answerBlock.hasClass('_collapse')) {
-        $(this).removeClass('_close');
+        $arrow.removeClass('_close');
         $answerBlock.addClass('_collapse');
       } else {
-        $(this).addClass('_close');
+        $arrow.addClass('_close');
         $answerBlock.removeClass('_collapse');
       }
     }
 
-   $('[data-type="faq"] .arrow').each(function(){
+   $('[data-type="faq"] .item_question').each(function(){
     $(this).on('click', setFaqInteractive);
    });
 

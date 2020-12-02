@@ -112,9 +112,11 @@ class LicensesDocumentsPageController extends Controller
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         $image = LicensePageGalleries::findOne($image_id);
-        $path = $image->filepath;
+        $path = 'images/uploaded/licensesDocumentsPage/licenses/' . $image->filepath;
+        $thumbPath = 'images/uploaded/licensesDocumentsPage/licenses/' . 'thumbnail_' . $image->filepath;
 
-        if (unlink($path)) {
+
+        if (unlink($path) && unlink($thumbPath)) {
           $image->delete();
           return ['success' => 'Удалено'];
         }

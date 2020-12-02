@@ -24,7 +24,7 @@ position: relative;
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
-    padding: 24px 0 30px 0;
+    padding: 24px 0 64px 0;
   }
 
   h1{
@@ -44,7 +44,10 @@ position: relative;
   }
 
   .welcome_word_compact{
-    padding: 0 0 0 24px;
+    // padding: 0 0 0 24px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 
     p{
       line-height: 26px;
@@ -53,12 +56,17 @@ position: relative;
 
     button{
       width: 332px;
+      // margin: 24px 0 0 0;
       margin: 24px 0 0 0;
     }
   }
 
   h2{
     color: $headerBlack;
+  }
+
+  .content_block.advantages_container{
+    padding: 0 0 0 0;
   }
 
   .advantages_wrapper{
@@ -347,6 +355,10 @@ position: relative;
 
   @include for-pad{
 
+    .content_block.title_container{
+      padding: 24px 0 40px 0;
+    }
+
     .top_multiblock_bg{
       height: 909px;
     }
@@ -476,6 +488,10 @@ position: relative;
   }
 
   @include for-mobile{
+
+    .content_block.title_container{
+      padding: 24px 0 32px 0;
+    }
 
     .top_multiblock_bg{
       height: 985px;

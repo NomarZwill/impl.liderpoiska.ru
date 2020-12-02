@@ -6,6 +6,7 @@
   }
 
   .item_question{
+    cursor: pointer;
     position: relative;
     padding: 16px 48px 16px 56px;
     background: #FFF9F0;
@@ -64,8 +65,6 @@
       overflow: hidden;
     }
   }
-
-
 
   .signature_wrapper{
     display: flex;
