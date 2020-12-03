@@ -13,7 +13,7 @@ use backend\models\DoctorsPageSort;
 use common\html_constructor\models\HcDraft;
 
 // use backend\models\DoctorsAndClinics;
-use backend\models\Servises;
+// use backend\models\Servises;
 // use backend\models\DoctorsServicesRel;
 // use backend\models\Faq;
 // use backend\models\FaqServicesRel;
@@ -61,7 +61,6 @@ class SpecialistsController extends MainController
     $doc = Doctors::find()
       ->joinWith('medicalSpecialties')
       ->joinWith('doctorsAndClinics')
-      // ->joinWith('doctorsGalleries')
       ->with('doctorsVideos')
       ->with('doctorsLizenzes')
       ->with('reviews')

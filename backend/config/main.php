@@ -59,6 +59,11 @@ return [
                     'suffix' => '/'
                 ],
                 [
+                    'pattern' => '/clinics/ajax-dragfile/',
+                    'route' => 'clinics/ajax-dragfile',
+                    'suffix' => '/'
+                ],
+                [
                     'pattern' => '/licenses-documents-page/<event_id:\d+>/delete-gallery-image/<image_id:\d+>',
                     'route' => 'licenses-documents-page/delete-gallery-image',
                     'suffix' => '/'

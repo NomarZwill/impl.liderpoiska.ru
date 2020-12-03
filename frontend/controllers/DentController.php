@@ -31,7 +31,7 @@ class DentController extends MainController
       $this->setSeo([]);
 
       $servises = Servises::find()
-         // ->where(['is_active' => 1])
+         ->where(['is_active' => 1])
          ->asArray()
          ->all();
 
@@ -44,7 +44,7 @@ class DentController extends MainController
 
    public function actionFirstLevel($firstLevel) {
       $currentService = Servises::find()
-         ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
+         ->where(['alias' => $firstLevel, 'is_active' => 1])
          ->with('reviews')
          ->with('faq')
          ->all();
@@ -56,11 +56,11 @@ class DentController extends MainController
       }
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['parent_id' => $currentService[0]['servise_id'], 'is_active' => 1])
          ->all();
 
       $servisesWithPrices = Servises::find()
-         ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
          ->joinWith('prices')
          ->all(); 
 
@@ -117,7 +117,7 @@ class DentController extends MainController
 
    public function actionSecondLevel($firstLevel, $secondLevel) {
       $currentService = Servises::find()
-         ->where(['servises.alias' => $secondLevel/*, 'is_active' => 1*/])
+         ->where(['servises.alias' => $secondLevel, 'servises.is_active' => 1])
          ->with('reviews')
          ->with('faq')
          ->all();
@@ -129,16 +129,16 @@ class DentController extends MainController
       }
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['parent_id' => $currentService[0]['servise_id'], 'is_active' => 1])
          ->all();
 
       $servisesWithPrices = Servises::find()
-         ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
          ->joinWith('prices')
          ->all(); 
 
       $mainParent = Servises::find()
-         ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
+         ->where(['alias' => $firstLevel, 'is_active' => 1])
          ->all();
 
       $allData = DoctorsPageSort::find()
@@ -205,7 +205,7 @@ class DentController extends MainController
 
    public function actionThirdLevel($firstLevel, $secondLevel, $thirdLevel) {
       $currentService = Servises::find()
-         ->where(['alias' => $thirdLevel/*, 'is_active' => 1*/])
+         ->where(['servises.alias' => $thirdLevel, 'servises.is_active' => 1])
          ->with('reviews')
          ->with('faq')
          ->all();
@@ -226,20 +226,20 @@ class DentController extends MainController
       }
 
       $childrenService = Servises::find()
-         ->where(['parent_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['parent_id' => $currentService[0]['servise_id'], 'is_active' => 1])
          ->all();
 
       $servisesWithPrices = Servises::find()
-         ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
          ->joinWith('prices')
          ->all(); 
 
       $mainParent = Servises::find()
-         ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
+         ->where(['alias' => $firstLevel, 'is_active' => 1])
          ->all();
 
       $parent = Servises::find()
-         ->where(['alias' => $secondLevel/*, 'is_active' => 1*/])
+         ->where(['alias' => $secondLevel, 'is_active' => 1])
          ->all();
 
       $doctors = DoctorsPageSort::find()
@@ -300,7 +300,7 @@ class DentController extends MainController
 
    public function actionFourthLevel($firstLevel, $secondLevel, $thirdLevel, $fourthLevel) {
       $currentService = Servises::find()
-         ->where(['alias' => $fourthLevel/*, 'is_active' => 1*/])
+         ->where(['servises.alias' => $fourthLevel, 'servises.is_active' => 1])
          ->with('reviews')
          ->with('faq')
          ->all();
@@ -323,12 +323,12 @@ class DentController extends MainController
       }
 
       $servisesWithPrices = Servises::find()
-         ->where(['servises.servise_id' => $currentService[0]['servise_id']/*, 'is_active' => 1*/])
+         ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
          ->joinWith('prices')
          ->all(); 
 
       $mainParent = Servises::find()
-         ->where(['alias' => $firstLevel/*, 'is_active' => 1*/])
+         ->where(['alias' => $firstLevel, 'is_active' => 1])
          ->all();
 
       $doctors = DoctorsPageSort::find()
@@ -391,7 +391,7 @@ class DentController extends MainController
       $vote = $_GET['vote'];
       $serviceID = $_GET['service_id'];
       $servise = Servises::find()
-         ->where(['servise_id' => $serviceID/*, 'is_active' => 1*/])
+         ->where(['servise_id' => $serviceID, 'is_active' => 1])
          ->one();
 
       $servise->service_page_rating = (double)(($servise->service_page_rating) * ($servise->service_page_votes) + $vote) / (($servise->service_page_votes) + 1);

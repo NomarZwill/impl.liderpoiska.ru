@@ -17,6 +17,11 @@ use backend\models\PartnersDeals;
 use backend\models\DoctorsPageSort;
 use backend\models\LicensesDocumentsPage;
 use common\models\api\Maps;
+use yii\helpers\FileHelper;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 
 
 class OtherController extends MainController
@@ -24,6 +29,27 @@ class OtherController extends MainController
 
   public function actionIndex(){
     // return $this->render('index.twig');
+  }
+
+  public function actionTesta(){
+    $items = Clinics::find()
+      ->where(['clinics.is_active' => 1])
+      ->joinWith('imageGalleries')
+      ->all();
+    
+    foreach ($items as $item) {
+      $path = 'images/uploaded/clinics/'.$item->clinic_id.'/';
+      foreach ($item->imageGalleries as $image) {
+        $file_name = basename($image->filepath);
+
+        $alias_front = Yii::getAlias('@frontend/web');
+        Image::getImagine()
+            ->open($alias_front . '/' . $path . $file_name)
+            ->thumbnail(new Box(612, 334))
+            ->save($alias_front . '/' . $path . $file_name , ['quality' => 90]);
+      }
+    }
+    
   }
 
   public function actionAgreement(){
@@ -268,14 +294,6 @@ class OtherController extends MainController
 
   public function actionFaq(){
 
-    // $tmp = Servises::find()->all();
-
-    // foreach ($tmp as $item) {
-    //     echo $item->alias . ' ';
-    // }
-
-    // exit;
-
     $this->setSeo([
       'title' => 'Вопросы и ответы из стоматологии',
       'desc' => 'Вопросы врачам ГК ЦЭС. Подробные ответы специалистов по интересующим вопросам из стоматологии',
@@ -339,6 +357,12 @@ class OtherController extends MainController
   }
 
   public function actionWarranty(){
+
+    $this->setSeo([
+      'title' => 'Гарантии на стоматологические услуги в клиниках Центра Эстетической Стоматологии',
+      'desc' => 'Гарантии на услуги стоматологии – оказание стоматологических услуг в сети клиник «Центр Эстетической Стоматологии» ☎ Телефон в Москве: +7 (495) 930-22-56',
+      'kw' => '',
+    ]);
 
     return $this->render('warranty.twig', array(
       // 'pageMedia' => $pageMedia,

@@ -29,7 +29,7 @@ class ImageGalleries extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'parent_type', 'filepath'], 'required'],
-            [['parent_id'], 'integer'],
+            [['parent_id', 'img_sort'], 'integer'],
             [['parent_type', 'filepath'], 'string'],
         ];
     }
@@ -43,7 +43,21 @@ class ImageGalleries extends \yii\db\ActiveRecord
             'id' => 'ID',
             'parent_id' => 'Parent ID',
             'parent_type' => 'Parent Type',
+            'img_sort' => 'Img sort',
             'filepath' => 'Filepath',
         ];
+    }
+
+    public function updateSortIndex($clinicID, $deleteImageSortIndex) {
+        $images = ImageGalleries::find()
+            ->where(['parent_id' => $clinicID, 'parent_type' => 'clinics'])
+            ->all();
+
+        foreach ($images as $image){
+            if ($image->img_sort > $deleteImageSortIndex) {
+                $image->img_sort -= 1;
+                $image->save();
+            }
+        }
     }
 }

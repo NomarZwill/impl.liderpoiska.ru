@@ -58,7 +58,8 @@ class DoctorsPageSort extends \yii\db\ActiveRecord
 
     public function getServises()
     {
-        return $this->hasMany(Servises::className(), ['servise_id' => 'page_id']);
+        return $this->hasMany(Servises::className(), ['servise_id' => 'page_id'])
+            ->where(['servises.is_active' => 1]);
     }
 
     public function getClinics()

@@ -147,7 +147,10 @@
     bottom: 20px;
     left: 4px;
     width: 1000px;
-    border-bottom: 1px dotted $textColor;
+    height: 2px;
+    // border-bottom: 1px dotted $textColor;
+    background: url(/img/outflow.png);
+    background-repeat: repeat-x;
   }
 
   .service_price_points{

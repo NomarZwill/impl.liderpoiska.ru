@@ -35,6 +35,8 @@ use backend\models\ImageGalleries;
         <?= $form->field($model, 'alias')->textInput() ?>
 
     <?php } ?>
+
+    <?= $form->field($model, 'clinic_sort')->textInput() ?>
     
     <?= $form->field($model, 'is_active')->checkbox() ?>
 
@@ -43,10 +45,10 @@ use backend\models\ImageGalleries;
         $initialPreviewConfig = [];
         $path = 'images/uploaded/clinics/'. $model->clinic_id . '/';
         if (is_dir($path)) {
-            $images = ImageGalleries::find()->where(['parent_type' => 'clinics', 'parent_id' => $model->clinic_id])->all();
+            $images = ImageGalleries::find()->where(['parent_type' => 'clinics', 'parent_id' => $model->clinic_id])->orderBy(['img_sort' => SORT_ASC])->all();
             foreach ($images as $image) {
                 $initialPreview[] = Html::img(Url::to("@web/$image->filepath"), ['class'=>'file-preview-image']);
-                $initialPreviewConfig[] = ['caption' => '', 'width' => "120px", 'url' => "/clinics/" . $model->clinic_id . "/delete-gallery-image/" . $image->id . '/', 'key' => ''];
+                $initialPreviewConfig[] = ['caption' => '', 'width' => "120px", 'url' => "/clinics/" . $model->clinic_id . "/delete-gallery-image/" . $image->id . '/', 'key' => $image->id];
             }
         }
         ?>
@@ -62,8 +64,20 @@ use backend\models\ImageGalleries;
                 'initialPreview'=>$initialPreview,
                 'initialPreviewConfig' => $initialPreviewConfig,
                 'overwriteInitial'=>false,
-                ]
-                ])?>
+            ],
+            'pluginEvents' => [
+                'filesorted' => 'function(event, params) {
+                    console.log( params );
+                    $.ajax({
+                        url: "/clinics/ajax-dragfile/",
+                        type: "post",
+                        data: { previewId: params.stack[params.newIndex].key, oldIndex: params.oldIndex, newIndex: params.newIndex, stack: params.stack},
+                    }).done(function( log ) {
+                         console.log( "Data Saved: " + log );
+                    });
+                }',
+            ],
+        ])?>
 
     <?php } ?>
 

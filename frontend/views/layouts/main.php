@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
+use backend\models\Servises;
 use common\widgets\Alert;
 
 AppAsset::register($this);
@@ -25,16 +26,6 @@ AppAsset::register($this);
     <?php if (!empty($this->params['kw'])) echo "<meta name='keywords' content='" . $this->params['kw'] . "'>";?>
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
-
-    <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '693345340845343'); // Insert your pixel ID here.
-        fbq('track', 'PageView');
-    </script>
     <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=693345340845343&ev=PageView&noscript=1"/></noscript>
 
 </head>
@@ -125,8 +116,24 @@ AppAsset::register($this);
             <a class="_menu_link_no_borders" href="" onclick="return false">Услуги</a>
 
             <div class="service_dropdown_menu_wrapper">
+                <?php
+                    $servises_model = Servises::find()
+                      ->select(['parent_id', 'servise_id', 'alias', 'servise_listing_sort', 'header_menu_title'])
+                      ->where(['is_active' => 1, 'is_visible_in_menu' => 1])
+                      ->groupBy(['parent_id', 'servise_listing_sort', 'servise_id', 'alias', 'header_menu_title'])
+                      ->asArray()
+                      ->all();
 
-                <?= $this->render('../components/header_dropdown_menu.twig', ['servises' => Yii::$app->params['servises']]) ?>
+                    $servises = array();
+
+                    foreach ($servises_model as $key => $item) {
+                       $servises[$item['parent_id']][$item['servise_id']] = $item;
+                    }
+
+
+                    echo $this->render('../components/header_dropdown_menu_fast.twig', ['servises' => $servises]);
+
+                ?>
 
                 <div class="service_dropdown_menu_shadow"></div>
 
@@ -134,7 +141,37 @@ AppAsset::register($this);
 
         </div>
 
-        <div class="navbar_item"><a class="_menu_link_no_borders" href="/about/">О компании</a></div>
+        <div class="navbar_item about_dropdown_container">
+            <a class="_menu_link_no_borders" href="" onclick="return false">О компании</a>
+            <!-- <a class="_menu_link_no_borders" href="/about/">О компании</a> -->
+
+            <div class="about_dropdown_menu_background _hidden">
+
+                <div class="about_dropdown_menu_wrapper">
+
+                    <div class="about_back_button_wrapper">
+                        <button>Назад</button>
+                    </div>
+
+                    <div class="about_dropdown_menu_item">
+                        <a class="_menu_link_no_borders" href="/about/">О компании</a>
+                    </div>
+
+                    <div class="about_dropdown_menu_item">
+                        <a class="_menu_link_no_borders" href="/reviews/">Отзывы</a>
+                    </div>
+
+                    <div class="about_dropdown_menu_item">
+                        <a class="_menu_link_no_borders" href="/faq/">Вопрос-ответ</a>
+                    </div>
+
+                </div>
+
+                <div class="service_dropdown_menu_shadow"></div>
+
+            </div>
+
+        </div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/specialists/">Стоматологи</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/price/">Цены</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/partners/">Партнёры</a></div>
@@ -307,30 +344,8 @@ AppAsset::register($this);
 </footer>
 
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-   ym(24588914, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-</script>
 <noscript><div><img src="https://mc.yandex.ru/watch/24588914" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-78425286-1', 'auto');
-    ga('send', 'pageview');
-</script>
 
 <?php $this->endBody() ?>
 </body>

@@ -133,6 +133,9 @@ class Clinics extends \yii\db\ActiveRecord
     public function uploadImages()
     {
         //if ($this->validate()) {
+        $newSortIndex = ImageGalleries::find()
+            ->where(['parent_id' => $this->clinic_id, 'parent_type' => 'clinics'])
+            ->count();
         $iter = 1;
         foreach ($this->cinic_gallery_images as $file) {
             $path = 'images/uploaded/clinics/'. $this->clinic_id . '/';
@@ -141,9 +144,11 @@ class Clinics extends \yii\db\ActiveRecord
             $gallery = new ImageGalleries();
             $gallery->parent_type = Clinics::tableName();
             $gallery->parent_id = $this->clinic_id;
+            $gallery->img_sort = $newSortIndex;
             $gallery->filepath = $path . time() . '_' . $iter . '.' . $file->extension;
             $gallery->save();
-            $iter++;     
+            $iter++;  
+            $newSortIndex++;   
         }
         return true;
         //} else {

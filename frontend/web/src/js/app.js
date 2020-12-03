@@ -3,6 +3,7 @@
 import $ from 'jquery';
 
 import Main from './components/main';
+import SeoLoad from './components/seoLoad';
 import Index from './components/index';
 import ServiceListing from './components/serviceListing';
 import DoctorsListing from './components/doctorsListing';
@@ -32,6 +33,7 @@ window.$ = $;
 (function($) {
   	$(function() {
 			var main = new Main();
+			var seoLoad = new SeoLoad();
 			
 			if ($('[data-page-type="index"]').length > 0) {
 				var index = new Index();

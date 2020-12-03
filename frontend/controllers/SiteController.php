@@ -108,6 +108,7 @@ class SiteController extends MainController
         $clinics = Clinics::find()
             ->where(['clinics.is_active' => 1])
             ->joinWith('ratings')
+            ->orderBy(['clinic_sort' => SORT_ASC])
             ->all();
 
         $doctors = Doctors::find()

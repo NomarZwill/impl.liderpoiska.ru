@@ -262,8 +262,10 @@
     bottom: 20px;
     left: 4px;
     width: 945px;
-    // border-bottom: 1px dotted $textColor;
-    border-bottom: 1px dotted #dadee1;
+    height: 2px;
+    // border-bottom: 1px dotted #dadee1;
+    background: url(/img/outflow.png);
+    background-repeat: repeat-x;
   }
 
   .service_price_points{

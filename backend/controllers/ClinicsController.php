@@ -111,12 +111,71 @@ class ClinicsController extends Controller
         $image = ImageGalleries::findOne($image_id);
         $path = $image->filepath;
 
+        ImageGalleries::updateSortIndex($event_id, $image->img_sort);
+
         if (unlink($path)) {
           $image->delete();
           return ['success' => 'Удалено'];
         }
         return ['error' => 'Ошибка загрузки'];
     }
+
+    public function actionAjaxDragfile()
+    {
+        $currentImageID = $_POST['previewId'];
+        $newIndex = $_POST['newIndex'];
+        $oldIndex = $_POST['oldIndex'];
+        $stack = $_POST['stack'];
+        $imageClinicID = explode('/', $stack[$_POST['newIndex']]['url'])[2];
+
+        $log = '';
+
+        $images = ImageGalleries::find()
+            ->where(['parent_id' => $imageClinicID, 'parent_type' => 'clinics'])
+            ->all();
+
+        if ($newIndex > $oldIndex) {
+
+            $log .= 'moving forward; ';
+
+            foreach ($images as $image){
+                $log .= '$image->img_sort = ' . $image->img_sort . '; ';
+                if ($image->img_sort > $oldIndex && $image->img_sort <= $newIndex){
+                    $log .= 'notCurrentChange; ';
+                    $image->img_sort = $image->img_sort - 1;
+                    $image->save();
+                } elseif ($image->img_sort == $oldIndex) {
+                    $log .= 'currentImage change sort index; ';
+                    $image->img_sort = $newIndex;
+                    $image->save();
+                }
+            }
+
+        } elseif ($newIndex < $oldIndex) {
+
+            $log .= 'moving back; ';
+
+            foreach ($images as $image){
+                $log .= '$image->img_sort = ' . $image->img_sort . '; ';
+                if ($image->img_sort >= $newIndex && $image->img_sort < $oldIndex){
+                    $log .= 'notCurrentChange; ';
+                    $image->img_sort = $image->img_sort + 1;
+                    $image->save();
+                } elseif ($image->img_sort == $oldIndex) {
+                    $log .= 'currentImage change sort index; ';
+                    $image->img_sort = $newIndex;
+                    $image->save();
+                }
+            }
+        }
+
+        return json_encode([
+            'currentImageID' => $currentImageID,
+            'imageClinicID' => $imageClinicID,
+            'log' => $log,
+        ]);
+    }
+
 
     /**
      * Deletes an existing Clinics model.

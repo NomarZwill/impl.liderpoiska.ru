@@ -40,6 +40,8 @@ export default class Main{
       $('.service_dropdown_menu_wrapper ._active').removeClass('_active');
       $('.service_dropdown_menu_wrapper .listing_first_level.level_container').addClass('_hidden');
       $('.service_dropdown_menu_wrapper .category_item_wrapper').removeClass('_hidden');
+      $('.service_dropdown_menu_wrapper .category_item_wrapper').removeClass('_hidden');
+      $('.about_dropdown_menu_background').addClass('_hidden');
       $('[data-page-type="header_dropdown_menu"] .mobile_active_block_display_wrapper').empty();
 
       if (getScrollWidth() < 768) {
@@ -115,6 +117,7 @@ export default class Main{
        && $(e.target).closest('.popup_gallery_container').length === 0
        && $(e.target).closest('.lizcenz_wrapper').length === 0
        && $(e.target).closest('.popup_lizcenz_wrapper').length === 0
+       && $(e.target).closest('.about_dropdown_menu_background').length === 0
        && $(e.target).closest('.review_popup_button').length === 0) {
         closeDropdownMenu();
         closeLayoutPopup();
@@ -364,10 +367,14 @@ export default class Main{
 
     var switchMobileMode = function(e) {
 
-      if (getScrollWidth() < 768
-       && $('[data-page-type="header_dropdown_menu"] .category_wrapper .category_item_wrapper').hasClass('_active')) {
-        closeDropdownMenu();
-        openDropdownMenu();
+      if (getScrollWidth() < 768) {
+
+        if ($('[data-page-type="header_dropdown_menu"] .category_wrapper .category_item_wrapper').hasClass('_active')) {
+          closeDropdownMenu();
+          openDropdownMenu();
+        } else if (!$('.about_dropdown_menu_background').hasClass('_hidden')) {
+          closeDropdownMenu();
+        }
 
       } else if (getScrollWidth() >= 768 && getMobileDisplayChildrenValue() !== 0) {
         closeDropdownMenu();
@@ -376,5 +383,17 @@ export default class Main{
     };
 
     window.addEventListener('resize', switchMobileMode, { passive: true });
+
+    $('.navbar_item.about_dropdown_container').on('click', function(e){
+      var $menu = $(this).find('.about_dropdown_menu_background');
+
+      if ($(e.target).hasClass('about_dropdown_container')
+          || $(e.target).parent('.about_dropdown_container').length !== 0
+          || $(e.target).closest('.about_back_button_wrapper').length !== 0
+        ){
+        $('body').toggleClass('_popup_mode');
+        $menu.toggleClass('_hidden');
+      }
+    });
   }
 }

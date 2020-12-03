@@ -1,0 +1,85 @@
+<div data-page-type="header_dropdown_menu">
+
+  <div class="category_wrapper">
+
+    <div class="back_button_wrapper">
+      <button>Назад</button>
+    </div>
+
+    {% for serviseMenu in servises[0] %}
+      <div class="category_item_wrapper" data-servise-id={{serviseMenu.servise_id}}>
+
+          <p class="category_name">{{serviseMenu.header_menu_title | raw}}</p>
+
+          <div class="listing_first_level level_container _hidden" data-first-level-count={{servises[0]|length}}>
+
+            <a href="/dent/{{serviseMenu.alias}}/" class="category_link _link_black">{{serviseMenu.header_menu_title | raw}}</a>
+
+            {% set totalValue = servises[serviseMenu.servise_id]|length %}
+
+            <div class="listing_first_level level_wrapper column">
+
+              {% set currentIndex = 0 %}
+
+              {% for serviseFirst in servises[serviseMenu.servise_id] %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+              
+                  {% if currentIndex <= (totalValue / 2)|round(0, 'ceil') %}
+
+                    {{this.render(
+                      '/components/service_listing_inner_levels_fast.twig',
+                      {
+                        'servises': servises,
+                        'serviseMenu': serviseMenu,
+                        'serviseFirst': serviseFirst
+                      }
+                    ) | raw}}
+
+                  {% endif %}
+
+              {% endfor %}
+            
+            </div>
+
+            <div class="listing_first_level level_wrapper column">
+
+              {% set currentIndex = 0 %}
+
+              {% for serviseFirst in servises[serviseMenu.servise_id] %}
+
+                  {% set currentIndex = currentIndex + 1 %}
+              
+                  {% if currentIndex > (totalValue / 2)|round(0, 'ceil')  %}
+
+                    {{this.render(
+                      '/components/service_listing_inner_levels_fast.twig',
+                      {
+                        'servises': servises,
+                        'serviseMenu': serviseMenu,
+                        'serviseFirst': serviseFirst
+                      }
+                    ) | raw}}
+
+                  {% endif %}
+
+              {% endfor %}
+            
+            </div>
+
+          </div>
+
+        </div>
+    {% endfor %}
+
+    <a href="/dent/" class="all_services category_item_wrapper _menu_link_no_borders">Все услуги</a>
+
+    <div class="mobile_active_block_display_wrapper"></div>
+
+  </div>
+
+  <div class="close_dropdown_menu">
+    <span>Закрыть</span>
+  </div>
+
+</div>

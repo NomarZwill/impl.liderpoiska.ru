@@ -77,6 +77,7 @@ return [
                 ['pattern'=>'/specialnoe/','route'=>'other/special-deals', 'suffix'=>'/'],
                 ['pattern'=>'/reviews/','route'=>'other/reviews', 'suffix'=>'/'],
                 ['pattern'=>'/faq/','route'=>'other/faq', 'suffix'=>'/'],
+                ['pattern'=>'/testa/','route'=>'other/testa', 'suffix'=>'/'],
                 ['pattern'=>'/lizcenz/','route'=>'other/licenses', 'suffix'=>'/'],
                 ['pattern'=>'/garantii-na-stomatologicheskie-uslugi/','route'=>'other/warranty', 'suffix'=>'/'],
                 ['pattern'=>'/ajax-clinic-rating/','route'=>'site/ajax-clinic-rating', 'suffix'=>'/'],

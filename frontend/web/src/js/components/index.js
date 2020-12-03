@@ -59,6 +59,8 @@ export default class Index{
       spaceBetween: 24,
       watchOverflow: true,
       slidesPerGroup: 1,
+      preloadImages: false,
+      lazy: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -125,7 +127,12 @@ export default class Index{
 
     $($('.moscow_clinics .clinic_card_wrapper')[0]).addClass('_active');
     $('.clinic_info .clinic_name').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('title'));
-    $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
+    let mapPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // переведёт промис в состояние fulfilled с результатом "result"
+        $('.clinic_info .clinic_on_map').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('map'));
+      }, 3000);
+    });    
     $('.clinic_info .address_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('address'));
     $('.clinic_info .phone_content').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('phone'));
     $('.clinic_info .work_hours_content._weekdays').html($($('.moscow_clinics .clinic_card_wrapper')[0]).data('opening-weekdays'));

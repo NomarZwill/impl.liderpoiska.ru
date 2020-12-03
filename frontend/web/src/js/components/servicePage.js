@@ -7,6 +7,64 @@ export default class ServicePage{
   constructor(){
     Swiper.use([Navigation, Pagination]);
     this.init();
+    let self = this;
+    var fired = false;
+
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+ 
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    setTimeout(() => {
+      if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, 5000);
+
+    function load_other() {
+        self.youtube_run();
+    }
+  }
+
+  youtube_run(){
+    var player = [];
+  
+    $('.service_video_item_wrapper').each(function(i, obj) {
+      var currentVideoId = $(obj).find('.servise_video').attr('id');
+      player[i] = YouTubePlayer(currentVideoId, {
+        videoId: currentVideoId,
+        width: '496',
+        height: '286',
+      });
+      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+        player[i].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+    });
   }
 
   init(){
@@ -38,21 +96,6 @@ export default class ServicePage{
         $('.subservice_wrapper .open_block').addClass('_hidden');
         $('.subservice_wrapper .subservice_listing').removeClass('_compact');
       }
-    });
-
-    var player = [];
-  
-    $('.service_video_item_wrapper').each(function(i, obj) {
-      var currentVideoId = $(obj).find('.servise_video').attr('id');
-      player[i] = YouTubePlayer(currentVideoId, {
-        videoId: currentVideoId,
-        width: '496',
-        height: '286',
-      });
-      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
-        player[i].playVideo();
-        $(this).closest('.play_button_wrapper').addClass('_hidden');
-      });
     });
 
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
