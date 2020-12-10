@@ -1,18 +1,18 @@
 {% for item in faq %}
 
-<div class="faq_item_wrapper">
+<div class="faq_item_wrapper" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 
-  <div class="item_question">
+  <div class="item_question" itemprop="name">
 
-    <p>{{item.faq_query | raw}}</p>
+    <p><span class="last_breadcrumb">✅ </span>{{item.faq_query | raw}}</p>
 
     <div class="arrow"></div>
 
   </div>
 
-  <div class="item_answer _collapse">
+  <div class="item_answer _collapse" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
 
-    <p>{{item.faq_answer | raw}}</p>
+    <div itemprop="text">{{item.faq_answer | raw}}</div>
 
     <div class="signature_wrapper">
 

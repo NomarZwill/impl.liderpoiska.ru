@@ -253,13 +253,10 @@ class Doctors extends \yii\db\ActiveRecord
     }
 
     public function modifyExperienceString(&$doctors){
-        // $modDoctors = null;
 
         foreach ($doctors as $doctor){
             $doctor->doctor_experience = Doctors::num_decline($doctor->doctor_experience);
         }
-
-        // return $modDoctors;
     }
 
     public function num_decline($number){
@@ -274,300 +271,350 @@ class Doctors extends \yii\db\ActiveRecord
         return "$number ". $titles[ ($intnum % 100 > 4 && $intnum % 100 < 20) ? 2 : $cases[min($intnum % 10, 5)] ];
     }
 
-    public function afterSave($insert, $changedAttributes)
-    {
-        // if ($this->is_admin_changes) {
+    public function addNewVideo(){
 
-            if (!empty($this->doctor_spec_rel)) {
-
-                // удаление стёртых значений из таблицы доктор-специальность
-                foreach (DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
-                    if (array_search($item->specialty_id, $this->doctor_spec_rel) === false) {
-                        $item->delete();
-                    }
-                }
+        if (!empty($this->doctor_new_video_links)) {
     
-                foreach ($this->doctor_spec_rel as $spec) {
-                    $doctorMedSpec = new DoctorsMedSpec();
-                    $doctorMedSpec->doctor_id = $this->doctor_id;
-                    $doctorMedSpec->specialty_id = $spec;
-                    if (!DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id, 'specialty_id' => $spec])->exists()) {
-                        $doctorMedSpec->save();
-                        // echo $doctorMedSpec->specialty_id . ' saved, ';
-                    }
+            foreach ($this->doctor_new_video_links as $video) {
+                $doctorVideo = new DoctorsPageGalleries();
+                $doctorVideo->doctor_id = $this->doctor_id;
+                $doctorVideo->block_type = 'video';
+                $doctorVideo->filepath = $video;
+                if (!DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'filepath' => $video, 'block_type' => 'video'])->exists()) {
+                    $doctorVideo->save();
                 }
-            } else {
-                
-                foreach (DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+            }
+        }
+    }
+
+    public function updateVideoList(){
+        if (!empty($this->doctor_video_links)) {
+    
+            // удаление стёртых значений из таблицы 
+            foreach (DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'block_type' => 'video'])->all() as $item) {
+                if (array_search($item->id, $this->doctor_video_links) === false) {
+                    $item->delete();
+                }
+            }
+            
+        } else {
+            
+            foreach (DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'block_type' => 'video'])->all() as $item) {
+                $item->delete();
+            }
+        }
+    }
+
+    public function updateSpecRelations(){
+
+        // обработка данных о связях со специальностями
+        if (!empty($this->doctor_spec_rel)) {
+
+            // удаление стёртых значений из таблицы доктор-специальность
+            foreach (DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                if (array_search($item->specialty_id, $this->doctor_spec_rel) === false) {
+                    $item->delete();
+                }
+            }
+
+            foreach ($this->doctor_spec_rel as $spec) {
+                $doctorMedSpec = new DoctorsMedSpec();
+                $doctorMedSpec->doctor_id = $this->doctor_id;
+                $doctorMedSpec->specialty_id = $spec;
+                if (!DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id, 'specialty_id' => $spec])->exists()) {
+                    $doctorMedSpec->save();
+                    // echo $doctorMedSpec->specialty_id . ' saved, ';
+                }
+            }
+        } else {
+            
+            foreach (DoctorsMedSpec::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                $item->delete();
+                // echo $item->service_id . ' deleted, ';
+            }
+        }
+    }
+
+    public function updateClinicRelations(){
+
+        if (!empty($this->doctor_clinic_rel)) {
+    
+            foreach (DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                if (array_search($item->clinic_id, $this->doctor_clinic_rel) === false) {
+                    $item->delete();
+                    // echo $item->clinic_id . ' deleted, ';
+                }
+            }
+            
+            foreach ($this->doctor_clinic_rel as $clinic) {
+                $doctorClinic = new DoctorsAndClinics();
+                $doctorClinic->doctor_id = $this->doctor_id;
+                $doctorClinic->clinic_id = $clinic;
+                if (!DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id, 'clinic_id' => $clinic])->exists()) {
+                    $doctorClinic->save();
+                    // echo $doctorClinic->clinic_id . ' saved, ';
+                }
+            }
+        } else {
+            
+            foreach (DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                $item->delete();
+                // echo $item->service_id . ' deleted, ';
+            }
+        }
+    }
+
+    public function updateServicesRelations(){
+        if (!empty($this->doctor_service_rel)) {
+    
+            // удаление стёртых значений
+
+            foreach (DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                if (array_search($item->service_id, $this->doctor_service_rel) === false) {
                     $item->delete();
                     // echo $item->service_id . ' deleted, ';
                 }
             }
             
-            if (!empty($this->doctor_clinic_rel)) {
-    
-                foreach (DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
-                    if (array_search($item->clinic_id, $this->doctor_clinic_rel) === false) {
-                        $item->delete();
-                        // echo $item->clinic_id . ' deleted, ';
-                    }
+            // добавление вновь выбранных значений
+            foreach ($this->doctor_service_rel as $service) {
+                $doctorService = new DoctorsServicesRel();
+                $doctorService->doctor_id = $this->doctor_id;
+                $doctorService->service_id = $service;
+                if (!DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id, 'service_id' => $service])->exists()) {
+                    $doctorService->save();
+                    // echo $doctorService->service_id . ' saved, ';
                 }
-                
-                foreach ($this->doctor_clinic_rel as $clinic) {
-                    $doctorClinic = new DoctorsAndClinics();
-                    $doctorClinic->doctor_id = $this->doctor_id;
-                    $doctorClinic->clinic_id = $clinic;
-                    if (!DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id, 'clinic_id' => $clinic])->exists()) {
-                        $doctorClinic->save();
-                        // echo $doctorClinic->clinic_id . ' saved, ';
-                    }
-                }
-            } else {
-                
-                foreach (DoctorsAndClinics::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
-                    $item->delete();
-                    // echo $item->service_id . ' deleted, ';
-                }
-            }
-    
-            if (!empty($this->doctor_service_rel)) {
-    
-                // удаление стёртых значений
-                foreach (DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
-                    if (array_search($item->service_id, $this->doctor_service_rel) === false) {
-                        $item->delete();
-                        // echo $item->service_id . ' deleted, ';
-                    }
-                }
-                
-                // добавление вновь выбранных значений
-                foreach ($this->doctor_service_rel as $service) {
-                    $doctorService = new DoctorsServicesRel();
-                    $doctorService->doctor_id = $this->doctor_id;
-                    $doctorService->service_id = $service;
-                    if (!DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id, 'service_id' => $service])->exists()) {
-                        $doctorService->save();
-                        // echo $doctorService->service_id . ' saved, ';
-                    }
-                }
-            } else {
-                
-                foreach (DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
-                    $item->delete();
-                    // echo $item->service_id . ' deleted, ';
-                }
-            }
-    
-            if (!empty($this->doctor_video_links)) {
-    
-                // удаление стёртых значений из таблицы 
-                foreach (DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'block_type' => 'video'])->all() as $item) {
-                    if (array_search($item->id, $this->doctor_video_links) === false) {
-                        $item->delete();
-                    }
-                }
-                
-            } else {
-                
-                foreach (DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'block_type' => 'video'])->all() as $item) {
-                    $item->delete();
-                }
-            }
-    
-            if (!empty($this->doctor_new_video_links)) {
-    
-                foreach ($this->doctor_new_video_links as $video) {
-                    $doctorVideo = new DoctorsPageGalleries();
-                    $doctorVideo->doctor_id = $this->doctor_id;
-                    $doctorVideo->block_type = 'video';
-                    $doctorVideo->filepath = $video;
-                    if (!DoctorsPageGalleries::find()->where(['doctor_id' => $this->doctor_id, 'filepath' => $video, 'block_type' => 'video'])->exists()) {
-                        $doctorVideo->save();
-                    }
-                }
-            }
-    
-            // обработка данных о сортировке на страницах специальностей
-            if (!empty($this->doctor_spec_sort) && !empty($this->doctor_spec_rel)) {
-    
-                if (count($this->doctor_spec_rel) > 1) {
-    
-                    foreach ($this->doctor_spec_sort[0] as $key => $value) {
-        
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->one();
-        
-                            if ($currentSortItem->sort_index === $value) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value;
-                                $currentSortItem->save();
-                            }
-                        } else {
-                            $doctorSpecSort = new DoctorsPageSort();
-                            $doctorSpecSort->doctor_id = $this->doctor_id;
-                            $doctorSpecSort->page_type = 'medSpeciality';
-                            $doctorSpecSort->page_id = $key;
-                            $doctorSpecSort->sort_index = $value;
-                            $doctorSpecSort->save();
-                        }
-                    }
-                } else {
-    
-                    foreach ($this->doctor_spec_sort as $key => $value) {
-    
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->one();
-    
-                            if ($currentSortItem->sort_index === $value[0]) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value[0];
-                                $currentSortItem->save();
-                            }
-                        } else {
-                            $doctorSpecSort = new DoctorsPageSort();
-                            $doctorSpecSort->doctor_id = $this->doctor_id;
-                            $doctorSpecSort->page_type = 'medSpeciality';
-                            $doctorSpecSort->page_id = $key;
-                            $doctorSpecSort->sort_index = isset($value[0]) ? $value[0] : 0;
-                            $doctorSpecSort->save();
-                        }
-                    }
-    
-                }
-    
-    
-                // при удалении связи доктор-специальность, удаляется запись из таблицы сортировки докторов
-                foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'medSpeciality'])->all() as $item) {
-                    if (array_search($item->page_id, $this->doctor_spec_rel) === false) {
-                        $item->delete();
-                    }
-                }
-            }
-    
-            // обработка данных о сортировке на страницах услуг
-            if (!empty($this->doctor_service_sort) && !empty($this->doctor_service_rel)) {
 
-                // echo '<pre>';
-                // print_r($this->doctor_service_rel);
-                // exit;
+                //создание новых записей в сортировочной таблице
+                $doctorServiceSort = new DoctorsPageSort();
+                $doctorServiceSort->doctor_id = $this->doctor_id;
+                $doctorServiceSort->page_type = 'services';
+                $doctorServiceSort->page_id = $service;
+                $doctorServiceSort->sort_index = 0;
+                if (!DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'services', 'page_id' => $service])->exists()) {
+                    $doctorServiceSort->save();
+                }
+            }
+        } else {
+            
+            foreach (DoctorsServicesRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                $item->delete();
+                // echo $item->service_id . ' deleted, ';
+            }
+        }
+    }
+
+    public function updateSpecSort(){
+        if (!empty($this->doctor_spec_sort) && !empty($this->doctor_spec_rel)) {
+
     
-                if (count($this->doctor_service_rel) > 1) {
+            // if (count($this->doctor_spec_rel) > 1) {
+            if (count($this->doctor_spec_sort) > 1) {
+
+                foreach ($this->doctor_spec_sort[0] as $key => $value) {
     
-                    foreach ($this->doctor_service_sort[0] as $key => $value) {
-        
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->one();
-        
-                            if ($currentSortItem->sort_index === $value) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value;
-                                $currentSortItem->save();
-                            }
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->one();
+    
+                        if ($currentSortItem->sort_index === $value) {
+                            break;
                         } else {
-                            $doctorServiceSort = new DoctorsPageSort();
-                            $doctorServiceSort->doctor_id = $this->doctor_id;
-                            $doctorServiceSort->page_type = 'services';
-                            $doctorServiceSort->page_id = $key;
-                            $doctorServiceSort->sort_index = $value;
-                            $doctorServiceSort->save();
+                            $currentSortItem->sort_index = $value;
+                            $currentSortItem->save();
                         }
-                    }
-                } else {
-    
-                    foreach ($this->doctor_service_sort as $key => $value) {
-        
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->one();
-        
-                            if ($currentSortItem->sort_index === $value[0]) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value[0];
-                                $currentSortItem->save();
-                            }
-                        } else {
-                            // echo '<pre>';
-                            // print_r($this->doctor_service_sort);
-                            // exit;
-                            $doctorServiceSort = new DoctorsPageSort();
-                            $doctorServiceSort->doctor_id = $this->doctor_id;
-                            $doctorServiceSort->page_type = 'services';
-                            $doctorServiceSort->page_id = $key;
-                            $doctorServiceSort->sort_index = isset($value[0]) ? $value[0] : 0;
-                            $doctorServiceSort->save();
-                        }
+                    } else {
+                        $doctorSpecSort = new DoctorsPageSort();
+                        $doctorSpecSort->doctor_id = $this->doctor_id;
+                        $doctorSpecSort->page_type = 'medSpeciality';
+                        $doctorSpecSort->page_id = $key;
+                        $doctorSpecSort->sort_index = $value;
+                        $doctorSpecSort->save();
                     }
                 }
+            } else {
+
+                foreach ($this->doctor_spec_sort as $key => $value) {
+
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->one();
+
+                        if ($currentSortItem->sort_index === $value[0]) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value[0];
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorSpecSort = new DoctorsPageSort();
+                        $doctorSpecSort->doctor_id = $this->doctor_id;
+                        $doctorSpecSort->page_type = 'medSpeciality';
+                        $doctorSpecSort->page_id = $key;
+                        $doctorSpecSort->sort_index = isset($value[0]) ? $value[0] : 0;
+                        $doctorSpecSort->save();
+                    }
+                }
+
+            }
+
+            // при удалении связи доктор-специальность, удаляется запись из таблицы сортировки докторов
+            foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'medSpeciality'])->all() as $item) {
+                if (array_search($item->page_id, $this->doctor_spec_rel) === false) {
+                    $item->delete();
+                }
+            }
+        }
+    }
+
+    public function updateServicesSort(){
+
+        if (!empty($this->doctor_service_sort) && !empty($this->doctor_service_rel)) {
+
+            // echo '<pre>';
+            // print_r($this->doctor_service_rel);
+            // exit;
+
+            if (count($this->doctor_service_rel) > 1) {
+
+                foreach ($this->doctor_service_sort[0] as $key => $value) {
     
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->one();
     
-                // при удалении связи доктор-услуга, удаляется запись из таблицы сортировки докторов
-                foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'services'])->all() as $item) {
-                    if (array_search($item->page_id, $this->doctor_service_rel) === false) {
-                        $item->delete();
+                        if ($currentSortItem->sort_index === $value) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value;
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorServiceSort = new DoctorsPageSort();
+                        $doctorServiceSort->doctor_id = $this->doctor_id;
+                        $doctorServiceSort->page_type = 'services';
+                        $doctorServiceSort->page_id = $key;
+                        $doctorServiceSort->sort_index = $value;
+                        $doctorServiceSort->save();
+                    }
+                }
+            } else {
+
+                foreach ($this->doctor_service_sort as $key => $value) {
+    
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->one();
+    
+                        if ($currentSortItem->sort_index === $value[0]) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value[0];
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        // echo '<pre>';
+                        // print_r($this->doctor_service_sort);
+                        // exit;
+                        $doctorServiceSort = new DoctorsPageSort();
+                        $doctorServiceSort->doctor_id = $this->doctor_id;
+                        $doctorServiceSort->page_type = 'services';
+                        $doctorServiceSort->page_id = $key;
+                        $doctorServiceSort->sort_index = isset($value[0]) ? $value[0] : 0;
+                        $doctorServiceSort->save();
                     }
                 }
             }
+
+            // при удалении связи доктор-услуга, удаляется запись из таблицы сортировки докторов
+            foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'services'])->all() as $item) {
+                if (array_search($item->page_id, $this->doctor_service_rel) === false) {
+                    $item->delete();
+                }
+            }
+        }
+    }
+
+    public function updateClinicSort(){
+        if (!empty($this->doctor_clinic_sort) && !empty($this->doctor_clinic_rel)) {
     
+            if (count($this->doctor_clinic_rel) > 1) {
+
+                foreach ($this->doctor_clinic_sort[0] as $key => $value) {
+    
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->one();
+    
+                        if ($currentSortItem->sort_index === $value) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value;
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorClinicSort = new DoctorsPageSort();
+                        $doctorClinicSort->doctor_id = $this->doctor_id;
+                        $doctorClinicSort->page_type = 'clinics';
+                        $doctorClinicSort->page_id = $key;
+                        $doctorClinicSort->sort_index = $value;
+                        $doctorClinicSort->save();
+                    }
+                }
+            } else {
+
+                foreach ($this->doctor_clinic_sort as $key => $value) {
+    
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->one();
+    
+                        if ($currentSortItem->sort_index === $value[0]) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value[0];
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorClinicSort = new DoctorsPageSort();
+                        $doctorClinicSort->doctor_id = $this->doctor_id;
+                        $doctorClinicSort->page_type = 'clinics';
+                        $doctorClinicSort->page_id = $key;
+                        $doctorClinicSort->sort_index = isset($value[0]) ? $value[0] : 0;
+                        $doctorClinicSort->save();
+                    }
+                }
+            }
+
+            // при удалении связи доктор-клиника, удаляется запись из таблицы сортировки докторов
+            foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'clinics'])->all() as $item) {
+                if (array_search($item->page_id, $this->doctor_clinic_rel) === false) {
+                    $item->delete();
+                }
+            }
+        }
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        // if ($this->is_admin_changes) {
+
+            // обработка данных о связях со специальностями
+            $this->updateSpecRelations();
+            
+            // обработка данных о связях с клиниками
+            $this->updateClinicRelations();
+            
+            // обработка данных о связях с услугами
+            $this->updateServicesRelations();
+        
+            $this->updateVideoList();
+
+            $this->addNewVideo();
+            
+            // обработка данных о сортировке на страницах специальностей
+            $this->updateSpecSort();
+            
+            // обработка данных о сортировке на страницах услуг
+            $this->updateServicesSort();
+            
             // обработка данных о сортировке на страницах клиник
-            if (!empty($this->doctor_clinic_sort) && !empty($this->doctor_clinic_rel)) {
-    
-                if (count($this->doctor_clinic_rel) > 1) {
-    
-                    foreach ($this->doctor_clinic_sort[0] as $key => $value) {
-        
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->one();
-        
-                            if ($currentSortItem->sort_index === $value) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value;
-                                $currentSortItem->save();
-                            }
-                        } else {
-                            $doctorClinicSort = new DoctorsPageSort();
-                            $doctorClinicSort->doctor_id = $this->doctor_id;
-                            $doctorClinicSort->page_type = 'clinics';
-                            $doctorClinicSort->page_id = $key;
-                            $doctorClinicSort->sort_index = $value;
-                            $doctorClinicSort->save();
-                        }
-                    }
-                } else {
-    
-                    foreach ($this->doctor_clinic_sort as $key => $value) {
-        
-                        if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->exists()) {
-                            $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->one();
-        
-                            if ($currentSortItem->sort_index === $value[0]) {
-                                break;
-                            } else {
-                                $currentSortItem->sort_index = $value[0];
-                                $currentSortItem->save();
-                            }
-                        } else {
-                            $doctorClinicSort = new DoctorsPageSort();
-                            $doctorClinicSort->doctor_id = $this->doctor_id;
-                            $doctorClinicSort->page_type = 'clinics';
-                            $doctorClinicSort->page_id = $key;
-                            $doctorClinicSort->sort_index = isset($value[0]) ? $value[0] : 0;
-                            $doctorClinicSort->save();
-                        }
-                    }
-                }
-    
-    
-                // при удалении связи доктор-клиника, удаляется запись из таблицы сортировки докторов
-                foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'clinics'])->all() as $item) {
-                    if (array_search($item->page_id, $this->doctor_clinic_rel) === false) {
-                        $item->delete();
-                    }
-                }
-            }
+            $this->updateClinicSort();
     
             if (empty($this->alias)) {
                 $this->alias = Transliteration::getTransliteration($this->doctor_title);

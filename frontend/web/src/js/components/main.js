@@ -387,9 +387,12 @@ export default class Main{
     $('.navbar_item.about_dropdown_container').on('click', function(e){
       var $menu = $(this).find('.about_dropdown_menu_background');
 
-      if ($(e.target).hasClass('about_dropdown_container')
-          || $(e.target).parent('.about_dropdown_container').length !== 0
-          || $(e.target).closest('.about_back_button_wrapper').length !== 0
+      if (getScrollWidth() < 768
+          && (
+            $(e.target).hasClass('about_dropdown_container')
+            || $(e.target).parent('.about_dropdown_container').length !== 0
+            || $(e.target).closest('.about_back_button_wrapper').length !== 0
+          ) 
         ){
         $('body').toggleClass('_popup_mode');
         $menu.toggleClass('_hidden');

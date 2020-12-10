@@ -119,6 +119,14 @@ class Clinics extends \yii\db\ActiveRecord
         return $reviews;
     }
 
+    public function getBunnersForClinics(){
+        $bunners =  $this->hasMany(Banners::className(), ['id' => 'banner_id'])
+            ->viaTable('banners_and_clinics', ['clinic_id' => 'clinic_id'])
+            ->where(['banners.is_active' => 1]);
+
+        return $bunners;
+    }
+
     public function getArrayToSelect2() {
         $array = [];
         $clinics = Clinics::find()->all();

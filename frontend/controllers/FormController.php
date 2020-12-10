@@ -24,7 +24,7 @@ class FormController extends Controller
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
-          'artm@liderpoiska.ru', 
+          // 'artm@liderpoiska.ru', 
           'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
@@ -68,7 +68,7 @@ class FormController extends Controller
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
-          'artm@liderpoiska.ru', 
+          // 'artm@liderpoiska.ru', 
           'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
@@ -110,7 +110,7 @@ class FormController extends Controller
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
-          'artm@liderpoiska.ru', 
+          // 'artm@liderpoiska.ru', 
           'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
@@ -153,7 +153,7 @@ class FormController extends Controller
       $message = Yii::$app->mailer->compose()
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
-          'artm@liderpoiska.ru', 
+          // 'artm@liderpoiska.ru', 
           'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',

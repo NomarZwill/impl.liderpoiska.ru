@@ -10,6 +10,7 @@ use backend\models\Reviews;
 use backend\models\MedicalSpecialties;
 use backend\models\DoctorsMedSpec;
 use backend\models\DoctorsPageSort;
+use backend\models\SeoSinglePages;
 use common\html_constructor\models\HcDraft;
 
 // use backend\models\DoctorsAndClinics;
@@ -22,7 +23,13 @@ class SpecialistsController extends MainController
 {
 
   public function actionIndex(){
-    $this->setSeo([]);
+    $seo = SeoSinglePages::findOne(5);
+
+    $this->setSeo([
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
+    ]);
 
     $clinics = Clinics::find()->all();
     $medicalSpecialties = MedicalSpecialties::find()

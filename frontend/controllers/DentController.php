@@ -11,6 +11,7 @@ use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
 use backend\models\FaqServicesRel;
 use backend\models\DoctorsPageSort;
+use backend\models\SeoSinglePages;
 use common\html_constructor\models\HcDraft;
 
 class DentController extends MainController
@@ -28,7 +29,13 @@ class DentController extends MainController
       // print_r($reviews[1]['review_text']);
       // exit;
 
-      $this->setSeo([]);
+      $seo = SeoSinglePages::findOne(7);
+
+      $this->setSeo([
+         'title' => $seo->title,
+         'desc' => $seo->description,
+         'kw' => $seo->keywords,
+      ]);
 
       $servises = Servises::find()
          ->where(['is_active' => 1])

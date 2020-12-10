@@ -62,8 +62,8 @@ AppAsset::register($this);
         <div class="contacts_container">
     
             <div class="phones">
-                <a href="tel:4959302256">+7 (495) 930-22-56</a>
                 <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                <a href="tel:4959302256">+7 (495) 930-22-56</a>
             </div>
     
             <div class="work_hours">
@@ -142,8 +142,8 @@ AppAsset::register($this);
         </div>
 
         <div class="navbar_item about_dropdown_container">
-            <a class="_menu_link_no_borders" href="" onclick="return false">О компании</a>
-            <!-- <a class="_menu_link_no_borders" href="/about/">О компании</a> -->
+            <a class="_menu_link_no_borders _mobile" href="" onclick="return false">О компании</a>
+            <a class="_menu_link_no_borders" href="/about/">О компании</a>
 
             <div class="about_dropdown_menu_background _hidden">
 
@@ -163,6 +163,12 @@ AppAsset::register($this);
 
                     <div class="about_dropdown_menu_item">
                         <a class="_menu_link_no_borders" href="/faq/">Вопрос-ответ</a>
+                    </div>
+                    <div class="about_dropdown_menu_item">
+                        <a class="_menu_link_no_borders" href="/garantii-na-stomatologicheskie-uslugi/">Гарантии</a>
+                    </div>
+                    <div class="about_dropdown_menu_item">
+                        <a class="_menu_link_no_borders" href="/lizcenz/">Лицензии</a>
                     </div>
 
                 </div>
@@ -246,14 +252,26 @@ AppAsset::register($this);
                 <p>Пациентам</p>
             </div>
 
-            <div class="to_patients_item"><a class="_menu_link" href="/about/">О компании</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/contacts/">Клиники</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/specialists/">Стоматологи</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/partners/">Партнёры</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/price/">Цены</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/contacts/">Контакты</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/garantii-na-stomatologicheskie-uslugi/">Гарантии</a></div>
-            <div class="to_patients_item"><a class="_menu_link" href="/faq/">Вопросы и ответы</a></div>
+            <div class="first_column">
+
+                <div class="to_patients_item"><a class="_menu_link" href="/about/">О компании</a></div>
+                <!-- <div class="to_patients_item"><a class="_menu_link" href="/contacts/">Клиники</a></div> -->
+                <div class="to_patients_item"><a class="_menu_link" href="/specialists/">Стоматологи</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/partners/">Партнёры</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/price/">Цены</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/reviews/">Отзывы</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/garantii-na-stomatologicheskie-uslugi/">Гарантии</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/lizcenz/">Лицензии</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/contacts/">Контакты</a></div>
+
+            </div>
+
+            <div class="second_column">
+
+                <div class="to_patients_item"><a class="_menu_link" href="/faq/">Вопросы и ответы</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/specialnoe/">Спецпредложения</a></div>
+
+            </div>
         </div>
 
         <div class="servises_wrapper">

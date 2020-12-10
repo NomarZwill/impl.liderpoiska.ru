@@ -7,7 +7,7 @@
   .clinic_gallery{
     position: absolute;
     top: 0;
-    left: -12px;
+    left: 0;
     
     img{
       display: block;
@@ -17,7 +17,7 @@
     }
     
     &.swiper-container{
-      width: 50%;
+      width: 600px;
     }
   }
 
@@ -30,6 +30,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 50%;
+    padding: 0 0 0 24px;
 
     .info_item{
       // width: 50%;
@@ -90,7 +91,7 @@
 
   .button_container{
     width: 50%;
-    padding: 8px 0 0 0;
+    padding: 8px 0 0 24px;
 
     .popup_button{
       margin: 0 16px 0 0;
@@ -108,7 +109,7 @@
   .additional_info{
     position: relative;
     width: 50%;
-    padding: 24px 16px 0 32px;
+    padding: 24px 16px 0 56px;
 
     p{
       font-size: 14px;
@@ -121,7 +122,7 @@
         width: 24px;
         height: 24px;
         top: 24px;
-        left: 0px;
+        left: 24px;
         background: url(/img/info_icon.svg);
         background-size: contain;
       }
@@ -178,6 +179,7 @@
 
       p:before{
         top: 16px;
+        left: 0;
       }
     }
   }

@@ -19,6 +19,7 @@ use backend\models\Doctors;
 use backend\models\Reviews;
 use backend\models\Clinics;
 use backend\models\Ratings;
+use backend\models\SeoSinglePages;
 
 /**
  * Site controller
@@ -90,10 +91,18 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
+        // $this->setSeo([
+        //     'title' => 'Эстетическая стоматология в центре Москвы. Центр Эстетической Стоматологии',
+        //     'desc' => 'Центр Эстетической Стоматологии - профессиональная частная клиника в Москве. Все направления в стоматологии. Лучшие врачи. Доступные цены',
+        //     'kw' => '',
+        // ]);
+
+        $seo = SeoSinglePages::findOne(1);
+
         $this->setSeo([
-            'title' => 'Эстетическая стоматология в центре Москвы. Центр Эстетической Стоматологии',
-            'desc' => 'Центр Эстетической Стоматологии - профессиональная частная клиника в Москве. Все направления в стоматологии. Лучшие врачи. Доступные цены',
-            'kw' => '',
+        'title' => $seo->title,
+        'desc' => $seo->description,
+        'kw' => $seo->keywords,
         ]);
 
         $deals = Deals::find()

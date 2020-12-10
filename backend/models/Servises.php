@@ -160,7 +160,20 @@ class Servises extends \yii\db\ActiveRecord
         $servises = Servises::find()->all();
 
         foreach ($servises as $servise) {
-            $array[$servise->servise_id] = $servise->menu_title;
+            $array[$servise->servise_id] = $servise->header_menu_title;
+        }
+
+        return $array;
+    }
+
+    public function getServicesRootsArrayToSelect2() {
+        $array = [];
+        $servises = Servises::find()
+            ->where(['parent_id' => 0])
+            ->all();
+
+        foreach ($servises as $servise) {
+            $array[$servise->servise_id] = $servise->header_menu_title;
         }
 
         return $array;
@@ -204,6 +217,15 @@ class Servises extends \yii\db\ActiveRecord
 
         return false;
     }
+
+    public function getBunnersForRootServices(){
+        $bunners =  $this->hasMany(Banners::className(), ['id' => 'banner_id'])
+            ->viaTable('banners_and_services', ['service_id' => 'servise_id'])
+            ->where(['banners.is_active' => 1]);
+
+        return $bunners;
+    }
+
     
     public function afterSave($insert, $changedAttributes)
     {

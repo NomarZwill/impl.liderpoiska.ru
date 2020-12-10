@@ -2,8 +2,8 @@
   width: 100%;
   padding: 56px 0 0 0;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
 
   .footer_top,
   .footer_middle_wrapper,
@@ -134,16 +134,32 @@
       padding: 0 0 16px 0;
     }
   }
+  .to_patients,
+  .servises{
+    display: flex;
+    height: 272px;
+  }
 
   .to_patients{
+    flex-flow: row wrap;
+    width: 320px;
     padding: 0 56px 0 0;
   }
 
+  .first_column,
+  .second_column{
+    width: 132px;
+  }
+
+  .to_patients_item{
+    // width: 200px;
+    // padding: 0 0 16px 0;
+    // line-height: 20px;
+  }
+
   .servises{
-    display: flex;
     flex-flow: column wrap;
     width: 440px;
-    height: 272px;
   }
 
   .servises_item{
@@ -481,6 +497,16 @@
       & .servises_item{
         padding: 0 0 12px 0;
       }
+    }
+
+    .to_patients{
+      width: 288px;
+      padding: 0 32px 0 0;
+    }
+
+    .first_column,
+    .second_column{
+      width: 128px;
     }
 
     .servises{

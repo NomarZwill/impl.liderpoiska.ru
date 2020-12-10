@@ -1,9 +1,34 @@
 'use strict';
 
+import Swiper, { Navigation, Pagination } from 'swiper';
+
 export default class Prices{
 
   constructor(){
+    Swiper.use([Navigation, Pagination]);
     this.init();
+    var self = this;
+    this.swipers = [];
+    
+    $('.banners_container').each(function(i, obj){
+      var bannersContainer = new Swiper(obj, {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        watchOverflow: true,
+        centeredSlides: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          dynamicBullets: true,
+          clickable: true,
+        }
+      });
+
+      self.swipers.push(bannersContainer);
+    });
   }
   
   init(){

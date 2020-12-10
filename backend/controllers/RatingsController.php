@@ -87,22 +87,22 @@ class RatingsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            if (!empty($model->icon_img)) {
-                $this->actionDeleteIcon($model->id);
-            };
+            // if (!empty($model->icon_img)) {
+            //     $this->actionDeleteIcon($model->id);
+            // };
 
-            $model->icon_img = UploadedFile::getInstances($model, 'icon_img');
+            // $model->icon_img = UploadedFile::getInstances($model, 'icon_img');
 
-            $uploadFlag = $model->uploadImage();
-            if($uploadFlag){
-                $model->save();
-            }
-            else{
-                print_r($uploadFlag);
-                exit;
-            }
+            // $uploadFlag = $model->uploadImage();
+            // if($uploadFlag){
+            // $model->save();
+            // }
+            // else{
+            //     print_r($uploadFlag);
+            //     exit;
+            // }
 
             return $this->redirect(['update', 'id' => $model->id]);
         }
@@ -112,24 +112,24 @@ class RatingsController extends Controller
         ]);
     }
 
-    public function actionDeleteIcon($id)
-    {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    // public function actionDeleteIcon($id)
+    // {
+    //     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $model = $this->findModel($id);
+    //     $model = $this->findModel($id);
 
-        if ($model->icon !== '') {
+    //     if ($model->icon !== '') {
 
-            $path = 'images/uploaded/ratings/'. $id . '/' . $model->icon;
+    //         $path = 'images/uploaded/ratings/'. $id . '/' . $model->icon;
     
-            if (unlink($path)) {
-              $model->icon = '';
-              $model->save();
-              return ['success' => 'Удалено'];
-            }
-            return ['error' => 'Ошибка загрузки'];
-        }
-    }
+    //         if (unlink($path)) {
+    //           $model->icon = '';
+    //           $model->save();
+    //           return ['success' => 'Удалено'];
+    //         }
+    //         return ['error' => 'Ошибка загрузки'];
+    //     }
+    // }
 
     /**
      * Deletes an existing Ratings model.

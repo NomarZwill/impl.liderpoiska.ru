@@ -38,6 +38,21 @@ export default class ClinicContacts{
       },
     });
 
+    var bannersContainer = new Swiper('.banners_container', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      watchOverflow: true,
+      centeredSlides: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
+    });
 
     var doctorsWrapper  = new Swiper('.doctors_wrapper', {
       slidesPerView: 'auto',

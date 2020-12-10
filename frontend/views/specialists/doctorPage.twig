@@ -4,12 +4,23 @@
 
     <div class="doctor_preview_bg">
 
-      <div class="breadcrumbs_wrapper">
+      <ul class="breadcrumbs_wrapper" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-        <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
-        <a class="breadcrumbs _menu_link" href="/specialists/">Специалисты</a>
+        <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a class="_menu_link_no_borders" href="/" itemtype="https://schema.org/Thing" itemprop="item">
+            <span class="item_name" itemprop="name">Центр Стоматологической Имплантологии</span><span> → </span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
 
-      </div>
+        <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a class="_menu_link_no_borders" href="/specialists/" itemtype="https://schema.org/Thing" itemprop="item">
+            <span class="item_name" itemprop="name"><span class="last_breadcrumb">✅</span> Стоматологи</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        
+      </ul>
   
       <div class="doctor_preview_container">
   
@@ -130,42 +141,78 @@
 
     </div>
 
-    <div class="swiper-container doctor_video_wrapper">
+    {% if doc.doctorsVideos|length == 1 %}
 
-      <div class="swiper-wrapper">
+      <div class="swiper-container doctor_video_wrapper _single_video">
 
-      {% for video in doc.doctorsVideos %}
+        <div class="swiper-wrapper">
 
-        {% if video.block_type == 'video' %}
+        {% for video in doc.doctorsVideos %}
 
-          <div class="swiper-slide doctor_video_item_container">
+          {% if video.block_type == 'video' %}
 
-            <div class="doctor_video_item_wrapper">
+            <div class="doctor_video_item_container">
 
-              <div id="{{ video.filepath }}" class="doctor_video"></div>
+              <div class="doctor_video_item_wrapper">
 
-              <div class="play_button_wrapper">
-                <button class="play_button"></button>
+                <div id="{{ video.filepath }}" class="doctor_video"></div>
+
+                <div class="play_button_wrapper">
+                  <button class="play_button"></button>
+                </div>
+
               </div>
 
             </div>
 
-          </div>
+          {% endif %}
 
-        {% endif %}
+        {% endfor %}
 
-      {% endfor %}
+        </div>
 
       </div>
 
-      <div class="swiper-pagination revolver_pagination"></div>
+    {% elseif doc.doctorsVideos|length > 1 %}
 
-      <div class="revolver_navigation_wrapper">
-        <div class="swiper-button-prev revolver_navigation"></div>
-        <div class="swiper-button-next revolver_navigation"></div>
+      <div class="swiper-container doctor_video_wrapper">
+
+        <div class="swiper-wrapper">
+
+        {% for video in doc.doctorsVideos %}
+
+          {% if video.block_type == 'video' %}
+
+            <div class="swiper-slide doctor_video_item_container">
+
+              <div class="doctor_video_item_wrapper">
+
+                <div id="{{ video.filepath }}" class="doctor_video"></div>
+
+                <div class="play_button_wrapper">
+                  <button class="play_button"></button>
+                </div>
+
+              </div>
+
+            </div>
+
+          {% endif %}
+
+        {% endfor %}
+
+        </div>
+
+        <div class="swiper-pagination revolver_pagination"></div>
+
+        <div class="revolver_navigation_wrapper">
+          <div class="swiper-button-prev revolver_navigation"></div>
+          <div class="swiper-button-next revolver_navigation"></div>
+        </div>
+
       </div>
 
-    </div>
+    {% endif %}
 
   </div>
 

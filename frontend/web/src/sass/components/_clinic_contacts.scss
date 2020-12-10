@@ -8,8 +8,7 @@
   }
   
   .breadcrumbs_wrapper{
-    display: flex;
-    justify-content: center;
+    text-align: center;
 
     .breadcrumbs{
       margin: 0 4px 0 0;
@@ -49,9 +48,21 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-
+  }
+  
+  .ratings_container{
+    
     .revolver_navigation_wrapper{
      display: none;
+    }
+  }
+
+  .banners_container{
+    width: 1016px;
+    margin: 0 0 32px 0;
+
+    .swiper-wrapper{
+      padding: 0 0 16px 0;
     }
   }
 
@@ -171,6 +182,11 @@
       width: 768px;
     }
 
+    .banners_container{
+      width: 736px;
+      margin: 0 0 24px 0;
+    }
+
     .rating_title{
       padding: 16px 0 24px 0;
     }
@@ -223,6 +239,11 @@
 
     div.additional_info{
       width: 100%;
+    }
+
+    .banners_container{
+      width: calc(100% - 32px);
+      margin: 0 0 24px 0;
     }
 
     .rating_title{

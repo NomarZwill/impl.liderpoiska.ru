@@ -80,11 +80,17 @@
 
   ._custom_inline_img{
     padding: 0 24px 0 0;
-    // display: block;
-    // width: 100%;
-    // height: auto;
-    // float: left;
-    // margin: 0 24px 12px 0;
+  }
+
+  ._custom_single_img{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 40px auto;
+  }
+
+  ._custom_single_image_block{
+    display: flex;
   }
   
   .title_wrapper{
@@ -98,20 +104,20 @@
     padding: 0 20px 0 0;
   }
 
-  .breadcrumbs{
-    position: relative;
-    margin: 0 20px 0 0;
+  // .breadcrumbs{
+  //   position: relative;
+  //   margin: 0 20px 0 0;
 
-    &:before{
-      content: "→";
-      position: absolute;
-      right: -20px;
-    }
+  //   &:before{
+  //     content: "→";
+  //     position: absolute;
+  //     right: -20px;
+  //   }
 
-    &:last-of-type:before{
-      content: none;
-    }
-  }
+  //   &:last-of-type:before{
+  //     content: none;
+  //   }
+  // }
 
   h1{
     width: 700px;
@@ -459,6 +465,12 @@
         background: url(/img/book_icon.svg);
       }
     }
+  }
+
+  .single_video_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
   }
 
   ol{
@@ -1122,6 +1134,10 @@
       padding: 24px 16px 32px 16px;
     }
 
+    .breadcrumbs_wrapper{
+      width: 480px;
+    }
+
     h1{
       width: 480px;
       font-size: 44px;
@@ -1268,6 +1284,10 @@
       max-width: 100%;
     }
 
+    ._custom_single_img{
+      margin: 0 auto 32px auto;
+    }
+
     .content_note{
       width: calc(100% - 32px);
       margin: 0 auto 32px auto;
@@ -1303,6 +1323,10 @@
       }
     }
 
+    .breadcrumbs_wrapper{
+      display: none;
+    }
+
     h1{
       width: 212px;
       padding: 0 0 16px 0;
@@ -1329,8 +1353,6 @@
     .service_description{
 
       p{
-        word-break: break-all; // убрать после того, как починю отображение html тегов
-  
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 5;
@@ -1391,27 +1413,6 @@
 
     }
     
-    // .price_item_wrapper{
-    //   flex-flow: column nowrap;
-    //   border-bottom: 1px solid #DADEE1;
-
-    //   .price_name{
-    //     padding: 12px 0 4px 0;
-    //   }
-
-    //   .price_value{
-    //     padding: 0 0 12px 0;
-    //   }
-
-    //   .line{
-    //     display: none;
-    //   }
-
-    //   &:last-of-type{
-    //     border-bottom: 1px solid transparent; // не работает, разобраться
-    //   }
-    // }
-
     .service_price_wrapper{
       display: flex;
       flex-flow: column nowrap;

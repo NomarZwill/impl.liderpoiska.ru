@@ -20,33 +20,26 @@ use yii\helpers\Url;
     <?= $form->field($model, 'name')->textInput() ?>
 
     <?php
-        $initialPreview = [];
-        $initialPreviewConfig = [];
-        $path = 'images/uploaded/ratings/'. $model->id . '/';
-        if (is_dir($path)) {
-            $images =  FileHelper::findFiles($path);
-
-            if (!empty($model->icon)) {
-                $initialPreview[] = Html::img(Url::to('@web/' . $path .  $model->icon), ['class'=>'file-preview-image']);
-            }
-
-            $initialPreviewConfig[] = ['caption' => '', 'width' => "120px", 'url' => "/ratings/" . $model->id . "/delete-icon/", 'key' => ''];
-        }
+        $allRatingsData = [
+            1 => 'Yell',
+            2 => 'Flamp',
+            3 => 'Google',
+            4 => 'Yandex',
+            5 => 'Zoon',
+            6 => 'ПроДокторов',
+        ];
+        $activeRating = $model->rating_name;
     ?>
 
-    <?php if (empty($isCreate)){ ?>
-
-        <?=  $form->field($model, 'icon_img')->widget(FileInput::classname(), [
-            'options' => ['accept' => 'image/*'],
-            'pluginOptions' => [
-                'initialPreview'=>$initialPreview,
-                'initialPreviewConfig' => $initialPreviewConfig,
-                'overwriteInitial'=>false,
-                'maxFileCount' => 1,
-            ]
-        ])?>
-
-    <?php } ?>
+    <?= $form->field($model, 'rating_name')->widget(Select2::classname(), [
+        'data' => $allRatingsData,
+        //'maintainOrder' => true,
+        'options' => ['value' => $activeRating, 'placeholder' => 'Выберите рейтинг', 'multiple' => false],
+        'pluginOptions' => [
+            'tags' => true,
+            'maximumInputLength' => 10
+        ],
+    ]);?>
 
     <!-- <?= $form->field($model, 'icon')->textInput() ?> -->
 

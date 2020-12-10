@@ -9,11 +9,19 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    padding: 24px 0 32px 0;
+    padding: 24px 0 56px 0;
   }
 
   h1{
     padding: 16px 0 0 0;
+  }
+
+  .banners_container{
+    padding: 24px 0 0 0;
+
+    .swiper-wrapper{
+      padding: 0 0 16px 0;
+    }
   }
 
   .content_block.menu_container{
@@ -50,36 +58,9 @@
       color: $baseColor;
     }
   }
-  
-  .hot_deal_wrapper{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 16px 24px 16px 24px;
-    background: $lightBG;
-    border-radius: 8px;
-
-    ._button{
-      width: 232px;
-      height: 56px;
-    }
-  }
-
-  .hot_deal_text_wrapper{
-    padding: 0 56px 0 32px;
-
-    h3{
-      color: $baseColor;
-    }
-
-    p{
-      line-height: 24px;
-      letter-spacing: 0.01em;
-    }
-  }
 
   .content_block.service_block_container{
-    padding: 24px 0 24px 0;
+    padding: 0 0 24px 0;
     overflow: hidden;
 
     &._last_block{
@@ -222,8 +203,7 @@
       left: 24px;
     }
 
-    .content_block.service_block_container,
-    .content_block.hot_deal_container{
+    .content_block.service_block_container{
       margin: 0 0 0 352px;
     }
 
@@ -246,29 +226,8 @@
     }
 
     .content_block.service_block_container{
-      padding: 24px 16px 24px 16px;
+      padding: 0 16px 24px 16px;
     }  
-
-    .content_block.hot_deal_container{
-      padding: 0 16px 0 16px;
-    }
-
-    .hot_deal_wrapper{
-      position: relative;
-      flex-flow: column nowrap;
-      align-items: flex-start;
-      padding: 16px 24px 24px 178px;
-
-      img{
-        position: absolute;
-        top: 16px;
-        left: 24px;
-      }
-    }
-
-    .hot_deal_text_wrapper{
-      padding: 0 0 16px 0;
-    }
 
     .menu_item{
 
@@ -324,37 +283,6 @@
     .content_block.menu_container{
       // display: none;
       height: 0;
-    }
-
-    .hot_deal_wrapper{
-      align-items: center;
-      padding: 12px 12px 24px 12px;
-
-      img{
-        top: 12px;
-        left: 12px;
-        width: 60px;
-        height: 60px;
-      }
-
-      ._button{
-        width: 264px;
-        height: 48px;
-      }
-    }
-
-    .hot_deal_text_wrapper{
-      
-      h3{
-        display: flex;
-        align-items: center;
-        min-height: 60px;
-        padding: 0 0 0 84px;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.01em;
-      }
     }
 
     .block_title{

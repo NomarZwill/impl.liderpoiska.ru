@@ -139,7 +139,7 @@ use unclead\multipleinput\MultipleInput;
 
                 $serviceSortOptions[] = [
                     'name'  => $service->servise_id, 
-                    'title' => $service->menu_title, 
+                    'title' => $service->header_menu_title, 
                     'defaultValue' => $currentSortValue,
                 ];
             }

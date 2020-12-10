@@ -339,6 +339,49 @@ h5{
   letter-spacing: 0.02em;
 }
 
+ul.breadcrumbs_wrapper{
+
+  li{
+    display: inline;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+
+    &:before{
+      content: none;
+    }
+
+    &:last-of-type{
+
+      .breadcrumb_arrow{
+        display: none;
+      }
+    }
+  }
+
+  span{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .item_name{
+    border-bottom: 1px solid rgba(120, 47, 64, 0.4);
+
+    &:hover{
+      color: $baseColor;
+      border-bottom: 1px solid rgba(120, 47, 64, 1);
+    }
+  }
+
+  @include for-mobile{
+    text-align: center;
+  }
+}
+
+.last_breadcrumb{
+  display: none;
+}
+
 .swiper-container.doctors_wrapper,
 .doctors_wrapper{
 

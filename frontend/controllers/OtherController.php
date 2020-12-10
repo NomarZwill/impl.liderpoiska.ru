@@ -16,6 +16,8 @@ use backend\models\Faq;
 use backend\models\PartnersDeals;
 use backend\models\DoctorsPageSort;
 use backend\models\LicensesDocumentsPage;
+use backend\models\SeoSinglePages;
+use backend\models\Banners;
 use common\models\api\Maps;
 use yii\helpers\FileHelper;
 use yii\imagine\Image;
@@ -66,11 +68,19 @@ class OtherController extends MainController
       ->orderBy(['clinic_sort' => SORT_ASC])
       ->all();
 
+    $seo = SeoSinglePages::findOne(4);
+
     $this->setSeo([
-      'title' => 'Филиалы ЦЭС',
-      'desc' => 'Адреса и телефоны всех филиалов ГК ЦЭС здесь: подробная информация о всех стоматологических клиниках в ЦЭС в Москве',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
+
+    // $this->setSeo([
+    //   'title' => 'Филиалы ЦЭС',
+    //   'desc' => 'Адреса и телефоны всех филиалов ГК ЦЭС здесь: подробная информация о всех стоматологических клиниках в ЦЭС в Москве',
+    //   'kw' => '',
+    // ]);
 
     // print_r($clinics);
     // exit;
@@ -85,8 +95,9 @@ class OtherController extends MainController
     $currentClinic = Clinics::find()
       ->where(['clinics.alias' => $clinic])
       ->joinWith('ratings')
-      ->with('reviews')
       ->joinWith('imageGalleries')
+      ->with('reviews')
+      ->with('bunnersForClinics')
       ->one();
 
     if (!empty($currentClinic)){
@@ -121,10 +132,12 @@ class OtherController extends MainController
 
   public function actionPartners(){
 
+    $seo = SeoSinglePages::findOne(8);
+
     $this->setSeo([
-      'title' => 'Партнеры ЦЭС',
-      'desc' => 'Партнеры ГК ЦЭС в Москве. Предложения от партнеров, скидки',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     $gifts = PartnersDeals::find()->where(['is_active' => 1])->all();
@@ -139,10 +152,12 @@ class OtherController extends MainController
 
   public function actionPrices(){
 
+    $seo = SeoSinglePages::findOne(3);
+
     $this->setSeo([
-      'title' => 'Цены на стоматологические услуги ЦЭС',
-      'desc' => 'Прейскурант цен на стоматологические услуги в Москве. Цены на лечение зубов в клинике «Центр эстетической стоматологии».',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     $firstLevelParents = Servises::find()
@@ -153,6 +168,7 @@ class OtherController extends MainController
     $firstLevelServices = Servises::find()
     ->where(['servises.parent_id' => 0, 'servises.is_active' => 1])
     ->joinWith('prices')
+    ->with('bunnersForRootServices')
     ->asArray()
     ->all();   
     // print_r($firstLevelServices[0]);
@@ -172,16 +188,18 @@ class OtherController extends MainController
     // }
 
     return $this->render('prices.twig', array(
-      'firstLevelServices' => $firstLevelServices
+      'firstLevelServices' => $firstLevelServices,
     ));  
   }
 
   public function actionAbout(){
 
+    $seo = SeoSinglePages::findOne(6);
+
     $this->setSeo([
-      'title' => 'О компании ЦЭС',
-      'desc' => 'Подробная информация про Центр Эстетической стоматологии в Москве. Вступительное слово главного врача',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     return $this->render('about.twig');  
@@ -189,10 +207,12 @@ class OtherController extends MainController
 
   public function actionSpecialDeals(){
 
+    $seo = SeoSinglePages::findOne(9);
+
     $this->setSeo([
-      'title' => 'Спецпредложения от стоматологии ЦЭС',
-      'desc' => 'Все спецпредложения и акции от ГК ЦЭС в Москве. Интересные предложения, выгодные условия и скидки',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     $deals = Deals::find()
@@ -223,10 +243,12 @@ class OtherController extends MainController
   
   public function actionReviews(){
 
+    $seo = SeoSinglePages::findOne(10);
+
     $this->setSeo([
-      'title' => 'Отзывы о стоматологах Москвы',
-      'desc' => 'Отзывы клиентов Центра эстетической стоматологии в Москве: честные отзывы за долгое время работы',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     $reviews = Reviews::find()
@@ -294,10 +316,12 @@ class OtherController extends MainController
 
   public function actionFaq(){
 
+    $seo = SeoSinglePages::findOne(11);
+
     $this->setSeo([
-      'title' => 'Вопросы и ответы из стоматологии',
-      'desc' => 'Вопросы врачам ГК ЦЭС. Подробные ответы специалистов по интересующим вопросам из стоматологии',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     $faq = Faq::find()
@@ -345,10 +369,12 @@ class OtherController extends MainController
     // print_r($pageMedia->licenses);
     // exit;
 
+    $seo = SeoSinglePages::findOne(12);
+
     $this->setSeo([
-      'title' => 'Лицензии и реквизиты ЦЭС',
-      'desc' => 'Лицензии и реквизиты ГК ЦЭС. Фото',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     return $this->render('licenses.twig', array(
@@ -358,10 +384,12 @@ class OtherController extends MainController
 
   public function actionWarranty(){
 
+    $seo = SeoSinglePages::findOne(2);
+
     $this->setSeo([
-      'title' => 'Гарантии на стоматологические услуги в клиниках Центра Эстетической Стоматологии',
-      'desc' => 'Гарантии на услуги стоматологии – оказание стоматологических услуг в сети клиник «Центр Эстетической Стоматологии» ☎ Телефон в Москве: +7 (495) 930-22-56',
-      'kw' => '',
+      'title' => $seo->title,
+      'desc' => $seo->description,
+      'kw' => $seo->keywords,
     ]);
 
     return $this->render('warranty.twig', array(

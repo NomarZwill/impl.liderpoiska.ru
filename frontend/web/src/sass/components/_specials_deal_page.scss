@@ -8,9 +8,11 @@
   }
 
   .breadcrumbs_wrapper{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    text-align: center;
+
+    A:link { 
+      border-bottom: none;
+    }
   }
 
   .breadcrumbs{

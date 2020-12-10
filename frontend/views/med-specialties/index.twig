@@ -2,14 +2,23 @@
 
   <div class="content_block title_wrapper">
     
-    <div class="breadcrumbs_wrapper">
+    <ul class="breadcrumbs_wrapper" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-      <div class="breadcrumbs_wrapper">
-        <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
-        <a class="breadcrumbs _menu_link" href="/specialists/">Стоматологи</a>
-      </div>
+      <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="_menu_link_no_borders" href="/" itemtype="https://schema.org/Thing" itemprop="item">
+          <span class="item_name" itemprop="name">Центр Стоматологической Имплантологии</span><span> → </span>
+        </a>
+        <meta itemprop="position" content="1" />
+      </li>
 
-    </div>
+      <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="_menu_link_no_borders" href="/specialists/" itemtype="https://schema.org/Thing" itemprop="item">
+          <span class="item_name" itemprop="name"><span class="last_breadcrumb">✅</span> Стоматологи</span>
+        </a>
+        <meta itemprop="position" content="2" />
+      </li>
+      
+    </ul>
 
     <h1>{{activeSpec.specialty_title}}</h1>
 

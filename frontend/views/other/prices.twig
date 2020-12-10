@@ -2,11 +2,16 @@
 
   <div class="content_block title_container">
     
-    <div class="breadcrumbs_wrapper">
+    <ul class="breadcrumbs_wrapper" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
-
-    </div>
+      <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="_menu_link_no_borders" href="/" itemtype="https://schema.org/Thing" itemprop="item">
+          <span class="item_name" itemprop="name"><span class="last_breadcrumb">✅</span> Центр Стоматологической Имплантологии</span>
+        </a>
+        <meta itemprop="position" content="1" />
+      </li>
+      
+    </ul>
 
     <h1>Цены на услуги</h1>
 
@@ -95,26 +100,11 @@
 
   </div>
   
-  <div class="content_block hot_deal_container">
+  {# <div class="content_block banner_container">
 
-    {# <div class="hot_deal_wrapper">
+    {{this.render('/components/banner.twig', {'banner': banners}) | raw}}
 
-      <img src="/img/hot_deal_1_test.png" alt="">
-
-      <div class="hot_deal_text_wrapper">
-
-        <h3>Брекет-система под ключ на год!</h3>
-        <p>
-          Уникальное предложение для исправления прикуса.<br>100% лечение под ключ!
-        </p>
-
-      </div>
-
-      <button class="reception_button _button">Записаться на приём</button>
-
-    </div> #}
-
-  </div>
+  </div> #}
 
   {% for firstLevelService in firstLevelServices %}
 
@@ -160,6 +150,35 @@
           <div class="button_wrapper">
             <button class="reception_button _button">Записаться на приём</button>
           </div>
+
+          {% if firstLevelService.bunnersForRootServices|length > 0 %}
+
+          <div class="swiper-container banners_container" data-type="banners">
+
+            <div class="swiper-wrapper">
+
+              {% for banner in firstLevelService.bunnersForRootServices %}
+
+                <div class="swiper-slide banner_item_wrapper ">
+              
+                  {{this.render('/components/banner.twig', {'banner': banner}) | raw}}
+
+                </div>
+            
+              {% endfor %}
+
+            </div>
+
+            <div class="swiper-pagination revolver_pagination"></div>
+
+            <div class="revolver_navigation_wrapper">
+              <div class="swiper-button-prev revolver_navigation"></div>
+              <div class="swiper-button-next revolver_navigation"></div>
+            </div>
+
+          </div>
+
+        {% endif %}
 
         </div>
 
@@ -208,6 +227,35 @@
           <div class="button_wrapper">
             <button class="reception_button _button">Записаться на приём</button>
           </div>
+
+          {% if firstLevelService.bunnersForRootServices|length > 0 %}
+
+          <div class="swiper-container banners_container" data-type="banners">
+
+            <div class="swiper-wrapper">
+
+              {% for banner in firstLevelService.bunnersForRootServices %}
+
+                <div class="swiper-slide banner_item_wrapper ">
+              
+                  {{this.render('/components/banner.twig', {'banner': banner}) | raw}}
+
+                </div>
+            
+              {% endfor %}
+
+            </div>
+
+            <div class="swiper-pagination revolver_pagination"></div>
+
+            <div class="revolver_navigation_wrapper">
+              <div class="swiper-button-prev revolver_navigation"></div>
+              <div class="swiper-button-next revolver_navigation"></div>
+            </div>
+
+          </div>
+
+        {% endif %}
           
         </div>
         

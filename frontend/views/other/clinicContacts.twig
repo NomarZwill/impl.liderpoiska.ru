@@ -1,14 +1,24 @@
 <div data-page-type="clinic_contacts">
 
   <div class="content_block title_container">
-    
-    <div class="breadcrumbs_wrapper">
 
-      <a class="breadcrumbs _menu_link" href="/">Центр Эстетической Стоматологии</a>
-      <span class="breadcrumbs _menu_link"> → </span>
-      <a class="breadcrumbs _menu_link" href="/contacts/">Контакты</a>
+    <ul class="breadcrumbs_wrapper" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-    </div>
+      <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="_menu_link_no_borders" href="/" itemtype="https://schema.org/Thing" itemprop="item">
+          <span class="item_name" itemprop="name">Центр Стоматологической Имплантологии</span><span> → </span>
+        </a>
+        <meta itemprop="position" content="1" />
+      </li>
+
+      <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="_menu_link_no_borders" href="/contacts/" itemtype="https://schema.org/Thing" itemprop="item">
+          <span class="item_name" itemprop="name"><span class="last_breadcrumb">✅</span> Контакты</span>
+        </a>
+        <meta itemprop="position" content="2" />
+      </li>
+      
+    </ul>
 
     <h1>{{clinic.h1_title}}</h1>
 
@@ -130,6 +140,35 @@
   </div>
   
   <div class="content_block rating_map_block">
+
+    {% if clinic.bunnersForClinics|length > 0 %}
+
+      <div class="swiper-container banners_container" data-type="banners">
+
+        <div class="swiper-wrapper">
+
+          {% for banner in clinic.bunnersForClinics %}
+
+            <div class="swiper-slide banner_item_wrapper ">
+          
+              {{this.render('/components/banner.twig', {'banner': banner}) | raw}}
+
+            </div>
+        
+          {% endfor %}
+
+        </div>
+
+        <div class="swiper-pagination revolver_pagination"></div>
+
+        <div class="revolver_navigation_wrapper">
+          <div class="swiper-button-prev revolver_navigation"></div>
+          <div class="swiper-button-next revolver_navigation"></div>
+        </div>
+
+      </div>
+
+    {% endif %}
     
     <h3 class="rating_title">Рейтинг клиники</h3>
 

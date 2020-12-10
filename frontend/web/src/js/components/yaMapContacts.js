@@ -85,6 +85,9 @@ export default class YaMapContacts{
           {suppressMapOpenBlock: true}
         );
 
+        myMap.behaviors.disable('scrollZoom');
+        myMap.behaviors.disable('drag');
+
         var zoomControl = new ymaps.control.ZoomControl({
           options: {
               size: "small",

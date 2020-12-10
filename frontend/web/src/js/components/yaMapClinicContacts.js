@@ -87,6 +87,9 @@ export default class YaMapClinicContacts{
           center: clinicCoordinates,
           zoom: 17
         });
+        
+        myMap.behaviors.disable('scrollZoom');
+        myMap.behaviors.disable('drag');
 
         var clinic = new ymaps.Placemark(clinicCoordinates, {
           balloonContent: $('.clinic_map').data('clinic-address')
