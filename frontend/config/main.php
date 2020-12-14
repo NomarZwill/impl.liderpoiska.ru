@@ -67,6 +67,7 @@ return [
                 ['pattern'=>'/specialists/ajax-more-card/','route'=>'specialists/ajax-more-card', 'suffix'=>'/'],
                 ['pattern'=>'/specialists/<doctor:[\w-]+>','route'=>'specialists/specialist-card', 'suffix'=>'/'],
                 ['pattern'=>'/specialty/<specAlias:[\w-]+>','route'=>'med-specialties/speciality-name', 'suffix'=>'/'],
+                ['pattern'=>'/articles/<article:[\w-]+>','route'=>'articles/article', 'suffix'=>'/'],
                 ['pattern'=>'/agreement/','route'=>'other/agreement', 'suffix'=>'/'],
                 ['pattern'=>'/contacts/<clinic:[\w-]+>','route'=>'other/clinic-contacts', 'suffix'=>'/'],
                 ['pattern'=>'/contacts/','route'=>'other/contacts', 'suffix'=>'/'],

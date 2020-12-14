@@ -62,6 +62,10 @@
       line-height: 24px;
       letter-spacing: 0.01em;
     }
+
+    a{
+      word-wrap: break-word;
+    }
   }
 
   ._custom_text_image_block{
@@ -809,6 +813,11 @@
   .analysis_wrapper{
     width: 50%;
 
+    &:first-of-type{
+      width: calc(50% - 24px);
+      padding: 0 24px 0 0;
+    }
+
     span{
       font-weight: 500;
       font-size: 16px;
@@ -1302,6 +1311,15 @@
       }
     }
 
+    .content_note.analysis_container{
+      padding: 16px 12px 16px 12px;
+
+      h4{
+        min-height: 32px;
+        padding: 0 0 16px 44px;
+      }
+    }
+
     .content_block{
       width: 100%;
     }
@@ -1663,6 +1681,11 @@
 
     .analysis_wrapper{
       width: 100%;
+
+      &:first-of-type{
+        width: 100%;
+        padding: 0 0 0 0;
+      }
     }
 
     .content_block.recall_wrapper{

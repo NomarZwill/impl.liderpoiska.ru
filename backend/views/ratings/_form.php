@@ -17,16 +17,16 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput() ?>
+    <!-- <?= $form->field($model, 'name')->textInput() ?> -->
 
     <?php
         $allRatingsData = [
-            1 => 'Yell',
-            2 => 'Flamp',
-            3 => 'Google',
-            4 => 'Yandex',
-            5 => 'Zoon',
-            6 => 'ПроДокторов',
+            'Yell' => 'Yell',
+            'Flamp' => 'Flamp',
+            'Google' => 'Google',
+            'Yandex' => 'Yandex',
+            'Zoon' => 'Zoon',
+            'ПроДокторов' => 'ПроДокторов',
         ];
         $activeRating = $model->rating_name;
     ?>

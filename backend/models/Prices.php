@@ -20,6 +20,7 @@ class Prices extends \yii\db\ActiveRecord
 {
 
     public $price_services_rel;
+    public $price_articles_rel;
     /**
      * {@inheritdoc}
      */
@@ -37,7 +38,7 @@ class Prices extends \yii\db\ActiveRecord
             [['prices_name', 'price'], 'required'],
             [['prices_name', 'keywords', 'prices_description', 'code', 'alias'], 'string'],
             [['price', 'price_hide', 'is_active', 'old_id'], 'integer'],
-            [['price_services_rel'], 'safe'],
+            [['price_services_rel', 'price_articles_rel'], 'safe'],
         ];
     }
 
@@ -57,8 +58,35 @@ class Prices extends \yii\db\ActiveRecord
             'code' => 'Код',
             'alias' => 'Alias',
             'price_services_rel' => 'Выбор услуг',
+            'price_articles_rel' => 'Выбор статей',
             'old_id' => 'Old ID',
         ];
+    }
+
+    public function updateArticleRelations(){
+
+        if (!empty($this->price_articles_rel)) {
+    
+            foreach (ArticlesPricesRel::find()->where(['price_id' => $this->prices_id])->all() as $item) {
+                if (array_search($item->article_id, $this->price_articles_rel) === false) {
+                    $item->delete();
+                }
+            }
+            
+            foreach ($this->price_articles_rel as $article) {
+                $priceArticle = new ArticlesPricesRel();
+                $priceArticle->price_id = $this->prices_id;
+                $priceArticle->article_id = $article;
+                if (!ArticlesPricesRel::find()->where(['price_id' => $this->prices_id, 'article_id' => $article])->exists()) {
+                    $priceArticle->save();
+                }
+            }
+        } else {
+            
+            foreach (ArticlesPricesRel::find()->where(['price_id' => $this->prices_id])->all() as $item) {
+                $item->delete();
+            }
+        }
     }
 
     public function afterSave($insert, $changedAttributes){
@@ -90,6 +118,8 @@ class Prices extends \yii\db\ActiveRecord
                 // echo $item->service_id . ' deleted, ';
             }
         }
+
+        $this->updateArticleRelations();
 
         parent::afterSave($insert, $changedAttributes);
     }

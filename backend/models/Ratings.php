@@ -20,12 +20,12 @@ class Ratings extends \yii\db\ActiveRecord
     public $icon_img;
 
     const RATINGS_IMAGES_LIST = [
-        1 => 'yell.png',
-        2 => 'flamp.png',
-        3 => 'google.png',
-        4 => 'yandex.png',
-        5 => 'zoon.png',
-        6 => 'prodoctorov.png',
+        'Yell' => 'yell.png',
+        'Flamp' => 'flamp.png',
+        'Google' => 'google.png',
+        'Yandex' => 'yandex.png',
+        'Zoon' => 'zoon.png',
+        'ПроДокторов' => 'prodoctorov.png',
     ];
 
     /**
@@ -43,8 +43,8 @@ class Ratings extends \yii\db\ActiveRecord
     {
         return [
             // [['name', 'icon', 'link_to_agregator', 'average_rating', 'clinic_id'], 'required'],
-            [['name', 'icon', 'link_to_agregator', 'clinic_id'], 'string'],
-            [['is_active', 'rating_name'], 'integer'],
+            [['name', 'icon', 'link_to_agregator', 'clinic_id', 'rating_name'], 'string'],
+            [['is_active'], 'integer'],
             [['average_rating'], 'number'],
             [['icon_img'], 'safe'],
         ];
@@ -58,7 +58,7 @@ class Ratings extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'rating_name' => 'Рейтинг',
-            'name' => 'Название (Рейтинг-клиника)',
+            'name' => 'Клиника',
             'icon' => 'Иконка',
             'link_to_agregator' => 'Ссылка на страницу клиники (на агрегаторе)',
             'average_rating' => 'Средняя оценка',
@@ -91,8 +91,20 @@ class Ratings extends \yii\db\ActiveRecord
     {
         $image = Ratings::RATINGS_IMAGES_LIST[$this->rating_name];
 
+        // print_r($this->rating_name);
+        // exit;
+
         if (isset($image) && $image !== $this->icon){
             $this->icon = $image;
+            $this->save();
+        }
+    }
+
+    public function setClinicName()
+    {
+        $clinicName = Clinics::findOne($this->clinic_id)->h1_title;
+        if ($this->name !== $clinicName){
+            $this->name = $clinicName;
             $this->save();
         }
     }
@@ -100,6 +112,7 @@ class Ratings extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         $this->setRatingImage();
+        $this->setClinicName();
 
         parent::afterSave($insert, $changedAttributes);
     }

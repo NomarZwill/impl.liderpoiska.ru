@@ -59,6 +59,8 @@ class Doctors extends \yii\db\ActiveRecord
     public $doctor_video_links;
     public $doctor_new_video_links;
     public $doctor_lizcenz_gallery;
+    public $article_doctor_rel;
+    public $article_doctor_sort;
 
     /**
      * {@inheritdoc}
@@ -77,7 +79,7 @@ class Doctors extends \yii\db\ActiveRecord
             // [['doctor_title', 'doctor_long_title', 'doctor_description', 'alias', 'content', 'doctor_education', 'doctor_image', 'old_id'], 'required'],
             [['doctor_title', 'doctor_long_title', 'doctor_description','keywords', 'breadcrumbs_title', 'introtext', 'alias', 'content', 'doctor_education', 'doctor_image', 'medic_to_filial', 'sort_lab_smail', 'sort_doyche_velle', 'sort_esteticheskaya_stomatologiya_chistie_prudi', 'sort_esteticheskaya_stomatologiya', 'sort_impl', 'sort_centr_implantologii', 'review_to_specials', 'specials_to_medic', 'review_title', 'query_to_service', 'faq_title', 'sort_klinika_dentalgeneva', 'sort_prec_1005', 'sort_prec_1154', 'sort_prec_1459', 'sort_prec_988', 'sort_prec_989', 'sort_prec_990', 'sort_prec_991', 'sort_prec_992', 'sort_prec_994'], 'string'],
             [['old_id', 'doctor_experience', 'answers_the_questions', 'visible_on_home_page', 'is_active', 'doctor_listing_sort'], 'integer'],
-            [['doctor_image_load', 'doctor_spec_rel', 'doctor_spec_sort', 'doctor_clinic_rel', 'doctor_clinic_sort', 'doctor_service_rel', 'doctor_service_sort', 'doctor_video_links', 'doctor_new_video_links', 'doctor_lizcenz_gallery'], 'safe']
+            [['doctor_image_load', 'doctor_spec_rel', 'doctor_spec_sort', 'doctor_clinic_rel', 'doctor_clinic_sort', 'doctor_service_rel', 'doctor_service_sort', 'doctor_video_links', 'doctor_new_video_links', 'doctor_lizcenz_gallery', 'article_doctor_rel', 'article_doctor_sort'], 'safe']
         ];
     }
 
@@ -136,6 +138,8 @@ class Doctors extends \yii\db\ActiveRecord
             'doctor_new_video_links' => 'Добывить ссылки на видео',
             'doctor_video_links' => 'Cсылки на видео',
             'doctor_lizcenz_gallery' => 'Галерея лицензий',
+            'article_doctor_rel' => 'Связанные статьи',
+            'article_doctor_sort' => 'Сортировка на странице статьи',
         ];
     }
 
@@ -405,6 +409,33 @@ class Doctors extends \yii\db\ActiveRecord
         }
     }
 
+    public function updateArticleRelations(){
+
+        if (!empty($this->article_doctor_rel)) {
+    
+            foreach (ArticlesDoctorsRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                if (array_search($item->article_id, $this->article_doctor_rel) === false) {
+                    $item->delete();
+                    DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $item->article_id, 'page_type' => 'articles'])->one()->delete();
+                }
+            }
+            
+            foreach ($this->article_doctor_rel as $article) {
+                $doctorArticle = new ArticlesDoctorsRel();
+                $doctorArticle->doctor_id = $this->doctor_id;
+                $doctorArticle->article_id = $article;
+                if (!ArticlesDoctorsRel::find()->where(['doctor_id' => $this->doctor_id, 'article_id' => $article])->exists()) {
+                    $doctorArticle->save();
+                }
+            }
+        } else {
+            
+            foreach (ArticlesDoctorsRel::find()->where(['doctor_id' => $this->doctor_id])->all() as $item) {
+                $item->delete();
+            }
+        }
+    }
+
     public function updateSpecSort(){
         if (!empty($this->doctor_spec_sort) && !empty($this->doctor_spec_rel)) {
 
@@ -590,6 +621,74 @@ class Doctors extends \yii\db\ActiveRecord
         }
     }
 
+    public function updateArticleSort(){
+        if (!empty($this->article_doctor_sort) && !empty($this->article_doctor_rel)) {
+            
+            if (array_key_exists(0, $this->article_doctor_sort) && !empty($this->article_doctor_sort[0]) && count($this->article_doctor_rel) > 1) {
+
+                // echo '<pre>';
+                // echo 'first';
+                // print_r($this->article_doctor_sort);
+                // exit;
+
+                foreach ($this->article_doctor_sort[0] as $key => $value) {
+    
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->one();
+                        
+                        if ($currentSortItem->sort_index === $value) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value;
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorArticleSort = new DoctorsPageSort();
+                        $doctorArticleSort->doctor_id = $this->doctor_id;
+                        $doctorArticleSort->page_type = 'articles';
+                        $doctorArticleSort->page_id = $key;
+                        $doctorArticleSort->sort_index = $value;
+                        $doctorArticleSort->save();
+                    }
+                }
+            } elseif (count($this->article_doctor_sort) === 1 && !array_key_exists(0, $this->article_doctor_sort)) {
+
+                // echo '<pre>';
+                // echo 'second';
+                // print_r($this->article_doctor_sort);
+                // exit;
+
+                foreach ($this->article_doctor_sort as $key => $value) {
+    
+                    if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->exists()) {
+                        $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->one();
+    
+                        if ($currentSortItem->sort_index === $value[0]) {
+                            break;
+                        } else {
+                            $currentSortItem->sort_index = $value[0];
+                            $currentSortItem->save();
+                        }
+                    } else {
+                        $doctorArticleSort = new DoctorsPageSort();
+                        $doctorArticleSort->doctor_id = $this->doctor_id;
+                        $doctorArticleSort->page_type = 'articles';
+                        $doctorArticleSort->page_id = $key;
+                        $doctorArticleSort->sort_index = isset($value[0]) ? $value[0] : 0;
+                        $doctorArticleSort->save();
+                    }
+                }
+            } 
+        } else if (empty($this->article_doctor_rel)){
+            // при удалении связи доктор-статья, удаляется запись из таблицы сортировки докторов
+            foreach (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_type' => 'articles'])->all() as $item) {
+                // if (array_search($item->page_id, $this->article_doctor_rel) === false) {
+                    $item->delete();
+                // }
+            }
+        }
+    }
+
     public function afterSave($insert, $changedAttributes)
     {
         // if ($this->is_admin_changes) {
@@ -602,6 +701,9 @@ class Doctors extends \yii\db\ActiveRecord
             
             // обработка данных о связях с услугами
             $this->updateServicesRelations();
+
+            // обработка данных о связях со статьями
+            $this->updateArticleRelations();
         
             $this->updateVideoList();
 
@@ -615,6 +717,9 @@ class Doctors extends \yii\db\ActiveRecord
             
             // обработка данных о сортировке на страницах клиник
             $this->updateClinicSort();
+
+            // обработка данных о сортировке на страницах статей
+            $this->updateArticleSort();
     
             if (empty($this->alias)) {
                 $this->alias = Transliteration::getTransliteration($this->doctor_title);

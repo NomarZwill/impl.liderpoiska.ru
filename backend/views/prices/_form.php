@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use backend\models\Servises;
 use backend\models\ServiceAndPrices;
+use backend\models\Articles;
+use backend\models\ArticlesPricesRel;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Prices */
@@ -23,20 +25,39 @@ use backend\models\ServiceAndPrices;
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
 
-    <?php
-        $allServicesData = Servises::getArrayToSelect2();
-        $activePriceServices = ServiceAndPrices::getPriceServiceIDs($model->prices_id);
+    <?php if (empty($isCreate)){ ?>
+
+        <?php
+            $allServicesData = Servises::getArrayToSelect2();
+            $activePriceServices = ServiceAndPrices::getPriceServiceIDs($model->prices_id);
         ?>
 
-    <?= $form->field($model, 'price_services_rel')->widget(Select2::classname(), [
-        'data' => $allServicesData,
-        //'maintainOrder' => true,
-        'options' => ['value' => $activePriceServices, 'placeholder' => 'Выберите услуги', 'multiple' => true],
-        'pluginOptions' => [
-            'tags' => true,
-            'maximumInputLength' => 10
-        ],
+        <?= $form->field($model, 'price_services_rel')->widget(Select2::classname(), [
+            'data' => $allServicesData,
+            //'maintainOrder' => true,
+            'options' => ['value' => $activePriceServices, 'placeholder' => 'Выберите услуги', 'multiple' => true],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 10
+            ],
         ]);?>
+
+        <?php
+            $allArticlesData = Articles::getArrayToSelect2();
+            $activePriceArticles = ArticlesPricesRel::getPriceArticleIDs($model->prices_id);
+        ?>
+
+        <?= $form->field($model, 'price_articles_rel')->widget(Select2::classname(), [
+            'data' => $allArticlesData,
+            'options' => ['value' => $activePriceArticles, 'placeholder' => 'Выберите статьи', 'multiple' => true],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 10
+            ],
+        ]);?>
+
+    <?php } ?>
+
 
     <?= $form->field($model, 'code')->textInput() ?>
 

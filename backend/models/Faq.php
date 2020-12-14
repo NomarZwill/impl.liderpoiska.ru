@@ -19,6 +19,7 @@ class Faq extends \yii\db\ActiveRecord
 {
 
     public $faq_service_rel;
+    public $faq_articles_rel;
     /**
      * {@inheritdoc}
      */
@@ -36,7 +37,7 @@ class Faq extends \yii\db\ActiveRecord
             [['faq_title', 'faq_query', 'faq_answer'], 'required'],
             [['patient_name', 'patient_mail', 'patient_phone', 'faq_title', 'faq_query', 'keywords', 'faq_answer', 'alias'], 'string'],
             [['faq_sort', 'doctor_for_answer_id', 'old_id'], 'integer'],
-            [['faq_service_rel'], 'safe'],
+            [['faq_service_rel', 'faq_articles_rel'], 'safe'],
         ];
     }
 
@@ -53,6 +54,7 @@ class Faq extends \yii\db\ActiveRecord
             'faq_sort' => 'Сортировка на странице Вопрос-ответ',
             'doctor_for_answer_id' => 'Отвечающий доктор',
             'faq_service_rel' => 'Связанные услуги',
+            'faq_articles_rel' => 'Связанные статьи',
             'faq_title' => 'Заголовок',
             'faq_query' => 'Вопрос',
             'keywords' => 'Ключевые слова',
@@ -65,6 +67,32 @@ class Faq extends \yii\db\ActiveRecord
     public function getDoctor(){
         return $this->hasOne(Doctors::className(), ['doctor_id' => 'doctor_for_answer_id'])
             ->joinWith('medicalSpecialties');
+    }
+
+    public function updateArticleRelations(){
+
+        if (!empty($this->faq_articles_rel)) {
+    
+            foreach (ArticlesFaqRel::find()->where(['faq_id' => $this->faq_id])->all() as $item) {
+                if (array_search($item->article_id, $this->faq_articles_rel) === false) {
+                    $item->delete();
+                }
+            }
+            
+            foreach ($this->faq_articles_rel as $article) {
+                $faqArticle = new ArticlesFaqRel();
+                $faqArticle->faq_id = $this->faq_id;
+                $faqArticle->article_id = $article;
+                if (!ArticlesFaqRel::find()->where(['faq_id' => $this->faq_id, 'article_id' => $article])->exists()) {
+                    $faqArticle->save();
+                }
+            }
+        } else {
+            
+            foreach (ArticlesFaqRel::find()->where(['faq_id' => $this->faq_id])->all() as $item) {
+                $item->delete();
+            }
+        }
     }
 
     public function afterSave($insert, $changedAttributes){
@@ -98,6 +126,8 @@ class Faq extends \yii\db\ActiveRecord
         }
         // print_r($this->faq_service_rel);
         // exit;
+
+        $this->updateArticleRelations();
 
         parent::afterSave($insert, $changedAttributes);
     }

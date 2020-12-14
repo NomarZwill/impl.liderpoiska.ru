@@ -1,0 +1,92 @@
+<div data-page-type="article_page">
+
+  <div class="content_block title_container">
+    
+    <div class="title_wrapper">
+
+      <ul class="breadcrumbs_wrapper" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+        <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a class="_menu_link_no_borders" href="/" itemtype="https://schema.org/Thing" itemprop="item">
+           <span class="item_name" itemprop="name">Центр Стоматологической Имплантологии</span><span class="breadcrumb_arrow"> → </span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+
+        <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a class="_menu_link_no_borders" href="/articles/" itemtype="https://schema.org/Thing" itemprop="item">
+           <span class="item_name" itemprop="name">Статьи</span><span class="breadcrumb_arrow"> → </span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+
+        <li class="breadcrumbs_item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a class="_menu_link_no_borders" href="" itemtype="https://schema.org/Thing" itemprop="item">
+           <span class="item_name" itemprop="name">{{currentArticle.h1_title}}</span>
+          </a>
+          <meta itemprop="position" content="3" />
+        </li>
+
+      </ul>
+
+      <div class="top_img"></div>
+
+      <h1>{{currentArticle.h1_title}}</h1>
+
+      <button class="reception_button _button popup_button">Записаться&nbsp;на&nbsp;приём</button>
+
+    </div>
+
+  </div>
+
+  <div class="content_block page_menu_container">
+
+    <div class="page_description">
+
+      <p>{{currentArticle.head_text | raw}}</p>
+
+      <button class="read_more">Читать полностью</button>
+
+    </div>
+
+    <div class="page_menu_wrapper">
+
+      <h4>Содержание</h4>
+
+      {% for heading in headings %}
+
+        <div class="chapter_link_wrapper">
+          <a class="chapter_link _menu_link_dashed_black" href="#{{heading.alias}}">{{heading.heading}}</a>
+        </div>
+
+      {% endfor %}
+        
+    </div>
+
+  </div>
+
+</div>
+
+<div class="popup_filter_bg"> 
+
+  <div class="scroll_block">
+
+    <div class="review_item_wrapper _hidden">
+      
+      <div class="close_icon"></div>  
+
+      <div class="big_quotes"></div>
+
+      <hr>
+
+      <div class="review_text"></div>
+
+      <p class="signature"></p>
+
+      <div class="popup_close_button">Закрыть</div>       
+  
+    </div>
+
+  </div>
+  
+</div>

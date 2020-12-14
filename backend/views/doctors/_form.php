@@ -13,6 +13,8 @@ use backend\models\Clinics;
 use backend\models\DoctorsAndClinics;
 use backend\models\Servises;
 use backend\models\DoctorsServicesRel;
+use backend\models\Articles;
+use backend\models\ArticlesDoctorsRel;
 use kartik\select2\Select2;
 use kartik\file\FileInput;
 use unclead\multipleinput\MultipleInput;
@@ -186,6 +188,43 @@ use unclead\multipleinput\MultipleInput;
         <?= $form->field($model,'doctor_clinic_sort')->widget(MultipleInput::className(), [
                 'max' => 1,
                 'columns' => $clinicSortOptions,
+        ]);?>
+
+        <?php
+            $allArticlesData = Articles::getArrayToSelect2();
+            $activeDoctorArticles = ArticlesDoctorsRel::getDoctorArticleIDs($model->doctor_id);
+        ?>
+
+        <?= $form->field($model, 'article_doctor_rel')->widget(Select2::classname(), [
+            'data' => $allArticlesData,
+            'options' => ['value' => $activeDoctorArticles, 'placeholder' => 'Выберите статьи', 'multiple' => true],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 10
+            ],
+        ]);?>
+
+        <?php
+            $articlesSortOptions = [];
+            foreach ($activeDoctorArticles as $articleID) {
+                $article = Articles::find()->where(['id' => $articleID])->one();
+
+                $currentSortValue = 0;
+                if (DoctorsPageSort::find()->where(['doctor_id' => $model->doctor_id, 'page_type' => 'articles', 'page_id' => $articleID])->exists()) {
+                    $currentSortValue = DoctorsPageSort::find()->where(['doctor_id' => $model->doctor_id, 'page_type' => 'articles', 'page_id' => $articleID])->one()->sort_index;
+                }
+
+                $articlesSortOptions[] = [
+                    'name'  => $article->id, 
+                    'title' => $article->h1_title, 
+                    'defaultValue' => $currentSortValue,
+                ];
+            }
+        ?>
+
+        <?= $form->field($model,'article_doctor_sort')->widget(MultipleInput::className(), [
+                'max' => 1,
+                'columns' => $articlesSortOptions,
         ]);?>
 
         <?php

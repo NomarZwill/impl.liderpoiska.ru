@@ -26,11 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
+            'rating_name:ntext',
             'name:ntext',
             'icon:ntext',
             // 'link_to_agregator:ntext',
             'average_rating',
-            //'clinic_id:ntext',
+            // 'clinic_id:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

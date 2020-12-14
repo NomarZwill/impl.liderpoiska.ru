@@ -6,6 +6,8 @@ use kartik\select2\Select2;
 use backend\models\Servises;
 use backend\models\Doctors;
 use backend\models\FaqServicesRel;
+use backend\models\Articles;
+use backend\models\ArticlesFaqRel;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Faq */
@@ -32,20 +34,39 @@ use backend\models\FaqServicesRel;
 
     <?= $form->field($model, 'faq_sort')->textInput() ?>
 
-    <?php
-        $allServicesData = Servises::getArrayToSelect2();
-        $activeFaqServices = FaqServicesRel::getFaqServiceIDs($model->faq_id);
-    ?>
+    <?php if (empty($isCreate)){ ?>
 
-    <?= $form->field($model, 'faq_service_rel')->widget(Select2::classname(), [
-        'data' => $allServicesData,
-        //'maintainOrder' => true,
-        'options' => ['value' => $activeFaqServices, 'placeholder' => 'Выберите связанные услуги', 'multiple' => true],
-        'pluginOptions' => [
-            'tags' => true,
-            'maximumInputLength' => 10
-        ],
-    ]);?>
+        <?php
+            $allServicesData = Servises::getArrayToSelect2();
+            $activeFaqServices = FaqServicesRel::getFaqServiceIDs($model->faq_id);
+        ?>
+
+        <?= $form->field($model, 'faq_service_rel')->widget(Select2::classname(), [
+            'data' => $allServicesData,
+            //'maintainOrder' => true,
+            'options' => ['value' => $activeFaqServices, 'placeholder' => 'Выберите связанные услуги', 'multiple' => true],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 10
+            ],
+        ]);?>
+
+        <?php
+            $allArticlesData = Articles::getArrayToSelect2();
+            $activeFAQArticles = ArticlesFaqRel::getFAQArticleIDs($model->faq_id);
+        ?>
+
+        <?= $form->field($model, 'faq_articles_rel')->widget(Select2::classname(), [
+            'data' => $allArticlesData,
+            'options' => ['value' => $activeFAQArticles, 'placeholder' => 'Выберите связанные статьи', 'multiple' => true],
+            'pluginOptions' => [
+                'tags' => true,
+                'maximumInputLength' => 10
+            ],
+        ]);?>
+
+    <?php } ?>
+
 
     <?= $form->field($model, 'faq_query')->textarea(['rows' => 4]) ?>
 

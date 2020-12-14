@@ -92,12 +92,14 @@ div.banner_text_wrapper{
 
     div.banner_text_wrapper{
         width: 100%;
-        padding: 0 0 12px 85px;
+        padding: 0 0 12px 0;
       
         h3{
             display: flex;
             align-items: center;
             min-height: 60px;
+            margin: 0 0 12px 0;
+            padding: 0 0 0 85px;
             font-weight: 500;
             font-size: 16px;
             line-height: 20px;
