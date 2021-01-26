@@ -62,7 +62,8 @@ AppAsset::register($this);
         <div class="contacts_container">
     
             <div class="phones">
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
+                <a href="tel:4956004745">+7 (495) 600-47-45</a>
+                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
             </div>
     
@@ -186,8 +187,9 @@ AppAsset::register($this);
         <div class="mobile_mini_footer">
 
             <div class="phones">
+                <a href="tel:4956004745">+7 (495) 600-47-45</a>
+                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
             </div>
 
             <div class="work_hours">
@@ -227,8 +229,9 @@ AppAsset::register($this);
             <div class="contacts_wrapper">
 
                 <div class="phones">
+                    <a href="tel:4956004745">+7 (495) 600-47-45</a>
+                    <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
                     <a href="tel:4959302256">+7 (495) 930-22-56</a>
-                    <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 </div>
         
                 <div class="work_hours">
@@ -270,6 +273,7 @@ AppAsset::register($this);
 
                 <div class="to_patients_item"><a class="_menu_link" href="/faq/">Вопросы и ответы</a></div>
                 <div class="to_patients_item"><a class="_menu_link" href="/specialnoe/">Спецпредложения</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/articles/">Статьи</a></div>
 
             </div>
         </div>
@@ -306,15 +310,16 @@ AppAsset::register($this);
 
                     <div class="logo_img"></div>
                     <div class="logo_name">
-                        <p>Центр Стоматологической Имплантологии<br>© 2020</p>
+                        <p>Центр Стоматологической Имплантологии<br>© 2020 - <?php echo date('Y') ?></p>
                     </div>
 
                 </div>
             </a>
 
             <div class="phones">
+                <a href="tel:4956004745">+7 (495) 600-47-45</a>
+                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
                 <a href="tel:4959302256">+7 (495) 930-22-56</a>
-                <a href="tel:4951502716">+7 (495) 150-27-16</a>
             </div>
     
             <div class="work_hours">

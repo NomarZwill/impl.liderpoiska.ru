@@ -9,6 +9,15 @@
 
     </div>
 
-    <a href="{{banner.link_to_deal}}" class="_button">{{banner.button_label}}</a>
+    {% if banner.is_form_button == 1 %}
+
+        <button class="_button reception_button">{{banner.button_label}}</button>
+
+    {% else %}
+
+        <a href="{{banner.link_to_deal}}" class="_button">{{banner.button_label}}</a>
+
+    {% endif %}
+
 
 </div>

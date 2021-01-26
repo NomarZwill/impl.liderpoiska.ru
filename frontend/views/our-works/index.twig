@@ -1,0 +1,211 @@
+<div data-page-type="our_works">
+
+  <div class="content_block title_wrapper">
+    
+      {% if allWorkFlag %}
+
+        <ul class="breadcrumbs_wrapper">
+
+          <li class="breadcrumbs_item">
+            <a class="_menu_link_no_borders" href="/">
+              <span class="item_name" >Центр Стоматологической Имплантологии</span>
+            </a>
+          </li>
+
+        </ul>
+
+        <h1>Работы наших специалистов</h1>
+
+      {% else %}
+
+        <ul class="breadcrumbs_wrapper">
+
+          <li class="breadcrumbs_item">
+            <a class="_menu_link_no_borders" href="/">
+              <span class="item_name" >Центр Стоматологической Имплантологии</span><span> → </span>
+            </a>
+          </li>
+
+          <li class="breadcrumbs_item">
+            <a class="_menu_link_no_borders" href="/nashi-raboty/">
+              <span class="item_name">Наши работы</span>
+            </a>
+          </li>    
+
+        </ul>
+
+        <h1>{{ activeWork.h1 }}</h1>
+
+      {% endif %}
+
+  </div>
+
+  <div class="content_block work_container" data-page-type=''>
+
+    <div class="our_works_selector">
+
+      {% if allWorkFlag %}
+
+        <span>Все работы</span>
+
+      {% else %}
+
+        <span>{{ activeWork.service_name }}</span>
+
+      {% endif %}
+      
+    </div>
+
+    <div class="our_works_wrapper medical_specialties_wrapper" data-works-filter>
+
+      {% if allWorkFlag %}
+
+        <a href="/nashi-raboty/">
+          <div class="work_item medical_speciality _active" data-id="0">
+            <span>Все работы</span>
+          </div>
+        </a>
+
+      {% else %}
+
+        <a href="/nashi-raboty/">
+          <div class="work_item medical_speciality" data-id="0">
+            <span>Все работы</span>
+          </div>
+        </a>
+
+      {% endif %}
+
+      {% for work in works %}
+
+        {% if work.id == activeWork.id %}
+
+        <a href="/nashi-raboty/{{ work.alias }}/">
+          <div class="work_item medical_speciality _active" data-id="{{work.id}}">
+            <span>{{ work.service_name }}</span>
+          </div>
+        </a>
+
+        {% else %}
+
+        <a href="/nashi-raboty/{{ work.alias }}/">
+          <div class="work_item medical_speciality" data-id="{{ work.id }}">
+            <span>{{ work.service_name }}</span>
+          </div>
+        </a>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+    
+  </div>
+
+  {{ gallery | raw }}
+
+  <div class="content_block reviews_container" data-type="reviews_block">
+
+    <div class="reviews_title">
+
+      {% if allWorkFlag %}
+
+      <h2 class="_index_subtitle">Отзывы пациентов</h2>
+
+      {% else %}
+
+      <h2 class="_index_subtitle">{{service.review_title}}</h2>
+
+      {% endif %}    
+
+      <div class="button_wrapper">
+
+        <a href="/reviews/" class="_button _button_light _button_to_all _menu_link_no_borders_black"><span>Все отзывы</span> →</a>
+  
+        <button class="_button review_popup_button"><span>Добавить отзыв</span></button>
+
+      </div>
+
+    </div>
+
+    <div class="swiper-container reviews_wrapper">
+
+      <div class="swiper-wrapper">
+
+        {% for review in reviews %}
+      
+          <div class="swiper-slide review_item_wrapper">       
+
+            <div class="big_quotes"></div>
+            <hr>
+            <div class="review_text">
+
+              {{ review.review_text | raw }}
+
+              <div class="show_all _hidden">
+                <button class="read_more">Читать полностью</button>
+              </div>
+
+            </div>
+
+            <p class="signature"><span>{{ review.author }}</span> | <span>{{ review.date }}</p>
+
+          </div>
+
+        {% endfor %} 
+
+      </div>
+
+      <div class="swiper-pagination revolver_pagination"></div>
+
+      <div class="revolver_navigation_wrapper">
+        <div class="swiper-button-prev revolver_navigation"></div>
+        <div class="swiper-button-next revolver_navigation"></div>
+      </div>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="popup_filter_bg">
+
+  <div class="scroll_block">
+
+    <div class="review_item_wrapper _hidden">
+      
+      <div class="close_icon"></div>  
+
+      <div class="big_quotes"></div>
+      
+      <hr>
+
+      <div class="review_text"></div>
+
+      <p class="signature"></p>
+
+      <div class="popup_close_button">Закрыть</div>       
+
+    </div>
+
+    <div class="popup_gallery_container _hidden">
+
+      <div class="diagonal_navigation">
+
+        <div class="diagonal_navigation_bg"></div>
+        <div class="popup_button_prev _diagonal_navigation"></div>
+        <span class="current_slide">01</span>
+        <br>
+        <span class="total_slides">03</span>
+        <div class="popup_button_next _diagonal_navigation"></div>
+
+      </div>
+
+      <button class="popup_close_button">Закрыть</button> 
+
+    </div> 
+
+  </div>
+  
+</div>

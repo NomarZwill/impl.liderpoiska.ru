@@ -339,6 +339,27 @@ h5{
   letter-spacing: 0.02em;
 }
 
+ul{
+  list-style-type: none;
+  line-height: 24px;
+  letter-spacing: .01em;
+
+  li{
+    position: relative;
+    margin: 0 0 0 29px;
+    padding: 0 0 8px 0;
+    line-height: 24px;
+    letter-spacing: .01em;
+
+    &:before{
+      content: "— ";
+      position: absolute;
+      width: 20px;
+      left: -28px;
+    }
+  }
+}
+
 ul.breadcrumbs_wrapper{
 
   li{
@@ -405,7 +426,6 @@ ul.breadcrumbs_wrapper{
     height: 12px;
   }
 }
-
 
 .swiper-button-next.revolver_navigation,
 .swiper-button-prev.revolver_navigation{
@@ -831,4 +851,11 @@ form{
   //     border-radius: 19px;
   //   }
   // }
+}
+
+.popup_gallery_container .popup_description{
+  width: 100%;
+  padding: 24px 0 24px 0;
+  line-height: 26px;
+  letter-spacing: 0.01em;
 }

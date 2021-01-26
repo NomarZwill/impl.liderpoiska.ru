@@ -32,7 +32,7 @@
 
             <div class="swiper-wrapper">
       
-              {% for spec in doc.medicalSpecialties %}
+              {% for spec in doc.medicalSpecialties|sort((a, b) => a.specialty_sort <=> b.specialty_sort) %}
         
                 <a class="swiper-slide _menu_link" href="/specialty/{{spec.alias}}/">{{spec.menu_title | raw}}</a>
         

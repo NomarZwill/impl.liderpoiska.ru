@@ -16,7 +16,7 @@ class MedSpecialtiesController extends MainController
       ->all(); 
     $activeSpec = MedicalSpecialties::find()
       ->where(['alias' => $specAlias])
-      ->joinWith('reviews')
+      ->with('reviews')
       ->one();
 
     if (!empty($activeSpec)){

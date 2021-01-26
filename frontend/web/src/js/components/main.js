@@ -50,6 +50,7 @@ export default class Main{
     }
 
     function closeLayoutPopup(){
+      console.log('closeLayoutPopup')
       $('.layout_popup').addClass('_hidden');
 
       if ($('.layout_popup .reception_form_wrapper').length !== 0) {
@@ -73,6 +74,7 @@ export default class Main{
         .appendTo('.popup_button_wrapper.recall_form_popup .recall_form_container');
 
       } else if ($('.popup_filter_bg').length !== 0) {
+        $('.popup_filter_bg._active').removeClass('_active');
         $('.popup_filter_bg ._active').removeClass('_active');
         $('.popup_filter_bg .popup_gallery_container').addClass('_hidden');
         $('.popup_lizcenz_wrapper').addClass('_hidden');
@@ -118,6 +120,8 @@ export default class Main{
        && $(e.target).closest('.lizcenz_wrapper').length === 0
        && $(e.target).closest('.popup_lizcenz_wrapper').length === 0
        && $(e.target).closest('.about_dropdown_menu_background').length === 0
+       && $(e.target).closest('.welcome_word_button').length === 0
+       && $(e.target).closest('.welcome_word_full_wrapper').length === 0
        && $(e.target).closest('.review_popup_button').length === 0) {
         closeDropdownMenu();
         closeLayoutPopup();

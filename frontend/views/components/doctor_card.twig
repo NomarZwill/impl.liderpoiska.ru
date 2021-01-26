@@ -23,7 +23,7 @@
 
       <p>
 
-        {% for medSpec in doctor.medicalSpecialties %}
+        {% for medSpec in doctor.medicalSpecialties|sort((a, b) => a.specialty_sort <=> b.specialty_sort) %}
 
           {% if loop.last %}
             <a class="_menu_link_no_borders" href="/specialty/{{medSpec.alias}}/" data-spec-id="{{medSpec.specialty_id}}">{{medSpec.menu_title | raw}}</a>

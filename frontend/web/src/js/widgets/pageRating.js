@@ -24,6 +24,7 @@ export default class PageRating{
         var data = {
           'vote': newVote,
           'service_id': $('[data-type="page_rating"]').data('serviceId'),
+          'article_id': $('[data-type="page_rating"]').data('articleId'),
         }
 
         $.ajax({

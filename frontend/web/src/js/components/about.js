@@ -11,15 +11,20 @@ export default class About{
 
   
   init(){
-    $('.welcome_word_wrapper button').on('click', function(e) {
-      $('.popup_filter_bg').addClass('_active');
-      $('body').addClass('_popup_mode');
-    });
+    $('.welcome_word_wrapper .read_more').on('click', function (e) {
+      $(this).siblings('.welcome_word_compact').addClass('_active');
+      $(this).addClass('_hidden');
+    })
+    
+    // $('.welcome_word_wrapper .welcome_word_button').on('click', function(e) {
+    //   $('.popup_filter_bg').addClass('_active');
+    //   $('body').addClass('_popup_mode');
+    // });
 
-    $('.popup_filter_bg .welcome_word_full_wrapper').find('.close_icon').on('click', function(e){
-      $('.popup_filter_bg').removeClass('_active');
-      $('body').removeClass('_popup_mode');
-    });
+    // $('.popup_filter_bg .welcome_word_full_wrapper').find('.close_icon').on('click', function(e){
+    //   $('.popup_filter_bg').removeClass('_active');
+    //   $('body').removeClass('_popup_mode');
+    // });
 
     $('.popup_filter_bg .scroll_block').on('click', function(e){
       if (!$(e.target).hasClass('.welcome_word_full_wrapper') &&

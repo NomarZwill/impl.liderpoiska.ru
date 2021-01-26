@@ -11,6 +11,7 @@ use backend\models\DoctorsMedSpec;
 use backend\models\Faq;
 use backend\models\FaqServicesRel;
 use backend\models\DoctorsPageSort;
+use backend\models\Articles;
 use backend\models\SeoSinglePages;
 use common\html_constructor\models\HcDraft;
 
@@ -54,6 +55,7 @@ class DentController extends MainController
          ->where(['alias' => $firstLevel, 'is_active' => 1])
          ->with('reviews')
          ->with('faq')
+         // ->joinWith('prices')
          ->all();
 
       if (!empty($currentService[0])){
@@ -66,10 +68,10 @@ class DentController extends MainController
          ->where(['parent_id' => $currentService[0]['servise_id'], 'is_active' => 1])
          ->all();
 
-      $servisesWithPrices = Servises::find()
-         ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
-         ->joinWith('prices')
-         ->all(); 
+      // $servisesWithPrices = Servises::find()
+      //    ->where(['servises.servise_id' => $currentService[0]['servise_id'], 'servises.is_active' => 1])
+      //    ->joinWith('prices')
+      //    ->all(); 
 
       $doctors = DoctorsPageSort::find()
          ->where(['page_type' => 'services', 'page_id' => $currentService[0]['servise_id']])
@@ -86,18 +88,12 @@ class DentController extends MainController
 
       $currentUrl = '/dent/' . $firstLevel . '/';
 
-      $faq = FaqServicesRel::find()
-         ->where(['service_id' => $currentService[0]['servise_id']])
-         ->joinWith('faq')
-         ->all();
-
       $extraData = [
          'currentService' => $currentService[0], 
          'childrenService' => $childrenService, 
-         'servisesWithPrices' => $servisesWithPrices[0],
+         // 'servisesWithPrices' => $servisesWithPrices[0],
          'currentUrl' => $currentUrl,
          'doctors' => $doctors,
-         'faq' => $faq,
          'csrf' => Yii::$app->request->getCsrfToken()
       ];
 
@@ -109,13 +105,13 @@ class DentController extends MainController
       $headings = $rawDraft->getTableOfContentsArray();
    
       //   echo '<pre>';
-      //   print_r($faq[0]->faq[0]->doctor);
+      //   print_r($currentService);
       //   exit;
 
       return $this->render('servicePage.twig', array(
          'currentService' => $currentService[0],
          'childrenService' => $childrenService,
-         'servisesWithPrices' => $servisesWithPrices[0],
+         // 'servisesWithPrices' => $servisesWithPrices[0],
          'doctors' => $doctors,
          'draft' => $draft,
          'headings' => $headings,
@@ -397,17 +393,24 @@ class DentController extends MainController
    public function actionAjaxSaveNewVote() {
       $vote = $_GET['vote'];
       $serviceID = $_GET['service_id'];
-      $servise = Servises::find()
-         ->where(['servise_id' => $serviceID, 'is_active' => 1])
+      $articleID = $_GET['article_id'];
+      if (!empty($serviceID) && empty($articleID)) {
+         $item = Servises::find()
+            ->where(['servise_id' => $serviceID, 'is_active' => 1])
+            ->one();
+      } elseif (empty($serviceID) && !empty($articleID)) {
+         $item = Articles::find()
+         ->where(['id' => $articleID, 'is_active' => 1])
          ->one();
+      }
 
-      $servise->service_page_rating = (double)(($servise->service_page_rating) * ($servise->service_page_votes) + $vote) / (($servise->service_page_votes) + 1);
-      $servise->service_page_votes = $servise->service_page_votes + 1;
-      $servise->save();
+      $item->page_rating = (double)(($item->page_rating) * ($item->page_votes) + $vote) / (($item->page_votes) + 1);
+      $item->page_votes = $item->page_votes + 1;
+      $item->save();
 
       return json_encode([
-         'votes' => $servise->service_page_votes,
-         'rating' => $servise->service_page_rating,
+         'votes' => $item->page_votes,
+         'rating' => $item->page_rating,
       ]);
    } 
 

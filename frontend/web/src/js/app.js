@@ -21,12 +21,15 @@ import ReviewsPage from './components/reviewsPage';
 import FaqPage from './components/faqPage';
 import Licenses from './components/licenses';
 import Form from './components/form';
+import ArticlesListing from './components/articlesListing';
+import OurWorks from './components/ourWorks';
 import MedSpecFilter from './widgets/medSpecFilter';
 import FullReviewPopup from './widgets/fullReviewPopup';
 import Faq from './widgets/faq';
 import Ratings from './widgets/ratings';
 import PageRating from './widgets/pageRating';
 import InstagramGallery from './widgets/instagramGallery';
+import TwoLevelGallery from './widgets/twoLevelGallery';
 
 window.$ = $;
 
@@ -97,6 +100,10 @@ window.$ = $;
 			if ($('[data-page-type="licenses"]').length > 0) {
 	    	var licenses = new Licenses();
 			}
+			
+			if ($('[data-page-type="article_listing"]').length > 0) {
+	    	var articlesListing = new ArticlesListing();
+			}
 
 			if ($('[data-spec-filter]').length > 0) {
 	    	var medSpecFilter = new MedSpecFilter($('[data-spec-filter]'));
@@ -120,6 +127,12 @@ window.$ = $;
 
 			if ($('[data-type="instagram_block"]').length > 0) {
 	    	var instagramGallery = new InstagramGallery();
+			}
+
+			if ($('[data-page-type="our_works"]').length > 0) {
+	    	var twoLevelGallery = new TwoLevelGallery();
+				var ourWorks = new OurWorks();
+				var fullReviewPopup = new FullReviewPopup(116, 116, 116);
 			}
 
 			if ($('.map').length > 0) {

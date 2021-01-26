@@ -1,0 +1,29 @@
+{% for article in articles %}
+
+  <div class="article_listing_item">
+
+    <a class="_menu_link_no_borders" href="/articles/{{article.alias}}/">
+      <img class="listing_image" src="/images/uploaded/articles/{{article.id}}/{{article.preview_image}}" alt="">
+    </a>
+
+    <h4>
+      <a class="link _link_black" href="/articles/{{article.alias}}/">
+        {{article.h1_title}}
+      </a>
+    </h4>
+
+    <p>{{article.head_text | raw}}</p>
+
+    <p class="publishing_date">
+      {% set mnths = ['','января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'] %}
+
+      {{ article.publishing_date|date("j") }} 
+      {{ mnths[article.publishing_date|date("n")] }} 
+      {{ article.publishing_date|date("Y") }}
+    </p>
+    
+  </div>
+
+{% endfor %}
+
+<button class="more_article_button _button _button_light">Показать еще</button>

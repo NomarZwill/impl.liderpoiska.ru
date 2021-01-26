@@ -1,0 +1,144 @@
+[data-type="two_level_gallery"]{
+
+  &.content_block{
+    width: 100%;
+    padding: 32px 0 36px 0;
+    background: #FFF9F0;
+  }
+
+  .doctor_work_wrapper{
+    width: 100%;
+    padding: 0 24px 0 24px;
+
+    .swiper-wrapper{
+      padding: 0 0 40px 0;
+    }
+  }
+
+  .doctor_work_item.swiper-slide{
+    position: relative;
+    flex-shrink: 1;
+    width: auto;
+
+    .signature_text p{
+      text-align: start;
+    }
+
+    p{
+      text-align: center;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      
+    }
+    
+    &:before,
+    &:after{
+      content: '';
+      position: absolute;
+      width: 492px;
+      height: 336px;
+      border-radius: 4px;
+    }
+
+    &:before{
+      top: 8px;
+      left: 8px;
+      background: $baseColor;
+      z-index: 1;
+    }
+
+    &:after{
+      top: 4px;
+      left: 4px;
+      background: #BB979F;
+      z-index: 2;
+    }
+  }
+
+  .doctor_work_image{
+    cursor: pointer;
+    position: relative;
+    width: 492px;
+    height: 336px;
+    margin: 0 0 24px 0;
+    background-size: contain;
+    border-radius: 4px;
+    z-index: 3;
+
+    &:hover{
+      
+      .bg_filter{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .bg_filter{
+    display: none;
+    width: 492px;
+    height: 336px;
+    background: #782F40;
+    opacity: 0.7;
+    border-radius: 4px;
+    z-index: 4;
+
+    button{
+      color: #FFFFFF;
+
+      &:hover{
+        background: transparent;
+      }
+    }
+  }
+
+  .inner_gallery_button{
+    cursor: pointer;
+    position: relative;
+    padding: 4px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: $textColor;
+
+    &:before{
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: -28px;
+      width: 20px;
+      height: 20px;
+      background: url(/img/camera_icon.svg);
+    }
+  }
+
+  @include for-mobile{
+
+    .doctor_work_wrapper{
+      padding: 0 16px 0 16px;
+  
+      .swiper-wrapper{
+        padding: 0 0 24px 0;
+      }
+    }
+
+    .doctor_work_item.swiper-slide{
+      
+      &:before,
+      &:after{
+        width: 288px;
+        height: 196px;
+      }
+    }
+    
+    .doctor_work_image{
+      width: 288px;
+      height: 196px;
+      
+    }
+  }
+
+}

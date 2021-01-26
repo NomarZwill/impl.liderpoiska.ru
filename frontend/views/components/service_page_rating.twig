@@ -1,8 +1,8 @@
-<div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}">
+<div class="content_block rating_container" data-type="page_rating" data-service-id="{{currentService.servise_id}}" data-article-id="{{currentService.id}}">
 
     <p>Оцените качество страницы:</p>
 
-    <div class="stars_wrapper" data-votes="{{currentService.service_page_votes}}" data-rating="{{currentService.service_page_rating}}">
+    <div class="stars_wrapper" data-votes="{{currentService.page_votes}}" data-rating="{{currentService.page_rating}}">
 
       <div class="stars_full">
         <label><img src="/img/star-full.svg" alt="star"></label>
@@ -33,6 +33,6 @@
     
     </div>
 
-    <p class="votes_stars_value">{{currentService.service_page_votes}} голосов, {{currentService.service_page_rating}} из 5</p>
+    <p class="votes_stars_value">{{currentService.page_votes}} голосов, {{currentService.page_rating}} из 5</p>
 
   </div>
