@@ -20,6 +20,21 @@ export default class MedSpecialities{
       );
     };
 
+    var photoGalleryWrapper  = new Swiper('.photo_gallery_wrapper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      watchOverflow: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        dynamicBullets: true,
+        clickable: true,
+      }
+    });
+
     var switchMobileMode = function(e) {
 
       if (getScrollWidth() < 768 && doctorsWrapper === null) {
