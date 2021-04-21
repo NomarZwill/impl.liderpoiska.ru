@@ -80,6 +80,14 @@
 
     {% endfor %}
 
+    {% for article in articles %}
+
+        <url>
+            <loc>{{host}}/articles/{{article.alias}}/</loc>
+        </url>
+
+    {% endfor %}
+
     {% for serviseMenu in services %}
 
         {% if serviseMenu.parent_id == 0 %}
@@ -128,6 +136,7 @@
         {% endif %}
 
     {% endfor %}
+
 
     
 </urlset>

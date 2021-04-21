@@ -56,23 +56,32 @@
 
     <div class="service_block_wrapper _active">
 
-      <div class="service_price_wrapper">
+      <a class="price_link" href="/specialty/gigienist/" target="_blank">
 
-        <span class="dot_tail"></span>
-        <div class="service_price_name"><p>Прием (осмотр, консультация) гигиениста стоматологического&ensp;</p></div>
-        <div class="service_price_points"></div>
-        <div class="service_price_value">1 500 руб.</div>
+        <div class="service_price_wrapper">
 
-      </div>
+          <span class="dot_tail"></span>
+          <div class="service_price_name"><p>Прием (осмотр, консультация) гигиениста стоматологического&ensp;</p></div>
+          <div class="service_price_points"></div>
+          <div class="service_price_value">1 500 руб.</div>
 
-      <div class="service_price_wrapper">
+        </div>
 
-        <span class="dot_tail"></span>
-        <div class="service_price_name"><p>Прием (осмотр, консультация) врача-стоматолога-терапевта&ensp;</p></div>
-        <div class="service_price_points"></div>
-        <div class="service_price_value">1 500 руб.</div>
+      </a>
 
-      </div>
+      <a class="price_link" href="/specialty/stomatolog-terapevt/" target="_blank" style-"position:relative;">
+
+        <div class="service_price_wrapper">
+
+          <span class="dot_tail"></span>
+          <div class="service_price_name"><p>Прием (осмотр, консультация) врача-стоматолога-терапевта&ensp;</p></div>
+          <div class="service_price_points"></div>
+          <div class="service_price_value">2 000 руб.</div>
+          <div class="service_price_description">Продолжительность консультации от 20 до 30 минут.</div>
+
+        </div>
+
+      </a>
 
       <div class="service_price_wrapper">
 
@@ -83,15 +92,27 @@
 
       </div>
 
-      <div class="service_price_wrapper">
+      <a class="price_link" href="/dent/anestez/" target="_blank">
 
-        <span class="dot_tail"></span>
-        <div class="service_price_name"><p>Интралигаментарная местная анестезия&ensp;</p></div>
-        <div class="service_price_points"></div>
-        <div class="service_price_value">742 руб.</div>
+        <div class="service_price_wrapper">
+
+          <span class="dot_tail"></span>
+          <div class="service_price_name"><p>Интралигаментарная местная анестезия&ensp;</p></div>
+          <div class="service_price_points"></div>
+          <div class="service_price_value">742 руб.</div>
+
+        </div>
+
+      </a>
+
+      <div class="service_block_description">
+
+        <p>В развернутую первичную консультацию  входит осмотр полости рта и десен, при необходимости сбор анамнеза и привлечение к осмотру  гигиениста стоматологического и иных специалистов для принятия комплексного решения. Постановка диагноза, составление основного и альтернативного плана лечения, выдача его на руки. При необходимости по медицинским показаниям делается ОПТГ или радиовизиография зуба.</p>
+
+        <p>Для пациентов, которые будут проходить дальнейшее лечение в нашей клинике по составленному на консультации плану лечения, развернутая первичная консультация бесплатная, оплата за консультацию перейдет на депозит за дальнейшее лечение.</p>
 
       </div>
-
+      
       <div class="button_wrapper">
         <button class="reception_button _button">Записаться на приём</button>
       </div>
@@ -131,19 +152,52 @@
 
           {% for price in firstLevelService.prices %}
 
-            <div class="service_price_wrapper">
-              <span class="dot_tail"></span>
-              <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
-              <div class="service_price_points"></div>
-              {% if price.price_hide is empty %}
-                <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
-              {% else %}
-                <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
-                <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
-              {% endif %}
 
+            {% if price.link != '' %}
+              <a class="price_link" href="{{price.link}}" target="_blank">
+                <div class="service_price_wrapper">
+                  <span class="dot_tail"></span>
+                  <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+                  <div class="service_price_points"></div>
 
-            </div>
+                  {% if price.price_hide is empty %}
+                    <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% else %}
+                    <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
+                    <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% endif %}
+
+                  {% if price.text_1 != '' %}
+                    <div class="service_price_description">{{price.text_1}}</div>
+                  {% endif %}
+
+                </div>
+              </a>
+
+            {% else %}
+                <div class="service_price_wrapper">
+                  <span class="dot_tail"></span>
+                  <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+                  <div class="service_price_points"></div>
+
+                  {% if price.price_hide is empty %}
+                    <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% else %}
+                    <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
+                    <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% endif %}
+
+                  {% if price.text_1 != '' %}
+                    <div class="service_price_description">{{price.text_1}}</div>
+                  {% endif %}
+
+                </div>
+
+            {% endif %}
 
           {% endfor %}
 
@@ -207,21 +261,58 @@
         <div class="service_block_wrapper">
           
           {% for price in firstLevelService.prices %}
-          
-          <div class="service_price_wrapper">
-          
-            <span class="dot_tail"></span>
-            <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
-            <div class="service_price_points"></div>
-            {% if price.price_hide is empty %}
-              <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+            {% if price.link != '' %}
+
+              <a class="price_link" href="{{price.link}}" target="_blank">
+
+                <div class="service_price_wrapper">
+                
+                  <span class="dot_tail"></span>
+                  <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+                  <div class="service_price_points"></div>
+
+                  {% if price.price_hide is empty %}
+                    <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% else %}
+                    <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
+                    <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% endif %}
+                  
+                  {% if price.text_1 != '' %}
+                    <div class="service_price_description">{{price.text_1}}</div>
+                  {% endif %}
+
+                </div>
+
+              </a>
             {% else %}
-              <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
-              <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                <div class="service_price_wrapper">
+                
+                  <span class="dot_tail"></span>
+                  <div class="service_price_name"><p>{{price.prices_name | raw}}&ensp;</p></div>
+                  <div class="service_price_points"></div>
+
+                  {% if price.price_hide is empty %}
+                    <div class="service_price_value">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% else %}
+                    <div class="service_discount_price_value">{{price.price_hide|number_format(0, ',', ' ')}} руб.</div>
+                    <div class="service_price_value _crossed_out">{{price.price|number_format(0, ',', ' ')}} руб.</div>
+
+                  {% endif %}
+                  
+                  {% if price.text_1 != '' %}
+                    <div class="service_price_description">{{price.text_1}}</div>
+                  {% endif %}
+                  
+                </div>
+
             {% endif %}
-            
-          </div>
-          
+
           {% endfor %}
           
           <div class="button_wrapper">

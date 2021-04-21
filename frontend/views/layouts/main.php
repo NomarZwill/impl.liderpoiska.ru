@@ -63,9 +63,9 @@ AppAsset::register($this);
         <div class="contacts_container">
     
             <div class="phones">
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4956004745">+7 (495) 600-47-45</a>
-                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
-                <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <!-- <a href="tel:4959302256">+7 (495) 930-22-56</a> -->
             </div>
     
             <div class="work_hours">
@@ -184,13 +184,15 @@ AppAsset::register($this);
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/price/">Цены</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/partners/">Партнёры</a></div>
         <div class="navbar_item"><a class="_menu_link_no_borders" href="/contacts/">Контакты клиник</a></div>
+        <div class="navbar_item"><a class="_menu_link_no_borders" href="/nashi-raboty/">Наши работы</a></div>
+
         
         <div class="mobile_mini_footer">
 
             <div class="phones">
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4956004745">+7 (495) 600-47-45</a>
-                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
-                <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <!-- <a href="tel:4959302256">+7 (495) 930-22-56</a> -->
             </div>
 
             <div class="work_hours">
@@ -230,9 +232,9 @@ AppAsset::register($this);
             <div class="contacts_wrapper">
 
                 <div class="phones">
+                    <a href="tel:4951502716">+7 (495) 150-27-16</a>
                     <a href="tel:4956004745">+7 (495) 600-47-45</a>
-                    <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
-                    <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                    <!-- <a href="tel:4959302256">+7 (495) 930-22-56</a> -->
                 </div>
         
                 <div class="work_hours">
@@ -275,6 +277,7 @@ AppAsset::register($this);
                 <div class="to_patients_item"><a class="_menu_link" href="/faq/">Вопросы и ответы</a></div>
                 <div class="to_patients_item"><a class="_menu_link" href="/specialnoe/">Спецпредложения</a></div>
                 <div class="to_patients_item"><a class="_menu_link" href="/articles/">Статьи</a></div>
+                <div class="to_patients_item"><a class="_menu_link" href="/nashi-raboty/">Наши работы</a></div>
 
             </div>
         </div>
@@ -318,9 +321,9 @@ AppAsset::register($this);
             </a>
 
             <div class="phones">
+                <a href="tel:4951502716">+7 (495) 150-27-16</a>
                 <a href="tel:4956004745">+7 (495) 600-47-45</a>
-                <!-- <a href="tel:4951502716">+7 (495) 150-27-16</a> -->
-                <a href="tel:4959302256">+7 (495) 930-22-56</a>
+                <!-- <a href="tel:4959302256">+7 (495) 930-22-56</a> -->
             </div>
     
             <div class="work_hours">

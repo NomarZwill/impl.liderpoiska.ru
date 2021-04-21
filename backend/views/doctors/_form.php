@@ -44,6 +44,8 @@ use unclead\multipleinput\MultipleInput;
         
     <?php } ?>
 
+    <?= $form->field($model, 'doctor_outer_links')->textInput() ?>
+
     <?= $form->field($model, 'is_active')->checkbox() ?>
 
     <?php if (empty($isCreate)){ ?>

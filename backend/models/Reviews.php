@@ -38,7 +38,7 @@ class Reviews extends \yii\db\ActiveRecord
             [['author', 'date', 'review_text', 'author_age'], 'required'],
             [['date', 'review_service_rel', 'review_spec_rel', 'review_doctor_rel', 'review_clinic_rel'], 'safe'],
             [['review_text', 'review_title'], 'string'],
-            [['author'], 'string', 'max' => 50],
+            [['author', 'year'], 'string', 'max' => 50],
             [['old_id', 'doctor_id', 'author_age', 'is_active'], 'integer']
         ];
     }
@@ -78,6 +78,11 @@ class Reviews extends \yii\db\ActiveRecord
     }
 
     public function afterSave($insert, $changedAttributes){
+
+        if ($this->year !== substr($this->date, 0, 4)){
+            $this->year = substr($this->date, 0, 4);
+            $this->save();
+        }
 
         if (!empty($this->review_service_rel)) {
 

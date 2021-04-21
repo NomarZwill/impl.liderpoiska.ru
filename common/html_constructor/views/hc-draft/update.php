@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use backend\models\Doctors;
 use backend\models\Servises;
 use backend\models\Articles;
+use backend\models\OurWorks;
 
 /**
  *
@@ -28,6 +29,12 @@ if (Doctors::find()->where(['doctor_hc_draft_id' => $model->id])->exists()) {
     $itemRel = Articles::find()->where(['article_hc_draft_id' => $model->id])->one();
     $itemTitle = $itemRel->h1_title;
     $itemLink = Url::toRoute('/articles/' . $itemRel->id . '/update\/');
+
+} else if(OurWorks::find()->where(['draft_id' => $model->id])->exists()){
+    $isBackLink = true;
+    $itemRel = OurWorks::find()->where(['draft_id' => $model->id])->one();
+    $itemTitle = $itemRel->h1;
+    $itemLink = Url::toRoute('/our-works/' . $itemRel->id . '/update\/');
 
 } else {
     $isBackLink = false;

@@ -254,7 +254,7 @@ export default class Main{
     // Close when click to option
     for (var i = 0; i < selectClinicLabels.length; i++) {
       selectClinicLabels[i].addEventListener('click', (e) => {
-        selectClinicCurrent.textContent = e.target.textContent;
+        selectClinicCurrent.textContent = $(e.target).closest('.clinic_item_label').prev().prop('value');
         selectClinic.setAttribute('data-state', '');
       });
     }

@@ -8,6 +8,7 @@ use backend\models\ArticlesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ArticlesController implements the CRUD actions for Articles model.
@@ -86,13 +87,55 @@ class ArticlesController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->preview_image_load = UploadedFile::getInstances($model, 'preview_image_load');
+
+            if (!empty($model->preview_image_load) && !empty($model->preview_image)) {
+                $this->actionDeleteImage($model->id);
+            };
+
+            $uploadFlag = $model->uploadImage();
+            if ($uploadFlag) {
+                $model->save();
+            }
+            else {
+                print_r($uploadFlag);
+                exit;
+            }
+
             return $this->redirect(['update', 'id' => $model->id]);
         }
+
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionDeleteImage($id)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+
+        if ($model->preview_image !== '') {
+
+            $path = 'images/uploaded/articles/'. $id . '/' . $model->preview_image;
+    
+            // echo file_exists($path);
+            // exit;
+            if (!empty($model->preview_image) && file_exists($path) === true){
+                unlink($path);
+                $model->preview_image = '';
+                $model->save();
+                return ['success' => 'Удалено'];
+            } elseif (!empty($model->preview_image)) {
+                $model->preview_image = '';
+                $model->save();
+                return ['success' => 'Удалено'];
+            }
+            return ['error' => 'Ошибка загрузки'];
+        }
     }
 
     /**

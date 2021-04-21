@@ -72,6 +72,7 @@ class ArticlesController extends MainController
       'currentArticle' => $currentArticle,
       'draft' => $draft,
       'headings' => $headings,
+      'microdata' => Articles::getMicroData($currentArticle),
     ));  
   }
 

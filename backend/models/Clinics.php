@@ -46,7 +46,7 @@ class Clinics extends \yii\db\ActiveRecord
     {
         return [
             [['h1_title'], 'required'],
-            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
+            [['clinic_title', 'clinic_long_title', 'clinic_description', 'alias', 'card_title', 'h1_title', 'breadcrumbs_title', 'content', 'clinic_address', 'clinic_address_short', 'clinic_address_form', 'clinic_phone', 'clinic_opening_hours', 'clinic_opening_weekdays', 'clinic_opening_sat', 'clinic_opening_sun', 'clinic_map', 'main_phone', 'keywords', 'review_to_filial', 'review_title', 'bottom_text', 'clinic_whatsapp', 'clinic_mail'], 'string'],
             [['old_id', 'is_active', 'clinic_sort'], 'integer'],
             [['cinic_gallery_images'], 'safe'],
         ];
@@ -122,7 +122,8 @@ class Clinics extends \yii\db\ActiveRecord
     public function getBunnersForClinics(){
         $bunners =  $this->hasMany(Banners::className(), ['id' => 'banner_id'])
             ->viaTable('banners_and_clinics', ['clinic_id' => 'clinic_id'])
-            ->where(['banners.is_active' => 1]);
+            ->where(['banners.is_active' => 1])
+            ->orderBy(['banners.sort' => SORT_ASC]);
 
         return $bunners;
     }

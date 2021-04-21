@@ -17,9 +17,9 @@ class ArticlesSearch extends Articles
     public function rules()
     {
         return [
-            [['id', 'is_active', 'sort', 'article_votes', 'article_hc_draft_id'], 'integer'],
+            [['id', 'is_active', 'sort', 'page_votes', 'article_hc_draft_id'], 'integer'],
             [['title', 'description', 'keywords', 'h1_title', 'alias', 'head_text'], 'safe'],
-            [['article_rating'], 'number'],
+            [['page_rating'], 'number'],
         ];
     }
 
@@ -62,8 +62,8 @@ class ArticlesSearch extends Articles
             'id' => $this->id,
             'is_active' => $this->is_active,
             'sort' => $this->sort,
-            'article_rating' => $this->article_rating,
-            'article_votes' => $this->article_votes,
+            'page_rating' => $this->page_rating,
+            'page_votes' => $this->page_votes,
             'article_hc_draft_id' => $this->article_hc_draft_id,
         ]);
 

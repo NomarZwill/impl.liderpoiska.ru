@@ -35,7 +35,7 @@ class Banners extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_active',], 'integer'],
+            [['is_active', 'is_form_button', 'sort'], 'integer'],
             [['header', 'text', 'image', 'button_label', 'link_to_deal'], 'string'],
             [['banner_image_load', 'banner_clinic_rel', 'banner_service_rel', 'banner_csrf'], 'safe'],
         ];
@@ -57,6 +57,8 @@ class Banners extends \yii\db\ActiveRecord
             'banner_clinic_rel' => 'Клиники',
             'banner_service_rel' => 'Корневые разделы услуг',
             'is_active' => 'Активен',
+            'is_form_button' => 'Кнопка открывает форму записи',
+            'sort' => 'Сортировка',
             'banner_csrf' => '',
         ];
     }

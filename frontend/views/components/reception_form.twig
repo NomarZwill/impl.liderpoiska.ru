@@ -38,7 +38,12 @@
                 checked
               />
 
-              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">{{clinic.card_title}}</label>
+              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">
+
+                <span class="item_clinic_name">{{clinic.card_title}}</span>
+                <span class="item_clinic_address">({{clinic.clinic_address_form | raw}})</span>
+
+              </label>
 
             {% else %}
 
@@ -51,7 +56,12 @@
                 data-clinic-id="{{clinic.clinic_id}}" 
               />
 
-              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">{{clinic.card_title}}</label>
+              <label for="clinic_id_{{clinic.clinic_id}}" class="clinic_item_label">
+
+                <span class="item_clinic_name">{{clinic.card_title}}</span>
+                <span class="item_clinic_address">({{clinic.clinic_address_form | raw}})</span>
+
+              </label>
 
             {% endif %}
 

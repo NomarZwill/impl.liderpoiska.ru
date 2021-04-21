@@ -42,8 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'is_active',
             //'sort',
             //'head_text:ntext',
-            //'article_rating',
-            //'article_votes',
             //'article_hc_draft_id',
 
             ['class' => 'yii\grid\ActionColumn'],

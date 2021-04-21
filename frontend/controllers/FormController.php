@@ -25,7 +25,6 @@ class FormController extends Controller
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
           // 'artm@liderpoiska.ru', 
-          'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
           'mh@liderpoiska.ru',
@@ -69,7 +68,6 @@ class FormController extends Controller
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
           // 'artm@liderpoiska.ru', 
-          'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
           'mh@liderpoiska.ru',
@@ -111,7 +109,6 @@ class FormController extends Controller
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
           // 'artm@liderpoiska.ru', 
-          'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
           'mh@liderpoiska.ru',
@@ -154,7 +151,6 @@ class FormController extends Controller
         ->setFrom(['impl-stom@yandex.ru' => 'Клиника ЦЭС'])
         ->setTo([
           // 'artm@liderpoiska.ru', 
-          'martynov@liderpoiska.ru', 
           'knyazkova@liderpoiska.ru', 
           'ces_un@mail.ru',
           'mh@liderpoiska.ru',

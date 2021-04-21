@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use \common\html_constructor\models\HcDraft;
 use \common\components\Transliteration;
 
@@ -30,8 +32,8 @@ use \common\components\Transliteration;
  * @property string $review_title
  * @property string $faq_title
  * @property string $medic_title
- * @property string $service_page_rating
- * @property int $service_page_votes
+ * @property string $page_rating
+ * @property int $page_votes
  * @property int $index_id
  * @property int $servise_listing_id
  * @property int $parent_id
@@ -56,8 +58,8 @@ class Servises extends \yii\db\ActiveRecord
         return [
             [['servise_title'], 'required'],
             [['servise_title', 'h1_title', 'header_menu_title', 'servise_long_title', 'servise_description', 'introtext', 'alias', 'menu_title', 'breadcrumbs_title', 'content', 'image', 'head_text', 'service_to_price_list', 'price_to_service', 'medic_to_service', 'review_to_service', 'query_to_service', 'padej_predl', 'keywords', 'price_title', 'review_title', 'faq_title', 'medic_title'], 'string'],
-            [['service_page_rating'], 'number'],
-            [['service_page_votes', 'index_id', 'is_active', 'is_visible_in_menu', 'servise_listing_sort', 'servise_parent_block_sort', 'servise_listing_id', 'servise_hc_draft_id', 'parent_id', 'old_id'], 'integer'],
+            [['page_rating'], 'number'],
+            [['page_votes', 'index_id', 'is_active', 'is_visible_in_menu', 'servise_listing_sort', 'servise_parent_block_sort', 'servise_listing_id', 'servise_hc_draft_id', 'parent_id', 'old_id'], 'integer'],
         ];
     }
 
@@ -93,8 +95,8 @@ class Servises extends \yii\db\ActiveRecord
             'faq_title' => 'Название для FAQ',
             'medic_title' => 'Название для врача',
             'image' => 'Image',
-            'service_page_rating' => 'Service Page Rating',
-            'service_page_votes' => 'Service Page Votes',
+            'page_rating' => 'Service Page Rating',
+            'page_votes' => 'Service Page Votes',
             'index_id' => 'Index ID',
             'servise_listing_id' => 'Servise Listing ID',
             'servise_hc_draft_id' => 'servise_hc_draft_id',
@@ -103,6 +105,34 @@ class Servises extends \yii\db\ActiveRecord
             'servise_listing_sort' => 'Позиция в листинге услуг',
             'servise_parent_block_sort' => 'Позиция на странице родительской услуги',
         ];
+    }
+
+    public function getMicroData($service, $url){
+
+        $finalJSON = Html::script(
+            Json::encode([
+                "@context" => "https://schema.org/",
+                "@type" => "MedicalWebPage",
+                "url" => "https://www.impl.ru" . $url,
+                "description" => $service->servise_description,
+                "headline" => $service->h1_title,
+                "editor" => [
+                    "@type" => "Person",
+                    "name" => "Климович Виктория Борисовна, Квалифицированный специалист в области ортодонтии",
+                ],
+                "publisher" => [
+                    "@type" => "Organization",
+                    "name" => "Центр Стоматологической Имплантологии",
+                    "logo" => [
+                        "@type" => "ImageObject",
+                        "url" => "https://www.impl.ru/img/impl-logo.svg",
+                        ]
+                ]
+            ]), [
+            'type' => 'application/ld+json',
+        ]);
+
+        return $finalJSON;
     }
 
     public function setFirstLevelChildCount(array &$allServices) {

@@ -123,6 +123,26 @@
     }
   }
 
+  .price_link{
+    
+    &:visited{
+      color: inherit;
+    }
+
+    &:hover{
+      color: #782f40;
+    }
+
+    .service_price_name{
+
+      p{
+        border-bottom: 1px dashed rgba(51,54,56,.4);
+      }
+    }
+  }
+
+  
+
   .dot_tail{
     position: absolute;
     bottom: 20px;
@@ -174,6 +194,21 @@
       width: 5px;
       height: 100%;
       background: #ffffff;
+    }
+  }
+
+  .service_price_description{
+    position: absolute;
+    top: 38px;
+    font-size: 12px;
+  }
+
+  .service_block_description{
+
+    P{
+      padding: 0 0 12px 4px;
+      font-size: 12px;
+      line-height: 18px;
     }
   }
 

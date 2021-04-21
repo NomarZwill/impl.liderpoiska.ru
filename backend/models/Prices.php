@@ -14,6 +14,8 @@ use Yii;
  * @property string $keywords
  * @property string $code
  * @property string $alias
+ * @property string $link
+ * @property string $text_1
  * @property int $old_id
  */
 class Prices extends \yii\db\ActiveRecord
@@ -36,7 +38,7 @@ class Prices extends \yii\db\ActiveRecord
     {
         return [
             [['prices_name', 'price'], 'required'],
-            [['prices_name', 'keywords', 'prices_description', 'code', 'alias'], 'string'],
+            [['prices_name', 'keywords', 'prices_description', 'code', 'alias', 'link', 'text_1'], 'string'],
             [['price', 'price_hide', 'is_active', 'old_id'], 'integer'],
             [['price_services_rel', 'price_articles_rel'], 'safe'],
         ];
@@ -59,6 +61,8 @@ class Prices extends \yii\db\ActiveRecord
             'alias' => 'Alias',
             'price_services_rel' => 'Выбор услуг',
             'price_articles_rel' => 'Выбор статей',
+            'link' => 'Ссылка на услугу',
+            'text_1' => 'Текст под строкой',
             'old_id' => 'Old ID',
         ];
     }

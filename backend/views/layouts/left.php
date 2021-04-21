@@ -14,6 +14,7 @@
                     ['label' => 'Цены', 'icon' => 'circle-o', 'url' => ['/prices/']],
                     ['label' => 'Клиники', 'icon' => 'circle-o', 'url' => ['/clinics/']],
                     ['label' => 'Статьи', 'icon' => 'circle-o', 'url' => ['/articles/']],
+                    ['label' => 'Наши работы', 'icon' => 'circle-o', 'url' => ['/our-works/']],
                     ['label' => 'Рейтинги', 'icon' => 'circle-o', 'url' => ['/ratings/']],
                     ['label' => 'Спецпредложения', 'icon' => 'circle-o', 'url' => ['/deals/']],
                     ['label' => 'Баннеры', 'icon' => 'circle-o', 'url' => ['/banners/']],

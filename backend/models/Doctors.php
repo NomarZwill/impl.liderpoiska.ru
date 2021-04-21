@@ -4,6 +4,8 @@ namespace backend\models;
 
 use Yii;
 use yii\helpers\FileHelper;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\imagine\Image;
 use Imagine\Gd;
 use Imagine\Image\Box;
@@ -20,6 +22,7 @@ use \common\components\Transliteration;
  * @property string $doctor_description
  * @property string $introtext
  * @property string $alias
+ * @property string $doctor_outer_links
  * @property string $content
  * @property string $doctor_education
  * @property string $doctor_image
@@ -77,7 +80,7 @@ class Doctors extends \yii\db\ActiveRecord
     {
         return [
             // [['doctor_title', 'doctor_long_title', 'doctor_description', 'alias', 'content', 'doctor_education', 'doctor_image', 'old_id'], 'required'],
-            [['doctor_title', 'doctor_long_title', 'doctor_description','keywords', 'breadcrumbs_title', 'introtext', 'alias', 'content', 'doctor_education', 'doctor_image', 'medic_to_filial', 'sort_lab_smail', 'sort_doyche_velle', 'sort_esteticheskaya_stomatologiya_chistie_prudi', 'sort_esteticheskaya_stomatologiya', 'sort_impl', 'sort_centr_implantologii', 'review_to_specials', 'specials_to_medic', 'review_title', 'query_to_service', 'faq_title', 'sort_klinika_dentalgeneva', 'sort_prec_1005', 'sort_prec_1154', 'sort_prec_1459', 'sort_prec_988', 'sort_prec_989', 'sort_prec_990', 'sort_prec_991', 'sort_prec_992', 'sort_prec_994'], 'string'],
+            [['doctor_title', 'doctor_long_title', 'doctor_description','keywords', 'breadcrumbs_title', 'introtext', 'alias', 'doctor_outer_links', 'content', 'doctor_education', 'doctor_image', 'medic_to_filial', 'sort_lab_smail', 'sort_doyche_velle', 'sort_esteticheskaya_stomatologiya_chistie_prudi', 'sort_esteticheskaya_stomatologiya', 'sort_impl', 'sort_centr_implantologii', 'review_to_specials', 'specials_to_medic', 'review_title', 'query_to_service', 'faq_title', 'sort_klinika_dentalgeneva', 'sort_prec_1005', 'sort_prec_1154', 'sort_prec_1459', 'sort_prec_988', 'sort_prec_989', 'sort_prec_990', 'sort_prec_991', 'sort_prec_992', 'sort_prec_994'], 'string'],
             [['old_id', 'doctor_experience', 'answers_the_questions', 'visible_on_home_page', 'is_active', 'doctor_listing_sort'], 'integer'],
             [['doctor_image_load', 'doctor_spec_rel', 'doctor_spec_sort', 'doctor_clinic_rel', 'doctor_clinic_sort', 'doctor_service_rel', 'doctor_service_sort', 'doctor_video_links', 'doctor_new_video_links', 'doctor_lizcenz_gallery', 'article_doctor_rel', 'article_doctor_sort'], 'safe']
         ];
@@ -97,6 +100,7 @@ class Doctors extends \yii\db\ActiveRecord
             'breadcrumbs_title' => 'Название в хлебной крошке',
             'introtext' => 'Introtext',
             'alias' => 'Alias',
+            'doctor_outer_links' => 'Внешние ссылки (через запятую)',
             'is_active' => 'Активен',
             'content' => 'Контент',
             'doctor_education' => 'Образование',
@@ -142,6 +146,95 @@ class Doctors extends \yii\db\ActiveRecord
             'article_doctor_sort' => 'Сортировка на странице статьи',
         ];
     }
+
+    public function getMicroData($doc){
+
+        $medSpecs = [];
+
+        foreach ($doc->medicalSpecialties as $medSpec) {
+            array_push($medSpecs, 
+                [
+                    "@type" => "MedicalSpecialty",
+                    "name" => $medSpec->menu_title
+                ]
+            );  
+        }
+
+        $addresses = [];
+
+        foreach ($doc->doctorsAndClinics as $clinic) {
+            $phones = explode('+', strip_tags($clinic->clinic_phone));
+
+            foreach ($phones as $key => $phone) {
+
+                if ($phones[$key] !== '') {
+                    $phones[$key] = '+' . $phone;
+                }
+            }
+
+            if ($clinic->clinic_id !== 5) {
+
+                $address = explode(',', strip_tags($clinic->clinic_address));
+                $tmp = explode(' ', str_replace('&nbsp;', ' ', $address[3]));
+                $streetAddress = $address[2] . ', д. ' . $tmp[2];    
+
+                array_push($addresses, 
+                    [
+                        "@type" => "PostalAddress",
+                        "streetAddress" => $streetAddress,
+                        "addressLocality" => "Москва",
+                        "postalCode" => $address[0],
+                        "addressCountry" => [
+                            "@type" => "Country",
+                            "name" => "Россия",
+                        ],
+                        "telephone" => $phones,
+                    ]
+                );  
+            } else {
+
+                array_push($addresses, 
+                    [
+                        "@type" => "PostalAddress",
+                        "streetAddress" => "Boulevard James-Fazy 4",
+                        "addressLocality" => "Geneva",
+                        "postalCode" => 1201,
+                        "addressCountry" => [
+                            "@type" => "Country",
+                            "name" => "Switzerland",
+                        ],
+                        "telephone" => $phones,
+                    ]
+                ); 
+            }
+        }
+
+        $outerLinks = [];
+        
+        if ($doc->doctor_outer_links !== null) {
+            $outerLinks = explode(',', $doc->doctor_outer_links);
+        }
+
+        $finalJSON = Html::script(
+            Json::encode([
+            "@context" => "https://schema.org/",
+            "@type" => "Dentist",
+            "name" => $doc->doctor_title,
+            "url" => "https://www.impl.ru/specialists/" . $doc->alias . "/",
+            "description" => $doc->doctor_description,
+            "award" => strip_tags($doc->doctor_education),
+            "MedicalSpecialty" => $medSpecs,
+            "Image" => "https://www.impl.ru/images/uploaded/doctors/" . $doc->doctor_id . "/" . $doc->doctor_image,
+            "address" => $addresses,
+            "priceRange" => "$",
+            "sameAs" => $outerLinks,
+            ]), [
+            'type' => 'application/ld+json',
+        ]);
+
+        return $finalJSON;
+    }
+
 
     public function getSeo(){
         return $seo = [
@@ -438,12 +531,15 @@ class Doctors extends \yii\db\ActiveRecord
 
     public function updateSpecSort(){
         if (!empty($this->doctor_spec_sort) && !empty($this->doctor_spec_rel)) {
+            // echo '<pre>';
+            // print_r($this->doctor_spec_sort);
+            // echo count($this->doctor_spec_sort);
+            // exit;
 
-    
             // if (count($this->doctor_spec_rel) > 1) {
-            if (count($this->doctor_spec_sort) > 1) {
+            if (count($this->doctor_spec_sort) === 1) {
 
-                foreach ($this->doctor_spec_sort[0] as $key => $value) {
+                foreach ($this->doctor_spec_sort[array_key_first($this->doctor_spec_sort)] as $key => $value) {
     
                     if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->exists()) {
                         $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'medSpeciality'])->one();
@@ -507,7 +603,7 @@ class Doctors extends \yii\db\ActiveRecord
 
             if (count($this->doctor_service_rel) > 1) {
 
-                foreach ($this->doctor_service_sort[0] as $key => $value) {
+                foreach ($this->doctor_service_sort[array_key_first($this->doctor_service_sort)] as $key => $value) {
     
                     if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->exists()) {
                         $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'services'])->one();
@@ -568,7 +664,7 @@ class Doctors extends \yii\db\ActiveRecord
     
             if (count($this->doctor_clinic_rel) > 1) {
 
-                foreach ($this->doctor_clinic_sort[0] as $key => $value) {
+                foreach ($this->doctor_clinic_sort[array_key_first($this->doctor_clinic_sort)] as $key => $value) {
     
                     if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->exists()) {
                         $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'clinics'])->one();
@@ -631,7 +727,7 @@ class Doctors extends \yii\db\ActiveRecord
                 // print_r($this->article_doctor_sort);
                 // exit;
 
-                foreach ($this->article_doctor_sort[0] as $key => $value) {
+                foreach ($this->article_doctor_sort[array_key_first($this->article_doctor_sort)] as $key => $value) {
     
                     if (DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->exists()) {
                         $currentSortItem = DoctorsPageSort::find()->where(['doctor_id' => $this->doctor_id, 'page_id' => $key, 'page_type' => 'articles'])->one();

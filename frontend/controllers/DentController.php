@@ -115,6 +115,7 @@ class DentController extends MainController
          'doctors' => $doctors,
          'draft' => $draft,
          'headings' => $headings,
+         'microdata' => Servises::getMicroData($currentService[0], $currentUrl)
       )); 
    }
 
@@ -202,7 +203,8 @@ class DentController extends MainController
          'mainParent' => $mainParent[0],
          'doctors' => $doctors,
          'draft' => $draft,
-         'headings' => $headings
+         'headings' => $headings,
+         'microdata' => Servises::getMicroData($currentService[0], $currentUrl)
       )); 
    }
 
@@ -297,7 +299,8 @@ class DentController extends MainController
          'parent' => $parent[0],
          'doctors' => $doctors,
          'draft' => $draft,
-         'headings' => $headings
+         'headings' => $headings,
+         'microdata' => Servises::getMicroData($currentService[0], $currentUrl)
       )); 
    }
 
@@ -386,7 +389,8 @@ class DentController extends MainController
          'parent' => '',
          'doctors' => $doctors,
          'draft' => $draft,
-         'headings' => $headings
+         'headings' => $headings,
+         'microdata' => Servises::getMicroData($currentService[0], $currentUrl)
       )); 
    }
 

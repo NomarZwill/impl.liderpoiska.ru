@@ -1,13 +1,71 @@
 'use strict';
 
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper';
-
+import YouTubePlayer from 'youtube-player';
 
 export default class DoctorPage{
 
   constructor(){
     Swiper.use([Navigation, Pagination, Thumbs]);
     this.init();
+    var self = this;
+    var fired = false;
+
+    window.addEventListener('click', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+ 
+    window.addEventListener('scroll', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    window.addEventListener('mousemove', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    window.addEventListener('touchmove', () => {
+        if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, {passive: true});
+
+    setTimeout(() => {
+      if (fired === false) {
+            fired = true;
+            load_other();
+      }
+    }, 5000);
+
+    function load_other() {
+        self.youtube_run();
+    }
+  }
+
+  youtube_run(){
+    var player = [];
+  
+    $('.service_video_item_wrapper').each(function(i, obj) {
+      var currentVideoId = $(obj).find('.servise_video').attr('id');
+      player[i] = YouTubePlayer(currentVideoId, {
+        videoId: currentVideoId,
+        width: '808',
+        height: '455',
+      });
+      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+        player[i].playVideo();
+        $(this).closest('.play_button_wrapper').addClass('_hidden');
+      });
+    });
   }
 
   init(){

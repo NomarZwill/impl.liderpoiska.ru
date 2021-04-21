@@ -33,6 +33,10 @@ use backend\models\BannersAndServices;
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
 
+    <?= $form->field($model, 'is_form_button')->checkbox() ?>
+
+    <?= $form->field($model, 'sort')->textInput() ?>
+
     <?php if (empty($isCreate)){ ?>
 
         <?php

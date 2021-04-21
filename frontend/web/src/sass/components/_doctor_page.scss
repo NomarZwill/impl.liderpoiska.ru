@@ -235,6 +235,56 @@
     }
   }
 
+  .content_block.service_video_container{
+    padding: 0 0 48px 0;
+
+    h3{
+      color: #333638;
+    }
+  }
+
+  .single_video_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .service_video_wrapper{
+    padding: 0 0 0 40px;
+
+    .swiper-wrapper{
+      padding: 0 0 24px 0;
+    }
+
+    .revolver_navigation_wrapper,
+    .revolver_pagination{
+      display: none;
+    }
+  }
+
+  .service_video_title{
+    padding: 0 0 24px 0;
+  }
+
+  .service_video_item_container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    p{
+      padding: 4px 0 0 0;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      letter-spacing: 0.02em;
+      color: $secondaryTextColor;
+    }
+  }
+
+  .service_video_item_wrapper{
+    position: relative;
+  }
+
   .content_block.doctor_lizcenz{
     width: 100%;
     padding: 48px 0 56px 0;
@@ -597,6 +647,15 @@
       }
     }
 
+    .content_block.service_video_container{
+      padding: 0 0 40px 0;
+  
+      .servise_video{
+        width: 736px;
+        height: 414px;
+      }
+    }
+
     .content_block.doctor_education{
       padding: 40px 16px 40px 16px;
     }
@@ -731,6 +790,16 @@
         height: 162px;
       }
     }
+
+    .content_block.service_video_container{
+      padding: 0 0 32px 0;
+  
+      .servise_video{
+        width: 288px;
+        height: 159px;
+      }
+    }
+
 
     .content_block.doctor_lizcenz{
       padding: 24px 0 32px 0;

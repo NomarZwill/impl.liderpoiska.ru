@@ -9,6 +9,7 @@ use backend\models\Doctors;
 use backend\models\Clinics;
 use backend\models\MedicalSpecialties;
 use backend\models\Deals;
+use backend\models\Articles;
 
 
 
@@ -36,6 +37,9 @@ class SitemapController extends MainController
     $deals = Deals::find()
       ->where(['is_active' => 1])
       ->all();
+    $articles = Articles::find()
+    ->where(['is_active' => 1])
+    ->all();
 
     return $this->renderPartial('index.twig', array(
       'host' => $host,
@@ -44,6 +48,7 @@ class SitemapController extends MainController
       'clinics' => $clinics,
       'specialities' => $specialities,
       'deals' => $deals,
+      'articles' => $articles,
     ));
 
   }

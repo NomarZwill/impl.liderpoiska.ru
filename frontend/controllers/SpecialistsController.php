@@ -3,6 +3,8 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use frontend\controllers\MainController;
 use backend\models\Clinics;
 use backend\models\Doctors;
@@ -80,18 +82,24 @@ class SpecialistsController extends MainController
       throw new \yii\web\NotFoundHttpException();
     }
 
-    $draft = HcDraft::find()
+    $rawDraft = HcDraft::find()
     ->where(['id' => $doc->doctor_hc_draft_id])
-    ->one()
-    ->getHtml();
+    ->one();
+
+    $draft = $rawDraft->getHtml();
+    $headings = $rawDraft->getTableOfContentsArray();
     
     // print_r($doc->doctorsGalleries);
     
+    $microdata = $doc->getMicroData($doc);
+
 
     if ($doc !== ''){
       return $this->render('doctorPage.twig', array(
         'doc' => $doc,
         'draft' => $draft,
+        'headings' => $headings,
+        'microdata' => $microdata,
       ));
     } else {
       echo 'no spec';

@@ -97,10 +97,11 @@ class MedicalSpecialties extends \yii\db\ActiveRecord
     }
 
     public function getReviews(){
-        return $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
+        $reviews = $this->hasMany(Reviews::className(), ['review_id' => 'review_id'])
             ->viaTable('review_spec_rel', ['specialty_id' => 'specialty_id'])
             ->where(['reviews.is_active' => 1])
             ->orderBy(['reviews.date' => SORT_DESC]);
+        return $reviews;
     }
 
     public function getArrayToSelect2() {

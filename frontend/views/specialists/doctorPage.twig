@@ -1,4 +1,6 @@
-<div data-page-type="doctor_page">
+<div data-page-type="doctor_page" data-doctor-id="{{ doc.doctor_id }}">
+
+  {{ microdata | raw }}
 
   <div class="content_block doctor_preview">
 
@@ -130,7 +132,7 @@
     
   </div>
 
-  {% if doc.doctorsVideos|length > 0 %}
+  {# {% if doc.doctorsVideos|length > 0 %}
 
   <div class="content_block doctor_video_container">
     <a name="video"></a>
@@ -216,7 +218,7 @@
 
   </div>
 
-  {% endif %}
+  {% endif %} #}
 
   {% if doc.doctorsLizenzes|length > 0 %}
 
@@ -403,23 +405,24 @@
 <script>
   var player = [];
   
-  function onYouTubePlayerAPIReady() {
+  // function onYouTubePlayerAPIReady() {
 
-    $('.doctor_video_item_wrapper').each(function(i, obj) {
-      var currentVideoId = $(obj).find('.doctor_video').attr('id');
-      player[i] = new YT.Player(currentVideoId, {
-        videoId: currentVideoId,
-        width: '808',
-        height: '455',
-      });
-      $(obj).find('.play_button_wrapper .play_button').on('click', function() {
-        player[i].playVideo();
-        $(this).closest('.play_button_wrapper').addClass('_hidden');
-      });
+  //   $('.doctor_video_item_wrapper').each(function(i, obj) {
+  //     console.log(i);
+  //     var currentVideoId = $(obj).find('.doctor_video').attr('id');
+  //     player[i] = new YT.Player(currentVideoId, {
+  //       videoId: currentVideoId,
+  //       width: '808',
+  //       height: '455',
+  //     });
+  //     $(obj).find('.play_button_wrapper .play_button').on('click', function() {
+  //       player[i].playVideo();
+  //       $(this).closest('.play_button_wrapper').addClass('_hidden');
+  //     });
 
-    });
+  //   });
       // document.getElementById('pauseYoutube1').onclick = function() {play.pauseVideo();};
-  };
+  // };
 </script>
 
 

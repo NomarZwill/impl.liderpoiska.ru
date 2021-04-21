@@ -64,6 +64,10 @@ use backend\models\ArticlesPricesRel;
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'price_hide')->textInput() ?>
+    
+    <?= $form->field($model, 'link')->textInput() ?>
+    
+    <?= $form->field($model, 'text_1')->textInput() ?>
 
     <!-- <?= $form->field($model, 'alias')->textInput() ?> -->
 
